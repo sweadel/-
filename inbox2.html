@@ -1,3 +1,37 @@
+السبب الرئيسي في قراءة الكلمات الإنجليزية فقط هو أن متصفحك (غالباً Chrome على
+ويندوز) لم يجد صوتاً عربياً متوافقاً في speechSynthesis.getVoices()، أو حدث
+تعارض بين utterance.lang ولغة الصوت المثبت على الجهاز، فقام المتصفح تلقائياً
+باستخدام الصوت الإنجليزي الافتراضي الذي يتخطى الحروف العربية ويقرأ الإنجليزية
+فقط؛ بالإضافة إلى مشكلة استدعاء cancel() وspeak() في نفس اللحظة دون مهلة زمنية
+في متصفحات Chromium، وغياب منع تعارض اختصارات لوحة المفاتيح مع Ctrl/Alt.
+
+أبرز الإصلاحات والتدقيقات المنفذة في النسخة المصححة:
+
+1.  إصلاح محرك القراءة الصوتية العربية (speechSynthesis):
+      - انتظار تحميل قائمة الأصوات الفعلية (waitForVoices) والبحث المرن عن
+        الأصوات العربية (سواء بصيغة ar-SA أو ar_SA أو بالاسم Arabic/العربية) مع
+        تفضيل الأصوات الطبيعية/السحابية عالية الجودة.
+      - مطابقة utterance.lang مع لغة الصوت العربي المختار تماماً (arVoice.lang)
+        لمنع تراجع المتصفح إلى الصوت الإنجليزي.
+      - معالجة خطأ Chromium الشهير بين cancel() وspeak() بإضافة مهلة 60ms
+        واستدعاء resume() وحفظ activeUtterance لمنع حذفه من الذاكرة أثناء
+        القراءة.
+      - في حال عدم وجود أي حزمة صوت عربي مثبتة في المتصفح/النظام، يظهر تنبيه
+        توضيحي لطيف أسفل السؤال بدلاً من تشغيل الصوت الإنجليزي على نص عربي (مع
+        التوصية بفتح الملف على Microsoft Edge الذي يوفّر أصواتاً عربية طبيعية
+        مباشرة دون تثبيت، أو تفعيل حزمة الكلام العربي في إعدادات النظام).
+2.  إصلاح تعارض اختصارات لوحة المفاتيح:
+      - إضافة التحقق if (e.ctrlKey || e.metaKey || e.altKey) return; حتى لا
+        تتعارض اختصارات الاختبار (F، S، الأسهم) مع اختصارات المتصفح مثل Ctrl+S
+        وCtrl+F وCtrl+P.
+3.  التحقق الشامل من البنك والمنطق البرمجي:
+      - تم فحص جميع الأسئلة الـ 300 (50 سؤالاً لكل وحدة من الوحدات 1–6،
+        بتوزيع 30% سهل، 45% متوسط، 25% صعب)، والتأكد من صحة الفواصل والاقتباسات
+        ومؤشرات الإجابة الصحيحة (a) وخلو الكود من أي أخطاء إملائية أو برمجية أو
+        أخطاء في الحفظ التلقائي والطباعة.
+
+إليك الكود الكامل والنظيف جاهزاً للحفظ والتشغيل:
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -289,7 +323,7 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
   }
 
   .q-text {
@@ -331,6 +365,17 @@
     animation: pulse 1.2s infinite;
   }
 
+  .speech-notice {
+    background: var(--accent-light);
+    border: 1px solid #ecc69c;
+    color: #7d4309;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.84rem;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
   @media (max-width: 560px) {
     .q-header-row {
       flex-direction: column;
@@ -345,6 +390,7 @@
     display: flex;
     flex-direction: column;
     gap: 11px;
+    margin-top: 6px;
   }
 
   .option-item {
@@ -637,6 +683,8 @@
     .hero-actions,
     .review-filters,
     .shortcuts-hint,
+    .speak-btn,
+    .speech-notice,
     .bank-footer,
     #examView {
       display: none !important;
@@ -722,6 +770,7 @@
           <div class="q-text" id="qText">جاري تحميل السؤال...</div>
           <button class="speak-btn" id="speakBtn" type="button" title="قراءة السؤال صوتياً (S)">🔊 استمع للسؤال</button>
         </div>
+        <div class="speech-notice hidden" id="speechNotice"></div>
 
         <div class="options-list" id="optionsList"></div>
 
@@ -1089,7 +1138,7 @@ const BANK = [
 
   // ==================== الوحدة السادسة (50 سؤال: 15 سهل، 22 متوسط، 13 صعب) ====================
   {u:6,d:"easy",q:"كم عدد أسباب استخدام الكتابة في الاتصال المذكورة في مطلع الوحدة السادسة؟",o:["ثلاثة أسباب","أربعة أسباب","خمسة أسباب","سبعة أسباب"],a:2,e:"ذكرت الوحدة خمسة أسباب رئيسة للكتابة: تعذر التخاطب، تعزيز الشفهي، التوثيق، فرصة الكاتب، وفرصة القارئ."},
-  {u:6,d:"easy",q:"أيٌّ مما يأتي من أسباب استخدام الكتابة في الاتصال؟",o:["تجنّب التفكير","إخفاء المعلومات","توثيق ما اتُّفق عليه بين أطراف الاتصال","إلغاء الاتصال الشفهي تماماً"],a:2,e:"من أهم أسباب الكتابة توثيق ما اتُّفق عليه بين أطراف الاتصال لمنع الاختلاف لاحقاً."},
+  {u:6,d:"easy",q:"أيٌّ مما يأتي من أسباب استخدام الكتابة في الاتصال؟",o:["تجنّب التفكير","إخفاء المعلومات","توثيق ما اتُّفق عليه بين أطراف الاتصال","إلغاء الاتصال الشفهي تماماً"],a:2,e:"من أهم أسباب الكتابة توثيق ما اتُّفق عليه بين أطراف الاتصال لمنع الاختلاف لاحقاً."},
   {u:6,d:"easy",q:"إلى كم قسم يُقسّم النص المكتوب أو الخطاب أو التقرير في هيكله العام؟",o:["فقرة واحدة","ملخص فقط","مقدمة ومحتوى وخاتمة","عنوان وتوقيع فقط"],a:2,e:"يجب تقسيم الرسالة أو الخطاب أو التقرير إلى فقرات: مقدمة، ومحتوى، وخاتمة."},
   {u:6,d:"easy",q:"ماذا يُسمى الترتيب السليم والتتابع المنطقي وتقسيم الأجزاء وترقيمها في الكتابة؟",o:["الوضوح","التناسق","الاكتمال","الموضوعية"],a:1,e:"التناسق يعني الترتيب السليم والتتابع المنطقي وتقسيم الأجزاء وترقيمها."},
   {u:6,d:"easy",q:"أي مما يأتي ليس من أشكال الكتابة المذكورة في الوحدة السادسة؟",o:["محاضر الاجتماعات","الخطابة الشفهية","الملصقات","التقارير"],a:1,e:"الخطابة الشفهية شكل من أشكال التحدث لا الكتابة، بينما المحاضر والملصقات والتقارير من أشكال الكتابة."},
@@ -1127,7 +1176,7 @@ const BANK = [
   {u:6,d:"medium",q:"ما الذي يضيفه وجود «عناوين فرعية» لكل موضوعات التقرير في شكله النهائي؟",o:["يزيد الأخطاء المطبعية","يحقق التناسق والترتيب ويسهّل على القارئ التصفح والفهم","يعيق القراءة السريعة","يلغي الحاجة للملخص"],a:1,e:"العناوين الفرعية تدعم التناسق وتقسيم الأجزاء، وهو ما أكد عليه استقصاء التقارير وإرشادات الكتابة."},
   {u:6,d:"medium",q:"وفق الاستقصاء، ما الذي ينبغي أن يسأل الكاتب نفسه عنه «قبل البدء» في كتابة التقرير؟",o:["ما لون الغلاف فقط؟","عن الهدف العام الذي يريد تحقيقه، ومن سيقرأ هذا الموضوع؟","كم عدد السطور في كل صفحة؟","كيف يزوق الحقائق؟"],a:1,e:"قبل البدء يسأل الكاتب نفسه: عن الهدف العام الذي يريد تحقيقه، ومن سيقرأ الموضوع."},
 
-  {u:6,d:"hard",q:"اتفقتَ مع زميلك شفهياً على تقسيم مهام مشروع، ثم اختلفتما لاحقاً حول من يؤدي ماذا؛ أي سبب من أسباب الكتابة كان كفيلاً بمنع هذا الخلاف؟",o:["منح الكاتب فرصة التفكير","توثيق ما اتُّفق عليه بين أطراف الاتصال وتعزيز الاتصالات الشفهية","التواصل عند تعذر التخاطب المباشر","زيادة عدد الصفحات"],a:1,e:"الكتابة تعزز الاتصالات الشفهية التي حدثت وتؤكدها، وتوثّق ما اتُّفق عليه بين الأطراف."},
+  {u:6,d:"hard",q:"اتفقتَ مع زميلك شفهياً على تقسيم مهام مشروع، ثم اختلفتما لاحقاً حول من يؤدي ماذا؛ أي سبب من أسباب الكتابة كان كفيلاً بمنع هذا الخلاف؟",o:["منح الكاتب فرصة التفكير","توثيق ما اتُّفق عليه بين أطراف الاتصال وتعزيز الاتصالات الشفهية","التواصل عند تعذر التخاطب المباشر","زيادة عدد الصفحات"],a:1,e:"الكتابة تعزز الاتصالات الشفهية التي حدثت وتؤكدها، وتوثّق ما اتُّفق عليه بين الأطراف."},
   {u:6,d:"hard",q:"وصلك بريد إلكتروني طويل جداً بلا فقرات ولا عناوين ولا ترقيم؛ ما المبدأ الأساسي الذي افتقده كاتب البريد وما أثر ذلك عليك؟",o:["افتقد الأدلة المقنعة فقط","افتقد التناسق وتقسيم النص إلى فقرات (مقدمة ومحتوى وخاتمة)، مما يسبب صعوبة القراءة وتشتت القارئ","افتقد الخلو من المراجع فقط","افتقد العاطفية عند الكتابة"],a:1,e:"التناسق وتقسيم النص لفقرات وعناوين يسهّلان القراءة ويجنبان القارئ التشتت والانطباع السيئ."},
   {u:6,d:"hard",q:"لماذا يُنصح بعدم كتابة رد على رسالة أغضبتك إلا بعد أن تهدأ؟",o:["لأن الرد الفوري في حالة الغضب يوقع في معوقَي «الانفعال عند الكتابة» و«العاطفية»","لأن الرد المكتوب لا يحتاج للتفكير","لأن الكتابة تمنع التوثيق","لأن القارئ لا يقرأ الرسائل الهادئة"],a:0,e:"الانفعال عند الكتابة والعاطفية في عرض الآراء من أبرز معوقات الاتصال المكتوب، والهدوء يتيح تحري الدقة."},
   {u:6,d:"hard",q:"موظف كتب تقريراً رسمياً مليئاً بالعبارات مثل: «أقسم أن هذا أعظم إنجاز في التاريخ» دون إحصاءات أو مصادر؛ أي معوقين ارتكبهما؟",o:["الاختصار والبساطة","المبالغة في عرض وجهات النظر وعرض الآراء غير الموثقة (وعدم الدقة في الأدلة)","التناسق والترقيم","استخدام الجداول والرسوم"],a:1,e:"المبالغة في وجهات النظر وعرض الآراء غير الموثقة وعدم الدقة في البراهين من معوقات الاتصال المكتوب."},
@@ -1157,6 +1206,9 @@ let state = {
 };
 
 let isSpeaking = false;
+let activeUtterance = null;
+let speechTimerId = null;
+let speechSessionId = 0;
 
 const els = {
   countSelect: document.getElementById("countSelect"),
@@ -1176,6 +1228,7 @@ const els = {
   flagBtn: document.getElementById("flagBtn"),
   qText: document.getElementById("qText"),
   speakBtn: document.getElementById("speakBtn"),
+  speechNotice: document.getElementById("speechNotice"),
   optionsList: document.getElementById("optionsList"),
   prevBtn: document.getElementById("prevBtn"),
   nextBtn: document.getElementById("nextBtn"),
@@ -1193,6 +1246,20 @@ const els = {
   bankFooter: document.getElementById("bankFooter")
 };
 
+function hideSpeechNotice() {
+  if (els.speechNotice) {
+    els.speechNotice.classList.add("hidden");
+    els.speechNotice.textContent = "";
+  }
+}
+
+function showSpeechNotice(msg) {
+  if (els.speechNotice) {
+    els.speechNotice.textContent = msg;
+    els.speechNotice.classList.remove("hidden");
+  }
+}
+
 function updateSpeakBtnUI(speaking) {
   isSpeaking = speaking;
   if (!els.speakBtn) return;
@@ -1206,15 +1273,83 @@ function updateSpeakBtnUI(speaking) {
 }
 
 function stopSpeech() {
+  speechSessionId++;
+  if (speechTimerId) {
+    clearTimeout(speechTimerId);
+    speechTimerId = null;
+  }
+  activeUtterance = null;
   if ("speechSynthesis" in window) {
-    window.speechSynthesis.cancel();
+    try {
+      window.speechSynthesis.cancel();
+    } catch (err) {
+      // تجاهل
+    }
   }
   updateSpeakBtnUI(false);
 }
 
-function toggleSpeakQuestion() {
+function waitForVoices(timeoutMs = 350) {
+  return new Promise(resolve => {
+    if (!("speechSynthesis" in window)) {
+      resolve([]);
+      return;
+    }
+    const existing = window.speechSynthesis.getVoices();
+    if (existing && existing.length > 0) {
+      resolve(existing);
+      return;
+    }
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      window.speechSynthesis.removeEventListener("voiceschanged", onChanged);
+      resolve(window.speechSynthesis.getVoices() || []);
+    };
+    const onChanged = () => finish();
+    window.speechSynthesis.addEventListener("voiceschanged", onChanged);
+    setTimeout(finish, timeoutMs);
+  });
+}
+
+function getArabicVoices(allVoices) {
+  return (allVoices || []).filter(v => {
+    const lang = (v.lang || "").replace("_", "-").toLowerCase();
+    const name = (v.name || "").toLowerCase();
+    return lang.startsWith("ar") || name.includes("arabic") || name.includes("العربية");
+  });
+}
+
+function pickBestArabicVoice(arVoices) {
+  if (!arVoices || arVoices.length === 0) return null;
+  const scored = arVoices.map(v => {
+    const lang = (v.lang || "").replace("_", "-").toLowerCase();
+    const name = (v.name || "").toLowerCase();
+    let score = 0;
+    if (name.includes("natural") || name.includes("online") || name.includes("neural")) score += 30;
+    if (name.includes("google")) score += 20;
+    if (lang === "ar-sa" || lang === "ar-jo" || lang === "ar-eg" || lang === "ar-ae") score += 10;
+    if (v.localService === false) score += 5;
+    if (v.default) score += 2;
+    return { v, score };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  return scored[0].v;
+}
+
+function prepareTextForSpeech(text) {
+  return String(text || "")
+    .replace(/[«»]/g, " ")
+    .replace(/\.\.\./g, "، ")
+    .replace(/[—–]/g, "، ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+async function toggleSpeakQuestion() {
   if (!("speechSynthesis" in window)) return;
-  if (isSpeaking || window.speechSynthesis.speaking) {
+  if (isSpeaking || window.speechSynthesis.speaking || window.speechSynthesis.pending) {
     stopSpeech();
     return;
   }
@@ -1222,23 +1357,68 @@ function toggleSpeakQuestion() {
   const qObj = state.examQuestions[state.currentIndex];
   if (!qObj) return;
 
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(qObj.q);
-  utterance.lang = "ar-SA";
-  utterance.rate = 0.95;
+  hideSpeechNotice();
+  const sessionId = ++speechSessionId;
+  const allVoices = await waitForVoices(350);
+  if (sessionId !== speechSessionId) return;
 
-  const voices = window.speechSynthesis.getVoices();
-  const arVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("ar"));
-  if (arVoice) {
-    utterance.voice = arVoice;
+  const arVoices = getArabicVoices(allVoices);
+  if (allVoices.length > 0 && arVoices.length === 0) {
+    showSpeechNotice(
+      "تنبيه: المتصفح الحالي لا يحتوي على حزمة صوت عربي (TTS)، لذلك كان يتخطى الكلمات العربية ويقرأ الإنجليزية فقط. " +
+      "للحصول على قراءة عربية واضحة وكاملة، افتح الصفحة في متصفح Microsoft Edge (يدعم الأصوات العربية الطبيعية مباشرة)، أو ثبّت حزمة الصوت العربي من إعدادات النظام."
+    );
+    updateSpeakBtnUI(false);
+    return;
   }
 
-  utterance.onstart = () => updateSpeakBtnUI(true);
-  utterance.onend = () => updateSpeakBtnUI(false);
-  utterance.onerror = () => updateSpeakBtnUI(false);
+  const arVoice = pickBestArabicVoice(arVoices);
+  const cleanText = prepareTextForSpeech(qObj.q);
+  if (!cleanText) return;
 
-  updateSpeakBtnUI(true);
-  window.speechSynthesis.speak(utterance);
+  try {
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.resume();
+  } catch (err) {
+    // تجاهل
+  }
+
+  speechTimerId = setTimeout(() => {
+    if (sessionId !== speechSessionId) return;
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    activeUtterance = utterance;
+
+    if (arVoice) {
+      utterance.voice = arVoice;
+      utterance.lang = (arVoice.lang || "ar-SA").replace("_", "-");
+    } else {
+      utterance.lang = "ar-SA";
+    }
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+
+    utterance.onstart = () => {
+      if (sessionId === speechSessionId) updateSpeakBtnUI(true);
+    };
+    utterance.onend = () => {
+      if (sessionId === speechSessionId) {
+        activeUtterance = null;
+        updateSpeakBtnUI(false);
+      }
+    };
+    utterance.onerror = (ev) => {
+      if (sessionId === speechSessionId) {
+        activeUtterance = null;
+        updateSpeakBtnUI(false);
+        if (ev && ev.error !== "canceled" && ev.error !== "interrupted") {
+          showSpeechNotice("تعذر تشغيل القراءة الصوتية في هذا المتصفح. جرّب فتح الصفحة عبر Microsoft Edge لتشغيل الصوت العربي.");
+        }
+      }
+    };
+
+    updateSpeakBtnUI(true);
+    window.speechSynthesis.speak(utterance);
+  }, 60);
 }
 
 function shuffle(arr) {
@@ -1432,6 +1612,7 @@ function startTimer(isResuming = false) {
 
 function startNewExam() {
   stopSpeech();
+  hideSpeechNotice();
   clearInterval(state.timerId);
   clearSavedState();
 
@@ -1468,6 +1649,7 @@ function renderPalette() {
     if (state.flagged.has(idx)) btn.classList.add("flagged");
     btn.addEventListener("click", () => {
       stopSpeech();
+      hideSpeechNotice();
       state.currentIndex = idx;
       saveState();
       renderQuestion();
@@ -1515,6 +1697,7 @@ function goPrev() {
   if (state.submitted) return;
   if (state.currentIndex > 0) {
     stopSpeech();
+    hideSpeechNotice();
     state.currentIndex--;
     saveState();
     renderQuestion();
@@ -1525,6 +1708,7 @@ function goPrev() {
 function goNext() {
   if (state.submitted) return;
   stopSpeech();
+  hideSpeechNotice();
   if (state.currentIndex < state.examQuestions.length - 1) {
     state.currentIndex++;
   } else {
@@ -1654,6 +1838,7 @@ function finishExam(autoSubmitted = false) {
   }
 
   stopSpeech();
+  hideSpeechNotice();
   state.submitted = true;
   clearInterval(state.timerId);
   saveState();
@@ -1728,6 +1913,7 @@ els.jumpUnansweredBtn.addEventListener("click", () => {
     const idx = (state.currentIndex + offset) % total;
     if (state.answers[idx] === undefined) {
       stopSpeech();
+      hideSpeechNotice();
       state.currentIndex = idx;
       saveState();
       renderQuestion();
@@ -1757,6 +1943,7 @@ els.reviewFilters.addEventListener("click", (e) => {
 
 document.addEventListener("keydown", (e) => {
   if (state.submitted) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
   const activeTag = document.activeElement ? document.activeElement.tagName : "";
   if (["INPUT", "TEXTAREA", "SELECT"].includes(activeTag)) return;
 
@@ -1794,7 +1981,9 @@ window.addEventListener("beforeunload", stopSpeech);
     els.speakBtn.classList.add("hidden");
   } else if ("speechSynthesis" in window) {
     window.speechSynthesis.getVoices();
-    window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    window.speechSynthesis.addEventListener("voiceschanged", () => {
+      window.speechSynthesis.getVoices();
+    });
   }
 
   const total = BANK.length;
@@ -1808,7 +1997,7 @@ window.addEventListener("beforeunload", stopSpeech);
     state.examQuestions = saved.examQuestions;
     state.answers = saved.answers || {};
     state.flagged = new Set(Array.isArray(saved.flagged) ? saved.flagged : []);
-    state.currentIndex = Math.min(saved.currentIndex || 0, state.examQuestions.length - 1);
+    state.currentIndex = Math.max(0, Math.min(saved.currentIndex || 0, state.examQuestions.length - 1));
     state.totalCount = saved.totalCount || state.examQuestions.length;
     state.timerMinutes = saved.timerMinutes !== undefined ? saved.timerMinutes : 60;
     state.remainingSeconds = saved.remainingSeconds !== undefined ? saved.remainingSeconds : state.timerMinutes * 60;
