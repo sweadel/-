@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بنك الأسئلة التفاعلي | الاتصال والتواصل باللغة العربية (الوحدات 1 - 6)</title>
+<style>
+  :root {
+    --primary: #0f5c63;
+    --primary-dark: #093e43;
+    --primary-light: #e6f2f3;
+    --accent: #d9822b;
+    --accent-light: #fdf3e7;
+    --success: #1b8a5a;
+    --success-light: #e8f6ef;
+    --danger: #c0392b;
+    --danger-light: #fbeaea;
+    --bg: #f3f7f8;
+    --card: #ffffff;
+    --text: #1c2b2d;
+    --muted: #5a6d70;
+    --border: #d5e1e3;
+    --shadow: 0 6px 24px rgba(15, 92, 99, 0.08);
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, 'Noto Sans Arabic', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .app-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    color: #fff;
+    padding: 20px 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .brand h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .brand p {
+    font-size: 0.88rem;
+    opacity: 0.9;
+  }
+
+  .controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ctrl-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.13);
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+  }
+
+  .ctrl-group select {
+    background: #fff;
+    color: var(--text);
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btn {
+    border: none;
+    border-radius: 10px;
+    padding: 9px 16px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-accent:hover { background: #c27120; transform: translateY(-1px); }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+
+  .btn-outline {
+    background: #fff;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+  }
+  .btn-outline:hover { background: var(--primary-light); }
+
+  .btn-ghost {
+    background: #eef4f5;
+    color: var(--text);
+  }
+  .btn-ghost:hover { background: #dce8ea; }
+
+  .btn-light {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
+  .btn-light:hover { background: rgba(255, 255, 255, 0.28); }
+
+  .btn-danger {
+    background: var(--danger);
+    color: #fff;
+  }
+  .btn-danger:hover { background: #a83024; }
+
+  .container {
+    max-width: 1120px;
+    margin: 22px auto;
+    padding: 0 16px 40px;
+  }
+
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--card);
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+  }
+
+  .progress-wrap {
+    flex: 1 1 320px;
+  }
+
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--primary-dark);
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 10px;
+    background: #e2ecef;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+
+  .timer-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1px solid #b9d7da;
+  }
+
+  .timer-pill.warning {
+    background: var(--danger-light);
+    color: var(--danger);
+    border-color: #ebb7b2;
+    animation: pulse 1.2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  .exam-layout {
+    display: grid;
+    grid-template-columns: 1fr 290px;
+    gap: 18px;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .exam-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 24px;
+  }
+
+  .q-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .badge-unit { background: var(--primary-light); color: var(--primary-dark); }
+  .badge-easy { background: var(--success-light); color: var(--success); }
+  .badge-medium { background: var(--accent-light); color: #a85c11; }
+  .badge-hard { background: #f3e8ff; color: #6b21a8; }
+  .badge-flag { background: var(--accent-light); color: #9c530c; border: 1px solid #f0cfa8; }
+
+  .flag-btn {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .flag-btn.flagged {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: #9c530c;
+  }
+
+  .q-text {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .option-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    background: #fff;
+    text-align: right;
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.98rem;
+    color: var(--text);
+  }
+
+  .option-item:hover {
+    border-color: var(--primary);
+    background: #f8fcfc;
+  }
+
+  .option-item.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    font-weight: 700;
+  }
+
+  .opt-letter {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #edf3f4;
+    color: var(--primary-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .option-item.selected .opt-letter {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .q-nav-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .shortcuts-hint {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: #f8fbfb;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px dashed var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .nav-side h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--primary-dark);
+  }
+
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+    gap: 7px;
+    margin-bottom: 16px;
+    max-height: 360px;
+    overflow-y: auto;
+    padding: 2px;
+  }
+
+  .pal-btn {
+    height: 36px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .pal-btn.answered {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary-dark);
+  }
+
+  .pal-btn.current {
+    outline: 2.5px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .pal-btn.flagged::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  .hidden { display: none !important; }
+
+  .score-hero {
+    text-align: center;
+    padding: 28px 20px;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: #fff;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+  }
+
+  .score-circle {
+    width: 136px;
+    height: 136px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    border: 5px solid #fff;
+    margin: 0 auto 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .score-pct { font-size: 2rem; font-weight: 800; line-height: 1.1; }
+  .score-raw { font-size: 0.92rem; opacity: 0.9; }
+
+  .hero-actions {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+  }
+
+  .mini-bar {
+    height: 8px;
+    background: #e5eef0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .mini-bar > div {
+    height: 100%;
+    background: var(--primary);
+  }
+
+  .review-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .filter-tab {
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text);
+  }
+
+  .filter-tab.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+  }
+
+  .review-item {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 14px;
+    background: #fff;
+  }
+
+  .review-item.is-correct { border-right: 5px solid var(--success); }
+  .review-item.is-wrong { border-right: 5px solid var(--danger); }
+
+  .review-ans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+  }
+
+  .ans-box {
+    padding: 9px 12px;
+    border-radius: 8px;
+  }
+  .ans-user-ok { background: var(--success-light); color: #125c3c; }
+  .ans-user-bad { background: var(--danger-light); color: #8c261c; }
+  .ans-correct { background: var(--primary-light); color: var(--primary-dark); }
+
+  .explanation-box {
+    background: #f8fafb;
+    border: 1px solid #e0e8ea;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    color: #2f4245;
+  }
+
+  .bank-footer {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 24px;
+  }
+
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      background: #fff !important;
+    }
+    .app-header {
+      background: var(--primary-dark) !important;
+      box-shadow: none !important;
+      padding: 12px 16px !important;
+    }
+    .controls-bar,
+    .hero-actions,
+    .review-filters,
+    .shortcuts-hint,
+    .bank-footer,
+    #examView {
+      display: none !important;
+    }
+    .container {
+      margin: 10px auto !important;
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
+    .card,
+    .score-hero,
+    .review-item {
+      box-shadow: none !important;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand">
+      <h1>الاتصال والتواصل باللغة العربية — الاختبار التفاعلي</h1>
+      <p id="bankSubtitle">بنك أسئلة شامل للوحدات (1 – 6) | 300 سؤال متوازن الصعوبة</p>
+    </div>
+    <div class="controls-bar">
+      <div class="ctrl-group">
+        <label for="countSelect">عدد الأسئلة:</label>
+        <select id="countSelect">
+          <option value="60">60 سؤالاً</option>
+          <option value="65" selected>65 سؤالاً (الافتراضي)</option>
+          <option value="70">70 سؤالاً</option>
+        </select>
+      </div>
+      <div class="ctrl-group">
+        <label for="timerSelect">المؤقت:</label>
+        <select id="timerSelect">
+          <option value="0">بدون مؤقت</option>
+          <option value="45">45 دقيقة</option>
+          <option value="60" selected>60 دقيقة</option>
+          <option value="75">75 دقيقة</option>
+        </select>
+      </div>
+      <button class="btn btn-accent" id="newExamBtn" type="button">اختبار جديد</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section id="examView">
+    <div class="meta-strip">
+      <div class="progress-wrap">
+        <div class="progress-labels">
+          <span id="progressText">السؤال 1 من 65</span>
+          <span id="answeredText">المجاب عنها: 0 / 65 (0%)</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <div class="timer-pill" id="timerPill">
+        <span>الوقت المتبقي:</span>
+        <span id="timerDisplay">60:00</span>
+      </div>
+    </div>
+
+    <div class="exam-layout">
+      <div class="card">
+        <div class="q-badges">
+          <div class="badge-group">
+            <span class="badge badge-unit" id="qUnitBadge">الوحدة الأولى</span>
+            <span class="badge badge-easy" id="qDiffBadge">سهل</span>
+          </div>
+          <button class="flag-btn" id="flagBtn" type="button">تحديد للمراجعة</button>
+        </div>
+
+        <div class="q-text" id="qText">جاري تحميل السؤال...</div>
+        <div class="options-list" id="optionsList"></div>
+
+        <div class="q-nav-actions">
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn btn-ghost" id="prevBtn" type="button">السابق</button>
+            <button class="btn btn-primary" id="nextBtn" type="button">التالي</button>
+          </div>
+          <button class="btn btn-danger" id="submitBtn" type="button">إنهاء وتسليم الاختبار</button>
+        </div>
+
+        <div class="shortcuts-hint">
+          <span><strong>اختصارات لوحة المفاتيح:</strong></span>
+          <span>الأرقام <strong>1–4</strong> للاختيار/إلغاء التحديد</span>
+          <span><strong>◄ (يسار)</strong> التالي | <strong>► (يمين)</strong> السابق</span>
+          <span><strong>F</strong> أو <strong>ب</strong> للمراجعة</span>
+        </div>
+      </div>
+
+      <aside class="card nav-side">
+        <h3>لوحة التنقل والمراجعة</h3>
+        <div class="legend">
+          <span><i class="dot" style="background:var(--primary-light); border:1px solid var(--primary);"></i> مُجاب</span>
+          <span><i class="dot" style="background:#fff; border:1px solid var(--border);"></i> غير مُجاب</span>
+          <span><i class="dot" style="background:var(--accent);"></i> للمراجعة</span>
+        </div>
+        <div class="palette-grid" id="paletteGrid"></div>
+        <button class="btn btn-outline" style="width:100%; justify-content:center;" id="jumpUnansweredBtn" type="button">الانتقال لأول سؤال غير مجاب</button>
+      </aside>
+    </div>
+  </section>
+
+  <section id="resultsView" class="hidden">
+    <div class="score-hero">
+      <div class="score-circle">
+        <div class="score-pct" id="resPct">0%</div>
+        <div class="score-raw" id="resRaw">0 / 65</div>
+      </div>
+      <h2 id="resTitle">نتيجة الاختبار</h2>
+      <p id="resMsg" style="margin-top:6px; opacity:0.95;"></p>
+      <div class="hero-actions">
+        <button class="btn btn-accent" id="retryBtn" type="button">بدء اختبار جديد</button>
+        <button class="btn btn-light" id="printBtn" type="button">طباعة / حفظ النتيجة PDF</button>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="card">
+        <h3 style="margin-bottom:12px; color:var(--primary-dark);">الأداء حسب الوحدات</h3>
+        <div id="unitStatsBody"></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px; color:var(--primary-dark);">الأداء حسب مستوى الصعوبة</h3>
+        <div id="diffStatsBody"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:14px; color:var(--primary-dark);">المراجعة الشاملة للإجابات والشرح</h3>
+      <div class="review-filters" id="reviewFilters">
+        <button class="filter-tab active" data-filter="all" type="button">الكل</button>
+        <button class="filter-tab" data-filter="wrong" type="button">الخاطئة فقط</button>
+        <button class="filter-tab" data-filter="correct" type="button">الصحيحة فقط</button>
+        <button class="filter-tab" data-filter="unanswered" type="button">غير المجاب عنها</button>
+        <button class="filter-tab" data-filter="flagged" type="button">المحددة للمراجعة</button>
+      </div>
+      <div id="reviewList"></div>
+    </div>
+  </section>
+
+  <div class="bank-footer" id="bankFooter"></div>
+</main>
+
+<script>
+const STORAGE_KEY = "arabic_comm_exam_state_v2";
+
+const UNIT_NAMES = {
+  1: "الوحدة الأولى: مستويات اللغة العربية",
+  2: "الوحدة الثانية: الاتصال: ماهيته وأنواعه",
+  3: "الوحدة الثالثة: مهارات الاستماع",
+  4: "الوحدة الرابعة: مهارات التحدث",
+  5: "الوحدة الخامسة: مهارات القراءة",
+  6: "الوحدة السادسة: مهارات الكتابة"
+};
+
+const DIFF_LABELS = {
+  easy: "سهل",
+  medium: "متوسط",
+  hard: "صعب / استنتاجي"
+};
+
+const LETTERS = ["أ", "ب", "ج", "د"];
+
+const BANK = [
+  // ==================== الوحدة الأولى (50 سؤال: 15 سهل، 23 متوسط، 12 صعب) ====================
+  {u:1,d:"easy",q:"كم عدد مستويات اللغة العربية في هرم المستويات؟",o:["خمسة مستويات","ستة مستويات","سبعة مستويات","ثمانية مستويات"],a:2,e:"تتدرج مستويات اللغة العربية في الهرم عبر سبعة مستويات من الصوت إلى النقد."},
+  {u:1,d:"easy",q:"ما أصغر وحدة في هرم مستويات اللغة العربية؟",o:["الكلمة","الصوت","الجملة","المعنى"],a:1,e:"يبدأ هرم مستويات اللغة العربية بأصغر وحدة وهي الصوت في المستوى الصوتي."},
+  {u:1,d:"easy",q:"ما قمة هرم مستويات اللغة العربية؟",o:["المستوى البياني","المستوى النحوي","المستوى الكتابي","المستوى النقدي"],a:3,e:"يمثل المستوى النقدي (الحكم على النص الأدبي) أعلى درجة في الهرم اللغوي."},
+  {u:1,d:"easy",q:"من رائد الأبحاث الصوتية عند علماء العربية؟",o:["الجاحظ","سيبويه","الخليل بن أحمد الفراهيدي","ابن جني"],a:2,e:"يُعد الخليل بن أحمد الفراهيدي رائد الأبحاث الصوتية ومُرتّب الحروف حسب مخارجها."},
+  {u:1,d:"easy",q:"كم عدد أصوات اللغة العربية الإجمالي؟",o:["28 صوتاً","31 صوتاً","34 صوتاً","36 صوتاً"],a:2,e:"تتكون أصوات العربية من 34 صوتاً: 28 صوتاً صامتاً و6 أصوات صائتة."},
+  {u:1,d:"easy",q:"كم عدد الأصوات الصامتة في اللغة العربية؟",o:["28 حرفاً","34 حرفاً","17 حرفاً","6 أصوات"],a:0,e:"تشتمل العربية على 28 صوتاً صامتاً تمثل حروف الهجاء."},
+  {u:1,d:"easy",q:"ماذا تمثّل الأصوات الصائتة الستة في العربية؟",o:["حروف الإعجام","الحروف الحلقية","الحركات القصيرة والطويلة","الحروف الشفوية"],a:2,e:"الأصوات الصائتة الستة هي الفتحة والضمة والكسرة (قصيرة وطويلة)."},
+  {u:1,d:"easy",q:"الترتيب المتداول اليوم الذي يجمع الحروف المتشابهة في الرسم هو الترتيب:",o:["الصوتي","الأبجدي","الهجائي (الألفبائي)","المعجمي"],a:2,e:"الترتيب الهجائي (أ، ب، ت، ث...) هو المتداول اليوم ويجمع الحروف المتشابهة رسماً."},
+  {u:1,d:"easy",q:"كم عدد مخارج الحروف في النظام الصوتي العربي؟",o:["سبعة مخارج","أربعة عشر مخرجاً","سبعة عشر مخرجاً","ثمانية وعشرون مخرجاً"],a:2,e:"تعددت مخارج الحروف في النظام الصوتي العربي إلى سبعة عشر مخرجاً."},
+  {u:1,d:"easy",q:"ما الركيزة الأساسية لعلم الصرف؟",o:["السياق","الإعراب","الحركة","الجذر"],a:3,e:"الجذر هو الركيزة الأساسية لعلم الصرف وتُشتق منه الكلمات."},
+  {u:1,d:"easy",q:"ما جذر كلمة «تلاوة»؟",o:["ولت","تول","تلو","تلا"],a:2,e:"تُشتق كلمة «تلاوة» من الجذر الثلاثي (ت ل و)."},
+  {u:1,d:"easy",q:"على أي أحرفٍ بُني الميزان الصرفي؟",o:["ك ت ب","ف ع ل","ج ذ ر","ف ع ل ل"],a:1,e:"بُني الميزان الصرفي على ثلاثة أحرف هي (ف ع ل) لأن أغلب الكلمات المجردة ثلاثية."},
+  {u:1,d:"easy",q:"ما المقصود بـ «علم الدلالة»؟",o:["دراسة الأصوات ومخارجها","دراسة بنية الكلمة","دراسة المعنى","دراسة علامات الإعراب"],a:2,e:"علم الدلالة هو العلم الذي يدرس المعنى ويحلل معاني الكلمات وعلاقاتها."},
+  {u:1,d:"easy",q:"ما اتجاه الكتابة في اللغة العربية؟",o:["من اليسار إلى اليمين","من اليمين إلى اليسار","من الأعلى إلى الأسفل","حسب نوع النص"],a:1,e:"من مزايا الكتابة العربية أن اتجاهها من اليمين إلى اليسار."},
+  {u:1,d:"easy",q:"ما معنى «البيان» لغةً؟",o:["الستر والخفاء","الكشف والإيضاح","القصد والاتجاه","ردّ الشيء عن وجهه"],a:1,e:"البيان في اللغة يعني الكشف والإيضاح."},
+
+  {u:1,d:"medium",q:"المستوى الذي يُعنى بدراسة الأصوات اللغوية من حيث مخارجها وصفاتها هو:",o:["المستوى الصرفي","المستوى الدلالي","المستوى النحوي","المستوى الصوتي"],a:3,e:"المستوى الصوتي يدرس الأصوات من حيث مخارجها وصفاتها وكيفية النطق بها."},
+  {u:1,d:"medium",q:"الترتيب الذي يبدأ بـ (ع، ح، هـ، خ، غ) هو الترتيب:",o:["الألفبائي","الصوتي","الهجائي","الأبجدي"],a:1,e:"الترتيب الصوتي للخليل يبدأ من أعمق نقطة في الحلق (ع، ح، هـ، خ، غ)."},
+  {u:1,d:"medium",q:"يمثّل ترتيب (أبجد هوّز حطّي كلمن...) الترتيب:",o:["المعجمي","الهجائي","الصوتي","الأبجدي"],a:3,e:"هذا التسلسل التاريخي المعروف يُعرف بالترتيب الأبجدي."},
+  {u:1,d:"medium",q:"أيٌّ من المجموعات الآتية تمثّل حروف الحلق في مناطق مخارج الحروف؟",o:["ق ك","ب م و ف","ء هـ ع ح غ خ","ج ش ي"],a:2,e:"أعمق نقطة هي الحلق ومخرجه للحروف: (ء هـ ع ح غ خ)."},
+  {u:1,d:"medium",q:"إلى أي منطقة مخرج تنتمي الحروف (ب، م، و، ف)؟",o:["أقصى اللسان","وسط اللسان","طرف اللسان","الشفتان"],a:3,e:"تُعد الشفتان أقرب نقطة في جهاز النطق وتخرج منهما حروف (ب، م، و، ف)."},
+  {u:1,d:"medium",q:"من أهم ما يميّز أصوات اللغة العربية:",o:["فقدانها بعض الأصوات","تغيّرها المستمر","ثباتها واستقرارها عبر العصور","صعوبة نطق معظمها"],a:2,e:"لم تتغير أصوات العربية ولم تتبدل على مر العصور ولم تفقد أياً منها."},
+  {u:1,d:"medium",q:"ما تعريف «الصرف» لغةً؟",o:["ردّ الشيء عن وجهه","الإرشاد إلى الشيء","الكشف والإيضاح","القصد والاتجاه"],a:0,e:"الصرف لغةً هو ردّ الشيء عن وجهه، مثل: صرفه صرفاً."},
+  {u:1,d:"medium",q:"ما وزن كلمة «مَرْكَبَة» في الميزان الصرفي؟",o:["مَفْعُول","فَعَلَة","مَفْعَلَة","فاعِلة"],a:2,e:"الجذر (ر ك ب) يقابل (ف ع ل)، وبإضافة الميم والتاء تصبح مَفْعَلَة."},
+  {u:1,d:"medium",q:"ما القاعدة الصرفية الصحيحة في الاشتقاق العربي؟",o:["كل زيادة في المبنى تنقص المعنى","كل زيادة في المبنى تعقبها زيادة في المعنى","الزيادة تُحذف من الميزان","لا علاقة للمبنى بالمعنى"],a:1,e:"من قواعد العربية البديهية أن كل زيادة في المبنى تتبعها زيادة في المعنى."},
+  {u:1,d:"medium",q:"على أي فئة يقتصر مجال علم الصرف؟",o:["الحروف والأسماء المبنية","الأفعال الجامدة","الحروف وحدها","الأسماء المتمكنة المعربة والأفعال المتصرفة"],a:3,e:"لا يدخل الصرف الحروف ولا الأسماء المبنية ولا الأفعال الجامدة."},
+  {u:1,d:"medium",q:"ما مقومات «مثلث المعنى»؟",o:["الجذر والوزن والاشتقاق","المرسل والرسالة والمستقبل","الكلمة والمعنى والمدلول عليه","الفاعل والفعل والمفعول"],a:2,e:"يقوم مثلث المعنى على: الكلمة، والمعنى، والمدلول عليه (الشيء في الواقع)."},
+  {u:1,d:"medium",q:"الفرق في المعنى بين (هزّ) للتحريك العنيف و(أزّ) للخفي مثال على الدلالة:",o:["النحوية","المعجمية","الصوتية","الصرفية"],a:2,e:"في الدلالة الصوتية يُسهم الصوت نفسه في تحديد المعنى وتوليده."},
+  {u:1,d:"medium",q:"كون كلمة (كذّاب) أقوى دلالة من (كاذب) مثال على الدلالة:",o:["النحوية","الصوتية","السياقية","الصرفية"],a:3,e:"تغير البنية والصيغة الصرفية من (فاعل) إلى (فعّال) زاد المعنى قوةً."},
+  {u:1,d:"medium",q:"تطوّر معنى كلمة «سيارة» من القافلة إلى المركبة مثال على الدلالة:",o:["السياقية","الصوتية","المعجمية","الصرفية"],a:0,e:"الدلالة السياقية تعني ما يطرأ على الكلمة من تطور دلالي عبر العصور وبحسب السياق."},
+  {u:1,d:"medium",q:"مجموعة كلمات ترتبط دلالاتها وتوضع تحت لفظ عام يجمعها (مثل الألوان) تسمى:",o:["الميزان","المشتقات","الحقل الدلالي","الجذر"],a:2,e:"الحقل الدلالي يضم كلمات ترتبط دلالاتها تحت مفهوم عام جامع."},
+  {u:1,d:"medium",q:"ما معنى «النحو» في اللغة؟",o:["الكشف والإيضاح","القصد والاتجاه والمقدار","ردّ الشيء عن وجهه","دراسة المعنى"],a:1,e:"النحو لغةً القصد والاتجاه والمقدار، لأن المتكلم ينحو به منهاج كلام العرب."},
+  {u:1,d:"medium",q:"بفضل أيّ مستوى يُعرف الفاعل من المفعول به ولو تقدّم المفعول به على الفاعل؟",o:["الإعجام","التشبيك","الاشتقاق","الإعراب"],a:3,e:"الإعراب يحدد الوظيفة النحوية في نهايات الكلمات حتى لو تغير ترتيبها."},
+  {u:1,d:"medium",q:"لماذا ظهرت نقاط الإعجام في الكتابة العربية؟",o:["لتسهيل الوصل بين الحروف","لتحديد اتجاه الكتابة","لتمييز الحروف المتشابهة في الرسم","للدلالة على الحركات الطويلة"],a:2,e:"ظهرت نقاط الإعجام لتمييز الحروف المتشابهة في الرسم مثل (ج ح خ)."},
+  {u:1,d:"medium",q:"ما الوظيفة الرئيسة لعلامات الترقيم في المستوى الكتابي؟",o:["زيادة طول النص","تسهيل القراءة وتوضيح المعنى","تعويض الحروف الصامتة","تمييز المعرب من المبني"],a:1,e:"ظهرت علامات الترقيم لتسهيل القراءة وتوضيح المعنى."},
+  {u:1,d:"medium",q:"ماذا يُسمى وصل الحروف العربية بعضها ببعض لتسهيل القراءة وتبسيطها؟",o:["التشكيل","الإعجام","التشبيك","الترقيم"],a:2,e:"التشبيك هو وصل الحروف بعضها ببعض لتسهيل القراءة وتبسيطها."},
+  {u:1,d:"medium",q:"أيٌّ مما يأتي يُعد من مباحث علم البيان؟",o:["الترادف والتضاد","الإعراب والبناء","التشبيه والاستعارة والكناية","الجذر والوزن"],a:2,e:"تشمل مباحث علم البيان: التشبيه والمجاز والكناية والاستعارة والصور الشعرية."},
+  {u:1,d:"medium",q:"جملة «فلان كثير الرماد» للدلالة على الكرم مثال على:",o:["التشبيه","الكناية","الاستعارة","الحقل الدلالي"],a:1,e:"ذُكرت جملة «فلان كثير الرماد» مثالاً على الكناية عن الكرم."},
+  {u:1,d:"medium",q:"ما الوظيفة الأساسية للمستوى النقدي؟",o:["ضبط أواخر الكلمات بالحركات","بيان أوزان المشتقات","الكشف عن مواطن الجمال أو القبح في الأعمال الأدبية","ترتيب الحروف حسب مخارجها"],a:2,e:"المستوى النقدي هو دراسة الأعمال الأدبية للكشف عن قوتها وضعفها وجمالها وقبحها."},
+
+  {u:1,d:"hard",q:"ما الترتيب الصحيح لانتقال مخارج الحروف من أعمق نقطة إلى أقرب نقطة في جهاز النطق؟",o:["الشفتان ثم وسط اللسان ثم الحلق","الحلق ثم أقصى اللسان ثم وسط اللسان ثم طرف اللسان ثم الشفتان","طرف اللسان ثم أقصى اللسان ثم الحلق ثم الشفتان","أقصى اللسان ثم الحلق ثم الشفتان ثم طرف اللسان"],a:1,e:"يتدرج المخرج من أعمق نقطة (الحلق) إلى أقصى اللسان، فوسطه، فطرفه، فأقرب نقطة (الشفتان)."},
+  {u:1,d:"hard",q:"لماذا يواجه غير الناطقين بالعربية صعوبة خاصة في نطق أصوات مثل (ع، ح، ق)؟",o:["لأنها أصوات صائتة متغيرة","لأنها تُكتب ولا تُنطق","لأن بعضها أصوات حلقية أو عميقة المخرج تميز مدرج العربية الطويل","لأنها تخرج من الشفتين"],a:2,e:"مدرج أصوات العربية من أطول المدارج، وحروفه سهلة النطق عدا بعض الأصوات الحلقية العميقة."},
+  {u:1,d:"hard",q:"إذا علمت أن الفعل «قَضَمَ» يدل على أكل اليابس و«خَضَمَ» يدل على أكل الرطب، فأي علاقة دلالية يبرزها ذلك؟",o:["تأثير الموقع النحوي في الإعراب","إسهام الصوت نفسه في تحديد المعنى وتوليده","تطور المعنى عبر العصور","التشبيه والاستعارة البلاغية"],a:1,e:"تبديل القاف بالخاء يوضح الدلالة الصوتية حيث يسهم الصوت نفسه في تحديد المعنى."},
+  {u:1,d:"hard",q:"أي الكلمات الآتية لا تدخل في مجال دراسة علم الصرف؟",o:["مكتبة","يكتبون","هؤلاء","استغفار"],a:2,e:"«هؤلاء» اسم إشارة مبني، وعلم الصرف يقتصر على الأسماء المعربة والأفعال المتصرفة."},
+  {u:1,d:"hard",q:"إذا وردت جملة «كافأ الطالبَ المعلمُ»، كيف يستدل القارئ على الفاعل الحقيقي وفق المستوى النحوي؟",o:["من الترتيب المكاني للكلمات فقط","من الدلالة الصوتية للحروف","من علامات الإعراب التي تميز المرفوع من المنصوب رغم تقدم المفعول به","من نقاط الإعجام"],a:2,e:"الإعراب قيمة إضافية تميز الفاعل المرفوع من المفعول به المنصوب ولو تقدم المفعول به."},
+  {u:1,d:"hard",q:"ما الاستثناء الذي يرد على قاعدة «العلاقة الأحادية بين المكتوب والمنطوق» في الكتابة العربية؟",o:["التاء المربوطة في كل الأسماء","ألف واو الجماعة وبعض أسماء الإشارة مثل (هذا، ذلك)","الحروف الحلقية كاملة","علامات الترقيم والنقاط"],a:1,e:"العلاقة أحادية بين المكتوب والمنطوق باستثناءات قليلة محفوظة كألف واو الجماعة و(هذا، ذلك)."},
+  {u:1,d:"hard",q:"كيف يرتبط علم الدلالة بالمستوى النحوي كما ورد في الوحدة الأولى؟",o:["تغيير مكان الكلمة في الجملة يغيّر المعنى النحوي","تغيير الحركات يغيّر مخرج الصوت","الاشتقاق يلغي الإعراب","النقد الأدبي يغني عن الدلالة"],a:0,e:"صلتُه بعلوم اللغة وثيقة: تغيير البنية الصرفية يغير المعنى، وتغيير مكان الكلمة يغير المعنى النحوي."},
+  {u:1,d:"hard",q:"لماذا تُعد جملة «فلان بحر في العطاء» أبلغ من «فلان كريم» وفق المستوى البياني؟",o:["لأنها أقصر في عدد الحروف","لأنها تنقل المعنى في صورة بلاغية متفاوتة في الوضوح والتأثير مطابقة لمقتضى الحال","لأنها تخلو من نقاط الإعجام","لأنها تستعمل المعنى الحرفي المباشر"],a:1,e:"البيان يورد المعنى الواحد في صور مختلفة متفاوتة في وضوح الدلالة بما يطابق مقتضى الحال."},
+  {u:1,d:"hard",q:"ما العنصر المحذوف الذي يجعل عبارة «وتطلّ الشمس من بين السحاب» استعارة لا تشبيهاً؟",o:["أداة النداء","وجه الشبه فقط","المشبّه أو المشبّه به","الجذر الصرفي"],a:2,e:"الاستعارة تقوم على حذف أحد ركني التشبيه الأساسيين (المشبّه أو المشبّه به)."},
+  {u:1,d:"hard",q:"إذا قارنتَ بين (التشبيه والمجاز) و(الترادف والتضاد)، فأيهما ينتمي لعلم الدلالة وأيهما لعلم البيان؟",o:["كلاهما من علم الدلالة","الترادف والتضاد من غرض علم الدلالة، والتشبيه والمجاز من مباحث علم البيان","الترادف من علم الصرف، والتشبيه من علم النحو","التضاد من علم البيان، والمجاز من علم الصرف"],a:1,e:"غرض علم الدلالة كشف الترادف والاشتراك والتضاد، بينما التشبيه والمجاز من مباحث البيان."},
+  {u:1,d:"hard",q:"في الحرف العربي، ما الفرق الدقيق بين «ب» في (بقرة) و«الباء»؟",o:["«الباء» رمز مكتوب و«ب» اسم منطوق","«الباء» اسم منطوق للحرف، والرمز المكتوب هو (ب)، وصوته يُسمع في صدر الكلمة","كلاهما من الأصوات الصائتة","لا فرق بين الاسم والصوت والرمز"],a:1,e:"لكل حرف عربي اسم منطوق (الباء)، وصوت يُسمع في الكلمة (بقرة)، ورمز مكتوب (ب)."},
+  {u:1,d:"hard",q:"أي مستوى لغوي يقع مباشرة بين المستوى الدلالي والمستوى الكتابي في هرم مستويات اللغة؟",o:["المستوى الصرفي","المستوى النحوي","المستوى البياني","المستوى الصوتي"],a:1,e:"تسلسل الهرم: 1-الصوتي، 2-الصرفي، 3-الدلالي، 4-النحوي، 5-الكتابي، 6-البياني، 7-النقدي."},
+
+  // ==================== الوحدة الثانية (50 سؤال: 15 سهل، 22 متوسط، 13 صعب) ====================
+  {u:2,d:"easy",q:"إلى أي جذر لاتيني ترجع كلمة (Communication)؟",o:["Communiqué","Communis","Community","Commerce"],a:1,e:"ترجع كلمة الاتصال (Communication) إلى الجذر اللاتيني (Communis)."},
+  {u:2,d:"easy",q:"ماذا يعني الجذر اللاتيني (Communis) بالإنجليزية (Common)؟",o:["البيان الحكومي","الشيء المشترك","التغذية الراجعة","الرسالة المكتوبة"],a:1,e:"يعني الجذر اللاتيني Communis بالإنجليزية Common أي الشيء المشترك."},
+  {u:2,d:"easy",q:"ماذا تعني كلمة (Communiqué) في اللغة الفرنسية؟",o:["الحوار الثنائي","الشيء المشترك","البلاغ الرسمي أو البيان الحكومي","قناة الاتصال"],a:2,e:"تعني كلمة Communiqué في الفرنسية البلاغ الرسمي أو البيان الحكومي."},
+  {u:2,d:"easy",q:"ما الشرط الأساسي المستنتج من تعريفات الاتصال المختلفة؟",o:["وجود جمهور كبير","التفاعل بين طرفين","وجود قناة مكتوبة فقط","تطابق الآراء دائماً"],a:1,e:"التفاعل بين طرفين ونقل الرسالة لإحداث أثر أو استجابة شرط أساسي في الاتصال."},
+  {u:2,d:"easy",q:"في أي اتجاه يسير الاتصال بمعناه الدقيق مقارنةً بالتواصل؟",o:["باتجاه واحد","باتجاهين","في ثلاث حلقات","دون مرسل"],a:0,e:"الاتصال إرسال من جهة واحدة (اتجاه واحد)، بخلاف التواصل الذي يكون باتجاهين."},
+  {u:2,d:"easy",q:"ما الهدف الرئيس من «الاتصال» ذي الاتجاه الواحد؟",o:["تحسين العلاقة","التبليغ أو الإعلام","حل النزاع","المفاوضة"],a:1,e:"الاتصال يسير باتجاه واحد والهدف منه التبليغ أو الإعلام."},
+  {u:2,d:"easy",q:"ما الهدف الرئيس من «التواصل» ذي الاتجاهين؟",o:["إصدار الأوامر فقط","التبليغ الأحادي","تحسين العلاقة والتفاعل بين الطرفين","إخفاء المشاعر"],a:2,e:"التواصل يكون باتجاهين وهدفه تحسين العلاقة والتفاعل بين المرسل والمستقبل."},
+  {u:2,d:"easy",q:"كم عدد عناصر عملية الاتصال الرئيسة؟",o:["أربعة عناصر","خمسة عناصر","ستة عناصر","سبعة عناصر"],a:2,e:"تتكون عملية الاتصال من ستة عناصر: المرسل، الرسالة، القناة، المستقبل، البيئة، التغذية الراجعة."},
+  {u:2,d:"easy",q:"ما الطرف الذي يبدأ عملية الإرسال ويحدد الهدف منها؟",o:["المستقبل","البيئة","المرسل","القناة"],a:2,e:"المرسل هو الطرف الذي يبدأ عملية الإرسال منتظراً استجابة من المستقبل."},
+  {u:2,d:"easy",q:"ما الطرف الذي يستقبل الرسالة ويفسرها ويعطي ردة فعل بناءً عليها؟",o:["المرسل","المستقبل","القناة","الرسالة"],a:1,e:"المستقبل هو الطرف الذي يستقبل الرسالة ويفسرها ويعطي ردة فعل."},
+  {u:2,d:"easy",q:"ما حلقة الوصل بين المرسل والمستقبل؟",o:["الرسالة","قناة الاتصال","التغذية الراجعة","بيئة الاتصال"],a:1,e:"قناة الاتصال هي حلقة الوصل بين المرسل والمستقبل ويجب أن تناسب الرسالة."},
+  {u:2,d:"easy",q:"ما الوسط الذي تُبث فيه الرسالة وتجري فيه عملية الاتصال؟",o:["القناة","التغذية الراجعة","بيئة الاتصال","الرمز"],a:2,e:"بيئة الاتصال (Environment) هي الوسط الذي تُبث فيه الرسالة."},
+  {u:2,d:"easy",q:"ما العنصر الذي يعبّر عن ردة فعل المستقبل وانطباعاته حول مضمون الرسالة؟",o:["التغذية الراجعة","قناة الاتصال","الرسالة","بيئة الاتصال"],a:0,e:"التغذية الراجعة (Feedback) هي ردة فعل المستقبل التي تعبر عن انطباعاته."},
+  {u:2,d:"easy",q:"ما نقطة التوازن في طيف أنماط الاتصال الثلاثة؟",o:["النمط السلبي","النمط الإيجابي (الجازم)","النمط العدائي","النمط الصامت"],a:1,e:"النمط الإيجابي (الجازم) هو نقطة التوازن بين السلبي والعدائي لأنه يحترم حقه وحق غيره."},
+  {u:2,d:"easy",q:"أي نمط اتصال يتنازل فيه الشخص عن حقه ولا يدافع عنه؟",o:["النمط العدائي","النمط الإيجابي","النمط السلبي","النمط التفاعلي"],a:2,e:"صاحب النمط السلبي يتنازل عن حقه ويبتعد عن النزاعات ويتحكم به الآخرون."},
+
+  {u:2,d:"medium",q:"من صاحب تعريف الاتصال بأنه «السلوك الاتصالي الذي يهدف إلى الحصول على استجابة معينة من شخص ما»؟",o:["درويش","ديفيد بيرلو","أندرسون","فليبو"],a:1,e:"عرّف ديفيد بيرلو الاتصال بأنه السلوك الاتصالي الهادف للحصول على استجابة معينة."},
+  {u:2,d:"medium",q:"إلى من يعود تعريف الاتصال الذي يشمل لغة الجسد والسلوك الشخصي والأسلوب والبيئة؟",o:["درويش","فليبو","ديفيد بيرلو","جنرؤ"],a:0,e:"تعريف درويش لا يقتصر على الكلمات بل يشمل لغة الجسد والسلوك والأسلوب والبيئة."},
+  {u:2,d:"medium",q:"من عرّف الاتصال بأنه «النقل والاستلام مع الفهم للخواطر والتعليمات والمعلومات»؟",o:["مروة والوقيان","أندرسون","جنرؤ","فليبو"],a:1,e:"أندرسون ركّز في تعريفه على النقل والاستلام مع الفهم للخواطر والتعليمات والمعلومات."},
+  {u:2,d:"medium",q:"ما الذي يضيفه تعريف «فليبو» لمفهوم الاتصال؟",o:["التركيز على الرموز المكتوبة فقط","التأثير في الغير حتى يفسّر الفكرة بالطريقة التي يعنيها المتكلم أو الكاتب","حصر الاتصال في البيئة المادية","الاعتماد على جهة واحدة دون رد"],a:1,e:"يرى فليبو أن الاتصال يهدف للتأثير في الغير لتفسير الفكرة كما يعنيها المتكلم أو الكاتب."},
+  {u:2,d:"medium",q:"وفق «التعريف المختار» في الوحدة، كيف يتم تبادل ونقل الأفكار والمشاعر وفهمها؟",o:["عبر السلوك العدائي","عن طريق مجموعة من الرموز المتعارف عليها","بالكلمات المكتوبة حصراً","دون حاجة لمستقبل"],a:1,e:"التعريف المختار: تبادل ونقل الأفكار والمشاعر وفهمها عن طريق رموز متعارف عليها."},
+  {u:2,d:"medium",q:"أيٌّ مما يأتي يُعد من فوائد الاتصال المذكورة في الوحدة الثانية؟",o:["تقليل الثقة بالنفس","التكيف الوظيفي والتكيف الاجتماعي","زيادة العزلة","تعطيل اتخاذ الإجراءات"],a:1,e:"من فوائد الاتصال: التكيف الوظيفي، التكيف الاجتماعي، بناء العلاقات، تغيير السلوك، واتخاذ الإجراءات."},
+  {u:2,d:"medium",q:"بماذا يوصى في مواصفات «الرسالة» الفعّالة ضمن عناصر الاتصال؟",o:["أن تكون طويلة ومفصلة","أن تكون مليئة بالمصطلحات المعقدة","أن تكون بسيطة وواضحة ومختصرة","أن تكون غامضة لإثارة الفضول"],a:2,e:"يُفضّل في الرسالة (مادية أو شفهية أو مكتوبة أو معنوية) أن تكون بسيطة وواضحة ومختصرة."},
+  {u:2,d:"medium",q:"ما الصفة الواجب توافرها في «قناة الاتصال»؟",o:["أن تكون شفهية دائماً","أن تكون مناسبة للرسالة","أن تلغي التغذية الراجعة","أن تقتصر على التقارير الورقية"],a:1,e:"يجب أن تكون قناة الاتصال مناسبة للرسالة كأن تكون كتاباً أو مكالمة أو تقريراً أو فيديو."},
+  {u:2,d:"medium",q:"من خصائص النمط العدائي في الاتصال:",o:["الثقة الهادئة بالنفس","احترام حقوق الآخرين","استعمال أسلوب «نعم... ولكن» والغرور والتكبر","التنازل عن حقوقه"],a:2,e:"يتميز النمط العدائي بالتعدي على حقوق الآخرين ولومهم واستعمال أسلوب «نعم... ولكن»."},
+  {u:2,d:"medium",q:"أي نمط اتصال يعامل الآخرين باحترام، ويمسك أعصابه، ويصنع خياراته بنفسه؟",o:["النمط التابع","النمط الإيجابي (الجازم)","النمط السلبي","النمط العدائي"],a:1,e:"النمط الإيجابي (الجازم) يحترم نفسه والآخرين ويتصدى للمشكلات ويصنع البدائل."},
+  {u:2,d:"medium",q:"أيٌّ من العبارات الآتية يصف النمط السلبي بدقة؟",o:["كثير الطلبات ويهاجم الآخرين","يتصدى للمشكلات بثقة","يترك الخيار لغيره ولا يملك البدائل","يتعدى على حقوق الآخرين"],a:2,e:"صاحب النمط السلبي ثقته بنفسه ضعيفة، ويكون تابعاً للآخرين، ويترك الخيار لغيره."},
+  {u:2,d:"medium",q:"من استراتيجيات التعامل مع النمط العدائي:",o:["الرد عليه بانفعال مماثل","الحفاظ على الهدوء واستخدام لغة المنطق والابتعاد عن العاطفة","الانسحاب الفوري دائماً","أخذ كلامه على محمل شخصي"],a:1,e:"عند التعامل مع العدائي يجب حفظ الهدوء، عدم أخذ الكلام شخصياً، واستخدام المنطق والحجة."},
+  {u:2,d:"medium",q:"لماذا يُنصح بـ «الابتسام وإضافة جو من المرح» و«الإصغاء» عند التعامل مع النمط العدائي؟",o:["للتنازل عن الحقوق","لامتصاص انفعاله وغضبه وتخفيف التوتر","للسخرية منه","لإطالة النقاش دون هدف"],a:1,e:"يساعد حسن الإصغاء والابتسام مع الثبات على وجهة النظر في امتصاص غضب العدائي."},
+  {u:2,d:"medium",q:"عند التعامل مع النمط السلبي، ما الذي يجب فعله؟",o:["اتخاذ القرارات نيابة عنه دائماً","تقوية ثقته بنفسه ومساعدته في اتخاذ القرار","تجاهله تماماً","الضغط عليه بعنف"],a:1,e:"مع السلبي نساعده في اتخاذ القرار ونقوي ثقته بنفسه ونبين له فوائد المشاركة."},
+  {u:2,d:"medium",q:"ما المقصود بتوضيح «مساوئ التأخير والتردد» عند التعامل مع صاحب النمط:",o:["العدائي","الإيجابي","السلبي","القيادي"],a:2,e:"توضيح مساوئ التأخير والتردد وأثرهما على العلاقات من أساليب مساعدة النمط السلبي."},
+  {u:2,d:"medium",q:"عند التعامل مع النمط الإيجابي يُنصح بـ:",o:["إهمال المواعيد","تجنّب التواصل البصري","توجيه الحديث للهدف مباشرة دون مراوغة","استخدام المراوغة لكسب الوقت"],a:2,e:"صاحب النمط الإيجابي يقدّر الوضوح والمصداقية وتوجيه الحديث للهدف مباشرة مع الأدلة."},
+  {u:2,d:"medium",q:"أيٌّ مما يلي يُعد من توصيات التعامل مع النمط الإيجابي؟",o:["الخروج المتكرر عن الموضوع","احترام المواعيد وإظهار الاهتمام بالوقت","التعامل معه بعاطفية مفرطة","مقاطعته باستمرار"],a:1,e:"مع الإيجابي يجب الالتزام بالمصداقية واحترام المواعيد والبقاء في الموضوع والتواصل البصري."},
+  {u:2,d:"medium",q:"أي عالم ربط الاتصال بعملية «تجعل أفكار الشخص ومشاعره معروفة لدى الآخرين»؟",o:["درويش","جنرؤ","أندرسون","بيرلو"],a:1,e:"عرّف جنرؤ الاتصال بأنه العملية التي تجعل أفكار الشخص ومشاعره معروفة لدى الآخرين."},
+  {u:2,d:"medium",q:"ماذا يحدث للمجال في عملية «التواصل» بالنسبة للمستقبل؟",o:["يكون مغلقاً تماماً","يكون مفتوحاً ليستجيب بتعليق أو رأي أو معلومة أو مشاعر","يقتصر على الاستلام الصامت","يمنع التفاعل التبادلي"],a:1,e:"في التواصل تبقى العلاقة تفاعلية تبادلية والمجال مفتوحاً لاستجابة المستقبل."},
+  {u:2,d:"medium",q:"كلما اتسعت دائرة التغيير في المجتمع أو المؤسسة، إلى ماذا نحتاج وفق الوحدة الثانية؟",o:["تقليص عدد القنوات","فتح قنوات اتصال جديدة لتمكين التغيير واستدامته","الاعتماد على الاتصال الأحادي فقط","إلغاء التغذية الراجعة"],a:1,e:"اتساع دائرة التغيير يوجب فتح قنوات اتصال جديدة لتمكينه واستدامته."},
+  {u:2,d:"medium",q:"أي صيغة تعبيرية تجسد النمط الإيجابي الجازم وفق النصيحة التطبيقية؟",o:["«أنت مخطئ دائماً ورأيي هو الصواب»","«حسناً، افعل ما تراه مناسباً لي ولن أعترض»","«أنا أقدّر رأيك، ومع ذلك أرى أن من حقي أن...»","«نعم كلامك جميل ولكنك لا تفهم شيئاً»"],a:2,e:"صيغة الجازم تجمع بين احترام الآخر («أقدّر رأيك») والدفاع عن الحق («من حقي أن...»)."},
+  {u:2,d:"medium",q:"أيٌّ من المواقف الآتية يمثل «اتصالاً» بالمعنى الضيق (اتجاه واحد) لا «تواصلاً»؟",o:["نقاش جماعي في قاعة الدراسة","مكالمة هاتفية مع صديق","قراءة إعلان على لوحة في الشارع","حوار بين مدير وموظف"],a:2,e:"قراءة إعلان على لوحة في الشارع هي إرسال من جهة واحدة هدفه التبليغ والإعلام."},
+
+  {u:2,d:"hard",q:"أرسلتَ رسالة مهمة لصديقك عبر الهاتف فلم يفهمها كما قصدت؛ إذا كان سبب الخلل ضجيجاً في المقهى الذي يجلس فيه، فأي عنصر تعطّل؟",o:["المرسل","بيئة الاتصال","الرسالة ذاتها","التغذية الراجعة"],a:1,e:"بيئة الاتصال هي الوسط الذي تجري فيه العملية وتُبث فيه الرسالة، والضجيج يعود إليها."},
+  {u:2,d:"hard",q:"إذا انتقد زميلك عملك بنبرة ساخرة، فأجبته: «أحترم وجهة نظرك، لكن الجدول الزمني تم اعتماده مسبقاً وأطلب الالتزام بدورك»، فأي نمط اتبعتَ؟",o:["النمط العدائي لأنك طلبت منه الالتزام","النمط السلبي لأنك احترمت وجهة نظره","النمط الإيجابي الجازم لأنك جمعت بين الاحترام والثبات على الحق","نمط المراوغة لكسب الوقت"],a:2,e:"الجمع بين احترام الآخر والثبات على الحق والدفاع عنه دون انفعال يمثل النمط الإيجابي الجازم."},
+  {u:2,d:"hard",q:"لماذا يُنصح في «رسالة الاتصال» أن تكون بسيطة وواضحة ومختصرة؟",o:["لإلغاء دور المستقبل في التفسير","لتسهيل استقبالها وفهمها بدقة وتقليل فرص التحريف وسوء الفهم","لأن التغذية الراجعة غير مهمة","لجعل القناة الرسمية غير ضرورية"],a:1,e:"بساطة الرسالة ووضوحها واختصارها تضمن وصول المعنى المقصود للمستقبل بفاعلية."},
+  {u:2,d:"hard",q:"ما الفرق الجوهري بين تعريف «مروة والوقيان» وتعريف «درويش» للاتصال؟",o:["درويش حصره في اللغة المكتوبة، ومروة والوقيان أضافا لغة الجسد","مروة والوقيان ركّزا على نقل رسالة من مرسل إلى مستقبل لإحداث أثر، بينما وسّع درويش المفهوم ليشمل لغة الجسد والسلوك والبيئة","كلاهما استبعد وجود المستقبل","أندرسون هو من أضاف البيئة لا درويش"],a:1,e:"درويش أبرز شمول الاتصال للغة الجسد والسلوك والبيئة، ومروة والوقيان ركّزا على علاقة المرسل والمستقبل والأثر."},
+  {u:2,d:"hard",q:"موظف أخذ دورك في الطابور؛ إذا صمتَّ تماماً وغادرتَ المكان غاضباً في داخلك دون مطالبة بحقك، فما نمطك؟",o:["الإيجابي الجازم","السلبي","العدائي","التفاعلي"],a:1,e:"الصمت والتنازل عن الحق وتجنب المواجهة مع الضعف في الدفاع عن الحقوق سمة النمط السلبي."},
+  {u:2,d:"hard",q:"في الموقف نفسه (أخذ زميلك دورك في الطابور)، إذا صرخت في وجهه واتهمته بالأنانية أمام الجميع، فما نمطك؟",o:["الإيجابي الجازم","العدائي","السلبي","الموضوعي"],a:1,e:"الصراخ والهجوم والتعدي وإثارة التوتر في العلاقات من خصائص النمط العدائي."},
+  {u:2,d:"hard",q:"زميلك متردد في اختيار تخصصه الجامعي (نمط سلبي)؛ أيٌّ من التدخلات الآتية يطابق استراتيجية التعامل الصحيحة معه؟",o:["اختيار التخصص عنه فوراً لإراحته","تزويده بحقائق عن التخصصات وقصص نجاح مشابهة وتوضيح مساوئ التردد ومساعدته على القرار","انتقاده بقسوة ليعتمد على نفسه","تركه دون مساعدة حتى يتعلم"],a:1,e:"تقديم الحقائق والأدلة وقصص النجاح وتوضيح مساوئ التردد ومساعدته على القرار هي استراتيجيات التعامل مع السلبي."},
+  {u:2,d:"hard",q:"كيف يُنتظر أن تتأثر المؤسسة إذا امتنع المدير عن التواصل مع موظفيه إطلاقاً؟",o:["يزداد التكيف الوظيفي تلقائياً","تتعطل الإجراءات، يضعف الفهم والتبادل المعرفي، وتتأثر العلاقات والإنتاجية","يصبح الاتصال تفاعلياً في اتجاهين","تتحقق التنمية الذاتية للموظفين أسرع"],a:1,e:"انعدام التواصل يعطل فوائد الاتصال: اتخاذ الإجراءات، التأكد من الفهم، التكيف الوظيفي، وبناء العلاقات."},
+  {u:2,d:"hard",q:"إذا وجّه شخص عدائي لك انتقاداً قاسياً أمام فريق العمل في نقاش جماعي، فأي خطوة تُعد خاطئة وفق استراتيجيات الوحدة الثانية؟",o:["الإصغاء له لامتصاص غضبه","البقاء في صلب الموضوع المتفق عليه","أخذ كلامه على محمل شخصي والرد بعاطفة وانفعال","الدفاع عن وجهة نظرك بالحجة والبرهان"],a:2,e:"يُنهى عند التعامل مع العدائي عن أخذ كلامه على محمل شخصي أو الانفعال أمامه أو استخدام العاطفة."},
+  {u:2,d:"hard",q:"أي مما يأتي يُعدّ النتيجة المباشرة لغياب «التغذية الراجعة» في العملية الاتصالية؟",o:["تحوّل التفاعل التبادلي إلى إرسال أحادي لا يتحقق فيه المرسل من فهم الرسالة","تحوّل الاتصال إلى تواصل فوري","اختصار قناة الاتصال","زيادة وضوح الرسالة تلقائياً"],a:0,e:"التغذية الراجعة هي ما يكشف انطباع المستقبل وفهمه، وبغيابها يبقى الإرسال أحادياً دون تحقق."},
+  {u:2,d:"hard",q:"لماذا يُوصَف صاحب النمط الإيجابي بأنه «لا يدخل دائرة اللوم والتذمر»؟",o:["لأنه يتنازل عن حقه لتجنب المشاكل","لأنه يمسك أعصابه ويتصدى للمشكلات ويصنع البدائل والخيارات بنفسه","لأنه يفرض رأيه بالقوة والغرور","لأنه يترك الخيار للآخرين"],a:1,e:"الثقة بالنفس وضبط الأعصاب والتصدي للمشكلات ببدائل عملية تحفظ الإيجابي من اللوم والتذمر."},
+  {u:2,d:"hard",q:"إذا أراد مُعلّم إيصال شرح تفاعلي معقد لطلبته، أي قناة تحقق «التواصل» وليس مجرد «الاتصال»؟",o:["لوحة إعلانات ورقية في الممر","حصة حوارية مباشرة تتيح الأسئلة والتعقيب","بريد إلكتروني جماعي مغلق الردود","نشرة مطبوعة موزعة عند البوابة"],a:1,e:"التواصل يتطلب اتجاهين ومجالاً مفتوحاً لاستجابة المستقبل وتعليقه، وهو ما تحققه الحصة الحوارية."},
+  {u:2,d:"hard",q:"ما العلاقة بين الجذر اللاتيني (Communis = الشيء المشترك) والتعريف المختار للاتصال؟",o:["لا علاقة بينهما مطلقاً","كلاهما يقوم على فكرة الاشتراك وتبادل الأفكار والمشاعر عبر رموز متعارف عليها بين طرفين","كلاهما يحصر الاتصال في البيانات الحكومية فقط","كلاهما يلغي دور المستقبل"],a:1,e:"فكرة «الشيء المشترك» تتجسد في اشتراك الطرفين في المعنى والرموز المتعارف عليها وتبادلها."},
+
+  // ==================== الوحدة الثالثة (50 سؤال: 15 سهل، 23 متوسط، 12 صعب) ====================
+  {u:3,d:"easy",q:"تُعد مهارة الاستماع جزءاً أساسياً من مهارات:",o:["الاتصال اللفظي","الاتصال المرئي","الاتصال المكتوب","الاتصال غير اللفظي"],a:0,e:"مهارة الاستماع جزء أساسي من مهارات الاتصال اللفظي."},
+  {u:3,d:"easy",q:"ماذا تعني مهارة الاستماع في أبسط تعريفها؟",o:["التخطيط للرد أثناء حديث الآخر","القدرة على استقبال الرسائل الصوتية والتركيز فيها وفهمها","الاستماع إلى أفكارك الداخلية فقط","التقاط الأصوات دون قصد"],a:1,e:"الاستماع هو استقبال الرسائل الصوتية التي يرسلها المرسل والتركيز فيها وفهمها."},
+  {u:3,d:"easy",q:"كم عدد معيقات الاستماع الفعّال المذكورة في الوحدة الثالثة؟",o:["معيقان","ثلاثة معيقات","أربعة معيقات","ستة معيقات"],a:2,e:"حددت الوحدة أربعة معيقات: فكرة أفضل، عدم موافقة الرأي، صعوبة التعامل العاطفي، وعدم وجود الوقت الكافي."},
+  {u:3,d:"easy",q:"ما أعلى مستوى في سلّم مستويات الاستماع الأربعة؟",o:["السمع","الإنصات","الاستماع التقييمي","الاستماع الهامشي"],a:1,e:"الإنصات هو المستوى الرابع والأعلى في سلّم الاستماع، وفيه يزداد الفهم لأقصى درجة."},
+  {u:3,d:"easy",q:"ما أدنى مستوى في سلّم مستويات الاستماع الأربعة؟",o:["الاستماع الهامشي","عدم الاستماع","الاستماع التقييمي","الإنصات"],a:1,e:"المستوى الأول (الأدنى) هو «عدم الاستماع» ويكون فيه الشخص حاضراً بجسده فقط."},
+  {u:3,d:"easy",q:"التقاط الأذن للأصوات دون قصد أو تركيز أو محاولة فهم يُسمى:",o:["الإنصات","السمع","الاستماع","الإصغاء"],a:1,e:"السمع عملية لا إرادية لالتقاط الأذن للأصوات دون قصد أو تركيز كالطفل الصغير أو الحيوان."},
+  {u:3,d:"easy",q:"سماع الشيء بطريقة مقصودة مع محاولة فهمه يُسمى:",o:["السمع","الإنصات","الاستماع","التلخيص"],a:2,e:"الاستماع هو سماع الشيء بطريقة مقصودة مع محاولة فهمه، مثل متابعة نشرة الأخبار."},
+  {u:3,d:"easy",q:"سماع الشيء بكل الجوارح مع الفهم والتركيز والتدبر وتجاهل التشويش يُسمى:",o:["الاستماع الهامشي","الإنصات (الإصغاء)","السمع","عدم الاستماع"],a:1,e:"الإنصات (الإصغاء) يشمل كل الجوارح مع الفهم والتركيز والتدبر وتحليل المسموع للاقتناع به."},
+  {u:3,d:"easy",q:"أي استراتيجية تعني إعادة ما سمعته على المتحدث بعبارات مثل «هل تقصد أن...»؟",o:["المهلة","الانعكاس (Reflect)","الاعتراف","شيء واحد كل مرة"],a:1,e:"استراتيجية الانعكاس تعني إعادة ما سمعته على المتحدث للتأكد من دقة الفهم."},
+  {u:3,d:"easy",q:"ما الاستراتيجية التي تمنعك من التسرع في الرد وتنصح بالصمت المؤقت؟",o:["المهلة (Pause)","الانعكاس","دع المتكلم ينهي","التلخيص"],a:0,e:"المهلة (Pause) تعني أن الصمت المؤقت يحرر عقلك لتكوين رأيك ولا يلزم التعليق فوراً."},
+  {u:3,d:"easy",q:"أي مما يأتي مثال على «الاستماع» كما ورد في جدول المقارنة؟",o:["كلمات عابرة في السوق","متابعة نشرة الأخبار","الإصغاء لشرح الأستاذ قبل الاختبار","صوت المطر العابر"],a:1,e:"متابعة نشرة الأخبار مثال على الاستماع المقصود مع محاولة الفهم."},
+  {u:3,d:"easy",q:"أي مما يأتي مثال على «الإنصات (الإصغاء)» في الوحدة الثالثة؟",o:["كلمات عابرة وأنت تركب السيارة","متابعة نشرة الأخبار","الإصغاء لشرح الأستاذ قبل الاختبار","التفكير في الرد أثناء الصمت"],a:2,e:"الإصغاء لشرح الأستاذ قبل الاختبار يتطلب كل الجوارح والتركيز والتدبر وتجاهل التشويش."},
+  {u:3,d:"easy",q:"ماذا يعني تركيز «الاستماع الهامشي» في جملة واحدة؟",o:["كل الانتباه للكلمات والمشاعر","حاضر بجسده فقط","سطحي ويشرد بذهنه","يركز على الكلمات ويهمل المشاعر"],a:2,e:"في المستوى الثاني (الهامشي) يكون الاستماع سطحياً ويشرد المستمع بذهنه بسهولة."},
+  {u:3,d:"easy",q:"إلى ماذا يشير وجود أذنين ولسان واحد عند الإنسان في سؤال التفكير؟",o:["إلى أن نتكلم أكثر مما نسمع","إلى أن نسمع ضعف ما نتكلم","إلى أن السمع لا يحتاج لفهم","إلى أن الكلام أهم من الإنصات"],a:1,e:"وجود أذنين ولسان واحد يشير إلى أن ما ينبغي أن نسمعه أكثر مما نتكلمه."},
+  {u:3,d:"easy",q:"أي مما يأتي يُعد من معايير المستمع الجيد؟",o:["الغضب عند الاختلاف","الانشغال بالهاتف أثناء الحديث","المقاطعة لتصحيح الأخطاء فوراً","السماح للمتكلم بإنهاء حديثه قبل البدء بالكلام"],a:3,e:"المستمع الجيد يسمح للمتكلم بإنهاء حديثه قبل أن يبدأ بالكلام ولا يقاطعه."},
+
+  {u:3,d:"medium",q:"ما الذي لا تعنيه مهارة الاستماع وفق التعريف؟",o:["فهم الرسالة","التركيز في الرسالة","التفكير في ردّك على ما يقوله المتحدث أثناء حديثه","استقبال الرسائل الصوتية"],a:2,e:"الاستماع لا يعني أن تستمع إلى نفسك أو تفكر في ردك بينما المتحدث يتكلم."},
+  {u:3,d:"medium",q:"أيٌّ مما يأتي ليس من معايير المستمع الجيد؟",o:["ملاحظة لغة الجسد لفهم رسالة المتكلم","إعادة تفاصيل المحادثة للتأكد من الفهم","التفكير فيما قاله المتكلم حرفياً دون ما يعنيه","الابتعاد عن مشتتات الذهن"],a:2,e:"المستمع الجيد يفكر فيما يعنيه المتكلم، لا فيما قاله فقط."},
+  {u:3,d:"medium",q:"الشعور بأن فكرتك هي الأفضل دائماً يمثل:",o:["معيقاً للاستماع الفعّال","استراتيجية الانعكاس","معياراً للمستمع الجيد","مستوى الإنصات"],a:0,e:"اليقين بأن فكرتك هي الأفضل يولّد رغبة في عدم الاستماع ويمنع التركيز في أفكار الآخرين."},
+  {u:3,d:"medium",q:"ضغط المواعيد والواجبات والاختبارات الذي يُبعد الفرد عن الآخرين يمثّل معيق:",o:["الشعور بالأفضلية","عدم الموافقة على الرأي","عدم وجود الوقت الكافي","الصعوبة العاطفية"],a:2,e:"ضغط المواعيد والاختبارات يجعل الفرد يرى التواصل مضيعة للوقت فيبتعد عنه."},
+  {u:3,d:"medium",q:"ما الذي ينبغي فعله لتجنب معيق «صعوبة التعامل العاطفي مع الآخر»؟",o:["التركيز على الحقائق وإهمال المشاعر","الابتعاد عن المواقف التي تثير حساسية الآخرين العاطفية","مقاطعة المتحدث إذا انزعج","الاكتفاء بالرسائل المكتوبة"],a:1,e:"لأن توقع مشاعر الآخر قد يصعب، ينبغي الابتعاد عن المواقف التي تثير حساسية الآخرين العاطفية."},
+  {u:3,d:"medium",q:"المستمع الذي يُظهر الانتباه وتفكيره منصبّ على شيء آخر ويكثر المقاطعة يكون في مستوى:",o:["الاستماع الهامشي","عدم الاستماع","الإنصات","الاستماع التقييمي"],a:1,e:"في مستوى عدم الاستماع يتظاهر بالانتباه ويكثر المقاطعة ويطلب الكلمة الأخيرة أو الخلاصة."},
+  {u:3,d:"medium",q:"المستمع الذي يسمع الكلمات ولا يربطها بالمعنى ويشرد بذهنه يكون في مستوى:",o:["الاستماع الهامشي","عدم الاستماع","الاستماع التقييمي","الإنصات"],a:0,e:"من سمات الاستماع الهامشي سماع الكلمات دون ربطها بالمعنى، والاستماع للجزئيات دون الصورة الكلية."},
+  {u:3,d:"medium",q:"المستمع الذي يركّز على الحقائق والإحصاءات ولا يكترث لمشاعر المتحدث يكون في مستوى:",o:["الإنصات","الاستماع التقييمي","الاستماع الهامشي","عدم الاستماع"],a:1,e:"الاستماع التقييمي يركز على المحتوى والحقائق والإحصاءات ويهمل المشاعر والدلالات البصرية والصوتية."},
+  {u:3,d:"medium",q:"من سمات مستوى «الإنصات»:",o:["تأجيل الحكم حتى سماع الرسالة كاملة","طلب الخلاصة بسرعة","إصدار الحكم مبكراً","التركيز على الكلمات فقط"],a:0,e:"المنصت يؤجل الحكم حتى يستمع للرسالة كاملة، ويصغي للأفكار والمشاعر معاً."},
+  {u:3,d:"medium",q:"أي مما يأتي من سمات مستوى «عدم الاستماع»؟",o:["تواصل بصري قليل أو معدوم","تغذية راجعة لفظية وغير لفظية","الإصغاء للمشاعر","طرح أسئلة توضيحية"],a:0,e:"في عدم الاستماع لا يظهر المستمع أي إيماءة للمتحدث ويكون تواصله البصري قليلاً أو معدوماً."},
+  {u:3,d:"medium",q:"إهمال مشتتات الانتباه وعدم التخطيط للرد أثناء الاستماع يمثّل استراتيجية:",o:["المهلة","الاعتراف","تحقيق الفهم","شيء واحد كل مرة"],a:3,e:"استراتيجية «شيء واحد كل مرة» تعني إهمال المشتتات وعدم التخطيط للرد؛ فقط استمع."},
+  {u:3,d:"medium",q:"ماذا تعني استراتيجية «الاعتراف بالرسالة (Acknowledge)»؟",o:["مقاطعة المتحدث لتصحيحه","إعلام المتحدث باستيعاب رسالته دون ضرورة الموافقة عليها","الموافقة التامة على الرأي","تجاهل المشاعر"],a:1,e:"الاعتراف بالرسالة وبالمتكلم يعني أنك استوعبت رسالته، وهذا لا يعني بالضرورة الموافقة عليها."},
+  {u:3,d:"medium",q:"ترتبط عبارة «معظم الذي يقال لم يُقَل» باستراتيجية:",o:["ملاحظة السلوك غير اللفظي","المهلة","التلخيص","تحقيق الفهم"],a:0,e:"معظم ما يقال لا يُقال بالكلمات؛ لذا يجب الانتباه للغة الجسد والإشارات وتعابير الوجه ونبرة الصوت."},
+  {u:3,d:"medium",q:"بماذا يفيد «تلخيص» ما فهمته للمتحدث؟",o:["إظهار التفوق على المتحدث","التأكد من الفهم وإشعار المتحدث بالاهتمام","إنهاء الحديث بسرعة","تغيير الموضوع"],a:1,e:"تلخيص ما فهمته للمتحدث يؤكد فهمك ويشعر المتحدث بتقديرك واهتمامك."},
+  {u:3,d:"medium",q:"لماذا يُنصح بـ «دع المتكلم ينهي (Let the speaker finish)»؟",o:["لأن الصمت يدل على قلة التركيز","حتى لا تُحبطه بالمقاطعة، ثم تفكر وترد بما هو مناسب","لتضييع وقت النقاش","لتجنب طرح أي أسئلة توضيحية"],a:1,e:"عدم مقاطعة المتكلم يمنع إحباطه ويتيح لك التفكير والرد بما يناسب."},
+  {u:3,d:"medium",q:"ما المقصود باستراتيجية «تحقيق الفهم (Probe for understanding)»؟",o:["أن تقنع المتحدث برأيك فوراً","أن يكون دورك فهم ما يقوله المتحدث وما يعنيه","أن تنظر بعيداً أثناء حديثه","أن تكتفي بحفظ الإحصاءات"],a:1,e:"تحقيق الفهم يعني أن ينصب دورك على فهم ما يقوله المتحدث وما يعنيه."},
+  {u:3,d:"medium",q:"ما الفرق الأساسي في السلوك غير اللفظي بين «الاستماع التقييمي» و«الإنصات»؟",o:["التقييمي يلاحظ الدلالات البصرية والصوتية والمنصت يهملها","التقييمي لا يلاحظ الدلالات البصرية والصوتية ولا يعطي تغذية راجعة للمشاعر، بينما المنصت يفعل ذلك","كلاهما يهمل المشاعر تماماً","كلاهما لا يركز مع المتحدث"],a:1,e:"في التقييمي لا يلاحظ المستمع الدلالات البصرية والصوتية، بعكس المنصت الذي يصغي للمشاعر ويعطي تغذية راجعة."},
+  {u:3,d:"medium",q:"كيف يتصرف المستمع الجيد عندما لا يوافق المتكلم في الرأي؟",o:["يغضب ويستثار فوراً","يتوقف عن الاستماع تماماً","يتجنب الغضب أو الاستثارة","ينشغل بهاتفه"],a:2,e:"من معايير المستمع الجيد تجنب الغضب أو الاستثارة عندما لا يوافق المتكلم."},
+  {u:3,d:"medium",q:"ماذا يفعل الشخص في مستوى «الاستماع الهامشي» أثناء حديث المتكلم؟",o:["يفكر فيما سيقوله المتحدث لاحقاً ويسمع الجزئيات دون الصورة الكلية","يطلب الكلمة الأخيرة فوراً","يؤجل الحكم حتى نهاية الرسالة","يفهم الرسالة بكل جوارحه"],a:0,e:"في الهامشي يفكر فيما سيقوله المتحدث لاحقاً ويستمع للجزئيات ولا يصل للصورة الكلية."},
+  {u:3,d:"medium",q:"في معيق «عدم موافقة الطرف الآخر في رأيه»، متى تشتد الرغبة في عدم الاستماع؟",o:["عندما يكون الاختلاف كبيراً بين الطرفين","عندما يتفقان تماماً","عندما يستخدم المتحدث أمثلة","عندما يبتسم المتحدث"],a:0,e:"تتولد رغبة بعدم الاستماع إذا شعر المستقبل أن المتحدث مخطئ، خاصة إذا كان الاختلاف كبيراً بينهما."},
+  {u:3,d:"medium",q:"في استراتيجية «المهلة»، ما الفائدة المعرفية للصمت المؤقت؟",o:["إظهار اللامبالاة","تحرير عقلك لتكوين رأيك قبل التعليق","إشعار المتحدث بالملل","الانتقال لموضوع آخر"],a:1,e:"الصمت المؤقت يحرر عقلك لتكوين رأيك بدلاً من الرد المتسرع."},
+  {u:3,d:"medium",q:"ما الذي يفعله المستمع الجيد بالحقائق والمفاهيم أثناء سماعه لمحادثة؟",o:["يهملها تماماً","يحاول فعلياً حفظ الحقائق والمفاهيم","يكتفي بالكلمات العابرة","يركز على أخطاء المتحدث اللغوية"],a:1,e:"من معايير المستمع الجيد: «أحاول فعلياً حفظ الحقائق والمفاهيم»."},
+  {u:3,d:"medium",q:"في سلّم مستويات الاستماع، ما العلاقة الطردية المذكورة في الشكل (3-1)؟",o:["كلما صعدت زادت المقاطعة","كلما صعدت ازداد الفهم","كلما صعدت زاد الشرود الذهني","كلما صعدت قلّ التركيز على المقاصد"],a:1,e:"عنوان الشكل (3-1): سلّم مستويات الاستماع — كلما صعدت ازداد الفهم."},
+
+  {u:3,d:"hard",q:"تنظر إلى المتحدث وتهز رأسك بالموافقة بينما عقلك مشغول تماماً بأمر آخر؛ في أي مستوى من الاستماع أنت الآن؟",o:["الإنصات (المستوى الرابع)","الاستماع التقييمي (المستوى الثالث)","الاستماع الهامشي (المستوى الثاني)","عدم الاستماع (المستوى الأول)"],a:3,e:"التظاهر بالانتباه مع انصباب التفكير على شيء آخر تماماً من خصائص المستوى الأول (عدم الاستماع) تحديداً، حيث يكون المستمع حاضراً بجسده فقط."},
+  {u:3,d:"hard",q:"قال لك صديقك: «المشروع متأخر، والفريق لا يرد على رسائلي، وأنا متعب جداً»، فرددتَ: «يبدو أنك تشعر بالضغط لأنك تحمل المشروع وحدك تقريباً، صحيح؟». أي استراتيجيتين طبقتَ؟",o:["المهلة فقط","الانعكاس والتلخيص معاً","عدم الاستماع والمقاطعة","دع المتكلم ينهي دون سؤال"],a:1,e:"إعادة صياغة ما قيل وتلخيص مضمونه مع سؤال التحقق يجمع بين استراتيجيتي الانعكاس والتلخيص."},
+  {u:3,d:"hard",q:"زميل يشرح لك فكرة مشروع تتعارض تماماً مع قناعتك المسبقة؛ أي معيقين قد يمنعانك من الإنصات له؟",o:["ضغط الوقت وصعوبة التعامل العاطفي","الشعور بأن لديك فكرة أفضل وعدم موافقته في رأيه","السمع والإنصات","الانعكاس والملاحظة"],a:1,e:"اليقين بأن فكرتك هي الأفضل والاختلاف الكبير في الرأي هما المعيقان اللذان يولدان الرغبة في عدم الاستماع."},
+  {u:3,d:"hard",q:"مدير يستمع لموظف يشتكي من ضغط العمل؛ ركّز المدير على تواريخ التسليم ونسبة الإنجاز بالأرقام، لكنه تجاهل نبرة الإحباط في صوت الموظف. في أي مستوى كان المدير؟",o:["الإنصات الكامل","الاستماع التقييمي","الاستماع الهامشي","عدم الاستماع"],a:1,e:"الاستماع التقييمي يركز على الحقائق والإحصاءات والمحتوى ويهمل مشاعر المتحدث والدلالات الصوتية."},
+  {u:3,d:"hard",q:"لماذا يُعدّ «الاعتراف بالرسالة» مهارة دقيقة عند الاختلاف في الرأي؟",o:["لأنه يجبرك على التنازل عن رأيك تماماً","لأنه يُشعر المتحدث بأنك استوعبت رسالته وفهمته دون أن يلزمك بالموافقة على رأيه","لأنه يوقف المتحدث عن الكلام","لأنه يغني عن التواصل غير اللفظي"],a:1,e:"الاعتراف يفصل بين «فهم الرسالة واستيعابها» وبين «الموافقة على مضمونها»، مما يبني احتراماً للحوار."},
+  {u:3,d:"hard",q:"إذا كنت تقود سيارتك وتسمع حديثاً جانبياً من الراكب دون تركيز أو محاولة فهم، فهذا «سمع»؛ متى يتحول الموقف نفسه إلى «استماع» ثم إلى «إنصات»؟",o:["يتحول إلى استماع عند التوقف عن السيارة فقط","يتحول إلى استماع عندما تقصد سماعه وتحاول فهمه، وإلى إنصات عندما تشرك كل جوارحك وتتجاهل التشويش وتتدبر المعنى والمشاعر","يتحول إلى إنصات بمجرد التقاط الأذن للصوت","لا يمكن التحول بينها"],a:1,e:"الفرق بينها في القصد ومحاولة الفهم (استماع) ثم إشراك كل الجوارح والتدبر وتحليل المسموع (إنصات)."},
+  {u:3,d:"hard",q:"طالب يقرأ ردوداً في ذهنه أثناء محاضرة أستاذه ليثبت خطأه؛ ما المعياران اللذان أخلّ بهما من معايير المستمع الجيد؟",o:["ملاحظة لغة الجسد وحفظ الحقائق","عدم التفكير في الرد أثناء كلام المتحدث، ومحاولة فهم وجهة نظره قبل الحكم","إغلاق الهاتف والتواصل البصري","عدم التحدث إطلاقاً"],a:1,e:"الاستماع لا يعني التفكير في الرد أثناء الحديث، والمستمع الجيد يحاول فهم وجهة نظر المتكلم أولاً."},
+  {u:3,d:"hard",q:"ما الخطر الخفي للمستوى الثالث (الاستماع التقييمي) رغم أنه يبدو استماعاً جدياً؟",o:["الشرود الذهني التام","أن التركيز المفرط على الكلمات وحدها قد يُفقده القصد الحقيقي ومشاعر المتحدث","أنه لا يحفظ الإحصاءات","أنه يقطع الحديث باستمرار"],a:1,e:"في التقييمي يعطي المستمع انتباهه ويركز على الكلمات والحقائق، لكن إهمال المشاعر والدلالات قد يفقده القصد."},
+  {u:3,d:"hard",q:"أي جملة مما يلي تطبق استراتيجية «الانعكاس» وتجنّب «إصدار الحكم المسبق» في آن واحد؟",o:["«أنت مخطئ تماماً في كل ما قلته»","«ما سمعته منك هو أنك ترى تأخر الفريق سبباً للضغط، هل هذا ما تقصده؟»","«اختصر كلامك وأعطني الخلاصة»","«حسناً سأخبرك برأيي فوراً»"],a:1,e:"استخدام «ما سمعته هو... هل تقصد...» يعكس كلام المتحدث للتحقق من الفهم دون حكم متسرع."},
+  {u:3,d:"hard",q:"إذا لاحظتَ أن متحدثاً يتلعثم وتغمر وجهه علامات الارتباك أثناء شرح فكرته، فأي استراتيجية تساعدك على دعمه وفهمه؟",o:["مقاطعته لتصحيح كلامه","دع المتكلم ينهي وملاحظة السلوك غير اللفظي وإعطاء مهلة","إظهار السخرية لتخفيف الجو","النظر في الهاتف"],a:1,e:"تركه ينهي حديثه مع مهلة صمت وملاحظة سلوكه غير اللفظي تمنع إحباطه وتكشف مشاعره الحقيقية."},
+  {u:3,d:"hard",q:"طرحُ أسئلة «تشجع الحوار وتوضح سوء الفهم» يميز أي مستوى من مستويات الاستماع؟",o:["عدم الاستماع","الاستماع الهامشي","الاستماع التقييمي","الإنصات"],a:3,e:"من خصائص المستوى الرابع (الإنصات) أنه يطرح أسئلة تشجع الحوار وتوضح سوء الفهم."},
+  {u:3,d:"hard",q:"في حال كان لديك اختبار غداً، أي معيق قد يجعلك ترفض الاستماع لحديث صديقك عن مشكلة شخصية، وكيف تعالجه؟",o:["الشعور بالأفضلية؛ وتعالجه بالمقاطعة","ضغط الوقت (عدم وجود الوقت الكافي)؛ وتعالجه بتحديد موعد مناسب بعد الاختبار مع الاعتراف بمشاعره","عدم موافقة الرأي؛ وتعالجه بالجدال","تجاهل الأمر تماماً"],a:1,e:"ضغط الاختبارات يجعل الفرد يرى التواصل مضيعة للوقت؛ والوعي بذلك يدفعه للاعتراف بالرسالة وتأجيل الحوار لوقت مناسب."},
+
+  // ==================== الوحدة الرابعة (50 سؤال: 15 سهل، 22 متوسط، 13 صعب) ====================
+  {u:4,d:"easy",q:"ما الأداتان الأساسيتان اللتان تقوم عليهما مهارة التحدث في التواصل مع الآخرين؟",o:["الكتابة والرسوم","الرموز اللفظية ونبرة الصوت","الصمت والإيماءات فقط","الإشارات المكتوبة"],a:1,e:"مهارة التحدث هي المقدرة على استخدام الرموز اللفظية ونبرة الصوت في التواصل مع الآخرين."},
+  {u:4,d:"easy",q:"أي مما يأتي من المهارات الفرعية القائمة على التحدث؟",o:["التفاوض والحوار والخطابة","الاستذكار","كتابة التقارير","القراءة المتصفحة"],a:0,e:"تُعد مهارة التحدث أساساً لمهارات فرعية كالتفاوض والحوار والإلقاء والتقديم والخطابة."},
+  {u:4,d:"easy",q:"كم عدد خطوات نموذج (STATE) للإقناع؟",o:["ثلاث خطوات","أربع خطوات","خمس خطوات","ست خطوات"],a:2,e:"يتكون نموذج STATE من خمس خطوات: شارك، أخبر، اسأل، تحدّث، شجّع."},
+  {u:4,d:"easy",q:"في ماذا يُستخدم نموذج (STATE)؟",o:["تصنيف الحقول الدلالية","الإقناع في الحديث","القراءة السريعة","الاستذكار"],a:1,e:"نموذج STATE هو أسلوب عملي لتكون مقنعاً في حديثك."},
+  {u:4,d:"easy",q:"ما الترتيب الصحيح لخطوات نموذج (STATE)؟",o:["أخبر – شارك – شجّع – اسأل – تحدّث","شجّع – تحدّث – اسأل – أخبر – شارك","شارك – أخبر – اسأل – تحدّث – شجّع","اسأل – شارك – تحدّث – أخبر – شجّع"],a:2,e:"خطوات نموذج STATE بالترتيب: شارك، أخبر، اسأل، تحدّث، شجّع."},
+  {u:4,d:"easy",q:"ما المعدل الطبيعي لسرعة كلام معظم الناس في الدقيقة؟",o:["50 – 75 كلمة","125 – 150 كلمة في الدقيقة","250 – 300 كلمة","400 كلمة"],a:1,e:"المعدل الطبيعي لسرعة الكلام المؤثر في المستمع هو 125–150 كلمة في الدقيقة."},
+  {u:4,d:"easy",q:"أي بُعد من أبعاد الصوت الخمسة يعبّر عن المشاعر؟",o:["السرعة","النبرة","الحجم","الدرجة"],a:1,e:"النبرة تعبّر عن المشاعر، والدرجة ارتفاع وانخفاض، والحجم خشونة ونعومة."},
+  {u:4,d:"easy",q:"ما التفسير المحتمل لـ «الابتسامة» في تعابير الوجه؟",o:["الانزعاج والحزن","ودود وسعيد","الغضب","الارتباك"],a:1,e:"الابتسامة في جدول الاتصال غير اللفظي تُفسَّر بأن الشخص ودود وسعيد."},
+  {u:4,d:"easy",q:"إلى ماذا يشير «العبوس» غالباً في تعابير الوجه؟",o:["السعادة","الانزعاج والحزن","الاندهاش","الإحراج"],a:1,e:"العبوس يشير غالباً إلى الانزعاج والحزن."},
+  {u:4,d:"easy",q:"كم عدد مراحل العرض التقديمي الرئيسة؟",o:["مرحلتان","ثلاث مراحل","أربع مراحل","خمس مراحل"],a:1,e:"مراحل العرض التقديمي ثلاث: ما قبل العرض، أثناء العرض، ما بعد العرض."},
+  {u:4,d:"easy",q:"إلى كم جزء يُقسّم العرض في مرحلة «أثناء العرض»؟",o:["جزأين","ثلاثة أجزاء (مقدمة، متن، خاتمة)","أربعة أجزاء","خمسة أجزاء"],a:1,e:"يُقسّم العرض أثناء تقديمه إلى ثلاثة أجزاء: المقدمة، المتن، الخاتمة."},
+  {u:4,d:"easy",q:"عبارة «الرجاء افتح الباب» مثال على حديث:",o:["مباشر","غير مباشر","غائم","مطاط"],a:0,e:"«الرجاء افتح الباب» حديث مباشر يوضح المطلوب دون تخمين."},
+  {u:4,d:"easy",q:"عبارة «هذا الباب ما زال مغلقاً» بقصد طلب فتحه مثال على حديث:",o:["مباشر","غير مباشر","تأكيدي","مختصر"],a:1,e:"هذا حديث غير مباشر يجعل الآخرين يخمنون ماذا تريد منهم."},
+  {u:4,d:"easy",q:"عبارة «أنا لست خبيراً في ذلك ولكن...» تُعدّ من:",o:["الكلمات المطاطة","نموذج STATE","الحديث المباشر","الأسئلة التأكيدية"],a:0,e:"هذه العبارة من الكلمات المطاطة التي لا تعطي معنى واضحاً وتضعف موقف المتحدث."},
+  {u:4,d:"easy",q:"كلمات مثل (غالباً، أحياناً، نادراً، تقريباً) تُعدّ من:",o:["الكلمات المطاطة","المعاني الغائمة","الأسئلة التأكيدية","الحديث المباشر"],a:1,e:"هذه كلمات غير محددة المعنى لا تعطي معنى دقيقاً للمتلقي وتُسمى المعاني الغائمة."},
+
+  {u:4,d:"medium",q:"أي مما يأتي من معايير التحدث الجيد «قبل الحديث»؟",o:["استخدام الاستعارات والأمثلة","مراعاة طبيعة المستمعين ومستواهم المعرفي وتحديد النقاط الرئيسة","طلب تغذية راجعة دورية","التنويع في ارتفاع الصوت"],a:1,e:"قبل الحديث نراعي طبيعة المستمعين ومستواهم المعرفي ونحدد النقاط بتسلسل منطقي."},
+  {u:4,d:"medium",q:"أي مما يأتي من معايير التحدث الجيد «أثناء الحديث»؟",o:["تثبيت نبرة الصوت على وتيرة واحدة","تجاهل عدم انتباه المستمع","طرح فكرة واحدة كاملة قبل الانتقال لأخرى","طرح عدة أفكار معاً"],a:2,e:"أثناء الحديث يجب طرح فكرة واحدة كاملة قبل الانتقال لأخرى، مع التنويع في النبرة والارتفاع."},
+  {u:4,d:"medium",q:"ما المؤشران اللذان يدلان على أنك أطلت الحديث أكثر من اللازم؟",o:["تدوين المستمعين للملاحظات","طرحهم أسئلة مفتوحة","ابتسامهم الدائم","فقدان المستمعين للتواصل البصري وعدم ارتياحهم"],a:3,e:"مراقبة تفاعل الآخرين تكشف الإطالة عبر مؤشرين: فقدان التواصل البصري وعدم الارتياح."},
+  {u:4,d:"medium",q:"في خطوة «شارك» من نموذج STATE، ماذا تفعل؟",o:["تشارك مشاهداتك دون افتراضات مسبقة أو إصدار أحكام","تسأل عن آراء الآخرين فقط","تشجّع الآراء المغايرة","تتحدث عن مشاعرك فقط"],a:0,e:"في «شارك» تطرح مشاهداتك بحياد دون افتراضات مسبقة أو أحكام لتبني الثقة وتجنبك العدائية."},
+  {u:4,d:"medium",q:"في خطوة «أخبر» من نموذج STATE، على ماذا تركز؟",o:["إخفاء مشاعرك تماماً","الحديث عن كيفية تأثير الحقائق عليك وعلى مشاعرك","رفض آراء الآخرين","طلب خلاصة سريعة"],a:1,e:"الحقائق وحدها قد لا تُفهم الآخر شدة ما حصل؛ لذا في «أخبر» توضح تأثيرها عليك وعلى مشاعرك."},
+  {u:4,d:"medium",q:"في خطوة «تحدّث» من نموذج STATE، ما الصواب؟",o:["أن تخلط الحقائق بالآراء","أن تقلل من شأن مشاعرك بقول «قد يكون هذا غباء مني»","أن تعرض الحقائق كحقائق والآراء والمشاعر كآراء ومشاعر","أن تلتزم الصمت"],a:2,e:"في «تحدّث» تعرض الحقائق على أنها حقائق والآراء كآراء دون تقليل من شأن مشاعرك."},
+  {u:4,d:"medium",q:"جملة «هذا أفضل مقترح، أليس كذلك؟» مثال على:",o:["المعاني الغائمة","الكلمات المطاطة","الحديث المباشر","الأسئلة التأكيدية"],a:3,e:"إضافة سؤال قصير في نهاية الجملة الخبرية («أليس كذلك؟») مثال على الأسئلة التأكيدية."},
+  {u:4,d:"medium",q:"ما السلبية الرئيسة للأسئلة التأكيدية إذا أُسيء استخدامها؟",o:["قد تُضعف الجملة بجعلها قابلة للشك","تختصر الحديث أكثر من اللازم","تزيد قوة الجملة دائماً","تمنع التغذية الراجعة"],a:0,e:"الأسئلة التأكيدية قد تُضعف الجملة بجعلها قابلة للشك، لذا يجب استخدامها بحذر."},
+  {u:4,d:"medium",q:"ما المقصود بـ «التشديد» في استخدام الصوت؟",o:["الصراخ في وجه المستمع","التأكيد على كلمات بعينها لتعزيز المعنى","التكلم بسرعة تفوق 150 كلمة في الدقيقة","خفض الصوت حتى لا يُسمع"],a:1,e:"التشديد هو التأكيد على كلمات بعينها أثناء الحديث لتعزيز المعنى المقصود."},
+  {u:4,d:"medium",q:"بماذا يُفسَّر «رفع الحاجبين» غالباً في تعابير الوجه؟",o:["الود والترحيب","الغضب الشديد","عدم التصديق أو الاندهاش","الملل"],a:2,e:"رفع الحاجبين يُفسر غالباً بعدم التصديق أو الاندهاش."},
+  {u:4,d:"medium",q:"على ماذا يدل «الجلوس على حافة الكرسي» غالباً؟",o:["شدة الاهتمام والاستماع","الغضب والعدائية","العصبية","الملل وعدم الاستماع"],a:0,e:"الجلوس على حافة الكرسي يدل على الاستماع وشدة الاهتمام."},
+  {u:4,d:"medium",q:"بماذا يُفسَّر «وضع اليدين على الورك» غالباً؟",o:["الغضب أو العدائية","الحيرة","الاسترخاء","الاهتمام"],a:0,e:"وضع اليدين على الورك يدل غالباً على الغضب أو العدائية."},
+  {u:4,d:"medium",q:"بماذا يُفسَّر «طيّ الذراعين على الصدر»؟",o:["الاسترخاء وتقبل المقترحات","عدم التقبّل للتغيير والتحفّظ","الثقة والانفتاح","شدة الاستماع"],a:1,e:"طيّ الذراعين على الصدر يشير إلى عدم التقبّل للتغيير والتحفّظ."},
+  {u:4,d:"medium",q:"ماذا تعني حركة «التململ والحركات العشوائية» أو «الاسترخاء والتهدّل على الكرسي»؟",o:["العصبية","الملل (وعدم الاستماع)","الاهتمام وحل المشكلة","عدم التصديق"],a:1,e:"كلاهما (التململ، والتهدل على الكرسي) يرتبطان بالملل (ومعه عدم الاستماع في التهدل)."},
+  {u:4,d:"medium",q:"ما التفسير المحتمل لـ «هزّ الكتفين» في شكل الوقفة والجلسة؟",o:["الغضب والانفعال","عدم الموافقة والسخرية واللامبالاة","الارتياح والثقة","الارتباك والإحراج"],a:1,e:"هز الكتفين يشير إلى عدم الموافقة أو السخرية أو اللامبالاة."},
+  {u:4,d:"medium",q:"ما الذي يدل على «العصبية» من إشارات الوقفة والجلسة؟",o:["إرخاء الكتفين مع الاعتدال","عضّ الشفة، التنقل، وخشخشة النقود","الذراعان على الجانبين","الاتصال البصري الثابت"],a:1,e:"عضّ الشفة والتنقل وخشخشة النقود من مؤشرات العصبية."},
+  {u:4,d:"medium",q:"عندما يترك كلامك البريء أثراً مؤذياً لدى الآخر، على من تقع المسؤولية؟",o:["على الطرف الآخر وحده","لا أحد مسؤول","عليك وحدك فقط دائماً","في اتجاهين: عليك وعلى الطرف الآخر"],a:3,e:"حتى لو لم تنوِ الإساءة، فإن المسؤولية حينها تكون في اتجاهين: عليك وعلى الطرف الآخر."},
+  {u:4,d:"medium",q:"في أي مرحلة من العرض التقديمي يتم تحديد الجمهور والوسائل المساندة والتدرب؟",o:["ما قبل العرض","ما بعد العرض","أثناء العرض","الخاتمة"],a:0,e:"تحديد الجمهور والوسائل المساندة والتدرب والمكان والوقت كلها في مرحلة ما قبل العرض."},
+  {u:4,d:"medium",q:"في أي جزء من العرض التقديمي يتم «تلخيص الموضوع وتقديم التوصيات ودعوة الحضور للسؤال»؟",o:["مرحلة ما قبل العرض","المقدمة","المتن","الخاتمة"],a:3,e:"تتضمن الخاتمة تلخيص الموضوع واستخلاص النتائج وتقديم التوصيات ودعوة الحضور للسؤال."},
+  {u:4,d:"medium",q:"أي مما يأتي يندرج تحت «متن» العرض التقديمي؟",o:["الترحيب بالحضور والتعريف بالنفس","توزيع استبيان لقياس فاعلية العرض","ربط ما تقوله بأهداف الحضور وتقديم الأدلة والبراهين والحقائق","تلخيص الموضوع والانتهاء في الوقت المحدد"],a:2,e:"المتن يحتوي على الأفكار المتسلسلة وربطها بأهداف الحضور وتقديم الموضوع مشوقاً مع الأدلة والحقائق."},
+  {u:4,d:"medium",q:"ماذا تفعل في مرحلة «ما بعد العرض» التقديمي؟",o:["اختيار اللوح الأبيض وجهاز العرض","تقبّل التغذية الراجعة والنقد، تدوين الملاحظات، وتوزيع استبيان التقييم","تقديم عنوان الموضوع وجذب الانتباه","التدرب على العرض ومراجعة الأفكار"],a:1,e:"ما بعد العرض تشمل المتابعة والتواصل، تقبّل التغذية الراجعة والنقد، وتدوين الملاحظات وتوزيع الاستبيان."},
+  {u:4,d:"medium",q:"ماذا تعني عبارة «دون تقليل من شأن مشاعرك» في خطوة (تحدّث)؟",o:["أن تستخدم عبارات مثل: قد يكون خطئي ولكن...","أن تتحمل مسؤولية مشاعرك وتعبر عنها بوضوح دون اعتذار مُضعِف مثل: قد يكون هذا غباء مني","أن ترفع صوتك وتهاجم","أن تخفي الحقائق"],a:1,e:"تجنّب قول «قد يكون هذا غباء مني ولكن...» لأن ذلك يقلل من شأن مشاعرك ويضعف إقناعك."},
+
+  {u:4,d:"hard",q:"طلب منك زميل تحويل العبارة: «يبدو أن الإضاءة خافتة هنا» إلى حديث مباشر؛ أي صياغة تحقق المطلوب؟",o:["«ألا ترى أن الغرفة مظلمة قليلاً؟»","«الرجاء زيادة الإضاءة / فتح النور الآن»","«لست متأكداً ولكن الإضاءة قد لا تكفي»","«عادةً ما تكون الإضاءة هنا ضعيفة نوعاً ما»"],a:1,e:"الحديث المباشر يحدد الطلب بوضوح («الرجاء...») دون أن يترك المستمع يخمن ما تريده."},
+  {u:4,d:"hard",q:"لاحظتَ أثناء عرض تقديمي أن بعض الحضور يضيقون فتحات أعينهم ويطوون أذرعهم على صدورهم؛ وفق تنبيه الاتصال غير اللفظي، كيف تفسر ذلك بدقة؟",o:["تحكم قطعياً أنهم غاضبون ورافضون وترفض استكمال العرض","تعتبرها دلائل محتملة على الغضب والتحفظ، فتقرؤها ضمن السياق ومع غيرها دون حكم قطعي من حركة واحدة","تتجاهلهم تماماً وتسرع في الكلام","تتهمهم بعدم الاحترام"],a:1,e:"التفسيرات غير اللفظية محتملة لا قطعية؛ يجب قراءة الإشارة ضمن سياقها ومع غيرها لا من حركة واحدة."},
+  {u:4,d:"hard",q:"تريد إقناع زميلك بتغيير موعد اجتماع بتطبيق خطوات STATE؛ أي جملة تمثّل خطوة «شجّع» في نهاية حديثك؟",o:["«تأخرتَ ثلاث مرات عن الموعد السابق»","«هذا التأخير جعلني أشعر بالإحباط أمام العميل»","«ما رأيك في تقديم الموعد ساعة؟ وهل ترى حلاً آخر يناسبنا؟»","«كيف يؤثر الموعد الحالي على جدولك؟»"],a:2,e:"خطوة «شجّع» تدعو الآخر لعرض رأيه وترحب بوجهات النظر المغايرة («هل ترى ذلك بطريقة مختلفة؟»)."},
+  {u:4,d:"hard",q:"لماذا تُعد العبارة «أنا مجرد طالب ولكن لدي ملاحظة» ضارة بقوة المتحدث؟",o:["لأنها تستخدم المعاني الغائمة","لأنها من الكلمات المطاطة التي تُضعف موقف المتحدث ولا تعطي ثقة للمتلقي","لأنها سريعة جداً","لأنها جملة مباشرة أكثر من اللازم"],a:1,e:"«أنا مجرد طالب ولكن...» من العبارات المطاطة التي تُضعف الحديث وتقلل من قيمة الفكرة قبل طرحها."},
+  {u:4,d:"hard",q:"إذا أبلغك زميلك بلطف أن مزحتك في الاجتماع سببت له إحراجاً رغم أنك لم تقصد، ما التصرف الأصح وفق مبدأ «النية والأثر»؟",o:["الدفاع بأن نيتك كانت طيبة وإلقاء اللوم على حساسيته","تقديم اعتذار صريح مثل: «قصدتها نكتة، لكني أرى الآن أنها في غير محلها؛ أرجو أن تسامحني»","الضحك لتلطيف الجو وتجاهل شكواه","تجنب الحديث معه مستقبلاً"],a:1,e:"النية الطيبة لا تلغي الأثر المؤذي؛ ومسؤوليتك إذا آذيت أحداً أن تعتذر بإخلاص وبوضوح."},
+  {u:4,d:"hard",q:"وإن كنت أنت الطرف المتأذي من تعليق جارح لزميلك، ما الموقف الحكيم الموصى به في الوحدة الرابعة؟",o:["أن تفترض أنه تعمّد إيذاءك وترد له الصاع صاعين","ألا تفترض سوء النية، وأن تخبره بلطف لأن معظم الناس يغيرون سلوكهم إذا علموا أنه جارح","أن تكتم غضبك دون إخباره وتنشر الأمر بين الزملاء","أن تقاطعه نهائياً"],a:1,e:"يُنصح بألا تفترض أن الآخر يريد إيذاءك، وإخباره بلطف لأن معظم الناس يغيرون سلوكهم حين يعلمون بأثره."},
+  {u:4,d:"hard",q:"أي بُعدين صوتيين يجب ضبطهما لمنع ملل المستمع وضمان استيعابه للمعلومات المعقدة؟",o:["استخدام المفردات الاستفزازية ورفع السرعة لـ 250 كلمة","تجنب المفردات الاستفزازية، والالتزام بسرعة 125-150 كلمة/دقيقة مع تنويع الدرجة والتشديد على الكلمات المهمة","الحفاظ على درجة صوت واحدة لا تتغير","الهمس المستمر"],a:1,e:"السرعة المتزنة (125-150 كلمة/دقيقة) وتنويع الدرجة والتشديد وتجنب المفردات الاستفزازية تعزز الاستيعاب."},
+  {u:4,d:"hard",q:"أنت بصدد تقديم عرض أمام زملائك بعد أسبوع؛ ما أول ثلاثة إجراءات عملية تبدأ بها في مرحلة «ما قبل العرض»؟",o:["الترحيب بالحضور، وتلخيص الموضوع، وتوزيع استبيان","تحديد الغرض والجمهور والمحتوى، تجهيز الوسائل المساندة، والتدرب على العرض ومراجعة الأفكار","تقديم التوصيات، والرد على الأسئلة، وتدوين الملاحظات","استخلاص النتائج، وجذب الانتباه، وطلب التغذية الراجعة"],a:1,e:"أول خطوات ما قبل العرض هي التخطيط (تحديد الغرض والجمهور والمحتوى والوسائل) ثم الإعداد والتدريب."},
+  {u:4,d:"hard",q:"موظف يرتدي ملابس مزركشة غير مرتبة في اجتماع رسمي مهم؛ وفق جدول الهندام، ماذا قد يوحي هذا السلوك غير اللفظي؟",o:["السلطة والمحافظة","الاسترخاء الصحي","عدم الشعور بالمسؤولية وعدم الاحترام","الاندهاش وعدم التصديق"],a:2,e:"في جدول الاتصال غير اللفظي، الملابس المزركشة أو المتسخة تفسر غالباً بعدم الشعور بالمسؤولية وعدم الاحترام."},
+  {u:4,d:"hard",q:"أثناء نقاش حاد، لاحظتَ أن الطرف الآخر يحك يده بجيبه ويخشخش النقود ويعض شفته مع احمرار وجهه؛ ماذا تستنتج؟",o:["أنه يشعر بالسعادة والارتياح التام","أنه يمر بحالة من العصبية والارتباك أو الإحراج","أنه متقبل للمقترحات ومسترخٍ","أنه يشعر بالملل التام"],a:1,e:"عضّ الشفة وخشخشة النقود (العصبية) مع احمرار الوجه (الارتباك والإحراج) تشير إلى توتر نفسي."},
+  {u:4,d:"hard",q:"لماذا نُصح في مرحلة «المتن» من العرض التقديمي بـ «ربط ما تقوله بأهداف الحضور»؟",o:["لتقليل مدة الخاتمة","لأن ذلك يبقي الجمهور منتبهاً ومؤمناً بأهمية الرسالة ويربط الموضوع باهتماماتهم","لتجنب الإجابة عن الأسئلة في المقدمة","للاستغناء عن الأدلة والبراهين"],a:1,e:"ربط المحتوى بأهداف الحضور يجذب اهتمامهم ويحقق التفاعل والإقناع."},
+  {u:4,d:"hard",q:"قارن بين قولك: «سأسلّم المشروع في كل مرة بالموعد» وقولك: «سأسلّم التقرير يوم الخميس الساعة العاشرة»؛ ما المشكلة في العبارة الأولى؟",o:["أنها طويلة جداً","أنها تستخدم معنى غائماً («في كل مرة») لا يعطي التزاماً دقيقاً ومحدداً","أنها سؤال تأكيدي","أنها تعتمد على التشديد الصوتي"],a:1,e:"عبارة «في كل مرة» من المعاني الغائمة غير المحددة، بينما العبارة الثانية دقيقة ومحددة."},
+  {u:4,d:"hard",q:"في خطوة «شارك» من نموذج STATE، ما الأثر النفسي لتقديم الحقائق المجردة الخالية من الانفعال؟",o:["يضعف موقفك أمام الآخرين","يبني ثقتك بنفسك ويجنّبك عدائية الآخرين","يثير غضب المستمع فوراً","يمنع الآخرين من التعبير عن آرائهم"],a:1,e:"تؤكد الوحدة أن جمل الحقائق الخالية من الانفعال تبني ثقتك بنفسك وتجنبك عدائية الآخرين."},
+
+  // ==================== الوحدة الخامسة (50 سؤال: 15 سهل، 23 متوسط، 12 صعب) ====================
+  {u:5,d:"easy",q:"تُعرّف القراءة بأنها:",o:["عملية بصرية بحتة","عملية نطق الحروف فقط","عملية تفكير مركّبة تبدأ بتفسير الرموز وربطها بالمعاني","عملية حفظ النصوص"],a:2,e:"القراءة عملية تفكير مركبة تبدأ بتفسير الرموز ثم ترجمتها بربطها بالمعاني وتفسيرها."},
+  {u:5,d:"easy",q:"ما المرحلتان اللتان لا تكتمل القراءة إلا بهما معاً؟",o:["الترفيهية والمقارنة","الآلية (الميكانيكية) والذهنية (الإدراكية)","الحفظ والتكرار","التلخيص والكتابة"],a:1,e:"لا تكتمل القراءة إلا بالمرحلتين: الآلية (رؤية ونطق) والذهنية (فهم وتحليل وتركيب وتقييم)."},
+  {u:5,d:"easy",q:"ما المرحلة التي يتم فيها رؤية الحروف والكلمات بالعين ثم النطق بها؟",o:["الذهنية","التقييمية","الإدراكية","الآلية (الميكانيكية)"],a:3,e:"المرحلة الآلية تختص برؤية الحروف والكلمات بالعين ثم النطق بها."},
+  {u:5,d:"easy",q:"ما نسبة المعرفة التي يتلقاها الإنسان في عصرنا عن طريق المطالعة بحسب الوحدة الخامسة؟",o:["50%","قرابة 85%","100%","25%"],a:1,e:"القراءة غذاء الدماغ؛ إذ يتلقى الإنسان في عصرنا قرابة 85% من معرفته عن طريق المطالعة."},
+  {u:5,d:"easy",q:"ما الصفة المشتركة الوحيدة بين أكثر من خمسين شخصية مؤثرة في الدراسة الأمريكية؟",o:["الشهادات العليا","السفر الكثير","قراءة خمسين كتاباً في السنة (كتاب كل أسبوع تقريباً)","الثراء المادي"],a:2,e:"توصلت الدراسة إلى أنهم جميعاً يقرؤون خمسين كتاباً في السنة، أي بمعدل كتاب كل أسبوع تقريباً."},
+  {u:5,d:"easy",q:"ما القراءة التي هدفها التسلية والاستمتاع والشعور بالسعادة؟",o:["القراءة العميقة","القراءة الترفيهية","القراءة المتصفحة","القراءة المقارنة"],a:1,e:"القراءة الترفيهية تشمل الصحف والمجلات والقصص والشعر والروايات وهدفها التسلية والاستمتاع."},
+  {u:5,d:"easy",q:"ما القراءة السريعة لأخذ فكرة عامة عن كتاب جديد أو مقالة دون توقف وتحليل؟",o:["القراءة العميقة","القراءة الترفيهية","القراءة العامة (المتصفحة)","القراءة المقارنة"],a:2,e:"القراءة العامة (المتصفحة) سريعة دون توقف وتهدف لاستعراض الصورة الكبيرة للكتاب."},
+  {u:5,d:"easy",q:"ما أهم أنواع القراءة لأنها توصل إلى الفهم العميق؟",o:["القراءة المتصفحة","القراءة الترفيهية","القراءة العميقة (الشاملة)","القراءة السريعة"],a:2,e:"القراءة العميقة هي أهم الأنواع لأنها توصل إلى الفهم العميق للكتب الدراسية والاختبارات."},
+  {u:5,d:"easy",q:"أي نوع من القراءة يُستخدم للمقارنة بين مقالتين أو كتابين في الموضوع نفسه؟",o:["القراءة المتصفحة","القراءة الترفيهية","القراءة الآلية","القراءة المقارنة"],a:3,e:"القراءة المقارنة تُعنى بتحليل التشابهات والفروقات بين مصدرين أو أكثر في الموضوع نفسه."},
+  {u:5,d:"easy",q:"ما السؤال الأول الذي تطرحه على نفسك عند وضع خطة للقراءة؟",o:["ما غرضي من قراءة هذا؟","كم صفحة في الكتاب؟","متى الاختبار؟","من المؤلف؟"],a:0,e:"السؤال الأول عند وضع خطة القراءة هو: «ما غرضي من قراءة هذا؟» ثم تحديد إجراءات تحقيقه."},
+  {u:5,d:"easy",q:"يُعرّف الاستذكار بأنه عملية تعلّم:",o:["غير واعية","مقصودة","عشوائية","جماعية فقط"],a:1,e:"الاستذكار عملية تعلّم مقصودة يتبعها الفرد للحصول على المعلومات أو اكتساب مهارات جديدة."},
+  {u:5,d:"easy",q:"تقسيم المعلومة إلى وحدات صغيرة مفهومة لإعطاء الذاكرة العاملة وقتاً لدمجها يُسمى:",o:["تعميم المعلومات","تجزئة المعلومة","تكرار المعلومات","القراءة المقارنة"],a:1,e:"تجزئة المعلومة تمنح الذاكرة العاملة وقتاً لدمجها مع غيرها، وعدم الدمج يؤدي لفقدانها."},
+  {u:5,d:"easy",q:"ربط المعلومات في الذاكرة بصفة مشتركة بينها كمكانها في الصفحة أو حجم الفقرة يُسمى:",o:["تعميم المعلومات","تجميع المعلومات","تكرار المعلومات","تجزئة المعلومات"],a:1,e:"تجميع المعلومات هو ربطها في الذاكرة بصفة مشتركة بينها ثم ربط المجموعة بأجزاء أخرى."},
+  {u:5,d:"easy",q:"استثمار طريقة ناجحة في مادة لدراسة مادة جديدة مشابهة يُسمى:",o:["تجزئة المعلومات","تعميم المعلومات","تجميع المعلومات","الانعكاس"],a:1,e:"تعميم المعلومات يعني استثمار المعرفة السابقة أو طريقة ناجحة في دراسة مادة جديدة مشابهة."},
+  {u:5,d:"easy",q:"كم ساعة نوم يحتاج البالغ يومياً وفق نصائح الاستذكار الصحيحة؟",o:["نحو ثلاث ساعات","نحو خمس ساعات","نحو سبع ساعات يومياً ويفضّل ليلاً","اثنتي عشرة ساعة"],a:2,e:"يحتاج البالغ نحو سبع ساعات نوم يومياً ويفضل ليلاً لتجديد النشاط الذهني."},
+
+  {u:5,d:"medium",q:"ماذا يتم في «المرحلة الذهنية» من القراءة؟",o:["النطق الصحيح فقط","ترجمة الرموز وتفسيرها (فهم، تحليل، تركيب، تقييم)","تقليب الصفحات بسرعة","رؤية الحروف بالعين فقط"],a:1,e:"في المرحلة الذهنية (الإدراكية) تُترجم الرموز وتُفسَّر عبر الفهم والتحليل والتركيب والتقييم."},
+  {u:5,d:"medium",q:"أي مما يأتي يُعد من خصائص «القراءة الاستراتيجية»؟",o:["تحتاج دائماً لمساعدة الآخرين","تعلّم ذاتية سهلة تقود للابتكار والإبداع","تقتصر على الصحف اليومية","تمنع التفكير النقدي"],a:1,e:"القراءة الاستراتيجية تعلّم ذاتية سهلة تساعد على اختيار التخصص والبحث وتولّد أفكاراً للابتكار."},
+  {u:5,d:"medium",q:"ما القراءة المستخدمة عادةً في البحوث ونقد المقالات وإعداد الدراسات؟",o:["القراءة المتصفحة","القراءة الترفيهية","القراءة الآلية","القراءة المقارنة"],a:3,e:"تُستخدم القراءة المقارنة في البحوث ونقد المقالات وإعداد الدراسات لتحليل الفروق والتشابهات."},
+  {u:5,d:"medium",q:"بماذا تتصف «القراءة العميقة» من حيث السرعة والأسلوب؟",o:["سريعة وثابتة دون توقف","مرنة تتغير سرعتها بحسب صعوبة الأجزاء، وبطيئة ومنظمة","تقرأ العناوين فقط","لا تستخدم الرسوم والمخططات"],a:1,e:"القراءة العميقة مرنة (تتغير سرعتها حسب الصعوبة) وبطيئة ومنظمة لتعطي الدماغ وقتاً للمعالجة."},
+  {u:5,d:"medium",q:"عند قراءة كتاب «عالي الصعوبة» يُنصح بالتوقف عند:",o:["نهاية كل فصل","نهاية كل جملة والتأكد من فهمها","نهاية كل صفحة","بعد إنهاء الكتاب كاملاً"],a:1,e:"في الكتب عالية الصعوبة تتوقف عند نهاية كل جملة وتتأكد من فهمها وإلا فأعد قراءتها."},
+  {u:5,d:"medium",q:"عند قراءة كتاب «متدني الصعوبة» يُنصح بالتوقف عند:",o:["نهاية كل جملة","نهاية كل صفحة للتفكير ورسم أشكال تربط المعلومات","نهاية كل كلمة","لا حاجة للتفكير مطلقاً"],a:1,e:"في الكتب متدنية الصعوبة تتوقف عند نهاية كل صفحة وتفكر وترسم أشكالاً تربط المعلومات."},
+  {u:5,d:"medium",q:"ما أثر وضع خطة قراءة محددة الأهداف على الذاكرة العاملة؟",o:["يثقلها ويرهقها","ينشط الذاكرة العاملة ويولّد نية جادة ورغبة في الإنجاز","يمنع القراءة المتصفحة","يلغي الحاجة للاستذكار"],a:1,e:"وضع خطة محددة الأهداف ينشط الذاكرة العاملة ويساعد على اختيار طريقة القراءة المناسبة."},
+  {u:5,d:"medium",q:"في جدول خطة القراءة، أي أسلوب قراءة يناسب «فهم الأفكار الرئيسة لمادة الحاسب الآلي» عبر تظليلها بالأصفر؟",o:["القراءة الترفيهية","القراءة المتصفحة","القراءة المقارنة","القراءة الصامتة العشوائية"],a:1,e:"تظليل الأفكار الرئيسة والكلمات المفتاحية بالأصفر وتدوين ملاحظات في الهوامش يناسب القراءة المتصفحة."},
+  {u:5,d:"medium",q:"ما الإجراء المقترح في الجدول لـ «حفظ مصطلحات مادة مهارات الاتصال»؟",o:["عمل جدول للفروق فقط","تحديد المصطلحات، عمل بطاقات بالمصطلحات، ومراجعتها (القراءة العميقة)","تصفح الفهرس فقط","قراءة رواية مسلية"],a:1,e:"حفظ المصطلحات يتطلب القراءة العميقة عبر تحديدها وعمل بطاقات ومراجعتها."},
+  {u:5,d:"medium",q:"ما علاقة الاستذكار بالقراءة وفق الوحدة الخامسة؟",o:["الاستذكار يغني عن القراءة","الاستذكار والقراءة متكاملان، ولا ينجح الاستذكار إلا بالقراءة الجادة","القراءة أضعف من الاستذكار","لا علاقة بينهما"],a:1,e:"تعتمد فاعلية الاستذكار على فاعلية القراءة ومدى استثمار الوقت والجهد فهما متكاملان."},
+  {u:5,d:"medium",q:"لماذا يُنصح بـ «ابدأ بسلوك إيجابي وفضول» في خطوات القراءة الجادة؟",o:["لأن ذلك يسرّع القراءة دون فهم","لأنه يرسل إشارة إلى الذاكرة العاملة بأهمية المعلومة فينشطها","لأنه يلغي الحاجة للتركيز","لأنه يغني عن المراجعة"],a:1,e:"الفضول للمعلومة يرسل إشارة إلى الذاكرة العاملة بأهميتها فينشطها للاستيعاب."},
+  {u:5,d:"medium",q:"لماذا نبدأ بـ «تعلّم التعريفات والمفاهيم أولاً» في القراءة الجادة؟",o:["لأنها لا تحتاج لفهم","لأنها أساس عمليات أصعب كالربط والتحليل والمقارنة والتقييم","لأنها آخر خطوة في القراءة","لتجنب قراءة بقية الكتاب"],a:1,e:"التعريفات والمفاهيم هي الأساس الذي تُبنى عليه العمليات الذهنية الأصعب كالتحليل والمقارنة."},
+  {u:5,d:"medium",q:"في خطوة «وازن بين السرعة وتوزيع الوقت»، ما سلبية القراءة السريعة الطويلة؟",o:["تزيد الانتباه","ترهق الذاكرة العاملة","تقلل النسيان","تطيل التعلم بإيجابية"],a:1,e:"القراءة السريعة الطويلة ترهق الذاكرة العاملة، كما أن كثرة التوزيع على فترات قصيرة جداً تطيل التعلم."},
+  {u:5,d:"medium",q:"إذا كان وقت الدراسة المتوفر «قليلاً»، فأي طريقة استذكار هي الأفضل؟",o:["الدراسة المستمرة لتغطية أكبر قدر من المادة","الدراسة الموزعة على شهر","القراءة الترفيهية","تأجيل المادة كلها"],a:0,e:"إذا كان الوقت قليلاً فالدراسة المستمرة أفضل لتغطية أكبر قدر ممكن من المادة."},
+  {u:5,d:"medium",q:"إذا كان وقت الدراسة المتوفر «كبيراً»، فأي طريقة استذكار هي الأفضل؟",o:["الدراسة المستمرة ليلة الاختبار","الدراسة الموزعة على فترات متفرقة لضمان القراءة المتعمقة","تصفح العناوين فقط","ترك المراجعة تماماً"],a:1,e:"الوقت الكبير يتيح الدراسة الموزعة على فترات متفرقة لضمان القراءة المتعمقة."},
+  {u:5,d:"medium",q:"ما المقصود بعملية «تجزئة المعلومات والربط بينها» في الاستذكار؟",o:["قراءة المادة مرة واحدة بسرعة","إيجاد العلاقات بين أجزاء المادة للوصول إلى معنى يسهل فهمها وحفظها واسترجاعها","نسخ الصفحات حرفياً","حفظ أرقام الصفحات فقط"],a:1,e:"تجزئة المعلومات والربط بينها تعني إيجاد العلاقات بين أجزاء المادة لتكوين معنى يسهل الحفظ والاسترجاع."},
+  {u:5,d:"medium",q:"في عملية «تكرار المعلومات»، ما الشرط الذي يضمن التخزين في الذاكرة؟",o:["إعادة القراءة دون تركيز","إعادة قراءة المادة أكثر من مرة مع فحص مدى الاستيعاب في كل مرة","القراءة أثناء الاستلقاء","شرب الكثير من الكافيين"],a:1,e:"تكرار المعلومات يعني إعادة القراءة مع فحص مدى الاستيعاب في كل مرة لضمان التخزين."},
+  {u:5,d:"medium",q:"أي مما يأتي من نصائح الاستذكار الصحيح في محور «التنظيم»؟",o:["الدراسة مستلقياً على السرير","الإكثار من الكافيين","الدراسة ليلة الاختبار فقط","استغلال ساعات الصباح لأن الذهن فيها أكثر صفاءً"],a:3,e:"من نصائح التنظيم: استغلال ساعات الصباح لصفاء الذهن وتجنب دراسة ليلة الاختبار لأنها تشتت التركيز."},
+  {u:5,d:"medium",q:"لماذا يُنهى عن المذاكرة في وضع «الاستلقاء» في محور الصحة والبيئة؟",o:["لأنه يزيد التوتر","لأن الاستلقاء يقلل الانتباه","لأنه يسرّع القراءة العميقة","لأنه يحسن الإضاءة"],a:1,e:"توصي الوحدة بالجلوس جلسة صحية لأن الاستلقاء يقلل الانتباه."},
+  {u:5,d:"medium",q:"أيٌّ من العبارات الآتية يمثّل نصيحة صحيحة في محور «الأدوات والأساليب» للاستذكار؟",o:["الاقتصار على القراءة الصامتة دون تدوين","تنويع الأساليب باستخدام البطاقات والخرائط الذهنية ودفتر الملاحظات","تجنب الكتابة في الهوامش مطلقاً","دراسة مادة واحدة طوال الأسبوع دون تنويع"],a:1,e:"يُنصح باستعمال دفتر ملاحظات وتنويع الأساليب (بطاقات، صور، خرائط ذهنية، فيديو) وتدوين ملخصات بالهوامش."},
+  {u:5,d:"medium",q:"ما الأثر السلبي لمراكمة المواد والدراسة ليلة الاختبار فقط؟",o:["تقوية الذاكرة العاملة","تشتيت التركيز وتسبب التوتر","تحسين الفهم العميق","توفير الوقت الكافي للتعمق"],a:1,e:"عدم الالتزام بالخطة ومراكمة المواد لليلة الاختبار يشتتان التركيز ويسببان التوتر."},
+  {u:5,d:"medium",q:"ما الترتيب الموصى به في التنظيم عند بدء استذكار مادة صعبة الاسترجاع؟",o:["الحفظ الحرفي ثم التصفح","البدء بالقراءة المتصفحة ثم العميقة واستخدام التكرار عند صعوبة الاسترجاع","الاختبار الذاتي قبل القراءة","قراءة الخاتمة فقط"],a:1,e:"ينصح التنظيم بالبدء بالقراءة المتصفحة ثم العميقة، واستخدام التكرار عند صعوبة الاسترجاع."},
+  {u:5,d:"medium",q:"ما أهمية «التغذية الراجعة الذاتية» في الخطوة التاسعة من القراءة الجادة؟",o:["الاستغناء عن أستاذ المادة","اختبار النفس ذاتياً للتحقق من دقة المعلومات","مضاعفة سرعة النطق","تقليل عدد الساعات المطلوبة للنوم"],a:1,e:"إعطاء النفس تغذية راجعة بنّاءة عبر الاختبار الذاتي يتحقق من دقة معلوماتك."},
+
+  {u:5,d:"hard",q:"قرأ طالب صفحة كاملة من كتاب علمي، ثم اكتشف أنه لا يتذكر منها شيئاً؛ أي مرحلة من القراءة تمت وأي مرحلة تعطلت؟",o:["تمت المرحلة الذهنية وتعطلت الآلية","تمت المرحلة الآلية (حركة العين والنطق) وتعطلت المرحلة الذهنية (الفهم والربط بالمعاني)","تعطلت كلتا المرحلتين معاً","تمت القراءة العميقة بنجاح"],a:1,e:"رؤية الحروف بالعين دون فهم أو ربط بالمعنى تعني اقتصار القارئ على المرحلة الآلية وغياب المرحلة الذهنية."},
+  {u:5,d:"hard",q:"إذا كنت تقرأ رواية قبل النوم في العطلة، وتستعد لاختبار نهائي، وتعد بحثاً يقارن بين نظريتين، وتتصفح كتاباً جديداً؛ فما أنواع القراءة المناسبة بالترتيب؟",o:["عميقة، ترفيهية، متصفحة، مقارنة","ترفيهية، عميقة، مقارنة، متصفحة","متصفحة، مقارنة، ترفيهية، عميقة","ترفيهية، متصفحة، عميقة، مقارنة"],a:1,e:"الرواية (ترفيهية)، الاختبار النهائي (عميقة)، مقارنة نظريتين (مقارنة)، تصفح كتاب جديد (متصفحة)."},
+  {u:5,d:"hard",q:"لماذا يؤدي «عدم دمج» الوحدات الصغيرة من المعلومات في الذاكرة العاملة إلى فقدانها؟",o:["لأن الذاكرة العاملة سعتها محدودة فتحتاج إلى وقت لدمج الوحدات وتخزينها في الذاكرة","لأن القراءة المتصفحة تمنع التخزين","لأن المرحلة الآلية تحذف الكلمات","لأن التلخيص يضعف الحفظ"],a:0,e:"تجزئة المعلومة تمنح الذاكرة العاملة وقتاً لدمجها مع غيرها، وعدم الدمج يؤدي إلى فقدانها وعدم تخزينها."},
+  {u:5,d:"hard",q:"طالبان لهما نفس القدرات: الأول اختباره بعد يومين والآخر بعد أسبوعين؛ لماذا لا ينبغي أن يذاكرا بالطريقة الزمنية نفسها؟",o:["لأن الاختبار بعد يومين يناسبه الدراسة المستمرة لتغطية أكبر قدر، بينما بعد أسبوعين يناسبه الدراسة الموزعة للتعمق","لأن الأول يجب أن يقرأ ترفيهياً فقط","لأن العمليات العقلية الأربع مختلفة تماماً بينهما","لأن الدراسة الموزعة تمنع الفهم"],a:0,e:"تختلف الطريقة باختلاف ظرف الوقت (مستمرة للقليل وموزعة للكبير)، وإن تشابهت العمليات العقلية الأربع."},
+  {u:5,d:"hard",q:"إذا لاحظتَ أثناء قراءتك المتعمقة أنك فقدتَ التركيز تماماً بعد 40 دقيقة من القراءة المتواصلة، ما الإجراء الصحيح وفق استراتيجية «كمية المادة»؟",o:["الاستمرار بسرعة أكبر لإنهاء الفصل","التوقف للتفكير والراحة لأنك فقدت تركيزك وتجنب إثقال الذاكرة العاملة","الانتقال فوراً إلى القراءة الترفيهية","تناول مشروب غازي وإكمال القراءة مستلقياً"],a:1,e:"تنص استراتيجية كمية المادة على الاستمرار ما دمت محافظاً على تركيزك، والتوقف والتفكير إذا فقدته."},
+  {u:5,d:"hard",q:"طالب حفظ أشكالاً في صفحة بتذكر أنها تقع في أعلى اليسار ومكونة من ثلاث نقاط مرتبطة بمفهوم في صفحة سابقة؛ أي عملية استذكار طبقها؟",o:["تعميم المعلومات","تجميع المعلومات","تكرار المعلومات","القراءة الترفيهية"],a:1,e:"تجميع المعلومات يقوم على ربط المعلومات بصفة مشتركة كمكانها في الصفحة أو حجم الفقرة ثم ربطها بأجزاء أخرى."},
+  {u:5,d:"hard",q:"استخدمتَ طريقة البطاقات التعليمية ونجحت في مادة مهارات الاتصال، فقررت تطبيق نفس الأسلوب في مادة الفيزياء المشابهة؛ ماذا يُسمى ذلك؟",o:["تجميع المعلومات","تعميم المعلومات","تجزئة المعلومات","المرحلة الآلية"],a:1,e:"تعميم المعلومات هو استثمار طريقة ناجحة في مادة لدراسة مادة جديدة مشابهة."},
+  {u:5,d:"hard",q:"لماذا شددت خطوات القراءة الجادة على «كن صبوراً ولا تسرع» رغم إمكانية القراءة السريعة؟",o:["لأن العقل يحتاج وقتاً لالتقاط وفك تشفير الكلمات ودمج الجديد بالقديم","لأن القراءة السريعة تمنع رؤية الحروف","لأن الصبر يغني عن وضع الأهداف","لأن الكتب الدراسية كلها متدنية الصعوبة"],a:0,e:"القراءة التقاط وفك تشفير وفهم، والعقل يحتاج وقتاً لدمج المعلومات الجديدة بالمخزون القديم."},
+  {u:5,d:"hard",q:"إذا أراد باحث إعداد دراسة علمية توضّح أوجه الاتفاق والاختلاف بين منهجين علميين، ما الأسلوب والإجراء الأنسب من جدول خطة القراءة؟",o:["القراءة الترفيهية مع التظليل بالأصفر","القراءة المقارنة عبر تحديد خصائص كل منهج وعمل جدول يوضح الفروق والتشابهات","القراءة المتصفحة دون توقف","الحفظ الآلي للمصطلحات"],a:1,e:"البحوث المقارنة تستخدم القراءة المقارنة وتعتمد تحديد الخصائص وعمل جدول للفروق والتشابهات."},
+  {u:5,d:"hard",q:"كيف تصنع القراءة شخصية الإنسان وتساعده في التعبير عن رأيه بثقة؟",o:["من خلال الاقتصار على 15% فقط من المعرفة","من خلال تكوين مخزون من المعلومات وصناعة الثقافة الذي يستند إليه الإنسان في آرائه","من خلال تجنب الربط بالسابق","من خلال النوم أكثر من 12 ساعة"],a:1,e:"القراءة من أهم مكونات الشخصية لأنها تصنع الثقافة وتكوّن مخزوناً معرفياً يعبّر منه الفرد بثقة."},
+  {u:5,d:"hard",q:"ما الخطأ الذي يقع فيه قارئ يبدأ مباشرة بربط الأفكار المعقدة ونقدها قبل أن يتعلّم التعريفات والمفاهيم الأساسية؟",o:["تطبيق القراءة المقارنة مبكراً","إغفال أساس العمليات الأصعب كالربط والتحليل والمقارنة والتقييم","توفير الوقت للذاكرة العاملة","تطبيق الاستذكار الموزع"],a:1,e:"تعلّم التعريفات والمفاهيم أولاً هو الأساس الذي لا تستقيم بدونه عمليات الربط والتحليل والتقييم."},
+  {u:5,d:"hard",q:"طالب يراجع مادته بطريقة واحدة فقط (إعادة القراءة الصامتة) في كل مرة؛ أي خطوة من خطوات القراءة الجادة يفتقدها، وما أثر ذلك؟",o:["يفتقد الفضول الإيجابي","يفتقد تنويع طرق المراجعة، وهو ما يفوّت عليه زيادة الانتباه والتركيز","يفتقد المرحلة الآلية","يفتقد وضع خطة أسبوعية فقط"],a:1,e:"الخطوة الثامنة هي «نوّع طرق المراجعة» لأن التنويع يزيد الانتباه والتركيز."},
+
+  // ==================== الوحدة السادسة (50 سؤال: 15 سهل، 22 متوسط، 13 صعب) ====================
+  {u:6,d:"easy",q:"كم عدد أسباب استخدام الكتابة في الاتصال المذكورة في مطلع الوحدة السادسة؟",o:["ثلاثة أسباب","أربعة أسباب","خمسة أسباب","سبعة أسباب"],a:2,e:"ذكرت الوحدة خمسة أسباب رئيسة للكتابة: تعذر التخاطب، تعزيز الشفهي، التوثيق، فرصة الكاتب، وفرصة القارئ."},
+  {u:6,d:"easy",q:"أيٌّ مما يأتي من أسباب استخدام الكتابة في الاتصال؟",o:["تجنّب التفكير","إخفاء المعلومات","توثيق ما اتُّفق عليه بين أطراف الاتصال","إلغاء الاتصال الشفهي تماماً"],a:2,e:"من أهم أسباب الكتابة توثيق ما اتُّفق عليه بين أطراف الاتصال لمنع الاختلاف لاحقاً."},
+  {u:6,d:"easy",q:"إلى كم قسم يُقسّم النص المكتوب أو الخطاب أو التقرير في هيكله العام؟",o:["فقرة واحدة","ملخص فقط","مقدمة ومحتوى وخاتمة","عنوان وتوقيع فقط"],a:2,e:"يجب تقسيم الرسالة أو الخطاب أو التقرير إلى فقرات: مقدمة، ومحتوى، وخاتمة."},
+  {u:6,d:"easy",q:"ماذا يُسمى الترتيب السليم والتتابع المنطقي وتقسيم الأجزاء وترقيمها في الكتابة؟",o:["الوضوح","التناسق","الاكتمال","الموضوعية"],a:1,e:"التناسق يعني الترتيب السليم والتتابع المنطقي وتقسيم الأجزاء وترقيمها."},
+  {u:6,d:"easy",q:"أي مما يأتي ليس من أشكال الكتابة المذكورة في الوحدة السادسة؟",o:["محاضر الاجتماعات","الخطابة الشفهية","الملصقات","التقارير"],a:1,e:"الخطابة الشفهية شكل من أشكال التحدث لا الكتابة، بينما المحاضر والملصقات والتقارير من أشكال الكتابة."},
+  {u:6,d:"easy",q:"كم عدد معوقات الاتصال المكتوب المذكورة في الوحدة السادسة؟",o:["أربعة معوقات","خمسة معوقات","سبعة معوقات","عشرة معوقات"],a:2,e:"حددت الوحدة سبعة معوقات للاتصال المكتوب منها عدم الدقة والعاطفية والانفعال وتزويق الحقائق."},
+  {u:6,d:"easy",q:"أي مما يأتي يُعدّ من معوقات الاتصال المكتوب؟",o:["السلامة اللغوية","الدقة في الأدلة","الانفعال عند الكتابة وتزويق الحقائق","الموضوعية"],a:2,e:"الانفعال عند الكتابة وتزويق الحقائق من معوقات الاتصال المكتوب السبعة."},
+  {u:6,d:"easy",q:"من وضع «مقياس مهارة الاتصال المكتوب» المكون من 8 مهام؟",o:["أندرسون","عبد الفتاح الشربيني وأحمد فهمي جلال","ديفيد بيرلو","الخليل بن أحمد"],a:1,e:"وضع عبد الفتاح الشربيني وأحمد فهمي جلال استقصاء مقياس مهارة الاتصال المكتوب."},
+  {u:6,d:"easy",q:"في مقياس الاتصال المكتوب، الحصول على 17 درجة فأكثر يعني مهارة:",o:["منخفضة","معدومة","مرتفعة","متوسطة"],a:2,e:"الدرجات في المقياس: 17 فأكثر (مرتفعة)، 9–16 (متوسطة)، 8 فأقل (منخفضة)."},
+  {u:6,d:"easy",q:"في مقياس الاتصال المكتوب، الحصول على 8 درجات فأقل يعني مهارة:",o:["منخفضة","مرتفعة","متوسطة","ممتازة"],a:0,e:"الحصول على 8 درجات فأقل في مقياس الاتصال المكتوب يعني مهارة منخفضة."},
+  {u:6,d:"easy",q:"أي جهة قدّمت البرنامج التدريبي الذي عُرض فيه استقصاء «اختبر قدرتك على كتابة التقارير»؟",o:["جامعة الدول العربية","مركز الخبرات المهنية للإدارة (بيمك)","مركز الأبحاث الصوتية","جمعية النقد الأدبي"],a:1,e:"قُدم الاستقصاء في برنامج تدريبي عن إعداد وكتابة التقارير والمذكرات والخطابات لمركز (بيمك)."},
+  {u:6,d:"easy",q:"في اختبار كتابة التقارير (بيمك)، الحصول على 33 درجة فأكثر يعني مهارة:",o:["مرتفعة","متوسطة","غير محددة","منخفضة"],a:0,e:"في استقصاء كتابة التقارير: 33 درجة فأكثر (مرتفعة)، 17–32 (متوسطة)، 16 فأقل (منخفضة)."},
+  {u:6,d:"easy",q:"في اختبار كتابة التقارير (بيمك)، ما الدرجة المعطاة لخيار «دائماً»؟",o:["1","2","3","4"],a:3,e:"تدرج الدرجات في اختبار كتابة التقارير: أبداً (0)، نادراً (1)، أحياناً (2)، غالباً (3)، دائماً (4)."},
+  {u:6,d:"easy",q:"ما أثر الكتابة الرديئة على الإدارة والمنظمة؟",o:["تسيء إلى سمعة الإدارة والمنظمة وتضرّهما ضرراً بليغاً","لا تؤثر في المنظمة","تحسّن سمعة المنظمة","تزيد الإنتاجية"],a:0,e:"الكتابة الجيدة من أسس نجاح الإدارة والمنظمة، بينما الرديئة تسيء لسمعتهما وتضرهما ضرراً بليغاً."},
+  {u:6,d:"easy",q:"استخدام الجداول والرسوم البيانية في الكتابة يُعدّ:",o:["تكراراً غير مفيد","من وسائل الإيضاح المستحسنة","خطأً مهنياً","من معوقات الكتابة"],a:1,e:"من إرشادات الكتابة السليمة استخدام وسائل الإيضاح كالجداول والرسوم البيانية."},
+
+  {u:6,d:"medium",q:"ما ميزة الكتابة للكاتب مقارنة بالاتصال الشفهي؟",o:["أسرع من الحديث دائماً","لا تحتاج مراجعة","تُغني عن الأدلة","تعطيه فرصة للتفكير والدراسة وتحري الدقة في التعبير"],a:3,e:"الكتابة تمنح الكاتب فرصة للتفكير والدراسة وتحري الدقة، بعكس المواجهة الشفهية التي قد يُصاب فيها بالخجل."},
+  {u:6,d:"medium",q:"ما ميزة الكتابة للقارئ؟",o:["تمنحه وقتاً كافياً للتفكير والدراسة واتخاذ القرار","تلغي الحاجة للفهم","تجبره على الرد فوراً","تمنعه من التفكير"],a:0,e:"تمنح الكتابة القارئ وقتاً كافياً للتفكير والدراسة واتخاذ القرار المناسب."},
+  {u:6,d:"medium",q:"لماذا تفيد الكتابة الأشخاص الذين يصابون بالخجل في المواجهة؟",o:["لأنها لا تحتوي على كلمات","لأنها تتيح لهم فرصة التفكير والدراسة دون ضغط المواجهة المباشرة فتضيع أفكارهم","لأنها تمنع القارئ من اتخاذ القرار","لأنها تخلو من المقدمة والخاتمة"],a:1,e:"فكثيرون يصابون بالخجل وتضيع أفكارهم في المواجهة، والكتابة تحفظ أفكارهم وتتيح لهم صياغتها بدقة."},
+  {u:6,d:"medium",q:"أي مما يأتي من إرشادات الكتابة السليمة في الوحدة السادسة؟",o:["الإطالة لإظهار المعرفة","الاختصار دون إخلال","الجمل الطويلة المعقدة","التكرار للتأكيد دائماً"],a:1,e:"من سمات الكتابة الجيدة: الاختصار بلا إخلال، وتجنب التكرار، والجمل القصيرة البسيطة."},
+  {u:6,d:"medium",q:"كيف ينبغي البدء في كتابة الرسالة أو التقرير وفق الإرشادات؟",o:["بمقدمة طويلة تشرح تفاصيل التاريخ","بتحديد الهدف من الكتابة ووضع مقدمة بسيطة ثم الدخول في الموضوع مباشرة","بإلغاء المقدمة والانتقال للخاتمة","بعرض الآراء العاطفية أولاً"],a:1,e:"يُوصى بتحديد الهدف من الكتابة، ووضع مقدمة بسيطة ثم الدخول في الموضوع مباشرة."},
+  {u:6,d:"medium",q:"ما أنواع الأخطاء التي يجب أن يخلو منها النص المكتوب السليم؟",o:["الأخطاء الإملائية فقط","الأخطاء المهنية واللغوية والمطبعية","الأخطاء المطبعية دون اللغوية","الأخطاء في الجداول فقط"],a:1,e:"من إرشادات الكتابة السليمة الخلو من الأخطاء المهنية واللغوية والمطبعية."},
+  {u:6,d:"medium",q:"ما معنى «عرض الآراء غير الموثّقة» في سياق الاتصال المكتوب؟",o:["يُعدّ معوقاً للاتصال المكتوب","يُعدّ إرشاداً للكتابة السليمة","يُعدّ سبباً لاستخدام الكتابة","يُعدّ شكلاً من أشكال الكتابة"],a:0,e:"عرض الآراء غير الموثّقة هو المعوق السابع من معوقات الاتصال المكتوب."},
+  {u:6,d:"medium",q:"ما الذي يندرج ضمن «تزويق الحقائق» في معوقات الاتصال المكتوب؟",o:["عرض البيانات بدقة وموضوعية","تجميل الوقائع أو تحريفها عن حقيقتها مما يعوق مصداقية الاتصال","استخدام الرسوم البيانية","ترقيم الفقرات"],a:1,e:"تزويق الحقائق والمبالغة والعاطفية تخرج الكتابة عن الموضوعية والدقة وتُعوق الاتصال."},
+  {u:6,d:"medium",q:"أيٌّ من الآتية جميعها من أشكال الكتابة الواردة في الوحدة السادسة؟",o:["الخطابات، المذكرات، التلغرافات، النشرات","المقالات، الروايات، المناظرات، الخطب","المقابلات، الندوات، المؤتمرات، الفاكس","القصائد، الإعلانات الشفهية، التقارير"],a:0,e:"من أشكال الكتابة المذكورة: الخطابات، المذكرات، التقارير، محاضر الاجتماعات، البريد الإلكتروني، الفاكس، التلغرافات، النشرات، المجلات، الإعلانات المكتوبة، الملصقات."},
+  {u:6,d:"medium",q:"في مقياس مهارة الاتصال المكتوب (الشربيني وجلال)، ما الدرجات التي تمثّل «مهارة متوسطة»؟",o:["من 1 إلى 8 درجات","من 9 إلى 16 درجة","من 17 إلى 24 درجة","من 17 إلى 32 درجة"],a:1,e:"في مقياس الاتصال المكتوب: 8 فأقل (منخفضة)، 9 إلى 16 (متوسطة)، 17 فأكثر (مرتفعة)."},
+  {u:6,d:"medium",q:"كم مهمة يتضمنها مقياس مهارة الاتصال المكتوب، وما أعلى درجة لكل مهمة؟",o:["5 مهام، وأعلى درجة 4","8 مهام، وأعلى درجة 3","10 مهام، وأعلى درجة 5","12 مهمة، وأعلى درجة 4"],a:1,e:"يتضمن المقياس 8 مهام، وتُقيّم كل مهمة من (1: أقل مستوى) إلى (3: أعلى مستوى)."},
+  {u:6,d:"medium",q:"أيٌّ مما يلي يُعد إحدى المهام في مقياس مهارة الاتصال المكتوب؟",o:["اختيار الكتابة كأفضل وسيلة لتحقيق الغرض من الاتصال","إطالة الجمل قدر الإمكان","الاعتماد على الذاكرة دون جمع بيانات","تأجيل موعد التسليم باستمرار"],a:0,e:"أولى المهام الثماني في المقياس هي اختيار الكتابة كأفضل وسيلة لتحقيق الغرض من الاتصال."},
+  {u:6,d:"medium",q:"ماذا تمثّل المرحلة الأخيرة في مهام مقياس مهارة الاتصال المكتوب؟",o:["تخطيط الكتابة وجدولتها","جمع البيانات وتحليلها","إخراج الاتصال المكتوب في شكله النهائي ونسخه وتوزيعه","وضع موجز للنقاط الرئيسة"],a:2,e:"المهمة الثامنة في المقياس هي إخراج الاتصال المكتوب في شكله النهائي ونسخه وتوزيعه."},
+  {u:6,d:"medium",q:"في استقصاء كتابة التقارير (بيمك)، ما الدرجات التي تعني «مهارة متوسطة»؟",o:["16 درجة فأقل","من 17 إلى 32 درجة","33 درجة فأكثر","من 9 إلى 16 درجة"],a:1,e:"توزيع درجات استقصاء كتابة التقارير: 16 فأقل (منخفضة)، 17–32 (متوسطة)، 33 فأكثر (مرتفعة)."},
+  {u:6,d:"medium",q:"في استقصاء كتابة التقارير، ما الهدف من وضع «ملخص مستقل في نهاية التقرير»؟",o:["لزيادة عدد الصفحات","لإجمال أفكار التقرير بشكل مركز في نهايته","لاستبدال المقدمة","لإلغاء العناوين الفرعية"],a:1,e:"من عبارات الاستقصاء الإيجابية: «بعد الانتهاء من التقرير أجمل أفكاره في ملخص مستقل في نهايته»."},
+  {u:6,d:"medium",q:"لماذا يُنصح في كتابة التقارير باستخدام «أقل عدد من الصفحات للتعبير عن أكبر قدر من المعلومات»؟",o:["لأنه يحقق مبدأ الاختصار دون إخلال والتركيز","لأنه يمنع استخدام الجداول","لأنه يقلل المراجع والمصادر","لأنه يلغي العناوين الفرعية"],a:0,e:"التعبير عن أكبر قدر من المعلومات في أقل عدد من الصفحات يحقق الاختصار والبساطة والكفاءة."},
+  {u:6,d:"medium",q:"ما السلوك الصحيح في التقرير عند ملاحظة خطأ لغوي أو في الصياغة أثناء الكتابة وفق الاستقصاء؟",o:["تجاهله حتى نهاية العام","التوقف عن الكتابة لإجراء التصحيح","مضاعفة العاطفية لإخفائه","حذف التقرير بأكمله"],a:1,e:"ورد في الاستقصاء: «عندما ألاحظ خطأً لغوياً أو خطأً في الصياغة أتوقف عن الكتابة لإجراء التصحيح»."},
+  {u:6,d:"medium",q:"ما دور «جمع البيانات وتحليلها» في مقياس الاتصال المكتوب؟",o:["تحديد أكثر البيانات أهمية لغرض الاتصال","إطالة النص المكتوب","استبدال الأدلة بالانطباعات العاطفية","تأخير موعد النشر"],a:0,e:"جمع البيانات وتحليلها يهدفان لتحديد أكثرها أهمية لغرض الاتصال قبل الصياغة."},
+  {u:6,d:"medium",q:"أي مما يلي ينبغي فعله عند «إعداد الخطوط العامة» للتقرير وفق الاستقصاء؟",o:["استخدام عبارات غامضة","صياغة النقاط بوضوح بحيث تدفع القارئ لاتخاذ إجراء معين","الاكتفاء بضمير الغائب دائماً","إهمال القارئ المستهدف"],a:1,e:"صياغة النقاط بوضوح لدفع القارئ لاتخاذ إجراء معين من سمات إعداد الخطوط العامة الجيدة."},
+  {u:6,d:"medium",q:"ما المقصود بـ «الأدلة المقنعة» والموضوعية في سمات الكتابة الجيدة؟",o:["استخدام الجمل الإنشائية العاطفية","صحة البيانات وتقديم براهين دقيقة بعيداً عن الانفعال والمبالغة","تكرار الرأي الشخصي","نقل الآراء غير الموثقة"],a:1,e:"الموضوعية والدقة وصحة البيانات والأدلة المقنعة هي عكس العاطفية والمبالغة وتزويق الحقائق."},
+  {u:6,d:"medium",q:"ما الذي يضيفه وجود «عناوين فرعية» لكل موضوعات التقرير في شكله النهائي؟",o:["يزيد الأخطاء المطبعية","يحقق التناسق والترتيب ويسهّل على القارئ التصفح والفهم","يعيق القراءة السريعة","يلغي الحاجة للملخص"],a:1,e:"العناوين الفرعية تدعم التناسق وتقسيم الأجزاء، وهو ما أكد عليه استقصاء التقارير وإرشادات الكتابة."},
+  {u:6,d:"medium",q:"وفق الاستقصاء، ما الذي ينبغي أن يسأل الكاتب نفسه عنه «قبل البدء» في كتابة التقرير؟",o:["ما لون الغلاف فقط؟","عن الهدف العام الذي يريد تحقيقه، ومن سيقرأ هذا الموضوع؟","كم عدد السطور في كل صفحة؟","كيف يزوق الحقائق؟"],a:1,e:"قبل البدء يسأل الكاتب نفسه: عن الهدف العام الذي يريد تحقيقه، ومن سيقرأ الموضوع."},
+
+  {u:6,d:"hard",q:"اتفقتَ مع زميلك شفهياً على تقسيم مهام مشروع، ثم اختلفتما لاحقاً حول من يؤدي ماذا؛ أي سبب من أسباب الكتابة كان كفيلاً بمنع هذا الخلاف؟",o:["منح الكاتب فرصة التفكير","توثيق ما اتُّفق عليه بين أطراف الاتصال وتعزيز الاتصالات الشفهية","التواصل عند تعذر التخاطب المباشر","زيادة عدد الصفحات"],a:1,e:"الكتابة تعزز الاتصالات الشفهية التي حدثت وتؤكدها، وتوثّق ما اتُّفق عليه بين الأطراف."},
+  {u:6,d:"hard",q:"وصلك بريد إلكتروني طويل جداً بلا فقرات ولا عناوين ولا ترقيم؛ ما المبدأ الأساسي الذي افتقده كاتب البريد وما أثر ذلك عليك؟",o:["افتقد الأدلة المقنعة فقط","افتقد التناسق وتقسيم النص إلى فقرات (مقدمة ومحتوى وخاتمة)، مما يسبب صعوبة القراءة وتشتت القارئ","افتقد الخلو من المراجع فقط","افتقد العاطفية عند الكتابة"],a:1,e:"التناسق وتقسيم النص لفقرات وعناوين يسهّلان القراءة ويجنبان القارئ التشتت والانطباع السيئ."},
+  {u:6,d:"hard",q:"لماذا يُنصح بعدم كتابة رد على رسالة أغضبتك إلا بعد أن تهدأ؟",o:["لأن الرد الفوري في حالة الغضب يوقع في معوقَي «الانفعال عند الكتابة» و«العاطفية»","لأن الرد المكتوب لا يحتاج للتفكير","لأن الكتابة تمنع التوثيق","لأن القارئ لا يقرأ الرسائل الهادئة"],a:0,e:"الانفعال عند الكتابة والعاطفية في عرض الآراء من أبرز معوقات الاتصال المكتوب، والهدوء يتيح تحري الدقة."},
+  {u:6,d:"hard",q:"موظف كتب تقريراً رسمياً مليئاً بالعبارات مثل: «أقسم أن هذا أعظم إنجاز في التاريخ» دون إحصاءات أو مصادر؛ أي معوقين ارتكبهما؟",o:["الاختصار والبساطة","المبالغة في عرض وجهات النظر وعرض الآراء غير الموثقة (وعدم الدقة في الأدلة)","التناسق والترقيم","استخدام الجداول والرسوم"],a:1,e:"المبالغة في وجهات النظر وعرض الآراء غير الموثقة وعدم الدقة في البراهين من معوقات الاتصال المكتوب."},
+  {u:6,d:"hard",q:"في مقياس الاتصال المكتوب، حصَل طالب على الدرجة القصوى (3) في 5 مهام، وحصل على (1) في 3 مهام؛ ما مجموع درجاته وما تصنيفه؟",o:["15 درجة — مهارة متوسطة","18 درجة — مهارة مرتفعة","8 درجات — مهارة منخفضة","21 درجة — مهارة مرتفعة"],a:1,e:"(5×3) + (3×1) = 15 + 3 = 18 درجة، وبما أن 17 درجة فأكثر تعني مهارة مرتفعة فمستواه مرتفع."},
+  {u:6,d:"hard",q:"في استقصاء كتابة التقارير (12 عبارة، الدرجة من 0 إلى 4)، إذا أجاب متدرب بـ «أحياناً» (2) على 10 عبارات وبـ «نادراً» (1) على عبارتين؛ ما نتيجته؟",o:["22 درجة — مهارة متوسطة","15 درجة — مهارة منخفضة","34 درجة — مهارة مرتفعة","20 درجة — مهارة منخفضة"],a:0,e:"(10×2) + (2×1) = 22 درجة، وهي ضمن الفئة (17 إلى 32 درجة: مهارة متوسطة)."},
+  {u:6,d:"hard",q:"قارن بين «مقياس الاتصال المكتوب» و«استقصاء كتابة التقارير»: أين تكمن نقاط الضعف التي تتشابه في كلا المقياسين عند إهمالها؟",o:["التخطيط وتحديد الهدف، الدقة والوضوح، والاختصار والترتيب المنطقي","الاعتماد على الكلمات المطاطة","تجنب المراجع والمصادر","عدم مراجعة النص مطلقاً"],a:0,e:"كلا المقياسين يركز على تحديد الغرض/الهدف، التخطيط المسبق، الدقة اللغوية والوضوح، الاختصار، والترتيب المنطقي."},
+  {u:6,d:"hard",q:"إذا كان لديك بحث يحتاج لإبراز مقارنة رقمية بين مبيعات أربعة فروع، فأي أداة من إرشادات الكتابة السليمة تختصر عليك صفحات من السرد؟",o:["العاطفية في عرض الآراء","وسائل الإيضاح كالجداول والرسوم البيانية","تكرار الأرقام في كل فقرة","تزويق الحقائق"],a:1,e:"الجداول والرسوم البيانية من وسائل الإيضاح التي توصل البيانات بدقة واختصار ووضوح."},
+  {u:6,d:"hard",q:"لماذا ذكرت الوحدة أن الكتابة الرديئة تضر بالمنظمة ضرراً بليغاً؟",o:["لأن الكلمة المكتوبة تبقى وتُوثّق، فالأخطاء المهنية واللغوية وعدم الدقة تعكس صورة سلبية دائمة عن الإدارة","لأنها تزيد من استخدام الفاكس","لأنها تجعل الموظفين يتحدثون شفهياً فقط","لأنها تحسن سمعة المنافسين بطريقة غير مقصودة فقط"],a:0,e:"شعار الوحدة «الكلمة المكتوبة تبقى...»؛ والكتابة المستوفية لشروطها تنجح في وظيفتها بينما الرديئة تسيء للسمعة."},
+  {u:6,d:"hard",q:"في استقصاء كتابة التقارير، وردت عبارة: «أراعي أثناء الكتابة استخدام الضمائر الشخصية (أنا – أنت – نحن)»؛ ماذا يدل تضمينها في الاستقصاء؟",o:["أن استخدامها في موضعها يزيد القرب والتواصل مع القارئ في التقارير والمذكرات والخطابات","أنه يجب حذف جميع الضمائر دائماً","أن التقرير يجب أن يخلو من أي مخاطب","أن الكاتب يتحدث عن نفسه فقط"],a:0,e:"وردت كأحد بنود استقصاء كتابة التقارير والمذكرات والخطابات لتقييم وضوح التواصل والمخاطبة."},
+  {u:6,d:"hard",q:"إذا لاحظتَ في العبارة الأخيرة من استقصاء كتابة التقارير: «بعد الانتهاء أراجع ما كتبته مراجعة سريعة واحدة دون الرجوع إليه مرة أخرى»، ما دلالتها التقييمية؟",o:["تشير إلى مراجعة نهائية سريعة للتحقق، لكنها في التقييم تعكس سلوك المراجع الذي قد يكتفي بمراجعة واحدة إن أُجيبت بدائماً","تشير إلى منع المراجعة تماماً","تشير إلى أن المراجعة اللغوية ممنوعة","تشير إلى أن التقرير يُكتب بلا مسودة"],a:0,e:"الاستقصاء يقيس العادات الفعلية للكاتب؛ ومن يجمع درجات عالية عبر الممارسات الـ 12 يصل لمستوى المهارة المرتفعة."},
+  {u:6,d:"hard",q:"ما العلاقة بين «عدم الدقة في كتابة البراهين» و«انعدام الموضوعية» في الكتابة؟",o:["كلاهما يعزز الآخر؛ فالتساهل في التحقق من الأدلة والحجج يؤدي إلى تغليب الرأي الشخصي غير الموثق على الموضوعية","لا علاقة بينهما","عدم الدقة يحسن الإقناع","الموضوعية تعني الإكثار من الانفعال"],a:0,e:"الكتابة السليمة تتطلب الموضوعية والدقة وصحة البيانات؛ وغياب الدقة في البراهين يجعل النص متحيزاً وغير موثق."},
+  {u:6,d:"hard",q:"أي موقف من الآتية يُعد تطبيقاً عملياً لأكثر من سببين من أسباب الكتابة معاً؟",o:["إرسال رسالة تهنئة قصيرة بالعيد فقط","كتابة محضر اجتماع يوثّق قرارات نقاش شفهي مع زميل في فرع مدينة أخرى ويمنحه وقتاً لمراجعته قبل الاعتماد","الحديث الهاتفي السريع دون تدوين","رسم لوحة فنية صامتة"],a:1,e:"كتابة المحضر تجمع بين: التواصل عند تعذر التخاطب المباشر، تعزيز النقاش الشفهي، التوثيق، ومنح القارئ وقتاً للدراسة والقرار."}
+];
+
+let state = {
+  examQuestions: [],
+  answers: {},
+  flagged: new Set(),
+  currentIndex: 0,
+  totalCount: 65,
+  timerMinutes: 60,
+  remainingSeconds: 3600,
+  elapsedSeconds: 0,
+  timerId: null,
+  submitted: false,
+  currentFilter: "all"
+};
+
+const els = {
+  countSelect: document.getElementById("countSelect"),
+  timerSelect: document.getElementById("timerSelect"),
+  newExamBtn: document.getElementById("newExamBtn"),
+  retryBtn: document.getElementById("retryBtn"),
+  printBtn: document.getElementById("printBtn"),
+  examView: document.getElementById("examView"),
+  resultsView: document.getElementById("resultsView"),
+  progressText: document.getElementById("progressText"),
+  answeredText: document.getElementById("answeredText"),
+  progressFill: document.getElementById("progressFill"),
+  timerPill: document.getElementById("timerPill"),
+  timerDisplay: document.getElementById("timerDisplay"),
+  qUnitBadge: document.getElementById("qUnitBadge"),
+  qDiffBadge: document.getElementById("qDiffBadge"),
+  flagBtn: document.getElementById("flagBtn"),
+  qText: document.getElementById("qText"),
+  optionsList: document.getElementById("optionsList"),
+  prevBtn: document.getElementById("prevBtn"),
+  nextBtn: document.getElementById("nextBtn"),
+  submitBtn: document.getElementById("submitBtn"),
+  paletteGrid: document.getElementById("paletteGrid"),
+  jumpUnansweredBtn: document.getElementById("jumpUnansweredBtn"),
+  resPct: document.getElementById("resPct"),
+  resRaw: document.getElementById("resRaw"),
+  resTitle: document.getElementById("resTitle"),
+  resMsg: document.getElementById("resMsg"),
+  unitStatsBody: document.getElementById("unitStatsBody"),
+  diffStatsBody: document.getElementById("diffStatsBody"),
+  reviewFilters: document.getElementById("reviewFilters"),
+  reviewList: document.getElementById("reviewList"),
+  bankFooter: document.getElementById("bankFooter")
+};
+
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function shuffleQuestionOptions(q) {
+  const pairs = q.o.map((text, idx) => ({ text, isCorrect: idx === q.a }));
+  const mixed = shuffle(pairs);
+  return {
+    u: q.u,
+    d: q.d,
+    q: q.q,
+    o: mixed.map(item => item.text),
+    a: mixed.findIndex(item => item.isCorrect),
+    e: q.e
+  };
+}
+
+function saveState() {
+  try {
+    const payload = {
+      examQuestions: state.examQuestions,
+      answers: state.answers,
+      flagged: Array.from(state.flagged),
+      currentIndex: state.currentIndex,
+      totalCount: state.totalCount,
+      timerMinutes: state.timerMinutes,
+      remainingSeconds: state.remainingSeconds,
+      elapsedSeconds: state.elapsedSeconds,
+      submitted: state.submitted,
+      currentFilter: state.currentFilter
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  } catch (err) {
+    // تجاهل في حال تعذر الوصول للتخزين المحلي
+  }
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || !Array.isArray(parsed.examQuestions) || parsed.examQuestions.length === 0) {
+      return null;
+    }
+    return parsed;
+  } catch (err) {
+    return null;
+  }
+}
+
+function clearSavedState() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (err) {
+    // تجاهل
+  }
+}
+
+function generateBalancedExam(total) {
+  const units = shuffle([1, 2, 3, 4, 5, 6]);
+  const targetDiff = {
+    easy: Math.round(total * 0.30),
+    medium: Math.round(total * 0.45),
+    hard: total - Math.round(total * 0.30) - Math.round(total * 0.45)
+  };
+
+  const baseUnit = Math.floor(total / 6);
+  const remUnit = total % 6;
+  const unitQuotas = {};
+  units.forEach((u, idx) => {
+    unitQuotas[u] = baseUnit + (idx < remUnit ? 1 : 0);
+  });
+
+  const matrix = {};
+  units.forEach(u => { matrix[u] = { easy: 0, medium: 0, hard: 0 }; });
+
+  const poolCounts = {};
+  units.forEach(u => {
+    poolCounts[u] = {
+      easy: BANK.filter(q => q.u === u && q.d === "easy").length,
+      medium: BANK.filter(q => q.u === u && q.d === "medium").length,
+      hard: BANK.filter(q => q.u === u && q.d === "hard").length
+    };
+  });
+
+  const diffs = ["easy", "medium", "hard"];
+  const remainingDiff = { ...targetDiff };
+  const remainingUnit = { ...unitQuotas };
+
+  units.forEach(u => {
+    const uTotal = unitQuotas[u];
+    const e = Math.floor(uTotal * 0.30);
+    const m = Math.floor(uTotal * 0.45);
+    const h = Math.floor(uTotal * 0.25);
+    matrix[u].easy = e;
+    matrix[u].medium = m;
+    matrix[u].hard = h;
+    remainingDiff.easy -= e;
+    remainingDiff.medium -= m;
+    remainingDiff.hard -= h;
+    remainingUnit[u] -= (e + m + h);
+  });
+
+  const orderUnits = shuffle(units);
+  for (const d of diffs) {
+    let guard = 0;
+    while (remainingDiff[d] > 0 && guard < 500) {
+      guard++;
+      const candidates = shuffle(orderUnits.filter(u =>
+        remainingUnit[u] > 0 && matrix[u][d] < poolCounts[u][d]
+      ));
+      if (candidates.length === 0) break;
+      candidates.sort((a, b) => matrix[a][d] - matrix[b][d]);
+      const chosen = candidates[0];
+      matrix[chosen][d]++;
+      remainingDiff[d]--;
+      remainingUnit[chosen]--;
+    }
+  }
+
+  let selected = [];
+  for (const u of units) {
+    for (const d of diffs) {
+      const need = matrix[u][d];
+      const pool = shuffle(BANK.filter(q => q.u === u && q.d === d));
+      selected.push(...pool.slice(0, need).map(shuffleQuestionOptions));
+    }
+  }
+
+  return shuffle(selected);
+}
+
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function startTimer(isResuming = false) {
+  clearInterval(state.timerId);
+  if (state.timerMinutes <= 0) {
+    els.timerPill.classList.remove("warning");
+    els.timerDisplay.textContent = "بدون مؤقت";
+    state.timerId = setInterval(() => {
+      if (!state.submitted) {
+        state.elapsedSeconds++;
+        if (state.elapsedSeconds % 5 === 0) saveState();
+      }
+    }, 1000);
+    return;
+  }
+
+  if (!isResuming) {
+    state.remainingSeconds = state.timerMinutes * 60;
+  }
+  els.timerDisplay.textContent = formatTime(Math.max(0, state.remainingSeconds));
+  if (state.remainingSeconds <= 300 && state.remainingSeconds > 0) {
+    els.timerPill.classList.add("warning");
+  } else {
+    els.timerPill.classList.remove("warning");
+  }
+
+  if (state.remainingSeconds <= 0 && !state.submitted) {
+    finishExam(true);
+    return;
+  }
+
+  state.timerId = setInterval(() => {
+    if (state.submitted) return;
+    state.remainingSeconds--;
+    state.elapsedSeconds++;
+    els.timerDisplay.textContent = formatTime(Math.max(0, state.remainingSeconds));
+    if (state.remainingSeconds <= 300 && state.remainingSeconds > 0) {
+      els.timerPill.classList.add("warning");
+    }
+    saveState();
+    if (state.remainingSeconds <= 0) {
+      clearInterval(state.timerId);
+      finishExam(true);
+    }
+  }, 1000);
+}
+
+function startNewExam() {
+  clearInterval(state.timerId);
+  clearSavedState();
+
+  state.totalCount = parseInt(els.countSelect.value, 10) || 65;
+  state.timerMinutes = parseInt(els.timerSelect.value, 10);
+  state.examQuestions = generateBalancedExam(state.totalCount);
+  state.answers = {};
+  state.flagged = new Set();
+  state.currentIndex = 0;
+  state.elapsedSeconds = 0;
+  state.remainingSeconds = state.timerMinutes * 60;
+  state.submitted = false;
+  state.currentFilter = "all";
+
+  els.resultsView.classList.add("hidden");
+  els.examView.classList.remove("hidden");
+
+  saveState();
+  startTimer(false);
+  renderPalette();
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderPalette() {
+  els.paletteGrid.innerHTML = "";
+  state.examQuestions.forEach((_, idx) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "pal-btn";
+    btn.textContent = idx + 1;
+    if (state.answers[idx] !== undefined) btn.classList.add("answered");
+    if (idx === state.currentIndex) btn.classList.add("current");
+    if (state.flagged.has(idx)) btn.classList.add("flagged");
+    btn.addEventListener("click", () => {
+      state.currentIndex = idx;
+      saveState();
+      renderQuestion();
+      renderPalette();
+    });
+    els.paletteGrid.appendChild(btn);
+  });
+}
+
+function updateProgress() {
+  const total = state.examQuestions.length;
+  const answeredCount = Object.keys(state.answers).length;
+  const answeredPct = total ? Math.round((answeredCount / total) * 100) : 0;
+  const currentNum = state.currentIndex + 1;
+  els.progressText.textContent = `السؤال ${currentNum} من ${total}`;
+  els.answeredText.textContent = `المجاب عنها: ${answeredCount} / ${total} (${answeredPct}%)`;
+  els.progressFill.style.width = `${total ? (answeredCount / total) * 100 : 0}%`;
+}
+
+function toggleOption(optIdx) {
+  if (state.submitted) return;
+  if (state.answers[state.currentIndex] === optIdx) {
+    delete state.answers[state.currentIndex];
+  } else {
+    state.answers[state.currentIndex] = optIdx;
+  }
+  saveState();
+  renderQuestion();
+  renderPalette();
+}
+
+function toggleFlag() {
+  if (state.submitted) return;
+  if (state.flagged.has(state.currentIndex)) {
+    state.flagged.delete(state.currentIndex);
+  } else {
+    state.flagged.add(state.currentIndex);
+  }
+  saveState();
+  renderQuestion();
+  renderPalette();
+}
+
+function goPrev() {
+  if (state.submitted) return;
+  if (state.currentIndex > 0) {
+    state.currentIndex--;
+    saveState();
+    renderQuestion();
+    renderPalette();
+  }
+}
+
+function goNext() {
+  if (state.submitted) return;
+  if (state.currentIndex < state.examQuestions.length - 1) {
+    state.currentIndex++;
+  } else {
+    state.currentIndex = 0;
+  }
+  saveState();
+  renderQuestion();
+  renderPalette();
+}
+
+function renderQuestion() {
+  const qObj = state.examQuestions[state.currentIndex];
+  if (!qObj) return;
+
+  els.qUnitBadge.textContent = UNIT_NAMES[qObj.u];
+  els.qDiffBadge.textContent = `المستوى: ${DIFF_LABELS[qObj.d]}`;
+  els.qDiffBadge.className = `badge badge-${qObj.d}`;
+
+  if (state.flagged.has(state.currentIndex)) {
+    els.flagBtn.classList.add("flagged");
+    els.flagBtn.textContent = "تم التحديد للمراجعة ✓";
+  } else {
+    els.flagBtn.classList.remove("flagged");
+    els.flagBtn.textContent = "تحديد للمراجعة";
+  }
+
+  els.qText.textContent = `${state.currentIndex + 1}. ${qObj.q}`;
+  els.optionsList.innerHTML = "";
+
+  qObj.o.forEach((optText, optIdx) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "option-item";
+    if (state.answers[state.currentIndex] === optIdx) {
+      btn.classList.add("selected");
+    }
+    btn.innerHTML = `<span class="opt-letter">${LETTERS[optIdx]}</span><span>${optText}</span>`;
+    btn.addEventListener("click", () => toggleOption(optIdx));
+    els.optionsList.appendChild(btn);
+  });
+
+  els.prevBtn.disabled = state.currentIndex === 0;
+  els.prevBtn.style.opacity = state.currentIndex === 0 ? "0.5" : "1";
+  els.nextBtn.textContent = state.currentIndex === state.examQuestions.length - 1 ? "الانتقال لأول سؤال" : "التالي";
+
+  updateProgress();
+}
+
+function renderResults(autoSubmitted = false) {
+  let correctCount = 0;
+  const unitStats = {};
+  const diffStats = {
+    easy: { total: 0, correct: 0 },
+    medium: { total: 0, correct: 0 },
+    hard: { total: 0, correct: 0 }
+  };
+  for (let u = 1; u <= 6; u++) unitStats[u] = { total: 0, correct: 0 };
+
+  state.examQuestions.forEach((q, idx) => {
+    const userAns = state.answers[idx];
+    const isOk = userAns === q.a;
+    if (isOk) correctCount++;
+    unitStats[q.u].total++;
+    if (isOk) unitStats[q.u].correct++;
+    diffStats[q.d].total++;
+    if (isOk) diffStats[q.d].correct++;
+  });
+
+  const total = state.examQuestions.length;
+  const pct = ((correctCount / total) * 100).toFixed(1);
+  els.resPct.textContent = `${pct}%`;
+  els.resRaw.textContent = `${correctCount} / ${total}`;
+
+  let gradeLabel = "";
+  if (pct >= 90) gradeLabel = "ممتاز! إتقان رائع لمحتوى الوحدات الست.";
+  else if (pct >= 75) gradeLabel = "جيد جداً! أداء قوي مع فرص بسيطة للمراجعة.";
+  else if (pct >= 60) gradeLabel = "جيد! راجع الوحدات التي انخفضت فيها نسبتك.";
+  else gradeLabel = "بحاجة لمراجعة! ننصح بمراجعة الشروحات وإعادة الاختبار.";
+
+  els.resTitle.textContent = autoSubmitted ? "انتهى الوقت — نتيجة الاختبار" : "تم تسليم الاختبار بنجاح";
+  els.resMsg.textContent = `${gradeLabel} | الوقت المستغرق: ${formatTime(state.elapsedSeconds)}`;
+
+  els.unitStatsBody.innerHTML = "";
+  for (let u = 1; u <= 6; u++) {
+    const s = unitStats[u];
+    const p = s.total ? Math.round((s.correct / s.total) * 100) : 0;
+    els.unitStatsBody.innerHTML += `
+      <div class="stat-row">
+        <span>${UNIT_NAMES[u]}</span>
+        <strong>${s.correct} / ${s.total} (${p}%)</strong>
+      </div>
+      <div class="mini-bar"><div style="width:${p}%"></div></div>
+    `;
+  }
+
+  els.diffStatsBody.innerHTML = "";
+  ["easy", "medium", "hard"].forEach(d => {
+    const s = diffStats[d];
+    const p = s.total ? Math.round((s.correct / s.total) * 100) : 0;
+    els.diffStatsBody.innerHTML += `
+      <div class="stat-row">
+        <span>مستوى: ${DIFF_LABELS[d]}</span>
+        <strong>${s.correct} / ${s.total} (${p}%)</strong>
+      </div>
+      <div class="mini-bar"><div style="width:${p}%"></div></div>
+    `;
+  });
+
+  document.querySelectorAll(".filter-tab").forEach(t => {
+    t.classList.toggle("active", t.dataset.filter === state.currentFilter);
+  });
+
+  els.examView.classList.add("hidden");
+  els.resultsView.classList.remove("hidden");
+  renderReviewList();
+}
+
+function finishExam(autoSubmitted = false) {
+  if (!autoSubmitted) {
+    const total = state.examQuestions.length;
+    const unanswered = total - Object.keys(state.answers).length;
+    const flaggedCount = state.flagged.size;
+    if (unanswered > 0 || flaggedCount > 0) {
+      const msg = `لديك ${unanswered} سؤالاً غير مجاب عنه، و${flaggedCount} سؤالاً محدداً للمراجعة.\nهل تريد إنهاء الاختبار وعرض النتيجة الآن؟`;
+      if (!confirm(msg)) return;
+    }
+  }
+
+  state.submitted = true;
+  clearInterval(state.timerId);
+  saveState();
+  renderResults(autoSubmitted);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderReviewList() {
+  els.reviewList.innerHTML = "";
+  const filter = state.currentFilter;
+  let shown = 0;
+
+  state.examQuestions.forEach((q, idx) => {
+    const userAns = state.answers[idx];
+    const isAnswered = userAns !== undefined;
+    const isCorrect = userAns === q.a;
+    const isFlagged = state.flagged.has(idx);
+
+    if (filter === "wrong" && (isCorrect || !isAnswered)) return;
+    if (filter === "correct" && !isCorrect) return;
+    if (filter === "unanswered" && isAnswered) return;
+    if (filter === "flagged" && !isFlagged) return;
+
+    shown++;
+    const userText = isAnswered ? `${LETTERS[userAns]}) ${q.o[userAns]}` : "لم تتم الإجابة";
+    const correctText = `${LETTERS[q.a]}) ${q.o[q.a]}`;
+
+    const item = document.createElement("div");
+    item.className = `review-item ${isCorrect ? "is-correct" : "is-wrong"}`;
+    item.innerHTML = `
+      <div class="q-badges" style="margin-bottom:8px;">
+        <div class="badge-group">
+          <span class="badge badge-unit">${UNIT_NAMES[q.u]}</span>
+          <span class="badge badge-${q.d}">${DIFF_LABELS[q.d]}</span>
+          ${isFlagged ? '<span class="badge badge-flag">محددة للمراجعة</span>' : ""}
+        </div>
+        <span class="badge" style="background:${isCorrect ? "var(--success-light)" : "var(--danger-light)"}; color:${isCorrect ? "var(--success)" : "var(--danger)"};">
+          ${isCorrect ? "إجابة صحيحة ✓" : (isAnswered ? "إجابة خاطئة ✗" : "غير مجاب عنه")}
+        </span>
+      </div>
+      <div style="font-weight:700; font-size:1.02rem;">${idx + 1}. ${q.q}</div>
+      <div class="review-ans">
+        <div class="ans-box ${isCorrect ? "ans-user-ok" : "ans-user-bad"}">
+          <strong>إجابتك:</strong> ${userText}
+        </div>
+        <div class="ans-box ans-correct">
+          <strong>الإجابة الصحيحة:</strong> ${correctText}
+        </div>
+      </div>
+      <div class="explanation-box">
+        <strong>الشرح من المادة:</strong> ${q.e}
+      </div>
+    `;
+    els.reviewList.appendChild(item);
+  });
+
+  if (shown === 0) {
+    els.reviewList.innerHTML = `<p style="color:var(--muted); text-align:center; padding:18px;">لا توجد أسئلة مطابقة لهذا التصنيف.</p>`;
+  }
+}
+
+els.prevBtn.addEventListener("click", goPrev);
+els.nextBtn.addEventListener("click", goNext);
+els.flagBtn.addEventListener("click", toggleFlag);
+
+els.jumpUnansweredBtn.addEventListener("click", () => {
+  const total = state.examQuestions.length;
+  for (let offset = 1; offset <= total; offset++) {
+    const idx = (state.currentIndex + offset) % total;
+    if (state.answers[idx] === undefined) {
+      state.currentIndex = idx;
+      saveState();
+      renderQuestion();
+      renderPalette();
+      return;
+    }
+  }
+  alert("أحسنت! تمت الإجابة عن جميع الأسئلة.");
+});
+
+els.submitBtn.addEventListener("click", () => finishExam(false));
+els.newExamBtn.addEventListener("click", startNewExam);
+els.retryBtn.addEventListener("click", startNewExam);
+els.printBtn.addEventListener("click", () => window.print());
+els.countSelect.addEventListener("change", startNewExam);
+els.timerSelect.addEventListener("change", startNewExam);
+
+els.reviewFilters.addEventListener("click", (e) => {
+  const btn = e.target.closest(".filter-tab");
+  if (!btn) return;
+  document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+  btn.classList.add("active");
+  state.currentFilter = btn.dataset.filter;
+  saveState();
+  renderReviewList();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (state.submitted) return;
+  const activeTag = document.activeElement ? document.activeElement.tagName : "";
+  if (["INPUT", "TEXTAREA", "SELECT"].includes(activeTag)) return;
+
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    goNext();
+  } else if (e.key === "ArrowRight") {
+    e.preventDefault();
+    goPrev();
+  } else if (e.key === "1" || e.key === "١") {
+    e.preventDefault();
+    toggleOption(0);
+  } else if (e.key === "2" || e.key === "٢") {
+    e.preventDefault();
+    toggleOption(1);
+  } else if (e.key === "3" || e.key === "٣") {
+    e.preventDefault();
+    toggleOption(2);
+  } else if (e.key === "4" || e.key === "٤") {
+    e.preventDefault();
+    toggleOption(3);
+  } else if (e.code === "KeyF" || e.key.toLowerCase() === "f" || e.key === "ب") {
+    e.preventDefault();
+    toggleFlag();
+  }
+});
+
+(function init() {
+  const total = BANK.length;
+  const easy = BANK.filter(q => q.d === "easy").length;
+  const med = BANK.filter(q => q.d === "medium").length;
+  const hard = BANK.filter(q => q.d === "hard").length;
+  els.bankFooter.textContent = `إجمالي بنك الأسئلة: ${total} سؤالاً (50 سؤالاً لكل وحدة من الوحدات 1–6) | سهل: ${easy} (${Math.round(easy/total*100)}%) • متوسط: ${med} (${Math.round(med/total*100)}%) • صعب: ${hard} (${Math.round(hard/total*100)}%)`;
+
+  const saved = loadState();
+  if (saved) {
+    state.examQuestions = saved.examQuestions;
+    state.answers = saved.answers || {};
+    state.flagged = new Set(Array.isArray(saved.flagged) ? saved.flagged : []);
+    state.currentIndex = Math.min(saved.currentIndex || 0, state.examQuestions.length - 1);
+    state.totalCount = saved.totalCount || state.examQuestions.length;
+    state.timerMinutes = saved.timerMinutes !== undefined ? saved.timerMinutes : 60;
+    state.remainingSeconds = saved.remainingSeconds !== undefined ? saved.remainingSeconds : state.timerMinutes * 60;
+    state.elapsedSeconds = saved.elapsedSeconds || 0;
+    state.submitted = Boolean(saved.submitted);
+    state.currentFilter = saved.currentFilter || "all";
+
+    els.countSelect.value = String(state.totalCount);
+    els.timerSelect.value = String(state.timerMinutes);
+
+    if (state.submitted) {
+      renderResults(false);
+    } else {
+      els.resultsView.classList.add("hidden");
+      els.examView.classList.remove("hidden");
+      renderPalette();
+      renderQuestion();
+      startTimer(true);
+    }
+  } else {
+    startNewExam();
+  }
+})();
+</script>
+</body>
+</html>
