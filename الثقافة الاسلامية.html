@@ -1,1452 +1,890 @@
-{"response":"تم إعادة تصميم ملف اختبار الثقافة الإسلامية بالكامل ليحاكي تصميم
-ومزايا الواجهة الاحترافية الحديثة في الرابط المرفق (مع إضافة الوضع الليلي
-والنهاري، والتجاوب الكامل مع جميع الشاشات من الهواتف إلى الحواسيب المحمولة،
-والطباعة كملف PDF)، كما تم استكمال وتوازن بنك الأسئلة ليضم 200 سؤال أكاديمي
-متدرج الصعوبة (50 سؤالاً لكل فصل، موزعة بدقة بين: سهل، متوسط، وصعب/استنتاجي)
-ومحصورة تماماً في النطاق المعتمد من الكتاب (ص 19 إلى ص 138 فقط).\n\nانسخ الكود
-التالي كاملاً واحفظه باسم islamic_culture_exam.html:\n\nhtml\n<!DOCTYPE
-html>\n<html lang=\"ar\" dir=\"rtl\">\n<head>\n <meta charset=\"UTF-8\" />\n
-<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0,
-maximum-scale=5.0\" />\n <title>بنك الأسئلة التفاعلي | الثقافة الإسلامية (ص 19
-- 138)</title>\n <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"
-/>\n <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin
-/>\n <link
-href=\"https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap\"
-rel=\"stylesheet\" />\n <style>\n :root {\n --bg: #f1f5f9;\n --card: #ffffff;\n
---card-alt: #f8fafc;\n --text: #0f172a;\n --muted: #64748b;\n --border:
-#e2e8f0;\n --primary: #0f766e;\n --primary-hover: #0d5e58;\n --primary-soft:
-rgba(15, 118, 110, 0.1);\n --accent: #2563eb;\n --accent-soft:
-rgba(37, 99, 235, 0.1);\n --success: #16a34a;\n --success-soft:
-rgba(22, 163, 74, 0.12);\n --danger: #dc2626;\n --danger-soft:
-rgba(220, 38, 38, 0.12);\n --warning: #d97706;\n --warning-soft:
-rgba(217, 119, 6, 0.15);\n --shadow: 0 4px 20px -2px
-rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04);\n
---radius: 14px;\n }\n body.dark {\n --bg: #0b1120;\n --card: #131c31;\n
---card-alt: #1a2540;\n --text: #f1f5f9;\n --muted: #94a3b8;\n --border:
-#273554;\n --primary: #14b8a6;\n --primary-hover: #2dd4bf;\n --primary-soft:
-rgba(20, 184, 166, 0.15);\n --accent: #38bdf8;\n --accent-soft:
-rgba(56, 189, 248, 0.14);\n --success: #22c55e;\n --success-soft:
-rgba(34, 197, 94, 0.15);\n --danger: #f87171;\n --danger-soft:
-rgba(248, 113, 113, 0.15);\n --warning: #fbbf24;\n --warning-soft:
-rgba(251, 191, 36, 0.16);\n --shadow: 0 10px 28px -5px rgba(0, 0, 0, 0.45);\n
-}\n * { box-sizing: border-box; margin: 0; padding: 0; }\n html {
-font-size: 16px; }\n body {\n font-family: 'Cairo', 'Segoe UI', Tahoma,
-sans-serif;\n background: var(--bg);\n color: var(--text);\n line-height: 1.7;\n
-min-height: 100vh;\n overflow-x: hidden;\n transition: background 0.25s ease,
-color 0.25s ease;\n }\n .app-wrap { max-width: 1220px; margin: 0 auto;
-padding: 16px; }\n\n /* Top Header & Controls Bar */\n .top-header {\n
-background: var(--card);\n border: 1px solid var(--border);\n border-radius:
-var(--radius);\n padding: 18px 22px;\n box-shadow: var(--shadow);\n
-margin-bottom: 16px;\n }\n .header-top-row {\n display: flex;\n justify-content:
-space-between;\n align-items: flex-start;\n gap: 12px;\n flex-wrap: wrap;\n
-margin-bottom: 16px;\n padding-bottom: 14px;\n border-bottom: 1px solid
-var(--border);\n }\n .brand-title h1 { font-size: clamp(1.15rem, 2.5vw, 1.5rem);
-font-weight: 800; color: var(--primary); line-height: 1.35; }\n .brand-title p {
-font-size: 0.86rem; color: var(--muted); margin-top: 2px; }\n .header-utility {
-display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }\n\n
-.controls-bar {\n display: grid;\n grid-template-columns: repeat(auto-fit,
-minmax(175px, 1fr));\n gap: 10px;\n align-items: end;\n }\n .ctrl-group label
-{\n display: block;\n font-size: 0.8rem;\n font-weight: 700;\n color:
-var(--muted);\n margin-bottom: 4px;\n }\n .ctrl-select {\n width: 100%;\n
-font-family: inherit;\n font-size: 0.88rem;\n font-weight: 600;\n
-padding: 9px 11px;\n border-radius: 10px;\n border: 1px solid var(--border);\n
-background: var(--card-alt);\n color: var(--text);\n cursor: pointer;\n }\n
-.ctrl-actions { display: flex; gap: 8px; flex-wrap: wrap; }\n\n .btn {\n
-font-family: inherit;\n border: 1px solid transparent;\n border-radius: 10px;\n
-padding: 9px 16px;\n font-size: 0.9rem;\n font-weight: 700;\n cursor: pointer;\n
-display: inline-flex;\n align-items: center;\n justify-content: center;\n
-gap: 6px;\n transition: all 0.18s ease;\n min-height: 42px;\n white-space:
-nowrap;\n }\n .btn-primary { background: var(--primary); color: #fff; }\n
-.btn-primary:hover { background: var(--primary-hover); transform:
-translateY(-1px); }\n .btn-accent { background: var(--accent); color: #fff; }\n
-.btn-accent:hover { opacity: 0.92; }\n .btn-outline { background:
-var(--card-alt); border-color: var(--border); color: var(--text); }\n
-.btn-outline:hover { border-color: var(--primary); color: var(--primary); }\n
-.btn-danger { background: var(--danger); color: #fff; }\n .btn-warning {
-background: var(--warning-soft); border-color: var(--warning); color:
-var(--warning); }\n .btn-sm { padding: 6px 12px; font-size: 0.82rem;
-min-height: 34px; border-radius: 8px; }\n .btn:disabled { opacity: 0.45; cursor:
-not-allowed; transform: none; }\n\n /* Status & Progress Strip */\n
-.status-strip {\n background: var(--card);\n border: 1px solid var(--border);\n
-border-radius: var(--radius);\n padding: 14px 20px;\n box-shadow:
-var(--shadow);\n margin-bottom: 16px;\n display: flex;\n align-items: center;\n
-justify-content: space-between;\n gap: 16px;\n flex-wrap: wrap;\n }\n
-.progress-info { flex: 1; min-width: 220px; }\n .progress-labels {\n display:
-flex;\n justify-content: space-between;\n font-size: 0.88rem;\n
-font-weight: 700;\n margin-bottom: 6px;\n gap: 10px;\n flex-wrap: wrap;\n }\n
-.progress-track { width: 100%; height: 9px; background: var(--border);
-border-radius: 999px; overflow: hidden; }\n .progress-fill { height: 100%;
-width: 0%; background: linear-gradient(90deg, var(--primary), var(--accent));
-transition: width 0.3s ease; }\n .timer-box {\n padding: 8px 16px;\n
-border-radius: 10px;\n background: var(--primary-soft);\n border: 1px solid
-var(--primary);\n color: var(--primary);\n font-weight: 800;\n
-font-size: 0.95rem;\n display: flex;\n align-items: center;\n gap: 6px;\n }\n
-.timer-box.low { background: var(--danger-soft); border-color: var(--danger);
-color: var(--danger); animation: pulse 1s infinite; }\n @keyframes pulse
-{ 0%,100%{opacity:1;} 50%{opacity:0.6;} }\n\n /* Main Two-Column Quiz Grid */\n
-.quiz-grid {\n display: grid;\n grid-template-columns: minmax(0, 1fr) 310px;\n
-gap: 16px;\n align-items: start;\n }\n .card {\n background: var(--card);\n
-border: 1px solid var(--border);\n border-radius: var(--radius);\n
-padding: 22px;\n box-shadow: var(--shadow);\n }\n .q-header {\n display: flex;\n
-justify-content: space-between;\n align-items: center;\n gap: 10px;\n flex-wrap:
-wrap;\n margin-bottom: 16px;\n padding-bottom: 12px;\n border-bottom: 1px solid
-var(--border);\n }\n .badges-group { display: flex; gap: 8px; flex-wrap: wrap;
-align-items: center; }\n .tag-unit { background: var(--primary-soft); color:
-var(--primary); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem;
-font-weight: 700; }\n .tag-diff { padding: 4px 11px; border-radius: 999px;
-font-size: 0.78rem; font-weight: 800; }\n .diff-easy { background:
-var(--success-soft); color: var(--success); }\n .diff-medium { background:
-var(--warning-soft); color: var(--warning); }\n .diff-hard { background:
-var(--danger-soft); color: var(--danger); }\n\n .q-body { font-size:
-clamp(1.03rem, 2vw, 1.2rem); font-weight: 700; line-height: 1.8;
-margin-bottom: 18px; }\n .options-col { display: flex; flex-direction: column;
-gap: 10px; }\n .opt-item {\n width: 100%;\n text-align: right;\n font-family:
-inherit;\n background: var(--card-alt);\n color: var(--text);\n border: 2px
-solid var(--border);\n border-radius: 12px;\n padding: 13px 15px;\n
-font-size: 0.98rem;\n font-weight: 600;\n cursor: pointer;\n display: flex;\n
-align-items: center;\n gap: 12px;\n transition: all 0.16s ease;\n
-min-height: 52px;\n }\n .opt-item:hover:not(:disabled) { border-color:
-var(--accent); background: var(--accent-soft); }\n .opt-letter {\n width: 32px;
-height: 32px; border-radius: 9px;\n background: var(--card); border: 1px solid
-var(--border);\n display: grid; place-items: center; font-weight: 800;
-font-size: 0.9rem; flex-shrink: 0;\n }\n .opt-item.selected { border-color:
-var(--accent); background: var(--accent-soft); }\n .opt-item.selected
-.opt-letter { background: var(--accent); color: #fff; border-color:
-var(--accent); }\n .opt-item.correct { border-color: var(--success); background:
-var(--success-soft); }\n .opt-item.correct .opt-letter { background:
-var(--success); color: #fff; border-color: var(--success); }\n .opt-item.wrong {
-border-color: var(--danger); background: var(--danger-soft); }\n .opt-item.wrong
-.opt-letter { background: var(--danger); color: #fff; border-color:
-var(--danger); }\n\n .exp-box {\n display: none;\n margin-top: 16px;\n
-padding: 14px 16px;\n border-radius: 12px;\n background: var(--accent-soft);\n
-border-right: 4px solid var(--accent);\n font-size: 0.93rem;\n
-line-height: 1.7;\n }\n .exp-box.show { display: block; }\n .exp-box.ok {
-background: var(--success-soft); border-right-color: var(--success); }\n
-.exp-box.bad { background: var(--danger-soft); border-right-color:
-var(--danger); }\n\n .q-footer {\n display: flex;\n justify-content:
-space-between;\n align-items: center;\n gap: 10px;\n flex-wrap: wrap;\n
-margin-top: 20px;\n padding-top: 16px;\n border-top: 1px solid var(--border);\n
-}\n .nav-btns { display: flex; gap: 8px; }\n .shortcuts-bar {\n
-margin-top: 14px;\n padding: 9px 12px;\n border-radius: 10px;\n background:
-var(--card-alt);\n border: 1px dashed var(--border);\n font-size: 0.79rem;\n
-color: var(--muted);\n text-align: center;\n }\n\n /* Side Navigator Panel */\n
-.nav-panel h3 { font-size: 1rem; font-weight: 800; margin-bottom: 10px; }\n
-.legend-row { display: flex; gap: 12px; flex-wrap: wrap; font-size: 0.78rem;
-color: var(--muted); margin-bottom: 10px; }\n .legend-row span { display:
-inline-flex; align-items: center; gap: 5px; }\n .dot-sample { width: 11px;
-height: 11px; border-radius: 3px; display: inline-block; }\n .nav-dots {\n
-display: grid;\n grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));\n
-gap: 6px;\n max-height: 360px;\n overflow-y: auto;\n padding: 2px;\n
-margin-top: 12px;\n }\n .nav-dot {\n font-family: inherit;\n height: 36px;\n
-border-radius: 8px;\n border: 1px solid var(--border);\n background:
-var(--card-alt);\n color: var(--text);\n font-weight: 700;\n
-font-size: 0.84rem;\n cursor: pointer;\n position: relative;\n
-transition: 0.15s;\n }\n .nav-dot:hover { border-color: var(--accent); }\n
-.nav-dot.answered { background: var(--accent); color: #fff; border-color:
-var(--accent); }\n .nav-dot.dot-ok { background: var(--success); color: #fff;
-border-color: var(--success); }\n .nav-dot.dot-bad { background: var(--danger);
-color: #fff; border-color: var(--danger); }\n .nav-dot.current { outline: 3px
-solid var(--primary); outline-offset: 1px; }\n .nav-dot.flagged::after {\n
-content: '';\n position: absolute;\n top: 3px; left: 3px;\n width: 7px;
-height: 7px;\n border-radius: 50%;\n background: var(--warning);\n border: 1px
-solid #fff;\n }\n\n /* Results Screen */\n .result-hero {\n text-align:
-center;\n padding: 22px 16px;\n background: var(--card-alt);\n border: 1px solid
-var(--border);\n border-radius: var(--radius);\n margin-bottom: 20px;\n }\n
-.score-ring {\n width: 136px; height: 136px; border-radius: 50%;\n border: 7px
-solid var(--primary);\n background: var(--card);\n display: flex;
-flex-direction: column; align-items: center; justify-content: center;\n
-margin: 0 auto 12px;\n }\n .score-ring .pct { font-size: 1.9rem;
-font-weight: 800; color: var(--primary); line-height: 1.1; }\n .score-ring .frac
-{ font-size: 0.85rem; color: var(--muted); font-weight: 700; }\n .grade-badge
-{\n display: inline-block;\n padding: 4px 16px;\n border-radius: 999px;\n
-background: var(--primary-soft);\n color: var(--primary);\n font-weight: 800;\n
-font-size: 0.95rem;\n margin: 6px 0;\n }\n\n .analytics-grid {\n display:
-grid;\n grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n
-gap: 16px;\n margin-bottom: 20px;\n }\n .stat-card { background:
-var(--card-alt); border: 1px solid var(--border); border-radius: 12px;
-padding: 16px; }\n .stat-card h3 { font-size: 1rem; font-weight: 800;
-margin-bottom: 12px; color: var(--primary); }\n .bar-row { margin-bottom: 10px;
-}\n .bar-head { display: flex; justify-content: space-between;
-font-size: 0.84rem; font-weight: 700; margin-bottom: 4px; gap: 8px; }\n .bar-bg
-{ height: 8px; background: var(--border); border-radius: 999px; overflow:
-hidden; }\n .bar-val { height: 100%; background: var(--primary);
-border-radius: 999px; }\n\n .review-toolbar {\n display: flex;\n
-justify-content: space-between;\n align-items: center;\n gap: 10px;\n flex-wrap:
-wrap;\n margin-bottom: 14px;\n padding-bottom: 12px;\n border-bottom: 1px solid
-var(--border);\n }\n .filter-group { display: flex; gap: 6px; flex-wrap: wrap;
-}\n .filter-btn.active { background: var(--primary); color: #fff; border-color:
-var(--primary); }\n\n .rev-card {\n background: var(--card-alt);\n border: 1px
-solid var(--border);\n border-radius: 12px;\n padding: 16px;\n
-margin-bottom: 12px;\n }\n .rev-card.rev-ok { border-right: 4px solid
-var(--success); }\n .rev-card.rev-bad { border-right: 4px solid var(--danger);
-}\n .rev-card.rev-none { border-right: 4px solid var(--warning); }\n .rev-q {
-font-weight: 700; font-size: 1.02rem; margin: 8px 0 10px; }\n .rev-line {
-font-size: 0.9rem; margin-bottom: 4px; }\n .rev-exp { margin-top: 8px;
-padding-top: 8px; border-top: 1px dashed var(--border); font-size: 0.88rem;
-color: var(--muted); }\n\n .hidden { display: none !important; }\n\n /*
-Responsive Breakpoints (Tablets & Phones) */\n @media (max-width: 960px) {\n
-.quiz-grid { grid-template-columns: 1fr; }\n .nav-dots { max-height: 210px; }\n
-}\n @media (max-width: 600px) {\n .app-wrap { padding: 10px; }\n .top-header,
-.card, .status-strip { padding: 14px; border-radius: 12px; }\n .controls-bar {
-grid-template-columns: 1fr; }\n .ctrl-actions { width: 100%; }\n .ctrl-actions
-.btn { flex: 1; }\n .q-footer { flex-direction: column; align-items: stretch;
-}\n .nav-btns { width: 100%; }\n .nav-btns .btn { flex: 1; }\n #finishBtn {
-width: 100%; }\n .shortcuts-bar { display: none; }\n .opt-item {
-padding: 11px 12px; font-size: 0.93rem; }\n }\n\n /* Print / Save PDF */\n
-@media print {\n body { background: #fff !important; color: #000 !important; }\n
-.top-header, .status-strip, #quizSection, .shortcuts-bar, .no-print { display:
-none !important; }\n #resultSection { display: block !important; box-shadow:
-none !important; border: none !important; padding: 0 !important; }\n .rev-card,
-.stat-card, .result-hero { background: #fff !important; border-color: #cbd5e1
-!important; break-inside: avoid; }\n }\n </style>\n</head>\n<body>\n <div
-class=\"app-wrap\">\n <header class=\"top-header\">\n <div
-class=\"header-top-row\">\n <div class=\"brand-title\">\n <h1>الثقافة الإسلامية
-— الاختبار التفاعلي</h1>\n <p>بنك أسئلة شامل للكتاب المقرر (ص 19 – 138) | <span
-id=\"bankTotalLbl\">200</span> سؤال متوازن الصعوبة</p>\n </div>\n <div
-class=\"header-utility\">\n <button type=\"button\" class=\"btn btn-outline
-btn-sm\" id=\"themeBtn\">🌙 الوضع الليلي</button>\n <button type=\"button\"
-class=\"btn btn-outline btn-sm hidden\" id=\"resumeBtn\">▶ استكمال
-المحاولة</button>\n </div>\n </div>\n\n <div class=\"controls-bar\">\n <div
-class=\"ctrl-group\">\n <label for=\"chapterSelect\">نطاق الفصول:</label>\n
-<select id=\"chapterSelect\" class=\"ctrl-select\">\n <option value=\"all\">جميع
-الفصول (1 – 4) متوازن</option>\n <option value=\"1\">الفصل الأول: مفهوم الثقافة
-(ص 19–37)</option>\n <option value=\"2\">الفصل الثاني: المصطلحات المقاربة
-(ص 39–52)</option>\n <option value=\"3\">الفصل الثالث: المصادر والخصائص
-(ص 53–108)</option>\n <option value=\"4\">الفصل الرابع: الشخصية الإسلامية
-(ص 109–138)</option>\n </select>\n </div>\n <div class=\"ctrl-group\">\n <label
-for=\"countSelect\">عدد الأسئلة:</label>\n <select id=\"countSelect\"
-class=\"ctrl-select\">\n <option value=\"20\">20 سؤالاً</option>\n <option
-value=\"40\">40 سؤالاً</option>\n <option value=\"60\" selected>60 سؤالاً
-(الافتراضي)</option>\n <option value=\"70\">70 سؤالاً</option>\n <option
-value=\"all\">كامل النطاق المختار</option>\n </select>\n </div>\n <div
-class=\"ctrl-group\">\n <label for=\"timerSelect\">المؤقت:</label>\n <select
-id=\"timerSelect\" class=\"ctrl-select\">\n <option value=\"0\">بدون
-مؤقت</option>\n <option value=\"45\">45 دقيقة</option>\n <option value=\"60\"
-selected>60 دقيقة</option>\n <option value=\"75\">75 دقيقة</option>\n
-</select>\n </div>\n <div class=\"ctrl-group\">\n <label for=\"modeSelect\">نمط
-التصحيح:</label>\n <select id=\"modeSelect\" class=\"ctrl-select\">\n <option
-value=\"instant\" selected>تصحيح فوري مع الشرح</option>\n <option
-value=\"exam\">نمط الامتحان (الشرح في النهاية)</option>\n </select>\n </div>\n
-<div class=\"ctrl-actions\">\n <button type=\"button\" class=\"btn btn-primary\"
-id=\"newExamBtn\">اختبار جديد</button>\n </div>\n </div>\n </header>\n\n
-<section id=\"quizSection\">\n <div class=\"status-strip\">\n <div
-class=\"progress-info\">\n <div class=\"progress-labels\">\n <span
-id=\"qCounterLbl\">السؤال 1 من 60</span>\n <span id=\"answeredLbl\">المجاب
-عنها: 0 / 60 (0%)</span>\n </div>\n <div class=\"progress-track\"><div
-class=\"progress-fill\" id=\"progressFill\"></div></div>\n </div>\n <div
-class=\"timer-box\" id=\"timerBox\">\n <span>الوقت المتبقي:</span>\n <span
-id=\"timerLbl\">60:00</span>\n </div>\n </div>\n\n <div class=\"quiz-grid\">\n
-<div class=\"card\">\n <div class=\"q-header\">\n <div class=\"badges-group\">\n
-<span class=\"tag-unit\" id=\"unitBadge\">الفصل الأول</span>\n <span
-class=\"tag-diff diff-easy\" id=\"diffBadge\">سهل</span>\n </div>\n <button
-type=\"button\" class=\"btn btn-outline btn-sm\" id=\"flagBtn\">🚩 تحديد
-للمراجعة</button>\n </div>\n\n <div class=\"q-body\" id=\"qText\">جاري تحميل
-السؤال...</div>\n <div class=\"options-col\" id=\"optionsCol\"></div>\n <div
-class=\"exp-box\" id=\"expBox\"></div>\n\n <div class=\"q-footer\">\n <div
-class=\"nav-btns\">\n <button type=\"button\" class=\"btn btn-outline\"
-id=\"prevBtn\">► السابق</button>\n <button type=\"button\" class=\"btn
-btn-primary\" id=\"nextBtn\">التالي ◄</button>\n </div>\n <button
-type=\"button\" class=\"btn btn-danger\" id=\"finishBtn\">إنهاء وتسليم
-الاختبار</button>\n </div>\n\n <div class=\"shortcuts-bar\">\n <strong>اختصارات
-لوحة المفاتيح:</strong> الأرقام <strong>1–4</strong> للاختيار/إلغاء التحديد |
-<strong>◄ (يسار)</strong> التالي | <strong>► (يمين)</strong> السابق |
-<strong>F</strong> أو <strong>ب</strong> للمراجعة\n </div>\n </div>\n\n <aside
-class=\"card nav-panel\">\n <h3>لوحة التنقل والمراجعة</h3>\n <div
-class=\"legend-row\">\n <span><i class=\"dot-sample\"
-style=\"background:var(--accent)\"></i> مُجاب</span>\n <span><i
-class=\"dot-sample\" style=\"background:var(--card-alt); border:1px solid
-var(--border)\"></i> غير مُجاب</span>\n <span><i class=\"dot-sample\"
-style=\"background:var(--warning)\"></i> للمراجعة</span>\n </div>\n <button
-type=\"button\" class=\"btn btn-outline btn-sm\" style=\"width:100%;\"
-id=\"jumpUnansweredBtn\">الانتقال لأول سؤال غير مجاب</button>\n <div
-class=\"nav-dots\" id=\"navDots\"></div>\n </aside>\n </div>\n </section>\n\n
-<section id=\"resultSection\" class=\"card hidden\">\n <div
-class=\"result-hero\">\n <div class=\"score-ring\">\n <span class=\"pct\"
-id=\"resPct\">0%</span>\n <span class=\"frac\" id=\"resFrac\">0 / 60</span>\n
-</div>\n <h2>نتيجة الاختبار</h2>\n <div class=\"grade-badge\"
-id=\"resGrade\">التقدير</div>\n <p id=\"resSummary\" style=\"color:var(--muted);
-font-size:0.9rem; margin-top:6px;\"></p>\n <div class=\"no-print\"
-style=\"display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
-margin-top:16px;\">\n <button type=\"button\" class=\"btn btn-primary\"
-id=\"restartBtn\">بدء اختبار جديد</button>\n <button type=\"button\" class=\"btn
-btn-accent\" id=\"printBtn\">طباعة / حفظ النتيجة PDF</button>\n </div>\n
-</div>\n\n <div class=\"analytics-grid\">\n <div class=\"stat-card\">\n
-<h3>الأداء حسب الفصول</h3>\n <div id=\"unitStatsBox\"></div>\n </div>\n <div
-class=\"stat-card\">\n <h3>الأداء حسب مستوى الصعوبة</h3>\n <div
-id=\"diffStatsBox\"></div>\n </div>\n </div>\n\n <div class=\"review-toolbar
-no-print\">\n <h3>المراجعة الشاملة للإجابات والشرح</h3>\n <div
-class=\"filter-group\">\n <button type=\"button\" class=\"btn btn-outline btn-sm
-filter-btn active\" data-filter=\"all\">الكل</button>\n <button type=\"button\"
-class=\"btn btn-outline btn-sm filter-btn\" data-filter=\"wrong\">الخاطئة
-فقط</button>\n <button type=\"button\" class=\"btn btn-outline btn-sm
-filter-btn\" data-filter=\"correct\">الصحيحة فقط</button>\n <button
-type=\"button\" class=\"btn btn-outline btn-sm filter-btn\"
-data-filter=\"unanswered\">غير المجاب عنها</button>\n <button type=\"button\"
-class=\"btn btn-outline btn-sm filter-btn\" data-filter=\"flagged\">المحددة
-للمراجعة</button>\n </div>\n </div>\n <div id=\"reviewList\"></div>\n
-</section>\n </div>\n\n <script>\n const STORAGE_KEY =
-'islamic_culture_exam_v2';\n const UNIT_NAMES = {\n 1: 'الفصل الأول: مفهوم
-الثقافة بوجه عام',\n 2: 'الفصل الثاني: علاقة الثقافة بالمصطلحات المقاربة',\n 3:
-'الفصل الثالث: مصادر الثقافة الإسلامية وخصائصها',\n 4: 'الفصل الرابع: الشخصية
-الإسلامية ومعالمها وتربيتها'\n };\n const DIFF_LABELS = { easy: 'سهل', medium:
-'متوسط', hard: 'صعب / استنتاجي' };\n const LETTERS = ['أ', 'ب', 'ج', 'د'];\n\n
-const RAW_BANK = [\n // ==================== الفصل الأول (50 سؤال: 15 سهل، 22
-متوسط، 13 صعب | ص 19–37) ====================\n {u:1,d:'easy',q:'يعد مصطلح
-(الثقافة) في أدبياتنا العربية من حيث الاستخدام الاصطلاحي:',o:['مصطلحًا حديثًا لا
-يتجاوز حدود القرن تقريبًا','مصطلحًا قديمًا استعمله الجاهليون بمعناه
-الاصطلاحي','مصطلحًا قرآنيًا ورد بصيغته الاسمية في عدة سور','مصطلحًا خاصًا بعلم
-الفقه منذ القرن الثاني'],a:0,e:'الثقافة مصطلح حديث الاستخدام في أدبياتنا العربية
-لا يتجاوز حدود القرن، ويندر وجوده في أدبيات القرن الماضي بصورته الاصطلاحية
-(ص 19).'},\n {u:1,d:'easy',q:'اكتسبت الألفاظ الأوروبية المقابلة للثقافة (Culture
-/ Kulture) معناها الفكري في أوروبا في:',o:['النصف الأول من القرن السادس
-عشر','النصف الثاني من القرن الثامن عشر','مطلع القرن العشرين','القرن الرابع
-عشر'],a:1,e:'اكتسبت معناها الفكري في أوروبا في النصف الثاني من القرن الثامن عشر،
-ثم نُقلت إلى العربية في مطلع القرن العشرين (ص 19).'},\n {u:1,d:'easy',q:'المعنى
-اللغوي الأصلي المادي للفعل (ثَقِفَ أو ثَقُفَ) في اللغة العربية هو:',o:['تشذيب
-الرماح وتقويمها','حفر الآبار وتعميقها','نسج الثياب وتطريزها','بناء الحصون
-وتشييدها'],a:0,e:'المعنى الأصلي المادي للفعل (ثقف) هو تشذيب الرماح وتقويمها،
-والقائم بها المثقِّف والرمح المقوّم المثقَّف (ص 20).'},\n {u:1,d:'easy',q:'ورد
-في حديث الهجرة وصف أحد الأشخاص بأنه (غلام ثَقِف)، والمقصود بـ (ثَقِف)
-هنا:',o:['قوي البنية في القتال','ذو فطنة وذكاء وثابت المعرفة بما يحتاج
-إليه','سريع الجري في الصحراء','كثير السفر والتجارة'],a:1,e:'المراد بـ(غلام ثقف)
-ذو فطنة وذكاء، وأنه ثابت المعرفة بما يحتاج إليه كما ورد في لسان العرب
-(ص 20).'},\n {u:1,d:'easy',q:'المعنى اللغوي لكلمة (تثقفنّهم) في قوله تعالى:
-﴿فَإِمَّا تَثْقَفَنَّهُمْ فِي الْحَرْبِ﴾ هو:',o:['تظفر بهم وتدركهم','تهزمهم
-وتشتتهم','تعلمهم وتؤدبهم','تصالحهم وتهادنهم'],a:0,e:'يقال في اللغة: ثقفته إذا
-ظفرت به، واستشهد المؤلف بالآية الكريمة على هذا المعنى (ص 20).'},\n
-{u:1,d:'easy',q:'قالت السيدة عائشة رضي الله عنها تصف أباها أبا بكر الصديق:
-(وأقام أَوَدَه بثِقافِه)، وتريد بذلك:',o:['جهّز الجيوش بالرماح','جمع القرآن في
-مصحف','أنه سوّى عوج المسلمين فأدّبهم وعلّمهم','بنى المساجد في
-الأمصار'],a:2,e:'تصف عائشة رضي الله عنها أباها بأنه سوّى عوج المسلمين فأدبهم
-وعلمهم (ص 20).'},\n {u:1,d:'easy',q:'وصف الباحث (الطاهر لبيب) كلمة (ثقافة) نتيجة
-كثرة تعريفاتها بأنها:',o:['ضحية النجاح والانتشار الذي حظيت به','كلمة مهجورة لا
-قيمة لها','لفظ خاص بالنخبة الأدبية','مصطلح جامد غير قابل للتطور'],a:0,e:'انعكست
-كثرة التعريفات في اللغات الأوروبية على العربية حتى أصبحت كلمة ثقافة ضحية النجاح
-والانتشار (ص 19).'},\n {u:1,d:'easy',q:'من أقدم تعريفات الثقافة وأشهرها تعريف
-العالم البريطاني (إدوارد تايلور) عام 1871م في كتابه:',o:['سوسيولوجية
-الثقافة','الثقافة البدائية','تدهور الحضارة الغربية','مقدمة ابن
-خلدون'],a:1,e:'وضع إدوارد تايلور تعريفه الشهير للثقافة في كتابه (الثقافة
-البدائية) عام 1871م (ص 21).'},\n {u:1,d:'easy',q:'عُقد مؤتمر منظمة اليونسكو
-الخاص بالثقافة الذي وضع تعريفها الشهير عام 1982م في
-مدينة:',o:['باريس','تونس','مكسيكو سيتي','جنيف'],a:2,e:'وضعت منظمة اليونسكو
-تعريفها في مؤتمرها الخاص بالثقافة بمدينة مكسيكو سيتي عام 1982م (ص 21).'},\n
-{u:1,d:'easy',q:'في اللغة العربية يُطلق اسم (المثقَّف) بفتح القاف المشددة
-على:',o:['الرمح المعدّل المقوّم الذي لا اعوجاج فيه','الشخص القائم بعملية
-التشذيب','الكتاب الجامع للعلوم','المناظر بالسيف'],a:0,e:'القائم بالتشذيب هو
-(المُثَقِّف) بالكسر، والرمح المقوم الذي لا اعوجاج فيه هو (المثقَّف) بالفتح
-(ص 20).'},\n {u:1,d:'easy',q:'التعريف الجديد الذي وضعه أ.د. عزمي طه السيد لمصطلح
-(الثقافة) بوجه عام هو:',o:['مجموعة المعلومات النظرية في الكتب','معرفة عملية
-مكتسبة تنطوي على جانب معياري وتتجلى في السلوك الواعي للإنسان في تعامله مع
-الوجود','السمات الفنية المادية لأمة من الأمم','مجموعة الغرائز التي يولد بها
-الإنسان'],a:1,e:'الثقافة معرفة عملية مكتسبة تنطوي على جانب معياري وتتجلى في
-السلوك الواعي للإنسان في تعامله الاجتماعي مع الوجود (ص 25).'},\n
-{u:1,d:'easy',q:'المقصود بكون الثقافة معرفة (مكتسبة) أنها:',o:['يولد الإنسان
-مزودًا بها كالغرائز','تقتصر على الشهادات الجامعية','يحصل عليها الإنسان بالتعلم
-والتقليد والبيئة وتقابل المعرفة الفطرية','تنتقل بالوراثة
-البيولوجية'],a:2,e:'المعرفة المكتسبة تقابل المعرفة الفطرية؛ فيكتسبها الإنسان
-بالتقليد والتعلم والبيئة من المهد إلى اللحد (ص 27).'},\n {u:1,d:'easy',q:'استمد
-المؤلف تقسيم الوجود من القرآن الكريم إلى قسمين رئيسين هما:',o:['عالم المادة
-وعالم الفكر','الذات والآخر','الماضي والحاضر','الخالق والمخلوقات'],a:3,e:'لجأ
-المؤلف إلى قسمة مستمدة من القرآن الكريم وهي قسمة الوجود إلى الخالق والمخلوقات
-(ص 29-30).'},\n {u:1,d:'easy',q:'تُقسم (الوسائل والأدوات) باعتبارها أحد أجزاء
-الوجود المخلوق إلى:',o:['طبيعية (كالأنهار والشمس) وصنعية (كالجسور
-والمواصلات)','مادية ومعنوية','قديمة وحديثة','فردية وجماعية'],a:0,e:'تقسم الوسائل
-والأدوات إلى طبيعية (الأنهار والبحار والجبال والشمس والقمر) وصنعية (الطرائق
-والجسور والمواصلات) (ص 30-31).'},\n {u:1,d:'easy',q:'كم مجالاً للثقافة الإسلامية
-ينتج عن تقسيم الوجود المعتمد في الكتاب؟',o:['أربعة مجالات','ستة مجالات','ثمانية
-مجالات','عشرة مجالات'],a:2,e:'المجالات الثمانية هي التعامل مع: الخالق، الذات،
-الآخر، الكون الطبيعي، الأفكار، الأدوات والوسائل، الزمن، والغيب (ص 36).'},\n
-{u:1,d:'medium',q:'عند مناقشة معنى المصطلح العلمي وبناء المسائل المختلفة عليه،
-فإن المرجع الأساس هو:',o:['المعنى الاصطلاحي الذي جرى وضعه والأخذ به','المعنى
-اللغوي الوارد في المعاجم فقط','الاستخدام العامي الدارج','الترجمة الحرفية
-اللاتينية'],a:0,e:'لا يُرجع في مناقشة المصطلح وبناء المسائل إلى المعنى اللغوي
-المعجمي، وإنما إلى المعنى الاصطلاحي الذي جرى وضعه والأخذ به (ص 21).'},\n
-{u:1,d:'medium',q:'من أبرز أوجه النقد الموجهة لتعريفي (تايلور) و(اليونسكو)
-للثقافة أنهما:',o:['يقصران الثقافة على الدين فقط','يجعلان العقيدة عنصرًا عاديًا
-من مكونات الثقافة ولا يشيران لجانب معياري','يهملان الفنون والآداب
-تمامًا','يركزان على الفرد ويهملان المجتمع'],a:1,e:'انتقدهما المؤلف بسعة الدلالة
-وإغفال ترتيب الأهمية وغياب الحالة المعيارية وجعل المعتقدات عنصرًا عاديًا مع أنها
-الأساس (ص 22-23).'},\n {u:1,d:'medium',q:'لماذا يرى المؤلف أن تفسير إعلان مكسيكو
-(اليونسكو) يجعل الثقافة بديلاً عن الدين؟',o:['لأن الفكر الغربي ينطلق من منطلقات
-علمانية نحّت الدين جانبًا فبحثت عن بديل','لأن اليونسكو ألغت الأديان صراحة','لأن
-التعريف اقتصر على الطقوس','لأن المؤتمر عقد برعاية الكنائس'],a:0,e:'انطلق واضعو
-التعريف من منطلقات علمانية نحّت الدين جانبًا وجعلت الثقافة بديلاً يقوم بوظائفه
-(ص 23).'},\n {u:1,d:'medium',q:'التعريف الذي وضعته (المنظمة العربية للتربية
-والثقافة والعلوم) ضمن الخطة الشاملة للثقافة العربية عام 1985م يُنتقد
-بأنه:',o:['متشدد يرفض العلوم الإنسانية','يقتصر على الشعر الجاهلي','صورة معرّبة
-ومقلدة لتعريف اليونسكو وتغفل دور العقيدة بلا مسوغ','يرفض المهارات
-التقنية'],a:2,e:'جاء تعريف الخطة الشاملة صورة معربة ومقلدة لتعريف اليونسكو وأغفل
-العقيدة ودورها دون مسوغ علماني في العالم العربي (ص 23-24).'},\n
-{u:1,d:'medium',q:'التعريف الشائع بين الناس بأن الثقافة هي (الأخذ من كل علم
-بطرف):',o:['هو التعريف العلمي المعتمد','كان في الأصل تعريفًا للأدب عند السابقين
-ويفيد في الإمتاع والمؤانسة فقط','يقدم حلولاً لمشكلات الغزو الثقافي','وضعه ابن
-خلدون لتعريف الثقافة الإسلامية'],a:1,e:'كان تعريف الأدب عند بعض السابقين وذكره
-ابن خلدون في المقدمة، ويفيد في الإمتاع والمؤانسة لا في حل المشكلات الثقافية
-(ص 24).'},\n {u:1,d:'medium',q:'ما الفرق الدقيق بين (المعرفة) و(العلم) كما بيّنه
-المؤلف في شرح تعريف الثقافة؟',o:['العلم أعم من المعرفة','المعرفة خاصة بالعلوم
-الدينية','المعرفة تحتمل الصدق والكذب، أما العلم فهو المعرفة التي تم التحقق من
-صدقها','لا فرق بينهما فهما مترادفان'],a:2,e:'المعرفة تحتمل الصدق أو الكذب، أما
-العلم فيشير للمعرفة التي تم التحقق من صدقها؛ فكل علم معرفة وليست كل معرفة علمًا
-(ص 26).'},\n {u:1,d:'medium',q:'تُصنّف المعرفة من حيث الغاية إلى نظرية وعملية؛
-وتدخل الثقافة في قسم:',o:['المعرفة النظرية الخالصة','المعرفة العملية؛ لأن غايتها
-العمل والفعل والسلوك والتطبيق','المعرفة الفطرية الغريزية','المعرفة الحدسية
-الصوفية فقط'],a:1,e:'تدخل الثقافة في المعرفة العملية لأن غايتها العمل والسلوك
-والتطبيق، وتستند لمعرفة نظرية صحيحة (ص 26-27).'},\n {u:1,d:'medium',q:'مثال
-التمييز بين المعرفة النظرية والعملية: قولنا (المعادن تتمدد بالتسخين) معرفة
-نظرية، أما المعرفة العملية المبنية عليها فهي:',o:['ترك فراغات بين قضبان السكك
-الحديدية عند بنائها','معرفة درجة انصهار الحديد في المختبر','تصنيف الحديد ضمن
-الفلزات','حفظ الجدول الدوري للعناصر'],a:0,e:'ترك الفراغات عند بناء قضبان السكك
-الحديدية معلومة ذات غاية عملية ترشد لسلوك وفعل معين بناء على الحقيقة النظرية
-(ص 26).'},\n {u:1,d:'medium',q:'يشير مصطلح (الجانب المعياري) في تعريف الثقافة
-إلى:',o:['الواقع الفعلي كما هو دون تقويم','الكمية المادية من الكتب في
-الدولة','وجود حالة مثلى يقاس في ضوئها حال الثقافة قربًا أو بعدًا، تقدمًا أو
-تخلفًا','التقليد الأعمى للثقافات الغالبة'],a:2,e:'الجانب المعياري هو وجود معيار
-وحالة مثلى يقاس في ضوئها حال الثقافة (واقع الثقافة) تقدمًا أو تخلفًا وصلاحًا أو
-فسادًا (ص 27-28).'},\n {u:1,d:'medium',q:'تتجلى الثقافة في (السلوك الواعي)
-للإنسان، وأدنى درجات الوعي في السلوك هو:',o:['أن يقلد الإنسان مجتمعه دون
-تفكير','أن يحفظ النصوص دون تطبيق','أن يتصرف بعفوية وتلقائية دون هدف','أن يدرك
-المرء أن سلوكه سيوصل إلى الغاية التي يريدها يقينًا أو ظنًا
-راجحًا'],a:3,e:'تتعارض الثقافة مع السلوك العشوائي اللاواعي، وأدنى درجات الوعي
-إدراك المرء أن سلوكه سيوصل للغاية يقينًا أو ظنًا راجحًا (ص 28-29).'},\n
-{u:1,d:'medium',q:'ينقسم الوجود في جانب (المخلوقات) في تقسيم الكتاب إلى سبعة
-أجزاء؛ ليس منها:',o:['الخالق سبحانه وتعالى','الذات والآخر','الكون الطبيعي
-والوسائل والأدوات','الأفكار والزمن والغيب'],a:0,e:'أجزاء المخلوقات سبعة: الذات،
-الآخر، الكون الطبيعي، الوسائل والأدوات، الأفكار، الزمن، الغيب؛ أما الخالق فهو
-القسم الأول المقابل للمخلوقات (ص 30-31).'},\n {u:1,d:'medium',q:'تتمثل (الثقافة
-الخاصة) في تعامل الإنسان الواعي مع:',o:['جميع أجزاء الوجود على نحو مجمل','الفنون
-والآداب فقط','جزء محدد من الوجود (كالمهنة أو التخصص كالنجارة
-والمحاماة)','العبادات دون المعاملات'],a:2,e:'الثقافة الخاصة تتجلى في تعامل
-الإنسان الواعي مع جزء محدد من الوجود، وغالبًا ما تكون المهنة التي يمارسها
-(ص 32-33).'},\n {u:1,d:'medium',q:'الفرق الجوهري بين تعريف (الثقافة بإطلاق)
-وتعريف (الثقافة الإسلامية) هو إضافة قيد:',o:['تتجلى في السلوك الاجتماعي','تنطوي
-على جانب معياري مستمد من شريعة الإسلام ومؤسس على عقيدته','معرفة عملية
-مكتسبة','في تعامله مع الخالق والمخلوقات'],a:1,e:'الاختلاف بين التعريفين هو زيادة
-العبارة المخصصة: (مستمد من شريعة الإسلام ومؤسس على عقيدته) (ص 34).'},\n
-{u:1,d:'medium',q:'في أي مجال استعمل الشاعر الأموي (عدي بن الرقاع العاملي) لفظ
-(المثقف)؟',o:['تقويم القصيدة الشعرية وتهذيبها','تقويم السيوف والرماح','تعليم
-الصبيان القراءة','تأديب الخيل والفروسية'],a:0,e:'ورد في شعر عدي بن الرقاع
-العاملي المثقف بمعنى الذي يقوم ويهذب القصيدة الشعرية (ص 20).'},\n
-{u:1,d:'medium',q:'ورد في تاج العروس للزبيدي أن (المثاقفة) تعني:',o:['تلاوة
-الأشعار في المجالس','الملاعبة بالسلاح ومحاولة إصابة الغرة في نحو
-مسابقة','الانتقال من البادية للحضر','الترجمة من اللغات الأجنبية'],a:1,e:'في تاج
-العروس: ثاقفه مثاقفة لاعبه بالسلاح وهو محاول إصابة الغرة في نحو مسابقة
-(ص 20).'},\n {u:1,d:'medium',q:'في المعنى المجازي المذكور في (أساس البلاغة)
-للزمخشري، يدل التثقيف على:',o:['الصناعة والحرفة','التفوق في الرماية','التأديب
-والتهذيب','سعة الحفظ'],a:2,e:'ومن المجاز: التثقيف أي التأديب والتهذيب كما في:
-لولا تثقيفك وتوقيفك ما كنت شيئًا (ص 21).'},\n {u:1,d:'medium',q:'ما الترتيب
-الصحيح للدوائر المتداخلة في قسم (الآخر) من أصغرها إلى أوسعها؟',o:['الأسرة،
-الأقارب والأرحام، الجوار، المجتمع المحلي، الدولة، المجتمع الدولي، المجتمع
-الإنساني','الجوار، الأسرة، الدولة، الأقارب، المجتمع الإنساني','الذات، الدولة،
-الأسرة، الجوار','المجتمع المحلي، الأسرة، الدولة، المجتمع الإنساني'],a:0,e:'تبدأ
-دوائر الآخر بالأسرة، فالأقارب والأرحام، فالجوار، فالمجتمع المحلي، فالدولة،
-فالمجتمع الدولي، فالمجتمع الإنساني (ص 30).'},\n {u:1,d:'medium',q:'ما أهم جزء
-للإنسان في قسم (الكون الطبيعي) ولماذا؟',o:['المجرات الفلكية لأنها الأكبر','الزمن
-لأنه ملازم للحركة','الأرض؛ لأنها مكان استقراره وهي الأقرب إليه','المحيطات لأنها
-تغطي الكوكب'],a:2,e:'أهم جزء للإنسان في الكون الطبيعي هو الأرض التي يعيش عليها
-لأنها مكان استقراره والأقرب إليه (ص 30).'},\n {u:1,d:'medium',q:'ما محل
-(الأفكار) في الدرجة الأولى وما نوع وجودها؟',o:['محلها الذهن، وهي وجود غير مادي
-يعبر عنه باللفظ أو الكتابة','محلها الكتب وهي وجود مادي','محلها عالم الغيب
-المطلق','محلها الفطرة الغريزية'],a:0,e:'الأفكار محلها في الدرجة الأولى الذهن،
-ويعبر عنها باللفظ أو الكتابة، وهي وجود غير مادي (ص 31).'},\n
-{u:1,d:'medium',q:'في تعريف الثقافة الإسلامية، ما الذي يمثل المصدر الأساسي
-للجانب المعياري، وما الذي يمثل الأساس؟',o:['المصدر هو العقل البشري والأساس
-التراث','المصدر الأساسي للجانب المعياري هو الشريعة الإسلامية، والأساس هو العقيدة
-الإسلامية','المصدر العادات والأساس الفنون','المصدر القوانين والأساس العلم
-الطبيعي'],a:1,e:'المصدر الأساسي للجانب المعياري هو الشريعة (الجانب العملي من
-الدين) والأساس الذي تستند إليه هو العقيدة الإسلامية (ص 34).'},\n
-{u:1,d:'medium',q:'من أين تستمد (الثقافة الغربية الحديثة) جانبها المعياري وفق ما
-ذكره الكتاب؟',o:['من الديانة المسيحية بتعاليمها الأصلية','من الفلسفة الإسلامية
-في الأندلس','من التقاليد البدوية القديمة','من المبادئ العلمانية وما صدر عنها من
-تشريعات نحت الدين جانباً'],a:3,e:'الثقافة الغربية الحديثة تستمد جانبها المعياري
-من المبادئ العلمانية وتشريعاتها التي نحت الدين جانباً (ص 34-35).'},\n
-{u:1,d:'medium',q:'يتجلى السلوك الواعي في الحياة الاجتماعية على مستويين،
-هما:',o:['ثقافة فردية وثقافة مجتمعية','ثقافة لغوية وثقافة فنية','ثقافة ماضية
-وثقافة مستقبلية','ثقافة مادية وثقافة غريزية'],a:0,e:'يظهر السلوك الواعي في
-المجتمع على مستوى الفرد (ثقافة فردية) وعلى مستوى الجماعة (ثقافة مجتمعية)
-(ص 29).'},\n {u:1,d:'hard',q:'في ضوء مفهوم الثقافة العامة والخاصة في الكتاب، مَن
-هو (المثقف)؟',o:['فئة النخبة من الكتاب وأساتذة الجامعات حصرًا','من يحفظ أكبر قدر
-من الأشعار','كل إنسان يؤدي عملاً أو مهنة في ضوء معرفة عملية وبوعي لما يقوم
-به','من يجيد التحدث بعدة لغات أجنبية'],a:2,e:'ليس المثقف فئة قليلة من النخبة
-فحسب، بل كل إنسان يؤدي عملاً بوعي ومعرفة عملية هو مثقف في مجاله الخاص
-(ص 33).'},\n {u:1,d:'hard',q:'الذي يميز الثقافة الإسلامية عن غيرها من الثقافات
-(كالغربية واليهودية والمسيحية) هو:',o:['عدم وجود أي قيم مشتركة كالصدق
-والأمانة','الجانب المعياري المستمد من الشريعة والمؤسس على العقيدة','الانعزال عن
-العلوم والوسائل المادية','الاقتصار على اللغة العربية في كل
-المعاملات'],a:1,e:'المميز لأي ثقافة هو الجانب المعياري؛ فمع وجود قيم مشتركة
-كالصدق، يمارسها المسلم التزامًا بالمرجعية المعيارية الإسلامية وطلباً للعبودية
-لله (ص 34-35).'},\n {u:1,d:'hard',q:'متى تكون الثقافة الخاصة (كالزراعة أو
-استخدام التكنولوجيا) جزءًا من الثقافة الإسلامية؟',o:['إذا كانت طريقة التعامل
-منسجمة مع مبادئ الإسلام وقواعده الكلية ومقاصده','إذا كانت مستمدة بنص حرفي من
-القرآن فقط','إذا قام بها مسلم بغض النظر عن الضرر','لا يمكن أن تكون الزراعة أو
-الصناعة جزءًا من الثقافة الإسلامية'],a:0,e:'تكون جزءًا من الثقافة الإسلامية إذا
-انسجمت مع مبادئ الإسلام ومقاصده، مثل تجنب المزارع للكيماويات الضارة بالناس عملاً
-بقاعدة درء المفاسد (ص 36-37).'},\n {u:1,d:'hard',q:'إذا ألقى أستاذ كيمياء محاضرة
-يشرح فيها بنية الذرة وخواص العناصر دون ربطها بأي تطبيق سلوكي، فما يقدمه
-يُعد:',o:['ثقافة إسلامية عامة','معرفة نظرية خالصة لا تدخل في الثقافة بصورتها
-المباشرة','سلوكاً واعياً اجتماعياً','ثقافة خاصة تطبيقية'],a:1,e:'المعرفة النظرية
-الخالصة غايتها الوقوف على الحقائق ولا تدخل في الثقافة إلا بعد تحوير غايتها إلى
-معرفة عملية (ص 26-27).'},\n {u:1,d:'hard',q:'ماذا يحدث إذا لم تستند المعرفة
-العملية إلى معرفة نظرية صحيحة؟',o:['تصبح أكثر مرونة وقابلية للتطبيق','تتحول
-تلقائياً إلى ثقافة معيارية','تكون أشبه بالتخبط وأقرب إلى العبث منها إلى العمل
-الهادف المجدي','تغدو علماً نظرياً يقينياً'],a:2,e:'المعرفة العملية التي ليس لها
-سند من المعرفة النظرية الصحيحة تكون أشبه بالتخبط وأقرب إلى العبث (ص 27).'},\n
-{u:1,d:'hard',q:'استشهد المؤلف بآية المواريث (يوصيكم الله في أولادكم للذكر مثل
-حظ الأنثيين) بوصفها مثالاً على:',o:['المعرفة النظرية المجردة','المعرفة الكلية
-المجملة فقط','المعرفة الفطرية','المعرفة العملية المفصلة الجزئية المتعلقة بفعل
-معين محدود'],a:3,e:'تهدف الثقافة إلى العمل والسلوك في صورة كلية عامة أو مفصلة
-جزئية كالمعرفة المتعلقة بتوزيع الميراث (ص 27).'},\n {u:1,d:'hard',q:'ماذا يترتب
-على غياب (الحالة المعيارية) في تعريفي تايلور واليونسكو؟',o:['تعذر الحكم على أي
-ثقافة بالتقدم أو التخلف أو الصلاح أو الفساد','توسيع دور العقيدة بوصفها موجهة
-للثقافة','إلغاء الجانب الفني من الثقافة','قصر الثقافة على العلماء'],a:0,e:'بدون
-حالة معيارية لا يكون للحكم بـ(تقدم ثقافي أو تخلف ثقافي) أو (صلاح أو فساد) أي
-معنى (ص 22، 28).'},\n {u:1,d:'hard',q:'إذا استبدلنا كلمة (ثقافة) بكلمة (عقل) أو
-(دين) في تفسير إعلان مكسيكو لليونسكو، فماذا يكشف ذلك؟',o:['أن التعريف دقيق جامع
-مانع','أن التعريف يفتقر إلى التميز ولا يميز الثقافة عن غيرها من المفاهيم','أن
-اليونسكو اعتمدت العقيدة أساساً','أن العقل والدين والثقافة
-مترادفات'],a:1,e:'استقامة المعنى عند استبدال اللفظ بـ(دين) أو (عقل) يثبت منهجياً
-أن التعريف لا يتصف بالتميز (ص 23).'},\n {u:1,d:'hard',q:'استشهد المؤلف بقول ابن
-خلدون (إن المغلوب مولع بالاقتداء بالغالب وتقليده) في سياق نقده لـ:',o:['تعريف
-إدوارد تايلور','التعريف الشائع للأخذ من كل علم بطرف','تعريف الخطة الشاملة
-للثقافة العربية','التعريف اللغوي في لسان العرب'],a:2,e:'علل المؤلف تقليد لجنة
-الخطة الشاملة لتعريف اليونسكو وإغفالها العقيدة بقاعدة ابن خلدون في تقليد المغلوب
-للغالب (ص 24).'},\n {u:1,d:'hard',q:'لماذا عدّ المؤلف معرفة (الغيب) ضرورة
-للإنسان لفهم نفسه والكون؟',o:['لأن الإنسان يدرك الغيب بالحواس المجردة في
-الدنيا','لأن الغيب يقتصر على الأفكار الذهنية فقط','لأن الجنة والنار من عالم
-الشهادة','لأن فينا جانباً غيبياً هو الروح، ولأن علة وجود الكون غيب، وتجاهله يورث
-قصوراً في الفهم'],a:3,e:'الغيب داخل في صميم كياننا (الروح)، وعلة وجود الكون غيب،
-فتجاهله يؤدي إلى قصور في الفهم والتفسير (ص 31).'},\n {u:1,d:'hard',q:'أي من
-المواقف الآتية ينفي عن صاحبه صفة (المثقف) وفق التعريف الجديد للثقافة؟',o:['شخص
-يحمل شهادة عليا لكن سلوكه الاجتماعي عشوائي لاواعٍ يخالف القيم','نجار يتقن عمله
-بوعي ومعرفة عملية وضوابط شرعية','مزارع يلتزم بعدم الإضرار بصحة الناس','معلم يربي
-طلابه بوعي على الأهداف السليمة'],a:0,e:'الثقافة تتجلى في السلوك الواعي الاجتماعي
-وتتعارض مع السلوك العشوائي اللاواعي، ولا تكفي الشهادات المخزونة دون سلوك واعٍ
-(ص 28-29، 33).'},\n {u:1,d:'hard',q:'هل تغني الثقافة الخاصة الإنسان عن الثقافة
-العامة؟',o:['نعم، يكفي التخصص الدقيق في مهنة واحدة','لا، فالإنسان بحاجة إلى حد
-أدنى من الثقافة العامة لا غنى له عنه للتعامل مع جوانب الوجود','نعم، لأن الثقافة
-العامة مجرد ترف فكري','لا، إلا في حالة الأطباء فقط'],a:1,e:'الإنسان بجانب ثقافته
-الخاصة بحاجة إلى حد أدنى من الثقافة العامة لا غنى له عنه للتعامل مع جوانب الوجود
-المختلفة (ص 33).'},\n {u:1,d:'hard',q:'الاعتدال في التعامل مع الزمن ثقافة عامة،
-بينما وضع جدول لإدارة ساعات العمل الهندسي ثقافة خاصة؛ لأن:',o:['الأول علم نظري
-والثاني سلوك عشوائي','الأول لغير المسلمين والثاني للمسلمين','الأول مبدأ كلي مجمل
-والثاني تعامل مفصل مع جزء محدد من الوجود','الزمن لا يدخل في الثقافة
-العامة'],a:2,e:'الحديث عن المبادئ والقواعد الكلية يدخل في الثقافة العامة،
-والتعامل المفصل مع جزء محدد يدخل في الثقافة الخاصة (ص 32، 36).'},\n\n //
-==================== الفصل الثاني (50 سؤال: 15 سهل، 22 متوسط، 13 صعب | ص 39–52)
-====================\n {u:2,d:'easy',q:'الأديان المنزلة (السماوية) الباقية إلى
-يومنا هذا هي:',o:['اليهودية والمسيحية والإسلام','المانوية والمزدكية
-والمجوسية','البرهمية والبوذية والكونفوشيوسية','اليهودية والصابئة واليونانية
-القديمة'],a:0,e:'الأديان المنزلة الباقية إلى يومنا هذا هي اليهودية والمسيحية
-والإسلام، أما المانوية والمزدكية والمجوسية فأديان بشرية وضعية (ص 39).'},\n
-{u:2,d:'easy',q:'ضرب الكتاب أمثلة على (الأديان البشرية الوضعية)،
-منها:',o:['اليهودية والمسيحية والإسلام','الديانة اليونانية القديمة والمانوية
-والمزدكية والمجوسية في بلاد فارس','الهندوسية المعاصرة فقط','الفلسفة الماركسية
-فقط'],a:1,e:'من أمثلة الأديان البشرية الوضعية: الديانة اليونانية القديمة
-والمانوية والمزدكية والمجوسية في بلاد فارس قديماً (ص 39).'},\n
-{u:2,d:'easy',q:'حدد المؤلف العناصر الرئيسة التي ينبغي أن توجد في كل دين (بشريًا
-كان أو إلهيًا) في:',o:['ثلاثة عناصر','أربعة عناصر','ستة عناصر','ثمانية
-عناصر'],a:2,e:'العناصر الستة الرئيسة للدين بعامة هي: العقيدة، الشريعة، غاية
-الدين، واضع الدين، مبلغ الدين الأول، وأتباع الدين (ص 40-41).'},\n
-{u:2,d:'easy',q:'استُخدم لفظ (العلم) في الحضارة الإسلامية استخدامين: خاص وعام؛
-والمقصود بالاستخدام الخاص:',o:['العلوم الدينية المبنية على الإسلام كالتفسير
-والحديث والفقه','العلوم الطبيعية كالفيزياء والفلك','العلوم الصورية كالرياضيات
-والمنطق','العلوم الإنسانية كالتاريخ والاجتماع'],a:0,e:'الاستخدام الخاص يشير
-للعلوم الدينية، بينما يشمل الاستخدام العام جميع العلوم الدينية والدنيوية
-(ص 43).'},\n {u:2,d:'easy',q:'أكثر تقسيمات العلوم شيوعًا في العصر الحاضر هو
-التقسيم بحسب (الموضوع)، وتُقسم العلوم بموجبه إلى:',o:['علوم استنباطية وعلوم
-استقرائية','علوم طبيعية، وعلوم إنسانية (اجتماعية)، وعلوم صورية','علوم إلهية
-وعلوم بشرية','علوم نقلية وعلوم عقلية'],a:1,e:'أكثر التقسيمات شيوعًا هو التقسيم
-بحسب الموضوع إلى ثلاث مجموعات: الطبيعية والإنسانية والصورية (ص 44).'},\n
-{u:2,d:'easy',q:'تُسمى (العلوم الإنسانية) أو بعضها أحياناً في التقسيم المعاصر
-باسم:',o:['العلوم الصورية','العلوم الطبيعية','العلوم الاجتماعية','العلوم
-التجريدية'],a:2,e:'تُسمى العلوم الإنسانية أو بعضها أحياناً باسم العلوم
-الاجتماعية، وإن كان الاستخدام الأول هو الغالب (ص 44).'},\n {u:2,d:'easy',q:'تضم
-(العلوم الصورية) على وجه التحديد:',o:['علم الفيزياء والكيمياء والجيولوجيا','علم
-النفس وعلم الاجتماع والتاريخ','علم الفقه وأصوله والتفسير','علم الرياضيات البحتة
-وعلم المنطق'],a:3,e:'العلوم الصورية تبحث في صورة الفكر والعلاقات المجردة
-بالرموز، وتضم الرياضيات البحتة وعلم المنطق (ص 44).'},\n {u:2,d:'easy',q:'المعنى
-اللغوي الأصلي لكلمة (الحضارة) هو:',o:['حياة الحضر والحواضر والعيش في المدن
-العامرة مقابل البداوة','استخدام أحدث الآلات الصناعية','مجموعة القوانين السياسية
-للدولة','التراث الأدبي والشعري'],a:0,e:'الحضارة في أصلها اللغوي تعني حياة الحضر
-والحواضر أي العيش في المدن العامرة مقابل البداوة (ص 48).'},\n
-{u:2,d:'easy',q:'إلى أي شيء يشير لفظ (المدنية) من حيث اشتقاقه اللغوي؟',o:['مشتق
-من الدين ويشير للعقائد','مشتق من لفظ مدينة ويشير لمظاهر الحياة المتقدمة مادياً
-في المدن مقارنة بالقرى والبادية','مشتق من المدن التاريخية البائدة فقط','يشير
-للقيم الروحية حصراً'],a:1,e:'لفظ المدنية مشتق من مدينة، ويشير لمظاهر الحياة في
-المدن المتقدمة مادياً بالأدوات والمنجزات مقارنة بالقرى والبادية (ص 48).'},\n
-{u:2,d:'easy',q:'تُعرّف (الحضارة) اصطلاحًا بأنها:',o:['الجانب المادي فقط من
-مخترعات ومبانٍ','الدين الإلهي المنزل في الكتاب والسنة','جملة المنجزات الإنسانية
-المتراكمة (المادية وغير المادية) لأمة خلال حقبة زمنية لتيسير الحياة وتكميل
-الوجود في ضوء العقيدة السائدة','المعرفة العملية المتعلقة بالتعامل مع
-الوجود'],a:2,e:'الحضارة هي جملة المنجزات الإنسانية المتراكمة (مادية وغير مادية)
-لأمة خلال حقبة زمنية لتيسير الحياة وتكميل الوجود في ضوء العقيدة السائدة
-(ص 48).'},\n {u:2,d:'easy',q:'تشمل منجزات الحضارة مجالين واسعين، ما
-هما؟',o:['مجال الفطرة ومجال الغيب','مجال العقيدة المنزلة ومجال البداوة','مجال
-الطبيعة الجامدة ومجال الحيوانات','مجال المنجزات المادية ومجال المنجزات غير
-المادية'],a:3,e:'تشمل الحضارة المنجزات المادية (آلات، مبانٍ، جسور...) وغير
-المادية (علوم، فنون نظرية، نظم إدارية وسياسية...) (ص 48).'},\n
-{u:2,d:'easy',q:'مصطلح (المدنية) في اصطلاح الكتاب يشير إلى:',o:['الجانب المادي
-فقط من الحضارة (جملة المنجزات الإنسانية المادية المتراكمة)','الجانب الروحي
-والأخلاقي من الحضارة','النظم الإدارية والسياسية والقضائية','مفهوم أوسع من
-الحضارة'],a:0,e:'المدنية هي شطر أو جزء الحضارة، وتُستخدم للإشارة إلى الجانب
-المادي من الحضارة فقط (ص 50).'},\n {u:2,d:'easy',q:'ما العنصر المشترك بين
-(الحضارة) و(الثقافة الإسلامية)؟',o:['الاقتصار على المنجزات الحجرية','المعرفة
-العملية','التخلي عن السلوك الاجتماعي','الاعتماد على الغريزة
-الفطرية'],a:1,e:'المنجزات الحضارية والثقافة ترتدان إلى سلوك مبني على معرفة
-عملية؛ فالعنصر المشترك بينهما هو المعرفة العملية (ص 51).'},\n
-{u:2,d:'easy',q:'تقسيم العلوم في العصر الحالي إلى (استنباطية واستقرائية) يعتمد
-على معيار:',o:['المصدر','الموضوع','المنهج','الغاية'],a:2,e:'يتخذ تقسيم العلوم
-إلى استنباطية واستقرائية المنهجَ معياراً للتقسيم (ص 44).'},\n
-{u:2,d:'easy',q:'تقسيم العلوم إلى (إلهية وإنسانية) يتخذ معياراً
-هو:',o:['الموضوع','الرموز المجردة','الزمن','المصدر'],a:3,e:'يتخذ تقسيم العلوم
-إلى إلهية وإنسانية المصدرَ معياراً للتقسيم (ص 44).'},\n {u:2,d:'medium',q:'في
-الأديان الإلهية المنزلة، ما العلاقة بين (واضع الدين) و(مبلّغ الدين
-الأول)؟',o:['الواضع هو الله تعالى، والمبلغ الأول هو الرسول الذي يبلّغ رسالة
-الله','المبلغ الأول هو نفسه واضع الدين','أتباع الدين هم من يضعون العقيدة','لا
-يوجد مبلغ أول في الأديان الإلهية'],a:0,e:'في الدين البشري يكون المبلغ الأول هو
-الواضع للدين، أما في الدين الإلهي فالواضع هو الله تعالى والمبلغ الأول هو الرسول
-(ص 40).'},\n {u:2,d:'medium',q:'توافر العناصر الستة للدين في دين من الأديان
-يعني:',o:['أنه دين سماوي صحيح مقبول قطعًا','أنه استوفى شروط الدين من الناحية
-الشكلية فقط ولا يعني بالضرورة كماله وصحته','أنه يطابق الثقافة الإسلامية','أنه
-خالٍ من التحريف البشري'],a:1,e:'توافر العناصر الستة يعني استيفاء شروط الدين
-شكليًا وحق أن يقال عنه دين، لا أنه كامل وفاضل بالضرورة (ص 41).'},\n
-{u:2,d:'medium',q:'وجه الاشتراك بين (الثقافة الإسلامية) و(الجانب العملي من الدين
-الإسلامي) هو:',o:['التطابق التام في كل مضامين المعرفة','أن كليهما وحي إلهي
-معصوم','أن كليهما غايته عملية (العمل والفعل والسلوك والتطبيق)','الاقتصار على
-الطقوس التعبدية'],a:2,e:'الثقافة الإسلامية والدين في جانبه العملي يشتركان في
-الغاية العملية (السلوك والتطبيق)، لكنهما أمران مختلفان في المضمون (ص 41).'},\n
-{u:2,d:'medium',q:'تتميز علاقة الثقافة الإسلامية بالدين الإسلامي بخصوصية فريدة
-تتمثل في:',o:['استقلال الثقافة تمامًا عن الشريعة','تغير الجانب المعياري بتغير
-العصور','اقتصار الثقافة على المنجزات المادية','هيمنة الشريعة على الثقافة ووجود
-علاقة عضوية وتطابق تام في الجانب المعياري'],a:3,e:'حصر المصدرية في الشريعة يعني
-هيمنتها وعلاقة عضوية وثيقة وتطابقًا تامًا في المعيارية لا مثيل له في الثقافات
-الأخرى (ص 42).'},\n {u:2,d:'medium',q:'تتسم الثقافة الإسلامية في جانبها المعياري
-بـ:',o:['الثبات المطلق مع وجود مرونة منضبطة في الأشكال الجزئية لبعض الثقافات
-الخاصة','التغير المستمر في العقيدة والأصول','الجمود الذي يمنع أي مرونة في
-الوسائل','التبعية للثقافة السائدة في كل عصر'],a:0,e:'الثقافة الإسلامية ثابتة في
-جانبها المعياري ولها مرونة منضبطة في الأشكال الجزئية، مع ثبات تام في العبادات
-الأساسية والمواريث (ص 42-43).'},\n {u:2,d:'medium',q:'من أمثلة الثقافة الإسلامية
-الثابتة في شكلها وصورتها فضلاً عن جانبها المعياري كما ورد في ص 43:',o:['أساليب
-الزراعة الحديثة','الصلاة والحج والزكاة والصوم وتوزيع الميراث','تصميم المباني
-والجسور','أنظمة المحاسبة الإدارية'],a:1,e:'الجوانب المستمدة بشكلها مباشرة من
-الشريعة كالصلاة والحج والزكاة والصوم وتوزيع الميراث ثابتة في شكلها ومضمونها
-(ص 43).'},\n {u:2,d:'medium',q:'عند استخدام لفظ (العالم) بالمعنى الخاص في
-الحضارة الإسلامية، فإنه يُطلق على أمثال:',o:['الكندي والخوارزمي وابن
-الهيثم','إدوارد تايلور ومحمد إقبال','أبي حنيفة ومالك والشافعي وابن حنبل والغزالي
-وابن تيمية','ابن النفيس فقط'],a:2,e:'يطلق بالمعنى الخاص على علماء العلوم الدينية
-(أبي حنيفة ومالك والشافعي وابن حنبل والغزالي وابن تيمية)، وبالعام على الكندي
-والخوارزمي وابن الهيثم وابن النفيس (ص 43).'},\n {u:2,d:'medium',q:'كيف يتم
-التمييز في نصوص الحضارة الإسلامية بين المعنى الخاص والعام للفظي (علم)
-و(عالم)؟',o:['باستخدام معجم تاج العروس فقط','بإضافة أداة التعريف دائماً','لا
-يمكن التمييز بينهما مطلقاً','من سياق الكلام بسهولة ويسر'],a:3,e:'التمييز بين
-المعنى الخاص أو العام للفظي علم وعالم يُعرف بسهولة ويسر من سياقه (ص 43).'},\n
-{u:2,d:'medium',q:'من خصائص العلم النظري أنه يتكون من (مجموعة من الحقائق
-المتسقة)، ومعنى (المتسقة):',o:['غير متعارضة ولا يناقض بعضها بعضًا بل يسند بعضها
-بعضًا ويكمله','حقائق تطبيقية تهدف لصناعة الآلات','حقائق متفرقة بلا موضوع
-مشترك','فرضيات ظنية لم يثبت صدقها'],a:0,e:'تعني المتسقة أنها غير متعارضة أو
-متناقضة، بل يسند بعضها الآخر ويكمله في موضوع مشترك بعد التحقق من صدقها
-(ص 45).'},\n {u:2,d:'medium',q:'لماذا اقتصر تعريف الكتاب للعلم (بمعنى علم معين)
-على (العلم النظري) دون العملي؟',o:['لأن العلم العملي لا قيمة له','لأن العلم
-النظري هو أساس العلم العملي','لأن العلم النظري هو نفسه الثقافة','لأن العلوم
-الطبيعية كلها عملية'],a:1,e:'قُصر التعريف على العلم النظري لأن العلم النظري هو
-أساس العلم العملي (ص 44).'},\n {u:2,d:'medium',q:'كيف تنظر الثقافة الإسلامية إلى
-واجب طلب العلم من حيث التكليف والأولويات؟',o:['تجعله فرض عين على الرجال ونافلة
-للنساء','تترك الأولويات للمصالح المادية فقط','تجعل طلبه واجباً دينياً على الذكور
-والإناث، وتؤكد على النافع وترتب الأولويات وفق مقاصد الشريعة وحاجات
-الإنسان','تمنع تعلم العلوم الطبيعية'],a:2,e:'تجعل طلب العلم فريضة على الذكور
-والإناث (فرض عين أو كفاية)، وتؤكد على النافع وترتب الأولويات وفق مقاصد الشريعة
-(ص 46).'},\n {u:2,d:'medium',q:'ما موقف الثقافة الإسلامية من (نشر العلم) بين
-الناس؟',o:['تحصر نشره في طبقة معينة','تمنع نشر العلوم النظرية للعامة','تجيز
-كتمان العلم مقابل المال','تحث على نشره وتعده واجباً دينياً ولا تضع قيوداً عليه
-إلا ما تستدعيه غاية نشر العلم ذاتها'],a:3,e:'تحث على نشر العلم وتؤكد أنه من
-الواجبات الدينية على حملة العلم بلا قيود إلا ما تستدعيه غاية نشره (ص 46).'},\n
-{u:2,d:'medium',q:'ما الضوابط التي تضعها الثقافة الإسلامية على النشاط العلمي في
-مراحله كلها؟',o:['ضوابط دينية هي في الوقت نفسه ضوابط أخلاقية','ضوابط تجارية
-للربح','إلغاء كل الضوابط باسم الحرية','ضوابط سياسية تمنع الابتكار'],a:0,e:'تضع
-الثقافة الإسلامية ضوابط دينية في كل مراحل العلم (الاكتساب والبحث والنشر
-والتعليم) وهي ضوابط أخلاقية أيضاً (ص 46).'},\n {u:2,d:'medium',q:'كيف توسع
-الثقافة الإسلامية حدود العلم النظري أكثر مما هو قائم في الثقافات
-العلمانية؟',o:['ترفض التجربة والملاحظة الحسية','لا تقتصر على معرفة الموجودات
-الحسية بل تتعداها للوصول إلى دلالتها الغيبية على وجود الخالق','تمنع البحث في
-قوانين الطبيعة','تجعل العلم بديلاً عن الدين'],a:1,e:'العلماء العلمانيون يقفون
-عند المحسوس، بينما ترى الثقافة الإسلامية أن العلم يتعداه للوصول إلى دلالته
-الغيبية من وجود الخالق (ص 46).'},\n {u:2,d:'medium',q:'ما أثر التقدم العلمي
-اليوم على الثقافة الإسلامية العامة كما بينه المؤلف؟',o:['حلول العلم محل
-الدين','إبطال الضوابط الأخلاقية للثقافة','إظهار صواب مبادئ وضوابط الثقافة
-الإسلامية وزيادة ثقة أهلها ومعقوليتها لغير المسلمين','إثبات تعارض الوحي مع
-العلم'],a:2,e:'توافق نتائج العلم مع الثقافة الإسلامية دليل على صوابها وصدق
-مصدرها (الوحي الإلهي) ويزيد ثقة أهلها ومعقوليتها للغير (ص 47).'},\n
-{u:2,d:'medium',q:'الخصوصية الفريدة في علاقة الثقافة الإسلامية بالعلم التي لا
-نظير لها في الثقافات الأخرى هي:',o:['أن القرآن يغني عن المختبرات','أن العلم
-النظري يتغير بالأهواء','أن الإسلام يحصر العلم بالذكور','وجود توجيهات وسنن شرعية
-ونبوية (كالطعام والتداوي) تفتح أبوابًا للبحث العلمي وتقود لكشوفات
-جديدة'],a:3,e:'توجيهات الشريعة والسنة في الطعام والتداوي والآداب تطرح تساؤلات
-عملية تفتح أبوابًا للبحث العلمي وكشوفات مبتدأة (ص 47).'},\n
-{u:2,d:'medium',q:'أي مما يلي لا يدخل ضمن مفهوم (الحضارة) وفق التعريف المعتمد في
-الكتاب؟',o:['الجبال والأنهار والدين الإلهي المنزل (الكتاب والسنة)','العلوم
-والفنون النظرية والنظم الإدارية','المباني والجسور والمستشفيات','العلوم الإسلامية
-التي أقامها العلماء بجهدهم كالفقه'],a:0,e:'الحضارة منجزات إنسانية؛ لذا لا يدخل
-فيها ما لم يتدخل الإنسان في إنجازه كالجبال والأنهار، وكذلك الدين الإلهي المنزل
-(ص 49).'},\n {u:2,d:'medium',q:'الأمة التي تستورد المنجزات المادية والتقنية من
-مجتمعات أخرى وتستخدمها دون أن تنتجها:',o:['تُعد في قمة التقدم الحضاري','لا توصف
-بأنها أمة ذات حضارة','تتفوق حضاريًا على المنتجة','تُسمى أمة ذات مدنية
-أصيلة'],a:1,e:'لا توصف الأمة التي تستورد المنجزات المختلفة من مجتمعات أخرى ثم
-تستخدمها بأنها أمة لها حضارة (ص 49).'},\n {u:2,d:'medium',q:'ما طبيعة العلاقة
-بين (العلم) و(الحضارة) كما صورها الكتاب؟',o:['علاقة تضاد وتنافر','العلم نتيجة
-ثانوية غير ضرورية','علاقة جدلية دائرية؛ فالعلم شرط أساسي لقيام الحضارة ومنجز من
-منجزاتها ومساهم في منجزات جديدة','علاقة منقطعة بعد النشأة'],a:2,e:'العلم شرط
-أساسي لقيام الحضارة، ومنجز من منجزاتها، ومساهم في منجزات جديدة في علاقة جدلية
-دائرية (ص 49).'},\n {u:2,d:'medium',q:'العنصر الذي يترك بصماته وطابعه الخاص على
-مخرجات التفاعل الحضاري ويميز حضارة عن أخرى هو:',o:['العلم النظري
-المحايد','الموقع الجغرافي وحده','وفرة الثروات الطبيعية','العقيدة
-السائدة'],a:3,e:'العلم النظري محايد إلى درجة كبيرة، أما العامل الذي يترك بصماته
-وطابعه على الحضارة فهو عنصر العقيدة (ص 49-50).'},\n {u:2,d:'medium',q:'الفرق
-الأساسي بين المعرفة العملية في (الثقافة) والمعرفة العملية في (الحضارة)
-هو:',o:['معرفة الثقافة (تعاملية) غايتها حسن التعامل مع الوجود، ومعرفة الحضارة
-(إنجازية) غايتها تحقيق المنجزات','معرفة الثقافة نظرية ومعرفة الحضارة
-فطرية','معرفة الثقافة للأفراد ومعرفة الحضارة للدول','لا فرق بينهما في
-الغاية'],a:0,e:'معرفة الثقافة تسمى (معرفة عملية تعاملية)، أما المعرفة التي تثمر
-الحضارة فتسمى (معرفة عملية إنجازية) (ص 51).'},\n {u:2,d:'medium',q:'ينحصر تأثير
-(الحضارة) في (الثقافة الإسلامية) في:',o:['تعديل الأحكام الشرعية لتناسب
-التطور','تغيير الشكل أو الصورة التي يتجسد فيها الجانب المعياري دون المساس بالقيم
-الثابتة','إلغاء المرجعية العقدية للثقافة','تغيير هيئات العبادات
-الأساسية'],a:1,e:'يبقى أثر الحضارة محصورًا في جانب الشكل أو الصورة دون التأثير
-في القيم المعيارية الثابتة (ص 52).'},\n {u:2,d:'hard',q:'أي المعادلات الآتية
-تلخص قيام الحضارة وفق ما ورد في صفحة 50؟',o:['المال المستورد + الترف ←
-الحضارة','البداوة + العادات الموروثة ← الحضارة','العقيدة الإيجابية + العلم +
-(عوامل أخرى) ← الحضارة','الدين المنزل + الجبال والأنهار ← الحضارة'],a:2,e:'لخص
-الكتاب عوامل قيام الحضارة بالمعادلة: العقيدة الإيجابية + العلم + (عوامل أخرى) ←
-الحضارة (ص 50).'},\n {u:2,d:'hard',q:'ما موقف المؤلف من مسألة (حياد العلم
-النظري) في التفاعل الحضاري؟',o:['محايد حياداً مطلقاً بنسبة 100% دائماً','غير
-محايد مطلقاً في القضايا الرياضية','العلم والعقيدة شيء واحد','العلم النظري محايد
-إلى درجة كبيرة جداً وليس حياداً مطلقاً'],a:3,e:'العلم النظري محايد إلى درجة
-كبيرة جداً (وليس حياداً مطلقاً) بالنسبة للمجتمعات والأعراق والعقائد
-(ص 49-50).'},\n {u:2,d:'hard',q:'هل يمكن لمجتمع أن يمتلك معرفة عملية تعاملية
-ملائمة دون أن يمتلك معرفة عملية إنجازية كافية؟',o:['نعم، لاختلاف غاية كل
-منهما','لا، هما متلازمتان لا تنفكان أبداً','لا، لأن الإنجاز شرط الثقافة','نعم،
-في المجتمعات الصناعية فقط'],a:0,e:'لتفاوت غاية كل منهما يمكن أن تكون لدينا معرفة
-تعاملية ملائمة دون معرفة إنجازية كافية لتحقيق الإنجازات (ص 51-52).'},\n
-{u:2,d:'hard',q:'ما الميزة الخاصة للحضارة الإسلامية المستمدة من خصائص الثقافة
-الإسلامية في نهاية الفصل الثاني؟',o:['تجعل الإنسان وسيلة لخدمة الآلات','أنها
-تعكس خصائصها وأبرزها الإنسانية، فتنظر للإنسان كغاية في ذاته لا وسيلة وتنبذ ما
-يضره','تقصر الإنجاز على البناء المادي الضخم','تبيح استغلال الشعوب
-الضعيفة'],a:1,e:'الحضارة الإسلامية تعكس خصيصة الإنسانية، فالإنسان غاية في ذاته
-فيُقصد بكل منجز خيره ويُنبذ ما يضره (ص 52).'},\n {u:2,d:'hard',q:'إدخال نظام
-توثيق إلكتروني حديث لتسهيل معاملة الزكاة أو البيع وفق الشروط الشرعية
-يجسد:',o:['تغيير الجانب المعياري وإلغاء الزكاة','تطابق الثقافة مع
-العلمانية','تأثير الحضارة في تغيير الشكل أو الصورة التي يتجسد فيها الجانب
-المعياري دون المساس بالقيم','انتقال الزكاة من الثبات إلى التبدل'],a:2,e:'تغير
-الشكل أو الصورة مع ثبات القيمة المعيارية والحكم الشرعي هو أثر الحضارة المنضبط في
-الثقافة (ص 42، 52).'},\n {u:2,d:'hard',q:'أي من الحالات الآتية يمثل حكماً خاطئاً
-عن العلاقة بين الثقافة الإسلامية والدين الإسلامي؟',o:['يشتركان في الغاية
-العملية','الجانب المعياري مستمد من الشريعة','العلاقة العضوية بينهما لا نظير
-لها','الثقافة الإسلامية والدين الإسلامي متطابقان في كل تفصيل ومضمون في جميع
-الأحوال'],a:3,e:'الاشتراك في الغاية لا يعني التشابه في المضمون أو التطابق في كل
-الأحوال؛ فهما أمران مختلفان (ص 41).'},\n {u:2,d:'hard',q:'في أي العناصر الستة
-للدين يختلف الإسلام عن المانوية والمزدكية (بوصفهما دينين بشريين)؟',o:['في واضع
-الدين (الله في الإسلام والإنسان في البشري)، وفي انفصال المبلغ الأول عن الواضع في
-الإلهي','في غياب العقيدة عن الأديان البشرية','في عدم وجود أتباع للأديان
-البشرية','في افتقار الإسلام إلى الشريعة'],a:0,e:'واضع الدين الإلهي هو الله
-والمبلغ الأول رسول مبلغ؛ بينما في البشري الواضع إنسان وقد يكون هو المبلغ الأول
-(ص 39-40).'},\n {u:2,d:'hard',q:'لو قارنا بين مصطلحي (الحضارة) و(المدنية) عند
-المؤلف، فأي عبارة أدق؟',o:['كل حضارة مدنية وليست كل مدنية حضارة','كل مدنية
-حضارة، وليست كل حضارة مدنية (فالحضارة تشمل المادي وغير المادي)','المدنية أوسع من
-الحضارة','المدنية تقتصر على القرى والبادية'],a:1,e:'المدنية هي الجانب المادي من
-الحضارة فقط، فهي شطر أو جزء الحضارة (ص 48، 50).'},\n {u:2,d:'hard',q:'إذا اكتشف
-باحث حقيقة نظرية واحدة أو حقيقتين فقط، فهل تشكلان علماً مستقلاً وفق خصائص
-العلم؟',o:['نعم، الحقيقة الواحدة تكفي','نعم، إذا كانت في العلوم الصورية','لا،
-لأن العلم يتطلب تكاثر الحقائق العلمية وازديادها لتشكل نسقاً','لا، إلا إذا كانت
-تطبيقية'],a:2,e:'لا يكون علماً إلا بمجموعة من الحقائق العلمية تتكاثر وتزداد
-فتشكل نسقاً (ص 45).'},\n {u:2,d:'hard',q:'العلوم التي تتخذ الرياضة البحتة وحساب
-التفاضل والتكامل موضوعاً لها تُسمى في التقسيم المعاصر:',o:['العلوم
-الاجتماعية','العلوم الطبيعية التجريبية','العلوم الشرعية','العلوم
-الصورية'],a:3,e:'العلوم الصورية تضم الرياضيات البحتة (حساب وهندسة وجبر وتفاضل
-وتكامل) والمنطق بفرعيه (ص 44).'},\n {u:2,d:'hard',q:'استشهد الكتاب ببيت المتنبي:
-(حسن الحضارة مجلوب بتطرية / وفي البداوة حسن غير مجلوب) لإبراز:',o:['المقابلة
-اللغوية بين الحضارة والبداوة','التفوق الصناعي الأوروبي','تعريف المدنية عند علماء
-الاجتماع','نقد الترف الاستهلاكي'],a:0,e:'استُشهد ببيت المتنبي شاهداً على مقابلة
-العرب قديماً في اللغة بين الحضارة والبداوة (ص 48).'},\n {u:2,d:'hard',q:'أين
-يكمن الخلل في نظرة العلمانيين المعاصرين إلى العلم كما أشار المؤلف في
-صفحة 47؟',o:['في اعتماد المنهج التجريبي','في اعتقادهم أن العلم وحده قادر على حل
-جميع مشكلات الإنسان ويمكن أن يحل محل الدين','في تدريس الرياضيات في الجامعات','في
-نشر الكتب العلمية'],a:1,e:'يرى العلمانيون أن العلم بنتائجه الباهرة يحل جميع
-مشكلات الإنسان ويمكن أن يحل محل الدين (ص 47).'},\n {u:2,d:'hard',q:'ما المقصود
-بـ(العنصر السادس) من عناصر الدين وهو (أتباع الدين أو متلقوه)؟',o:['علماء الكلام
-والفلاسفة فقط','الملائكة المكلفون بالوحي','الناس الذين وُجّه إليهم الدين وقبلوه
-وصاروا يمارسونه؛ فبدونهم لا يكتمل كيان الدين مهما قل عددهم','الحكام والملوك
-فقط'],a:2,e:'أتباع الدين هم الناس الذين وجه إليهم الدين وقبلوه ومارسوه، وبدونهم
-مهما كان عددهم ضئيلاً لا يكتمل كيان الدين (ص 41).'},\n\n // ====================
-الفصل الثالث (50 سؤال: 15 سهل، 22 متوسط، 13 صعب | ص 53–108)
-====================\n {u:3,d:'easy',q:'حدد الكتاب مصادر الثقافة الإسلامية في
-أربعة مصادر رئيسة؛ ليس منها:',o:['الأعراف الجاهلية المخالفة للشرع','الشريعة
-الإسلامية','تراث الحضارة الإسلامية','الإنجازات الثقافية المحايدة للحضارات الأخرى
-والعلم'],a:0,e:'المصادر الأربعة هي: الشريعة، وتراث الحضارة الإسلامية، والإنجازات
-المحايدة للحضارات الأخرى، والعلم (ص 53).'},\n {u:3,d:'easy',q:'مصادر الشريعة
-الإسلامية الأربعة مرتبة هي:',o:['القرآن الكريم، الإجماع، القياس، العرف','القرآن
-الكريم، السنة النبوية، الإجماع، الاجتهاد','السنة، القرآن، الاستحسان، المصالح
-المرسلة','القرآن، التراث، العلم، الإجماع'],a:1,e:'مصادر الشريعة الإسلامية هي:
-القرآن الكريم، والسنة النبوية، والإجماع، والاجتهاد (ص 53).'},\n
-{u:3,d:'easy',q:'ابتدأ نزول القرآن الكريم منجمًا في (...) واختتم في
-(...):',o:['ليلة الإسراء / فتح مكة','شهر محرم / الهجرة','ليلة القدر في رمضان /
-يوم عرفة في حجة الوداع','ليلة النصف من شعبان / غزوة بدر'],a:2,e:'ابتدأ نزول
-القرآن منجمًا في ليلة القدر في رمضان، واختتم في يوم عرفة في حجة الوداع
-(ص 55).'},\n {u:3,d:'easy',q:'منكر نص من نصوص القرآن الكريم قطعية الثبوت
-يُعد:',o:['مبتدعًا غير كافر','مجتهدًا مأجورًا','مخطئًا
-معذورًا','كافرًا'],a:3,e:'نصوص القرآن قطعية الثبوت ومنكر نص منها يعد كافرًا
-(ص 55).'},\n {u:3,d:'easy',q:'تُقسم الأحكام في القرآن الكريم إلى ثلاث مجموعات
-رئيسة؛ يختص (علم الفقه وأصوله) بدراسة:',o:['الأحكام العملية المتعلقة بأقوال
-وأفعال المكلفين','أحكام العقيدة والإيمان بالله','الجانب الأخلاقي وتهذيب
-النفس','أخبار الأمم السابقة'],a:0,e:'العقيدة محلها علم التوحيد، والأخلاق علم
-الأخلاق أو التصوف، والأحكام العملية يدرسها علم الفقه وأصوله (ص 56).'},\n
-{u:3,d:'easy',q:'السنة النبوية في الاصطلاح هي:',o:['الطريقة المعتادة لغة','ما
-صدر عن النبي ﷺ غير القرآن من قول أو فعل أو تقرير','أقوال الصحابة والتابعين','كل
-ما أجمع عليه المجتهدون'],a:1,e:'السنة اصطلاحًا: ما صدر عن النبي ﷺ غير القرآن من
-قول أو فعل أو تقرير (ص 59).'},\n {u:3,d:'easy',q:'الإجماع في الاصطلاح
-هو:',o:['اتفاق عامة المسلمين إلى قيام الساعة','اتفاق أهل المدينة على مسألة
-لغوية','اتفاق مجتهدي الأمة الإسلامية في عصر من العصور على حكم حادثة شرعية بعد
-وفاة النبي ﷺ','اتفاق الصحابة في حياة النبي ﷺ'],a:2,e:'الإجماع اصطلاحًا: اتفاق
-مجتهدي الأمة الإسلامية في عصر من العصور على حكم حادثة شرعية بعد وفاة النبي ﷺ
-(ص 63).'},\n {u:3,d:'easy',q:'الاجتهاد في اصطلاح الأصوليين كما عرّفه الشوكاني
-هو:',o:['حفظ المسائل الفقهية واستظهارها','استعلام الأحكام من المفتين','بذل الجهد
-في المسائل اللغوية','بذل الوسع في نيل حكم شرعي عملي بطريق
-الاستنباط'],a:3,e:'عرّف الشوكاني الاجتهاد بأنه: بذل الوسع في نيل حكم شرعي عملي
-بطريق الاستنباط (ص 66).'},\n {u:3,d:'easy',q:'الضروريات الخمس التي تتوقف عليها
-حياة الناس وقيام المجتمع واستقراره هي:',o:['الدين، والنفس، والعقل، والنسل،
-والمال','الدين، والوطن، والحرية، والعدل، والمساواة','العلم، والعمل، والصحة،
-والأمن، والأسرة','الصلاة، والزكاة، والصوم، والحج، والجهاد'],a:0,e:'الضروريات
-الخمس هي: الدين، والنفس، والعقل، والنسل، والمال (ص 75).'},\n
-{u:3,d:'easy',q:'تنقسم منجزات (تراث الحضارة الإسلامية) إلى قسمين
-كبيرين:',o:['وحي معصوم واجتهادات بشرية','منجزات مادية (كالقلاع والجسور) ومنجزات
-غير مادية (كالعلوم والنظم والقيم)','تراث عربي وتراث أعجمي','علوم نقلية وعلوم
-تجريبية'],a:1,e:'ينقسم تراث الحضارة الإسلامية إلى منجزات مادية ومنجزات غير مادية
-(ص 78-79).'},\n {u:3,d:'easy',q:'الخاصية الكبرى للثقافة الإسلامية التي تتفرع
-عنها وتلزم عنها منطقيًا بقية الخصائص هي:',o:['الوسطية','الواقعية','إلهية
-المصدر','الشمول'],a:2,e:'ميزة الثقافة الإسلامية الكبرى أنها إلهية المصدر، وبقية
-الخصائص نتيجة منطقية تلزمها (ص 88-89).'},\n {u:3,d:'easy',q:'المقصد العام
-للشريعة الإسلامية هو جلب المصالح ودفع المفاسد، وترجع مقاصدها إلى ثلاثة مستويات
-مرتبة:',o:['التحسينيات، الحاجيات، الضروريات','الواجبات، المندوبات،
-المباحات','العقائد، العبادات، المعاملات','الضروريات، ثم الحاجيات، ثم
-التحسينيات'],a:3,e:'المقاصد ثلاثة مستويات مرتبة: الضروريات، فالحاجيات،
-فالتحسينيات (ص 74).'},\n {u:3,d:'easy',q:'الصحابي الذي عبّر عن إيجابية الثقافة
-الإسلامية أمام قائد الفرس (رستم) بقوله (إن الله ابتعثنا لنخرج من شاء من عبادة
-العباد إلى عبادة رب العباد...) هو:',o:['رِبْعي بن عامر رضي الله عنه','سعد بن أبي
-وقاص رضي الله عنه','خالد بن الوليد رضي الله عنه','أبو عبيدة بن الجراح رضي الله
-عنه'],a:0,e:'تتمثل الإيجابية في قول ربعي بن عامر رضي الله عنه عندما سأله رستم:
-من ابتعثكم؟ (ص 99).'},\n {u:3,d:'easy',q:'يُعرّف (النسخ) في اصطلاح الأصوليين
-بأنه:',o:['تخصيص النص العام ببعض أفراده','رفع الحكم الشرعي بدليل شرعي متأخر
-عنه','بيان المعنى المجمل في القرآن بالسنة','تأجيل العمل بالحكم
-الشرعي'],a:1,e:'النسخ يعني رفع الحكم الشرعي بدليل شرعي متأخر عنه، والمتأخر ناسخ
-والأول منسوخ (ص 68).'},\n {u:3,d:'easy',q:'من شروط المجتهد (العلم بالقرآن
-الكريم)، ويُشترط فيه:',o:['حفظ القرآن بالقراءات العشر المتواترة','معرفة التفسير
-الباطني فقط','الاطلاع على معاني القرآن كله ومعرفة مواضع آيات الأحكام دون اشتراط
-حفظها كلها','الاعتماد على الترجمات المعاصرة'],a:2,e:'يكفي المجتهد معرفة معاني
-القرآن ومواضع آيات الأحكام ليرجع إليها وقت الحاجة ولا يُشترط حفظها (ص 67).'},\n
-{u:3,d:'medium',q:'يخرج بقيد (المنقول إلينا نقلًا متواترًا) في تعريف القرآن
-الكريم:',o:['القراءات الشاذة والأحاديث القدسية','السور المدنية الطويلة','الآيات
-المنسوخة حكمًا','المعوذتان وسورة الفاتحة'],a:0,e:'يخرج بقيد التواتر والكتابة في
-المصاحف الأحاديث القدسية والقراءات الشاذة المنقولة بالآحاد كقراءة ابن مسعود
-(متتابعات) (ص 54).'},\n {u:3,d:'medium',q:'لماذا لا تُعد الأحاديث النبوية
-المتواترة جزءًا من القرآن الكريم؟',o:['لأنها غير صحيحة السند','لعدم إدراجها بين
-دفتي المصحف الشريف المبدوء بالفاتحة والمختوم بالناس','لأنها منقولة بالمعنى
-فقط','لأنها خاصة بعصر الصحابة'],a:1,e:'الأحاديث النبوية ولو كانت متواترة لا
-تعتبر من القرآن لعدم إدراجها بين دفتي المصحف الشريف (ص 54).'},\n
-{u:3,d:'medium',q:'تدرّج القرآن الكريم في تحدي المشركين للإتيان بمثله، فكان
-الترتيب:',o:['بسورة واحدة، ثم بعشر سور، ثم بمثله','بآية واحدة، ثم بسورة، ثم
-بجزء','بمثله كله، ثم بعشر سور، ثم بسورة واحدة','بمثله، ثم بنصفه، ثم
-بآية'],a:2,e:'تحدى القرآن المشركين أن يأتوا بمثله فعجزوا، ثم بعشر سور فعجزوا، ثم
-بسورة واحدة فعجزوا (ص 55).'},\n {u:3,d:'medium',q:'الضابط المعتمد للتمييز بين
-القرآن المكي والمدني هو:',o:['ما نزل في مكة مكي مطلقًا ولو بعد الهجرة','ما كان
-قصيرًا مكي وما كان طويلاً مدني','ما خوطب فيه المؤمنون مكي','ما نزل قبل الهجرة
-مكي، وما نزل بعد الهجرة مدني'],a:3,e:'المكي ما نزل بمكة أو قبل هجرة النبي ﷺ،
-والمدني ما نزل بالمدينة أو بعد الهجرة (ص 55).'},\n {u:3,d:'medium',q:'من وجوه
-إعجاز القرآن إخباره بوقائع مستقبلية حدثت فعلًا، ومثاله في الكتاب:',o:['انتصار
-الروم على الفرس في بضع سنين في سورة الروم','قصة أصحاب الفيل','خلق السماوات
-والأرض من رتق','قصة قوم عاد وثمود'],a:0,e:'من أمثلة الإخبار بوقائع المستقبل قوله
-تعالى: ﴿الم * غُلِبَتِ الرُّومُ... سَيَغْلِبُونَ * فِي بِضْعِ سِنِينَ﴾
-(ص 56).'},\n {u:3,d:'medium',q:'الحكمة من مجيء أغلب أحكام القرآن الكريم بصورة
-(إجمالية) على شكل قواعد ومبادئ عامة هي:',o:['لتكون غامضة للعامة','أن تتسع لما
-يستجد من الحوادث في كل العصور فلا تضيق بشيء أبدًا','لترك الحرية للناس في التشريع
-بلا ضابط','لأن اللغة لا تتسع للتفصيل'],a:1,e:'مجيء الأحكام على شكل قواعد ومبادئ
-عامة يجعلها تتسع لما يستجد من الحوادث فلا تضيق بشيء أبدًا (ص 59).'},\n
-{u:3,d:'medium',q:'من الأحكام القليلة التي جاءت (مفصلة) في القرآن
-الكريم:',o:['عدد ركعات الصلوات الخمس','مقادير زكاة الأنعام وعروض
-التجارة','مقادير المواريث وعقوبات الحدود واللعان والمحرمات من النساء','مناسك
-الحج بالتفصيل'],a:2,e:'الأحكام التفصيلية قليلة في القرآن، ومنها مقادير المواريث
-وعقوبات الحدود وكيفية الطلاق واللعان والمحرمات من النساء (ص 55، 59).'},\n
-{u:3,d:'medium',q:'تنقسم السنة المتصلة السند عند علماء الأصول إلى ثلاثة أقسام؛
-ما رواه واحد أو اثنان ثم اشتهر في عصر التابعين يُسمى:',o:['سنة متواترة','سنة
-آحاد','سنة مقطوعة','سنة مشهورة'],a:3,e:'السنة المشهورة هي ما رواها واحد أو اثنان
-ثم اشتهرت في عصر التابعين وتابعي التابعين (ص 60).'},\n {u:3,d:'medium',q:'أي قسم
-من السنة النبوية التالية لا يُعتبر تشريعًا ملزمًا للأمة؟',o:['ما صدر عنه ﷺ
-بمقتضى خبرته البشرية في الشؤون الدنيوية أو ما اختص به','إقراره ﷺ لاجتهاد الصحابة
-في حضرته','أقواله المقصود بها توجيه الأمة','بيانه لمجمل القرآن كأركان
-الصلاة'],a:0,e:'ما صدر عنه ﷺ باعتباره إنسانًا أو بخبرته الدنيوية لا يعتبر
-تشريعًا، وكذا ما اختص به كالوصال في الصوم والزواج بأكثر من أربع (ص 61).'},\n
-{u:3,d:'medium',q:'مثال قيام السنة النبوية بـ (تخصيص عام القرآن) هو:',o:['تقييد
-قطع يد السارق بالرسغ','استثناء ميتة البحر من عموم تحريم الميتة في القرآن','تفسير
-الظلم بالشرك في سورة الأنعام','تحريم الجمع بين المرأة وعمتها'],a:1,e:'خصصت السنة
-عموم ﴿حُرِّمَتْ عَلَيْكُمُ الْمَيْتَةُ﴾ بقوله ﷺ في البحر: (هو الطهور ماؤه الحل
-ميتته) (ص 62).'},\n {u:3,d:'medium',q:'لماذا قُيّد تعريف الإجماع بـ (بعد وفاة
-النبي ﷺ)؟',o:['لأن الاجتهاد كان محرمًا في زمنه','لأن الصحابة لم يكونوا
-مجتهدين','لأنه ﷺ هو المشرع وعصره عصر الوحي فلا حاجة للإجماع','لأن الإجماع يشترط
-تدوين المذاهب'],a:2,e:'لا إجماع في عصره عليه الصلاة والسلام لأنه المشرع وعصره
-عصر الوحي (ص 63).'},\n {u:3,d:'medium',q:'رفض بعض العلماء حجية (الإجماع السكوتي)
-خشية:',o:['عدم وجود مستند له من اللغة','أنه يقتصر على العقيدة فقط','أنه لم يقع
-في عصر الصحابة','أن يكون سكوت بعض المجتهدين بدافع الخوف أو التقية أو الخجل لا
-الموافقة'],a:3,e:'رفض بعض العلماء الإجماع السكوتي خشية أن يكون السكوت تقية أو
-خوفًا أو خجلاً (ص 64).'},\n {u:3,d:'مثال الإجماع المبني على مستند من (السنة
-النبوية) كما ورد في الكتاب:',o:['إعطاء الجدة السدس في الميراث','حرمة نكاح الجدات
-وبنات الأولاد','تحريم الخمر والميسر','وجوب صلاة الوتر'],a:0,e:'الإجماع على إعطاء
-الجدة السدس في الميراث مستنده السنة، أما حرمة نكاح الجدات وبنات الأولاد فمستنده
-القرآن (ص 65).'},\n {u:3,d:'النهي الوارد في حديث: (تسموا باسمي ولا تكنوا بكنيتي)
-يُفهم وجهه الصحيح من خلال معرفة:',o:['الناسخ والمنسوخ في القرآن','سبب ورود
-الحديث (نداء رجل لآخر في السوق يا أبا القاسم)','الإجماع السكوتي للصحابة','علم
-المنطق الصوري'],a:1,e:'بيّن سبب الورود أن النهي جاء لواقعة محددة في السوق حين
-نادى رجل أبا القاسم قاصدًا غير النبي ﷺ (ص 68).'},\n {u:3,d:'المجال الذي يجري فيه
-الاجتهاد الشرعي هو:',o:['الأحكام المستندة لدليل قطعي كوجوب الصلاة','أركان
-الإيمان الستة','الأحكام المستندة إلى دليل ظني (ثبوتًا أو دلالة) والمسائل التي لم
-يرد فيها نص','القصص القرآني وأخبار الأمم السابقة'],a:2,e:'لا اجتهاد في القطعيات
-كوجوب الصلاة وحرمة الزنا، وإنما يجري في الأدلة الظنية وفيما لا نص فيه
-(ص 70).'},\n {u:3,d:'تحريم القذف ومعاقبة القاذف، وتحريم الإجهاض، وتشريع الزواج،
-تندرج تحت حفظ مقصد ضروري هو:',o:['حفظ العقل','حفظ المال','حفظ النفس','حفظ
-النسل'],a:3,e:'شرع الإسلام لحفظ النسل الزواج، وحرّم الزنا والقذف والإجهاض ومنع
-الحمل إلا للضرورة (ص 75).'},\n {u:3,d:'إباحة عقود السَّلَم والاستصناع والإجارات،
-وقاعدة درء الحدود بالشبهات، والدية على العاقلة، أمثلة
-على:',o:['الحاجيات','الضروريات','التحسينيات','مكملات التحسينيات'],a:0,e:'هذه
-الأمثلة من الحاجيات التي شرعت لرفع الحرج والمشقة في المعاملات والعقوبات
-(ص 76).'},\n {u:3,d:'تشريع الأذان وصلاة الجماعة، والكفاءة بين الزوجين، وتحريم
-الخلوة بالأجنبية وشرب القليل من الخمر، أمثلة على:',o:['مكملات الحاجيات','مكملات
-الضروريات','مكملات التحسينيات','الحاجيات الأصلية'],a:1,e:'هذه الأمثلة تندرج تحت
-(مكملات الضروريات) في حفظ الدين والنسل والعقل (ص 77).'},\n {u:3,d:'موقف الإسلام
-عند بعثة النبي ﷺ من الممارسات الثقافية التي كانت سائدة في الجاهلية تمثّل
-في:',o:['هدم كل ما كان عند العرب دون استثناء','إبقاء جميع الأعراف الجاهلية كما
-هي','تصحيح الخاطئ، وتعليم الجديد النافع، وإقرار ما فيه خير ومنفعة كالكرم وبناء
-المنازل','الاقتصار على العبادات فقط'],a:2,e:'صحح الإسلام الخاطئ، وعلّم أمورًا
-جديدة، وأقرّ ما فيه خير ومنفعة كإكرام الضيف وبناء المنازل والتداوي عند أهل
-الاختصاص (ص 83-84).'},\n {u:3,d:'نقل الخليفة عمر بن الخطاب رضي الله عنه (نظام
-الدواوين) من الحضارتين الفارسية والرومية، وقام بـ:',o:['تطبيقه بالفارسية
-والرومية كما هو','رفضه بدعوى أنه من غير المسلمين','قصره على أمور المساجد
-فقط','تعديله وتعريبه لينسجم مع الثقافة الإسلامية ولا يبدو غريبًا
-عنها'],a:3,e:'نقل عمر نظام الدواوين للمصلحة، وأجرى عليه تعديلات منها تعريبه
-لينسجم مع المجتمع الإسلامي (ص 84، 86).'},\n {u:3,d:'الفرق الجوهري بين الاستفادة
-من (الإنجازات المحايدة للحضارات الأخرى) وبين (الغزو الثقافي) هو:',o:['الاستفادة
-تتم باختيار واعٍ ونظر علمي وشرعي على قدر الحاجة، بينما الغزو يُفرض بنية الهيمنة
-وتكريس التبعية','الاستفادة تشمل العقائد والغزو يشمل الآلات','لا فرق بينهما
-فكلاهما تقليد','الاستفادة بالإكراه والغزو بالاختيار'],a:0,e:'الأخذ المنضبط يقوم
-على النظر العلمي والشرعي وعلى قدر الحاجة، بخلاف الغزو الثقافي الذي يُفرض بنية
-الهيمنة والسيطرة (ص 85-86).'},\n {u:3,d:'تتجلى خاصية (الإنسانية) في الثقافة
-الإسلامية في:',o:['تفضيل الجنس العربي على سائر الأجناس','مساواة البشر في أصل
-الخلقة والتفاضل بالتقوى وتكميل الوجود الإنساني بلا عنصرية','تقسيم المجتمع إلى
-طبقات مغلقة','قصر الرسالة الإسلامية على العرب'],a:1,e:'الثقافة الإسلامية إنسانية
-لأنها تلائم كل إنسان بلا عنصرية (التفاضل بالتقوى) وتهدف لتكميل الوجود الإنساني
-(ص 90-93).'},\n {u:3,d:'في غزوة بدر استشار النبي ﷺ أصحابه في الأسرى فمال لرأي
-أبي بكر بأخذ الفداء، فنزل الوحي:',o:['مبطلًا لحكم النبي ﷺ وموجبًا رد
-الفداء','مؤيدًا لرأي أبي بكر ومعاتبًا لعمر','مؤيدًا لرأي عمر بن الخطاب دون أن
-ينقض ما حكم به النبي ﷺ باجتهاده','آمرًا باسترقاق الأسرى'],a:2,e:'نزل الوحي
-مؤيدًا لرأي عمر (الأنفال 67)، إلا أن الآية لم تتعرض لنقض ما حكم به رسول الله ﷺ
-بناء على اجتهاده (ص 71).'},\n {u:3,d:'في قضية الزُبية (حفرة الأسد) باليمن، قضى
-علي بن أبي طالب رضي الله عنه للأول بـ (...) وللرابع بـ (...):',o:['الدية كاملة
-للأول / ربع الدية للرابع','نصف الدية للأول / ثلث الدية للرابع','إهدار دم الأربعة
-جميعًا','ربع الدية للأول / الدية كاملة للرابع'],a:3,e:'قضى علي للأول بربع الدية
-وللثاني ثلثها وللثالث نصفها وللرابع الدية كاملة، وأقر النبي ﷺ قضاءه
-(ص 72-73).'},\n {u:3,d:'لماذا أخرج المؤلف (الدين الإسلامي المتمثل في الكتاب
-والسنة) من دائرة (تراث الحضارة الإسلامية)؟',o:['لأن التراث منجز إنساني يقبل
-النقد والخطأ والصواب، أما الكتاب والسنة فوحي إلهي مقدس','لأن الكتاب والسنة لم
-يؤثرا في الحضارة','لأن التراث يقتصر على الجانب المادي','لأن العلوم الشرعية نشأت
-حديثًا'],a:0,e:'الإسلام (الكتاب والسنة) وضع إلهي مقدس لا يتطرق إليه الحديث عن
-سلبيات، بخلاف العلوم الإسلامية التي بناها العلماء فهي من التراث الإنساني
-(ص 79-80).'},\n {u:3,d:'يُشترط للأخذ من (تراث الحضارة الإسلامية) لجعله جزءًا من
-ثقافتنا الحاضرة ثلاثة شروط؛ ليس منها:',o:['أن يكون نافعًا في تلبية حاجة
-راهنة','تطبيقه بشكله القديم دون أي تعديل مهما تغير الزمان','ألا يتعارض مع أصل أو
-حكم شرعي ثابت','أن يُجرى على شكله وصورته تعديل إن لزم'],a:1,e:'الشروط الثلاثة
-(ص 81): النفع في تلبية حاجة راهنة، وعدم التعارض مع الشريعة، وتعديل الشكل والصورة
-إن كان لازمًا.'},\n {u:3,d:'ضرب المؤلف مثالين عمليين للاستفادة المعاصرة من تراث
-الحضارة الإسلامية، وهما:',o:['استخدام السيف والرمح، والسفر بالإبل','نظام
-الإقطاع، والكتابة على الرقاع','فن العمارة الإسلامية، وعلاج الأمراض النفسية لدى
-أطباء المسلمين القدامى','علم الفلك البطلمي، والكيمياء القديمة'],a:2,e:'المثالان
-في الكتاب (ص 81-82) هما: فن العمارة الإسلامية، وطرق علاج الأمراض النفسية عند
-أطباء المسلمين القدامى.'},\n {u:3,d:'لماذا عجز الإنسان وحده عن إقامة (التوازن)
-الكامل في تعامله مع أجزاء الكون، وانفرد الله بإقامته؟',o:['لأن الإنسان يفتقر
-للعقل','لأن الكون يسير بالصدفة','لأن الشرائع لم تتعرض للدنيا','لأن إقامة التوازن
-تتطلب التجرد التام عن الهوى والعلم الكامل بحقيقة أجزاء الكون، وكلاهما لا يتوفران
-للإنسان'],a:3,e:'إقامة التوازن تشترط التجرد عن الهوى والعلم التام بحقيقة أجزاء
-الكون، وكلاهما غير متوفر بالإنسان بل بالله الخبير (ص 95-96).'},\n {u:3,d:'يتجلى
-التوازن في الثقافة الإسلامية في باب (التحليل والتحريم) بأن الإسلام جاء وسطًا
-بين:',o:['اليهودية التي أسرفت في التحريم، والمسيحية التي أسرفت في
-الإباحة','البرهمية والبوذية','الرأسمالية والشيوعية','أهل الظاهر وأهل
-الرأي'],a:0,e:'توسط الإسلام بين تشدد اليهودية وإسراف المسيحية التي أحلت كثيرًا
-كالخنزير والربا، وجعل التحليل والتحريم حقًا لله وحده (ص 96).'},\n {u:3,d:'تختلف
-الأخلاق في الثقافة الإسلامية عن الأخلاق في المذهب (الميكافيللي) في أن أخلاق
-الإسلام:',o:['تعتمد مبدأ (الغاية تبرر الوسيلة)','ثابتة واحدة في جميع الأحوال مع
-القريب والبعيد والصديق والعدو وليست نفعية وقتية','تتغير بحسب المصلحة
-السياسية','تبيح الظلم للأعداء والعدل للأقارب'],a:1,e:'الأخلاق في الإسلام ليست
-نفعية وقتية ولا ميكافيللية، بل هي واحدة مع الأقارب والأباعد والأصحاب والأعداء
-(ص 103).'},\n {u:3,d:'ماذا يحدث إذا اختل التوازن بين الثبات والمرونة فأصبح
-(الثابت مرنًا) أو (المرن ثابتًا)؟',o:['كلاهما يؤدي لتجديد الدين','إذا أصبح
-الثابت مرنًا أدى للتشدد','إذا أصبح الثابت مرنًا أدى للنفاق والمداهنة، وإذا أصبح
-المرن ثابتًا أدى للتشدد والتطرف','لا يترتب أي أثر سلبي'],a:2,e:'إذا أصبح الثابت
-مرنًا أدى إلى النفاق والمداهنة، وإذا أصبح المرن ثابتًا أدى إلى التشدد والتطرف،
-وكلاهما نهى عنه الإسلام (ص 107).'},\n {u:3,d:'الأداة الرئيسة للإسلام والثقافة
-الإسلامية لتحقيق (المرونة) واستيعاب المستجدات دون تحريف هي:',o:['إلغاء النصوص
-القطعية','المداهنة والتنازل عن الثوابت','إغلاق باب البحث الفقهي','الاجتهاد
-المنضبط بالقواعد الكلية ومقاصد الشريعة'],a:3,e:'الاجتهاد هو أداة الإسلام
-والثقافة الإسلامية لتحقيق المرونة وجعل الإسلام صالحًا لكل زمان ومكان دون تغيير
-أو تحريف (ص 108).'},\n {u:3,d:'استشهد الكتاب بموقف أبي بكر الصديق في محاربة
-المرتدين (والله لو منعوني عقالاً كانوا يؤدونه لرسول الله لقاتلتهم على منعه)
-شاهداً على:',o:['ثبات أسس العبادات وعدم قابليتها للمرونة أو التبديل','مرونة
-العقيدة في السياسة','جواز التنازل عن الزكاة لتأليف القلوب','إباحة الاجتهاد في
-أركان الإسلام'],a:0,e:'أدرك أبو بكر ثبات العبادات في أصولها وهيئاتها وأوقاتها
-فقاتل مانعي الزكاة ثباتاً على ذلك (ص 106).'},\n {u:3,d:'ما الدليل على عدم جواز
-تأسيس شركة في بلد عربي مسلم تكون كل معاملاتها وسجلاتها ومحادثاتها بلغة
-أجنبية؟',o:['تحريم تعلم اللغات الأجنبية','القاعدة الرابعة من قواعد الأخذ من
-الإنجازات المحايدة التي توجب التعديل والتعريب لينسجم النظام مع المجتمع
-الإسلامي','أن النظام المالي كله حرام','أن الإنجازات المحايدة لا يجوز
-تعديلها'],a:1,e:'ليس صواباً أن تكون معاملات شركة في بلد عربي مسلم بلغة أجنبية
-بحجة استيراد النظام الإداري، بل يجب تعريبها وتعديلها كفعل عمر في الدواوين
-(ص 85-86).'},\n {u:3,d:'موقف الثقافة الإسلامية من نتائج (العلم) الحديث (كالقنابل
-النووية مقابل تقنيات علاج العقم كأطفال الأنابيب) هو:',o:['رفض كل تطبيقات العلم
-الحديث','قبول كل نتائج العلم بلا ضوابط','الأخذ بما فيه خير للإنسان وينسجم مع
-مقاصد الشريعة وضوابطها، ورفض ما يضر أو يخالف الشرع','الاقتصار على العلم
-النظري'],a:2,e:'ينبغي أن يكون تطبيق العلم مهتديًا بهدي الله؛ فتؤخذ التقنيات
-النافعة المنضبطة بالشرع كعلاج العقم وتُرفض الأسلحة المدمرة (ص 87-88).'},\n\n //
-==================== الفصل الرابع (50 سؤال: 15 سهل، 22 متوسط، 13 صعب |
-ص 109–138) ====================\n {u:4,d:'easy',q:'مكث الرسول ﷺ يصوغ الشخصية
-الإسلامية وفق المنهج الرباني قرابة:',o:['ثلاثة وعشرين عامًا','ثلاثة عشر
-عامًا','عشرة أعوام','أربعين عامًا'],a:0,e:'مكث الرسول ﷺ زهاء ثلاثة وعشرين عامًا
-وهو يصوغ الشخصية الإسلامية على قاعدة عقدية راسخة (ص 109).'},\n
-{u:4,d:'easy',q:'أصل كلمة (الشخصية) في اللغة اللاتينية (Persona)
-يعني:',o:['العقل الباطن والغرائز','القناع الذي كان يلبسه الممثل في العصور
-القديمة','الروح الخالدة في الجسد','المكانة الاجتماعية'],a:1,e:'تقابل كلمة
-الشخصية لفظ Personality وأصلها اللاتيني Persona ويعني القناع الذي يلبسه الممثل
-أي المظهر الخارجي (ص 110).'},\n {u:4,d:'easy',q:'تُعرّف (الشخصية الإسلامية)
-اصطلاحًا في الكتاب بأنها:',o:['المظهر الخارجي واللباس التقليدي','القدرات العقلية
-الفطرية المجردة','مجموع الصفات التي تطبع بها الثقافة الإسلامية الفرد المسلم
-والجماعة المسلمة في شتى المجالات وتميز سلوكهم','الصفات الجسمية
-الموروثة'],a:2,e:'الشخصية الإسلامية: مجموع الصفات التي تطبع بها الثقافة
-الإسلامية الفرد المسلم والجماعة المسلمة في شتى المجالات، وتميز سلوكهم عن غيرهم
-(ص 111).'},\n {u:4,d:'easy',q:'القاعدة الأساس التي يقوم عليها بناء الشخصية
-الإسلامية وتنتظم حولها مقوماتها الأربع هي:',o:['اللياقة البدنية والقوة
-الجسمية','المستوى الاقتصادي للفرد','الانتماء القبلي والقومي','قاعدة الإيمان
-بالله تعالى والعقيدة الإسلامية'],a:3,e:'تقوم الشخصية الإسلامية بمقوماتها العقلية
-والنفسية والروحية والجسمية على قاعدة من الإيمان بالله تعالى (ص 111-112).'},\n
-{u:4,d:'easy',q:'الجانب الذي يُعد أسمى الطاقات في الإنسان إذ يصله بالله تعالى
-ويعتقه من حدود الزمان والمكان وإسار المادة هو:',o:['الجانب الروحي','الجانب
-الجسمي','الجانب العقلي المجرد','الجانب الانفعالي الغريزي'],a:0,e:'الروح أسمى
-الطاقات إذ تصلنا بالله سبحانه وتعتقنا من حدود الزمان والمكان وإسار المادة
-(ص 114).'},\n {u:4,d:'easy',q:'الصحابي الذي أرسله رسول الله ﷺ سفيرًا إلى قيصر
-سنة ست للهجرة وكان يتميز بخصائص جسمية وجمالية مميزة هو:',o:['أبو ذر
-الغفاري','دِحْيَة بن خليفة الكلبي','عبد الله بن أم مكتوم','سلمان
-الفارسي'],a:1,e:'دحية بن خليفة الكلبي رضي الله عنه عرف بخصائص جسمية وجمالية
-مميزة وأرسله النبي ﷺ إلى قيصر سنة 6هـ (ص 116).'},\n {u:4,d:'easy',q:'ذكر المؤلف
-لـ (معالم الشخصية الإسلامية وسماتها) ثمانية معالم رئيسة؛ أولها
-وأساسها:',o:['شخصية مجاهدة','شخصية تقوم على التكافل','شخصية مؤمنة مسلمة','شخصية
-تجمع بين الأصالة والتجديد'],a:2,e:'أول المعالم الثمانية للشخصية الإسلامية
-وأساسها هو: شخصية مؤمنة مسلمة (ص 118).'},\n {u:4,d:'easy',q:'الصحابي الذي أشار
-بيده إلى حلقه لبني قريظة فندم وربط نفسه بسارية المسجد نحو عشرين ليلة حتى نزلت
-توبته هو:',o:['ماعز بن مالك الأسلمي','كعب بن مالك','حاطب بن أبي بلتعة','أبو
-لبابة بن عبد المنذر'],a:3,e:'قصة أبي لبابة بن عبد المنذر رضي الله عنه من شواهد
-السيرة على رسوخ النفس اللوامة في الشخصية الإسلامية (ص 123).'},\n
-{u:4,d:'easy',q:'أول مراتب الجهاد في (الشخصية المجاهدة) والذي ساد في المرحلة
-المكية طوال ثلاث عشرة سنة هو:',o:['جهاد النفس ضد أهوائها وشهواتها وضبطها
-بالصبر','القتال المسلح ضد الفرس والروم','بناء القلاع العسكرية','المفاوضات
-الدبلوماسية'],a:0,e:'أول مراتب الجهاد جهاد النفس ضد أهوائها وشهواتها، وكان سمة
-المرحلة المكية 13 عاماً قبل الإذن بالقتال (ص 124).'},\n {u:4,d:'easy',q:'قسّم
-(أبو الأعلى المودودي) التشبه بالآخرين إلى ثلاث صور، وهي:',o:['التشبه الديني
-والسياسي والاقتصادي','التشبه الجنسي، والتشبه القومي، والتشبه الفردي','التشبه
-اللفظي والعملي والاعتقادي','التشبه بالصالحين والعلماء والحكام'],a:1,e:'قسم
-المودودي التشبه إلى: التشبه الجنسي، والتشبه القومي، والتشبه الفردي (ص 128).'},\n
-{u:4,d:'easy',q:'قسّم الدكتور (مصطفى السباعي) التكافل في المجتمع الإسلامي
-إلى:',o:['قسمين فقط: المادي والمعنوي','ثلاثة أقسام: الزكاة والصدقة والوقف','عشرة
-أقسام (الأدبي، العلمي، السياسي، الدفاعي، الجنائي، الأخلاقي، الاقتصادي، العبادي،
-الحضاري، المعاشي)','خمسة أقسام بعدد أركان الإسلام'],a:2,e:'قسم د. مصطفى السباعي
-التكافل إلى عشرة أقسام شاملة للجوانب المادية والمعنوية (ص 129-130).'},\n
-{u:4,d:'easy',q:'عدد المؤلف (وسائل تربية الشخصية الإسلامية ووسائطها) في خمس
-وسائل رئيسة، وهي:',o:['المسجد والإعلام والرياضة والسفر والقراءة','المدرسة
-والجامعة والمكتبة والنادي والصحافة','العقيدة والعبادة والأخلاق والمعاملات
-والجهاد','الأسرة المسلمة، والمؤسسات التعليمية، والمجتمع، والقدوة الحسنة،
-والدولة'],a:3,e:'الوسائل والوسائط الخمس (ص 134-138) هي: الأسرة المسلمة،
-والمؤسسات التعليمية، والمجتمع، والقدوة الحسنة، والدولة.'},\n
-{u:4,d:'easy',q:'عندما رُزق الزوجان طفلهما، جعل الإسلام للطفل في أسرته ثلاثة
-حقوق أولية هي:',o:['حق النسب، وحق الولاية، وحق الرضاعة','حق التملك والتصويت
-والسفر','حق التعليم الجامعي والعمل والزواج','حق الميراث والوصية
-والوقف'],a:0,e:'جعل الشرع للطفل في أسرته حقوقاً ثلاثة: حق النسب، وحق الولاية،
-وحق الرضاعة (ص 135).'},\n {u:4,d:'easy',q:'تتدرج التربية الدينية للطفل في الأسرة
-بأمره بالصلاة وهو ابن (...) وضربه عليها وهو ابن (...):',o:['خمس سنين / سبع
-سنين','سبع سنين / عشر سنين مع التفريق في المضاجع','عشر سنين / خمس عشرة
-سنة','ثلاث سنين / سبع سنين'],a:1,e:'قال ﷺ: مروا أولادكم بالصلاة وهم أبناء سبع،
-واضربوهم عليها وهم أبناء عشر، وفرقوا بينهم في المضاجع (ص 135).'},\n
-{u:4,d:'easy',q:'ما معنى كلمة (الشخوص) في اللغة العربية كما في لسان
-العرب؟',o:['الانخفاض والاختفاء','الجمود والثبات','الارتفاع والظهور (ضد
-الهبوط)','السرعة في الحركة'],a:2,e:'الشخصية مشتقة من مادة (شخص)، والشخوص ضد
-الهبوط، والشخص كل جسم له ارتفاع وظهور (ص 110).'},\n {u:4,d:'medium',q:'متى شهدت
-الشخصية الإسلامية تراجعاً ذريعاً وتفككت عراها في كثير من بلاد المسلمين كما ذكر
-الفصل الرابع؟',o:['مع انهيار الخلافة الإسلامية في نهاية الربع الأول من القرن
-العشرين','في عهد الخلافة الراشدة','في بداية العهد الأموي','بعد حجة الوداع
-مباشرة'],a:0,e:'شهدت الشخصية الإسلامية تراجعاً ذريعاً وتفككت عراها مع انهيار
-الخلافة في نهاية الربع الأول من القرن العشرين (ص 110).'},\n
-{u:4,d:'medium',q:'بمن استشهد المؤلف في وصف تراجع حال المسلم المعاصر (المسلم
-القوي الذي نشأته الصحراء... رضي من السعي بالقنوع)؟',o:['ابن خلدون','الفيلسوف
-المسلم محمد إقبال','أبو الأعلى المودودي','الإمام الغزالي'],a:1,e:'أورد الكتاب
-نصاً طويلاً للفيلسوف المسلم محمد إقبال نقلاً عن محمد البهي في وصف حال المسلم
-(ص 110).'},\n {u:4,d:'medium',q:'ما الذي يميز (الجانب العقلي) في الشخصية
-الإسلامية عن غيرها من الشخصيات كالشيوعية والرأسمالية؟',o:['تمتلك دماغًا مختلفًا
-عضوياً','ترفض العلوم التجريبية','أنها تفكر على أساس الإسلام وتجعله المقياس
-الوحيد للأفكار عن الحياة والواقع','تعتمد على العاطفة وتلغي
-العقل'],a:2,e:'القدرات العقلية فطرية مشتركة، لكن الشخصية الإسلامية تفكر على أساس
-الإسلام وتجعله المقياس الوحيد للأفكار عن الحياة والواقع (ص 112).'},\n
-{u:4,d:'medium',q:'من أمثلة الفكر الغريب الذي يُحدث شرخًا في عقلية المسلم
-وازدواجية في شخصيته كما ذكر الكتاب:',o:['تدريس الحاسوب والهندسة','تعلم اللغات
-الأجنبية للدعوة','دراسة التاريخ الإسلامي','المناهج والبرامج التي تعزو الخلق إلى
-(الطبيعة) أو تنطلق من نظرية دارون'],a:3,e:'حذر المؤلف من المناهج والبرامج التي
-تعزو الخلق للطبيعة (كمثال البطريق والسمكة) أو تنطلق من نظرية دارون (ص 113).'},\n
-{u:4,d:'medium',q:'تُحكم العواطف والميول في (الجانب النفسي/الوجداني) للشخصية
-الإسلامية بدائرة:',o:['الولاء لله ولرسوله وللمؤمنين، والبراء من كل ما يتعارض مع
-هذا الدين','المصلحة المادية المباشرة','العصبية القبلية والولاء للأرض فوق كل
-اعتبار','قمع جميع العواطف البشرية'],a:0,e:'محبة المؤمن وبغضه محكومان بدائرة
-الولاء والبراء، وتقديم محبة الله ورسوله على كل عاطفة (ص 113-114).'},\n
-{u:4,d:'medium',q:'يُعد (الجانب الجسمي) في بناء الشخصية الإسلامية:',o:['أهم جانب
-على الإطلاق','أقل الجوانب أهمية من حيث كونه إطارًا ماديًا، لكنه معتبر ويكون عنصر
-كمال عند اكتمال العناصر الأخرى','جانبًا مهملاً لا اعتبار له مطلقًا','المعيار
-الوحيد لاختيار القادة'],a:1,e:'الجسم إطار مادي تبقى قيمته رهينة مضامينه العقلية
-والأخلاقية، لكنه عنصر كمال وتمام (طالوت ودحية الكلبي) (ص 115-116).'},\n
-{u:4,d:'medium',q:'من طرق تحقيق (الجانب الروحي) في الشخصية الإسلامية كما ورد في
-صفحتي 114–115:',o:['الانقطاع في الجبال','الجدل في كنه الروح','استشعار الرقابة
-الدائمة لله، وإيقاظ الروح بالطاعات والأذكار وتدبر القرآن والتفكر، وتربية الروح
-بالعبادة','الاعتماد على الطاقات المادية وحدها'],a:2,e:'يتحقق الجانب الروحي
-بـ: 1- استشعار الرقابة وتنمية التقوى، 2- إيقاظ الروح بالطاعات والقرآن
-والتفكر، 3- تربية الروح بالعبادة (ص 114-115).'},\n {u:4,d:'medium',q:'يقتضي
-الإسلام باعتباره استسلامًا لأمر الله في الشخصية المؤمنة المسلمة:',o:['رفض كل حكم
-لا يدرك العقل علته','الاكتفاء بالنطق بالشهادتين دون القلب','قصر الإسلام على
-الشعائر داخل المسجد','قبول منهج الله والتسليم لأحكامه دون توقف على اقتناع عقلي
-يسبق الإيمان بالمنهج'],a:3,e:'الاستسلام لأمر الله يقتضي قبول منهجه دون توقف على
-اقتناع عقلي يتقدم الإيمان بهذا المنهج (النساء 65) (ص 120).'},\n
-{u:4,d:'medium',q:'من معالم الشخصية الإسلامية أنها (شخصية بشرية)، ويترتب على
-ذلك:',o:['أن المسلم ليس معصومًا من الخطأ بل يخطئ ويتوب، والعصمة للأنبياء
-فقط','أن المسلم ملك لا يقع في معصية','لا حرج في الإصرار على الذنوب','أن الأخطاء
-تخرج المسلم من الإسلام فورًا'],a:0,e:'المسلم بشر يخطئ وليس معصوماً، والفيصل هو
-التوبة والنفس اللوامة: لا كبيرة مع الاستغفار ولا صغيرة مع الإصرار
-(ص 121-122).'},\n {u:4,d:'medium',q:'عندما سمع النبي ﷺ خالد بن الوليد يسب المرأة
-الغامدية التي أقيم عليها الحد بعد توبتها قال له:',o:['أحسنت يا خالد','(مهلاً يا
-خالد، فوالذي نفسي بيده لقد تابت توبة لو تابها صاحب مَكْس لغُفر له)','اخرج من
-المسجد','أقيموا عليه حد القذف'],a:1,e:'نهى النبي ﷺ خالداً عن سب التائبة بعد
-إقامة الحد عليها وقال هذا القول المشهور (ص 124).'},\n {u:4,d:'medium',q:'القتال
-في حق المسلم في الإسلام ليس هدفًا في ذاته، وإنما هو وسيلة إلى غاية أسمى بيّنها
-الله بقوله:',o:['﴿وَلَا تَقْرَبُوا الزِّنَا﴾','﴿خُذْ مِنْ أَمْوَالِهِمْ
-صَدَقَةً﴾','﴿وَقَاتِلُوهُمْ حَتَّىٰ لَا تَكُونَ فِتْنَةٌ وَيَكُونَ الدِّينُ
-كُلُّهُ لِلَّهِ﴾','﴿أَوْفُوا بِالْعُقُودِ﴾'],a:2,e:'القتال وسيلة لرفع الفتنة
-والاضطهاد، وإذا أمكن الوصول للهدف دون قتال فالمصير للقتال لغو لا مسوغ له
-(ص 126).'},\n {u:4,d:'medium',q:'من أمثلة (استقلال الشخصية الإسلامية وعدم
-تقليدها) في العبادات:',o:['استخدام ناقوس النصارى للصلاة','اعتماد التقويم الفارسي
-والرومي','موافقة المشركين في الحج الجاهلي','تشريع الأذان بدلاً من البوق
-والناقوس، والعزم على صيام التاسع مع العاشر من محرم'],a:3,e:'رفض النبي ﷺ البوق
-(اليهود) والناقوس (النصارى) وأقر الأذان، وعزم على صوم التاسع من محرم، وأُرخ
-بالهجرة (ص 127).'},\n {u:4,d:'medium',q:'فسّر (ابن خلدون) في مقدمته ظاهرة
-(التشبه القومي) بأن:',o:['المغلوب مولع أبدًا بالاقتداء بالغالب في شعاره وزيه
-ونحلته وسائر أحواله لاعتقاده الكمال فيمن غلبه','الغالب يقلد المغلوب
-دائمًا','التشبه دليل قوة الأمة','اللباس لا علاقة له بالمضمون'],a:0,e:'عقد ابن
-خلدون فصلاً في ولع المغلوب بالاقتداء بالغالب، والتشبه تعبير عن الهزيمة النفسية
-(ص 128-129).'},\n {u:4,d:'medium',q:'يُقصد بـ (التكافل الجنائي) ضمن أقسام
-التكافل العشرة:',o:['نشر العلم وعدم كتمه','نظام العاقلة في حالة القتل الخطأ حيث
-يتكافل أقارب الجاني في دفع الدية فإن عجزوا وجبت في بيت المال','الأمر بالمعروف
-والنهي عن المنكر','القيام بصلاة الجنازة'],a:1,e:'التكافل الجنائي يظهر في نظام
-العاقلة في القتل الخطأ؛ يتكافل أقارب الجاني في دفع الدية وإلا وجبت في بيت المال
-(ص 130).'},\n {u:4,d:'medium',q:'من معالم الشخصية الإسلامية أنها (شخصية سوية)،
-ومن صفاتها:',o:['تصاب بالهلع والجزع عند المصائب','تعيش في قلق دائم خوفاً على
-الرزق','تحيا في نور الله وتغشاها السكينة، ولا تعرف القلق والهلع والجزع، وتؤمن
-بالقدر خيره وشره','تفتقر للتوازن بين آمالها وطبائعها'],a:2,e:'الشخصية السوية
-تحيا في نور الله والسكينة ولا تعرف القلق والهلع والجزع وتؤمن بالقدر خيره وشره
-(ص 131).'},\n {u:4,d:'medium',q:'وصف الغربيين للحركات الإسلامية المتمسكة بالقرآن
-والسنة بأنها (أصولية) وصفه المؤلف بأنه:',o:['وصف مدح وثناء منصف','مصطلح قرآني
-أصيل','تعبير يدل على قبول الغرب للتجديد','كلمة حق أُريد بها باطل؛ لأن التعبير
-غربي المنشأ يحمل في باطنه معاني سالبة'],a:3,e:'وصف أعداء الإسلام لها بالأصولية
-كلمة حق أريد بها باطل، لأن التعبير غربي المنشأ يحمل معاني سالبة (ص 133).'},\n
-{u:4,d:'medium',q:'أوضحت الدكتورة عائشة عبد الرحمن (بنت الشاطئ) مفهوم (التجديد)
-المنضبط في الشخصية الإسلامية بأنه:',o:['ليس نسخًا للقديم، بل إزالة الشوائب
-الدخيلة وتحرير المبادئ التي أُسيء فهمها وتدعيمها بالبحث والاستقراء','هدم الثوابت
-الشرعية','الجمود على أقوال السابقين بلا نظر في النوازل','تغيير نصوص القرآن
-والسنة'],a:0,e:'التجديد عند بنت الشاطئ يتسع للتعديل وتصحيح الفهم لدين لابسته
-شوائب دخيلة وتدعيم المبادئ بالبحث والاستقراء (ص 133).'},\n
-{u:4,d:'medium',q:'حين رأى الأقرع بن حابس التميمي النبي ﷺ يقبّل الحسن بن علي
-قال: إن لي عشرة من الولد ما قبلت منهم أحدًا، فقال له ﷺ:',o:['أنت أشد حزماً في
-التربية','(من لا يَرْحَم لا يُرْحَم)','القبلة تضعف هيبة الأب','لكل امرئ ما
-نوى'],a:1,e:'قال النبي ﷺ للأقرع بن حابس: (من لا يرحم لا يُرحم) تأكيداً لأهمية
-العطف والحنان على صحة الطفل النفسية (ص 135).'},\n {u:4,d:'medium',q:'تغيير اسم
-الوزارة المعنية بالتعليم من (وزارة المعارف) إلى (وزارة التربية والتعليم) يحمل
-دلالة على:',o:['إلغاء المواد العلمية','تقليص دور الأسرة في التربية','تجاوز
-الاهتمام بالجانب المعرفي وحده إلى بناء الجوانب النفسية والتربوية والجسمية
-للشخصية','فصل التعليم الديني عن العام'],a:2,e:'التسمية الجديدة (التربية
-والتعليم، وتربية رياضية وصحية وفنية) تدل على تجاوز الجانب المعرفي لبناء الشخصية
-المتكاملة (ص 136).'},\n {u:4,d:'medium',q:'من أساليب (المجتمع) في تأديب الفرد
-الناشز عن القيم الإسلامية:',o:['التستر على المنكرات بدعوى الحرية','نفي الفرد
-خارج البلاد فوراً','السخرية منه بعد توبته','الهجر والمقاطعة (كما حصل مع كعب بن
-مالك رضي الله عنه) والنقد اللاذع والضرب على يده'],a:3,e:'يؤدب المجتمع الفرد
-الناشز بالهجر والمقاطعة (كقصة كعب بن مالك في تبوك) والنقد اللاذع والضرب على يده
-(انصر أخاك ظالماً أو مظلوماً) (ص 136-137).'},\n {u:4,d:'medium',q:'الخاصية التي
-تميز (الدولة الإسلامية) عن غيرها من وسائل ووسائط تكوين الشخصية الإسلامية
-هي:',o:['وجود السلطة ذات الطابع الإلزامي القادرة على إلزام الفرد والمجتمع
-وتوجيههما: (يزع الله بالسلطان ما لا يزع بالقرآن)','تقديم الوعظ المجرد دون
-سلطة','الاهتمام بالاقتصاد فقط','ترك الحرية للأفراد في مخالفة
-الحدود'],a:0,e:'وجود السلطة ذات الطابع الإلزامي هو ما يميز الدولة عن غيرها من
-الوسائل في تربية الشخصية الإسلامية (ص 138).'},\n {u:4,d:'medium',q:'وصف النبي ﷺ
-حالة الأمة الإسلامية عند غياب الدولة الملتزمة بشرع الله وتداعي الأمم عليها
-بقوله:',o:['أنتم يومئذ قلة مستضعفون','(بل أنتم يومئذ كثير، ولكنكم غثاء كغثاء
-السيل... والوهن: حب الدنيا وكراهية الموت)','لن يضركم كيد الأعداء','يأتيكم الضعف
-من قلة الأموال'],a:1,e:'بين النبي ﷺ في حديث أبي داود أن تداعي الأمم على المسلمين
-يكون بسبب كونهم غثاء كغثاء السيل وإصابتهم بالوهن: حب الدنيا وكراهية الموت
-(ص 138).'},\n {u:4,d:'hard',q:'لماذا قرن المؤلف في المعلم السابع بين (الوعي)
-و(الإخلاص) فوصفها بـ (شخصية واعية مخلصة)؟',o:['لأن الوعي يغني عن الإخلاص','لأن
-الإخلاص وحده يكفي بلا علم','لأن الإخلاص بلا وعي قد يضر الدين (كالخوارج)، والوعي
-بلا إخلاص يفسد صاحبه (كإبليس)','لأن الوعي والإخلاص مترادفان'],a:2,e:'الإخلاص بلا
-وعي كالخوارج يبنون قصراً ويهدمون مصراً (وقول علي: قصم ظهري عالم متهتك وجاهل
-متنسك)، والوعي بلا إخلاص كإبليس (ص 132).'},\n {u:4,d:'hard',q:'ما الخطر الذي
-حذرت منه الدكتورة (بنت الشاطئ) عند قصر وصف الشخصية الإسلامية على الكمال المطلق
-الملائكي؟',o:['رفع الروح المعنوية لدى الناشئة','زيادة الإقبال على
-التوبة','التفريق بين الأنبياء وغيرهم في العصمة','إصابة الشباب بالإحباط واليأس
-والقنوط والتمرد حين يدركون استحالة الطهر الملائكي في البشر'],a:3,e:'حصر الوصف في
-الكمال الملائكي يصدم الشباب بالواقع ويدفعهم لليأس والقنوط والتمرد والسخرية
-(ص 121-122).'},\n {u:4,d:'hard',q:'ما القاعدة التربوية المستفادة من قول أبي
-الدرداء لمن يعنفون رجلاً اقترف إثماً، ونهي النبي لخالد عن سب
-الغامدية؟',o:['كراهية الفعل السيئ لا تبرر القدح في الشخص والتشهير به إذا تاب
-وأقلع عن خطئه','جواز التشهير بالتائبين في المجالس','تبرير الخطيئة وتشجيع
-أصحابها','وجوب هجر كل من أخطأ ولو تاب'],a:0,e:'نهى النبي خالداً عن سب الغامدية
-بعد توبتها، وقال أبو الدرداء: إنما أكره فعله فإذا تركه فهو أخي (ص 124).'},\n
-{u:4,d:'hard',q:'الرسالة التربوية التي كتبها (ابن حبيب) إلى معلم بنيه تؤكد دور
-(القدوة الحسنة)، وجاء فيها:',o:['علّمهم الحساب ولا شأن لك بسلوكك','(فلتكن أول ما
-تؤدب نفسك، فإن عيني متعلقة بهم، وأعينهم متعلقة بك، فالحسن عندهم ما استحسنت
-والقبيح عندهم ما استقبحت)','اضربهم على كل صغيرة','لقنهم المسائل
-تلقيناً'],a:1,e:'تؤكد وصية ابن حبيب لمعلم بنيه أن الطفل يرقب سلوك والديه ومعلميه
-وينسج على منوالهم (ص 138).'},\n {u:4,d:'hard',q:'ما الخطأ في قول بعض الناس: (إن
-اللباس أمر شكلي محض لا علاقة له بمضمون الشخصية وفلسفتها)؟',o:['اللباس يقتصر على
-الأغنياء فقط','اللباس لا يتغير باختلاف الأمم','اللباس تعبير عن فلسفة معينة
-يعتنقها صاحبه وينسجم مع المبادئ التي يؤمن بها','الإسلام لم يشرع ضوابط للزينة
-واللباس'],a:2,e:'أكد المؤلف (ص 129) أن اللباس ليس أمراً شكلياً لا علاقة له
-بالمضمون، بل هو تعبير عن فلسفة معينة يعتنقها صاحبه.'},\n {u:4,d:'hard',q:'ما
-دلالة استشهاد المؤلف بقول البهي الخولي إن (التكافل ليس جهاز إسعاف يتحرك عند
-دواعيه فقط)؟',o:['أن التكافل يقتصر على حالات الكوارث والحروب','أن التكافل عمل
-تطوعي مؤقت في رمضان فقط','أن بيت المال لا علاقة له بالتكافل','أن التكافل عملية
-مستمرة متعددة الأبعاد وتفاعل دائم يتضمن مسؤولية متبادلة لرعاية الرخاء
-العام'],a:3,e:'التكافل تفاعل مستمر يتضمن مسؤولية متبادلة بين الأفراد لرعاية
-الرخاء العام، والإسعاف جزء منه لا كله (ص 130).'},\n {u:4,d:'hard',q:'ذكر الكتاب
-خمسة مجالات للتجديد في معلم (الأصالة والتجديد)؛ أي مما يلي ليس منها؟',o:['تغيير
-نصوص القرآن الكريم وأصول العقيدة لتساير العصر','الفقه والاجتهاد في المسائل
-المستجدة','العلوم الإنسانية والطبيعية ورفض التقليد','تغيير الأوضاع الفاسدة
-وتطوير أساليب عرض الدعوة والإدارة والتخطيط'],a:0,e:'مجالات التجديد الخمسة
-(ص 133-134): الفقه والاجتهاد، والعلوم الإنسانية والطبيعية، ورفض التقليد، وتغيير
-الأوضاع الفاسدة، وأساليب عرض الدعوى والإدارة والتخطيط.'},\n
-{u:4,d:'hard',q:'لماذا نبّه الكتاب عند حديثه عن (المؤسسات التعليمية) إلى ضرورة
-التنسيق بينها وبين مؤسسات مثل (وزارة الثقافة)؟',o:['لتقليص ساعات الدراسة في
-المدارس','لأن التضارب بين ما تعلمه المدارس وما تبثه المؤسسات الثقافية والإعلامية
-يفسد المحصلة النهائية في بناء الناشئ','لإلغاء دور الأسرة المسلمة','لتحويل
-المدارس إلى أندية ترفيهية'],a:1,e:'نبه المؤلف إلى وجود مؤسسات ذات أثر تربوي واضح
-كوزارة الثقافة ولا بد من التنسيق والتكامل بينها وبين المدارس والجامعات وإلا كان
-الحصاد غير ما نتمنى (ص 136).'},\n {u:4,d:'hard',q:'ما المراد بنهي النبي ﷺ عن
-التشبه في حديث الغلام الذي كان له قرنان (ضفيرتان): (احلقوا هذين أو قصوهما فإن
-هذا زي اليهود)؟',o:['تحريم تطويل الشعر مطلقاً للرجال','وجوب تقليد أزياء الأمم
-الأخرى لمواكبة العصر','ترسيخ استقلالية الشخصية الإسلامية في السمت العام والمظهر
-الخارجي والنهي عن التشبه بزي غير المسلمين','جواز التشبه الشكلي إذا كان القلب
-مؤمناً'],a:2,e:'أورد الكتاب هذا الحديث في أمثلة الاستقلال في السمت والمظهر
-الخارجي والنهي عن التشبه بالآخرين (ص 127-128).'},\n {u:4,d:'hard',q:'بما استدل
-الكتاب على أن البُعد الجسمي يُراعى كعنصر كمال وتمام في الشخصية الإسلامية ولا
-يُسقط تماماً؟',o:['بنص حديث: إن الله ينظر إلى صوركم وأجسامكم','بقولهم: المرء
-بجسمه وطوله لا بعقله','بإهمال القوة البدنية في الجهاد','باصطفاء طالوت بزيادة
-بسطة في العلم والجسم، ومراعاة الجمال في خطبة المرأة، واختيار دحية الكلبي سفيراً
-لقيصر'],a:3,e:'استدل بآية طالوت (البقرة 247)، وحديث تنكح المرأة لأربع، وسفارة
-دحية الكلبي لقيصر، مع التأكيد على بيت الشعر: ولا خير في حسن الجسوم وطولها إذا لم
-يزن حسن الجسوم عقول (ص 115-116).'},\n {u:4,d:'hard',q:'في مبحث (وسائل تربية
-الشخصية الإسلامية - المجتمع)، ما معنى قول النبي ﷺ: (انصر أخاك ظالماً أو مظلوماً)
-كما فسره الكتاب؟',o:['تحجزه وتمنعه من الظلم وإيقاع العقوبة الحدية أو التعزيرية
-عليه عند التعدي','تساعده في ظلمه وتناصره بالباطل','تعتزله ولا تنصحه
-أبداً','تكتفي بالدعاء له سراً دون منعه'],a:0,e:'نصر الأخ الظالم يكون بحجزه ومنعه
-من الظلم أو بإيقاع العقوبة الشرعية عليه تأديباً وتقويماً من المجتمع
-(ص 137).'},\n {u:4,d:'hard',q:'ما دلالة استشهاد المؤلف بقول الشاعر: (عن المرء لا
-تسأل وسل عن قرينه / فكل قرين بالمقارن يقتدي) في الفصل الرابع؟',o:['بيان أهمية
-التكافل الاقتصادي','تأكيد دور (مجتمع الرفاق) في توجيه سلوك الفرد وصقل شخصيته ضمن
-دور المجتمع','تفسير مفهوم الشخصية في اللغة اللاتينية','نقد ظاهرة التشبه
-الجنسي'],a:1,e:'استشهد بالحديث (المرء على دين خليله) وبهذا البيت لبيان دور
-التوجيه عن طريق مجتمع الرفاق ضمن وسائل المجتمع التربوية (ص 137).'},\n
-{u:4,d:'hard',q:'أين يكمن الخطر التربوي في ظاهرة (المؤسسات الخاصة بالأحداث
-الجانحين) كما أشار المؤلف في مبحث (الأسرة المسلمة)؟',o:['في ارتفاع تكاليف هذه
-المؤسسات المالية','في عدم توفر الألعاب الرياضية فيها','في أن إهمال الآباء للصحة
-النفسية لأبنائهم والعطف والحنان يدفعهم للجنوح ويتحمل الآباء الوزر الأكبر','في
-إلغاء التعليم المدرسي'],a:2,e:'أكد المؤلف أن الصحة النفسية للطفل لها من الأهمية
-مثل الغذاء، وما نراه في مؤسسات الأحداث الجانحين يتحمل الآباء من جنوحهم الوزر
-الأكبر (ص 135).'}\n ];\n\n const $ = (id) => document.getElementById(id);\n let
-state = { questions: [], currentIndex: 0, answers: {}, flags: [], mode:
-'instant', timerMinutes: 60, secondsLeft: 3600, finished: false, filter: 'all'
-};\n let timerId = null;\n\n function shuffle(arr) {\n const copy = [...arr];\n
-for (let i = copy.length - 1; i > 0; i--) {\n const j = Math.floor(Math.random()
-* (i + 1));\n [copy[i], copy[j]] = [copy[j], copy[i]];\n }\n return copy;\n
-}\n\n function prepareQuestion(item) {\n const mapped = item.o.map((txt, idx) =>
-({ txt, ok: idx === item.a }));\n const mixed = shuffle(mapped);\n return { u:
-item.u, d: item.d, q: item.q, o: mixed.map(x => x.txt), a: mixed.findIndex(x =>
-x.ok), e: item.e };\n }\n\n function buildExam() {\n const ch =
-$('chapterSelect').value;\n const cnt = $('countSelect').value;\n const mins =
-Number($('timerSelect').value);\n const mode = $('modeSelect').value;\n\n let
-pool = [];\n if (ch === 'all') {\n const byUnit = { 1: [], 2: [], 3: [], 4: []
-};\n RAW_BANK.forEach(item => byUnit[item.u].push(item));\n
-Object.keys(byUnit).forEach(k => byUnit[k] = shuffle(byUnit[k]));\n if (cnt ===
-'all') {\n pool = shuffle(RAW_BANK);\n } else {\n const target = Number(cnt);\n
-let i = 0;\n while (pool.length < target && pool.length < RAW_BANK.length) {\n
-for (let u = 1; u <= 4; u++) {\n if (byUnit[u][i] && pool.length < target)
-pool.push(byUnit[u][i]);\n }\n i++;\n }\n pool = shuffle(pool);\n }\n } else {\n
-const filtered = shuffle(RAW_BANK.filter(x => x.u === Number(ch)));\n pool = cnt
-=== 'all' ? filtered : filtered.slice(0, Math.min(Number(cnt),
-filtered.length));\n }\n\n state = {\n questions: pool.map(prepareQuestion),\n
-currentIndex: 0,\n answers: {},\n flags: [],\n mode,\n timerMinutes: mins,\n
-secondsLeft: mins * 60,\n finished: false,\n filter: 'all'\n };\n saveState();\n
-startSessionUI();\n }\n\n function saveState() {\n try {
-localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}\n }\n\n
-function startSessionUI() {\n $('resultSection').classList.add('hidden');\n
-$('quizSection').classList.remove('hidden');\n clearInterval(timerId);\n\n if
-(state.timerMinutes > 0) {\n $('timerBox').classList.remove('hidden');\n
-updateTimerUI();\n timerId = setInterval(() => {\n state.secondsLeft--;\n
-updateTimerUI();\n if (state.secondsLeft % 5 === 0) saveState();\n if
-(state.secondsLeft <= 0) {\n clearInterval(timerId);\n finishQuiz(true);\n }\n
-}, 1000);\n } else {\n $('timerBox').classList.add('hidden');\n }\n
-renderQuestion();\n }\n\n function updateTimerUI() {\n const s = Math.max(0,
-state.secondsLeft);\n const mm = String(Math.floor(s / 60)).padStart(2, '0');\n
-const ss = String(s % 60).padStart(2, '0');\n $('timerLbl').textContent =
-`${mm}:${ss}`;\n $('timerBox').classList.toggle('low', s <= 300);\n }\n\n
-function renderQuestion() {\n const q = state.questions[state.currentIndex];\n
-const total = state.questions.length;\n const ansCount =
-Object.keys(state.answers).length;\n const ansPct = Math.round((ansCount /
-total) * 100);\n const chosen = state.answers[state.currentIndex];\n\n
-$('qCounterLbl').textContent = `السؤال ${state.currentIndex + 1} من ${total}`;\n
-$('answeredLbl').textContent = `المجاب عنها: ${ansCount} / ${total}
-(${ansPct}%)`;\n $('progressFill').style.width = `${((state.currentIndex + 1) /
-total) * 100}%`;\n\n $('unitBadge').textContent = UNIT_NAMES[q.u];\n
-$('diffBadge').textContent = DIFF_LABELS[q.d];\n $('diffBadge').className =
-`tag-diff diff-${q.d}`;\n\n const isFlagged =
-state.flags.includes(state.currentIndex);\n $('flagBtn').textContent = isFlagged
-? '🚩 مُحدد للمراجعة (إلغاء)' : '🚩 تحديد للمراجعة';\n $('flagBtn').className =
-isFlagged ? 'btn btn-warning btn-sm' : 'btn btn-outline btn-sm';\n\n
-$('qText').textContent = `${state.currentIndex + 1}. ${q.q}`;\n\n const col =
-$('optionsCol');\n col.innerHTML = '';\n const locked = state.mode === 'instant'
-&& chosen !== undefined;\n\n q.o.forEach((optText, idx) => {\n const btn =
-document.createElement('button');\n btn.type = 'button';\n btn.className =
-'opt-item';\n btn.disabled = locked;\n if (chosen === idx)
-btn.classList.add('selected');\n if (locked) {\n if (idx === q.a)
-btn.classList.add('correct');\n else if (idx === chosen)
-btn.classList.add('wrong');\n }\n btn.innerHTML = `<span
-class=\"opt-letter\">${LETTERS[idx]}</span><span>${optText}</span>`;\n
-btn.addEventListener('click', () => handleOptionClick(idx));\n
-col.appendChild(btn);\n });\n\n const expBox = $('expBox');\n if (locked) {\n
-const ok = chosen === q.a;\n expBox.className = `exp-box show ${ok ? 'ok' :
-'bad'}`;\n expBox.innerHTML = `<strong>${ok ? '✓ إجابة صحيحة:' : '✕ إجابة غير
-صحيحة:'}</strong> ${q.e}`;\n } else {\n expBox.className = 'exp-box';\n }\n\n
-$('prevBtn').disabled = state.currentIndex === 0;\n $('nextBtn').textContent =
-state.currentIndex === total - 1 ? 'تسليم الاختبار ✓' : 'التالي ◄';\n
-renderNavDots();\n }\n\n function handleOptionClick(idx) {\n if (state.finished)
-return;\n if (state.mode === 'instant') {\n if
-(state.answers[state.currentIndex] !== undefined) return;\n
-state.answers[state.currentIndex] = idx;\n } else {\n if
-(state.answers[state.currentIndex] === idx) delete
-state.answers[state.currentIndex];\n else state.answers[state.currentIndex] =
-idx;\n }\n saveState();\n renderQuestion();\n }\n\n function renderNavDots() {\n
-const box = $('navDots');\n box.innerHTML = '';\n state.questions.forEach((q,
-idx) => {\n const b = document.createElement('button');\n b.type = 'button';\n
-b.className = 'nav-dot';\n b.textContent = idx + 1;\n const ans =
-state.answers[idx];\n if (ans !== undefined) {\n if (state.mode === 'instant')
-b.classList.add(ans === q.a ? 'dot-ok' : 'dot-bad');\n else
-b.classList.add('answered');\n }\n if (state.flags.includes(idx))
-b.classList.add('flagged');\n if (idx === state.currentIndex)
-b.classList.add('current');\n b.addEventListener('click', () => {
-state.currentIndex = idx; renderQuestion(); });\n box.appendChild(b);\n });\n
-}\n\n function toggleFlag() {\n const idx = state.currentIndex;\n const pos =
-state.flags.indexOf(idx);\n if (pos >= 0) state.flags.splice(pos, 1);\n else
-state.flags.push(idx);\n saveState();\n renderQuestion();\n }\n\n function
-finishQuiz(auto = false) {\n const unanswered = state.questions.length -
-Object.keys(state.answers).length;\n if (!auto && unanswered > 0) {\n if
-(!confirm(`تبقى ${unanswered} سؤالاً غير مجاب عنها. هل تريد تسليم الاختبار
-الآن؟`)) return;\n }\n clearInterval(timerId);\n state.finished = true;\n try {
-localStorage.removeItem(STORAGE_KEY); } catch (e) {}\n
-$('resumeBtn').classList.add('hidden');\n\n let right = 0;\n const unitStats =
-{ 1: {t:0,c:0}, 2: {t:0,c:0}, 3: {t:0,c:0}, 4: {t:0,c:0} };\n const diffStats =
-{ easy: {t:0,c:0}, medium: {t:0,c:0}, hard: {t:0,c:0} };\n\n
-state.questions.forEach((q, i) => {\n unitStats[q.u].t++;\n
-diffStats[q.d].t++;\n if (state.answers[i] === q.a) {\n right++;\n
-unitStats[q.u].c++;\n diffStats[q.d].c++;\n }\n });\n\n const total =
-state.questions.length;\n const pct = Math.round((right / total) * 100);\n
-$('resPct').textContent = `${pct}%`;\n $('resFrac').textContent = `${right} /
-${total}`;\n\n let grade = 'يحتاج إلى مراجعة مركزة';\n if (pct >= 90) grade =
-'ممتاز (امتياز)';\n else if (pct >= 80) grade = 'جيد جداً';\n else if (pct
->= 70) grade = 'جيد';\n else if (pct >= 50) grade = 'مقبول (ناجح)';\n
-$('resGrade').textContent = grade;\n\n let timeMsg = 'وضع بدون مؤقت زمني';\n if
-(state.timerMinutes > 0) {\n const spent = Math.max(0, state.timerMinutes * 60 -
-Math.max(0, state.secondsLeft));\n timeMsg = `الوقت المستغرق: ${Math.floor(spent
-/ 60)} دقيقة و ${spent % 60} ثانية`;\n }\n $('resSummary').textContent = `أجبت
-إجابة صحيحة عن ${right} من أصل ${total} سؤالاً | ${timeMsg}`;\n\n const uBox =
-$('unitStatsBox');\n uBox.innerHTML = '';\n [1,2,3,4].forEach(u => {\n if
-(unitStats[u].t === 0) return;\n const p = Math.round((unitStats[u].c /
-unitStats[u].t) * 100);\n uBox.innerHTML += `<div class=\"bar-row\"><div
-class=\"bar-head\"><span>${UNIT_NAMES[u]}</span><span>${unitStats[u].c}/${unitStats[u].t}
-(${p}%)</span></div><div class=\"bar-bg\"><div class=\"bar-val\"
-style=\"width:${p}%\"></div></div></div>`;\n });\n\n const dBox =
-$('diffStatsBox');\n dBox.innerHTML = '';\n ['easy','medium','hard'].forEach(d
-=> {\n if (diffStats[d].t === 0) return;\n const p = Math.round((diffStats[d].c
-/ diffStats[d].t) * 100);\n dBox.innerHTML += `<div class=\"bar-row\"><div
-class=\"bar-head\"><span>${DIFF_LABELS[d]}</span><span>${diffStats[d].c}/${diffStats[d].t}
-(${p}%)</span></div><div class=\"bar-bg\"><div class=\"bar-val\"
-style=\"width:${p}%\"></div></div></div>`;\n });\n\n
-$('quizSection').classList.add('hidden');\n
-$('resultSection').classList.remove('hidden');\n renderReview();\n }\n\n
-function renderReview() {\n const list = $('reviewList');\n list.innerHTML =
-'';\n let shown = 0;\n\n state.questions.forEach((q, idx) => {\n const ans =
-state.answers[idx];\n const isOk = ans === q.a;\n const isNone = ans ===
-undefined;\n const isFlagged = state.flags.includes(idx);\n\n if (state.filter
-=== 'wrong' && (isOk || isNone)) return;\n if (state.filter === 'correct' &&
-!isOk) return;\n if (state.filter === 'unanswered' && !isNone) return;\n if
-(state.filter === 'flagged' && !isFlagged) return;\n shown++;\n\n const cls =
-isNone ? 'rev-none' : (isOk ? 'rev-ok' : 'rev-bad');\n const userTxt = isNone ?
-'لم تتم الإجابة' : `${LETTERS[ans]} - ${q.o[ans]}`;\n const rightTxt =
-`${LETTERS[q.a]} - ${q.o[q.a]}`;\n\n list.innerHTML += `\n <div class=\"rev-card
-${cls}\">\n <div class=\"badges-group\">\n <span class=\"tag-unit\">س ${idx + 1}
-• ${UNIT_NAMES[q.u]}</span>\n <span class=\"tag-diff
-diff-${q.d}\">${DIFF_LABELS[q.d]}</span>\n ${isFlagged ? '<span class=\"tag-diff
-diff-medium\">🚩 للمراجعة</span>' : ''}\n </div>\n <div
-class=\"rev-q\">${q.q}</div>\n <div class=\"rev-line\"><strong>إجابتك:</strong>
-<span style=\"color:${isOk ? 'var(--success)' :
-'var(--danger)'}\">${userTxt}</span></div>\n ${!isOk ? `<div
-class=\"rev-line\"><strong>الإجابة الصحيحة:</strong> <span
-style=\"color:var(--success)\">${rightTxt}</span></div>` : ''}\n <div
-class=\"rev-exp\"><strong>الشرح والمرجع:</strong> ${q.e}</div>\n </div>\n `;\n
-});\n\n if (shown === 0) {\n list.innerHTML = `<p style=\"text-align:center;
-color:var(--muted); padding:20px;\">لا توجد أسئلة مطابقة لهذا الفلتر.</p>`;\n
-}\n }\n\n function init() {\n $('bankTotalLbl').textContent =
-RAW_BANK.length;\n\n if (localStorage.getItem('islamic_culture_theme') ===
-'dark') {\n document.body.classList.add('dark');\n $('themeBtn').textContent =
-'☀️ الوضع النهاري';\n }\n $('themeBtn').addEventListener('click', () => {\n
-const dark = document.body.classList.toggle('dark');\n
-localStorage.setItem('islamic_culture_theme', dark ? 'dark' : 'light');\n
-$('themeBtn').textContent = dark ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي';\n
-});\n\n try {\n const saved = localStorage.getItem(STORAGE_KEY);\n if (saved)
-{\n const parsed = JSON.parse(saved);\n if (parsed && parsed.questions &&
-parsed.questions.length && !parsed.finished) {\n
-$('resumeBtn').classList.remove('hidden');\n
-$('resumeBtn').addEventListener('click', () => { state = parsed;
-startSessionUI(); });\n }\n }\n } catch (e) {}\n\n
-$('newExamBtn').addEventListener('click', buildExam);\n
-$('restartBtn').addEventListener('click', buildExam);\n
-$('printBtn').addEventListener('click', () => window.print());\n
-$('flagBtn').addEventListener('click', toggleFlag);\n
-$('finishBtn').addEventListener('click', () => finishQuiz(false));\n\n
-$('prevBtn').addEventListener('click', () => {\n if (state.currentIndex > 0) {
-state.currentIndex--; renderQuestion(); }\n });\n
-$('nextBtn').addEventListener('click', () => {\n if (state.currentIndex <
-state.questions.length - 1) { state.currentIndex++; renderQuestion(); }\n else
-finishQuiz(false);\n });\n\n $('jumpUnansweredBtn').addEventListener('click', ()
-=> {\n const firstNone = state.questions.findIndex((_, i) => state.answers[i]
-=== undefined);\n if (firstNone >= 0) { state.currentIndex = firstNone;
-renderQuestion(); }\n else alert('تمت الإجابة عن جميع الأسئلة!');\n });\n\n
-document.querySelectorAll('.filter-btn').forEach(btn => {\n
-btn.addEventListener('click', () => {\n
-document.querySelectorAll('.filter-btn').forEach(b =>
-b.classList.remove('active'));\n btn.classList.add('active');\n state.filter =
-btn.dataset.filter;\n renderReview();\n });\n });\n\n
-document.addEventListener('keydown', (e) => {\n if (state.finished ||
-$('quizSection').classList.contains('hidden')) return;\n if (e.key >= '1' &&
-e.key <= '4') handleOptionClick(Number(e.key) - 1);\n else if (e.key ===
-'ArrowLeft' && state.currentIndex < state.questions.length - 1) {
-state.currentIndex++; renderQuestion(); }\n else if (e.key === 'ArrowRight' &&
-state.currentIndex > 0) { state.currentIndex--; renderQuestion(); }\n else if
-(e.key.toLowerCase() === 'f' || e.key === 'ب') toggleFlag();\n });\n\n
-buildExam();\n }\n\n init();\n </script>\n</body>\n</html>\n"}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الثقافة الإسلامية — الاختبار التفاعلي (صفحة 19 – 138)</title>
+  <style>
+    :root {
+      --primary: #065f46;
+      --primary-light: #10b981;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #f59e0b;
+    }
+
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    header {
+      background: linear-gradient(135deg, #022c22, #065f46);
+      color: #fff;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .header-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    header h1 { margin: 0; font-size: 1.35rem; }
+    header p { margin: 0.25rem 0 0; font-size: 0.9rem; color: #a7f3d0; }
+
+    .controls { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    select, button {
+      padding: 0.5rem 0.9rem; border-radius: 8px; border: 1px solid var(--border);
+      font-size: 0.9rem; cursor: pointer; font-weight: 600;
+    }
+    select { background: #fff; color: var(--text); }
+    .btn-primary { background: var(--primary-light); color: #fff; border: none; }
+    .btn-primary:hover { background: #059669; }
+    .btn-success { background: var(--success); color: #fff; border: none; }
+    .btn-outline { background: #fff; color: var(--text); }
+
+    main { max-width: 1200px; margin: 1.5rem auto; padding: 0 1rem; }
+
+    .top-bar {
+      background: var(--card); padding: 1rem 1.25rem; border-radius: 12px;
+      border: 1px solid var(--border); margin-bottom: 1.25rem;
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .progress-wrap { flex: 1; min-width: 240px; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .progress-bar { height: 10px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--primary-light); width: 0%; transition: width 0.3s; }
+    .timer-box {
+      background: #ecfdf5; color: var(--primary); padding: 0.5rem 1rem;
+      border-radius: 8px; font-weight: 700; font-size: 1rem; border: 1px solid #a7f3d0;
+    }
+
+    .quiz-grid { display: grid; grid-template-columns: 1fr 300px; gap: 1.25rem; }
+    @media (max-width: 900px) { .quiz-grid { grid-template-columns: 1fr; } }
+
+    .question-card, .sidebar-card, .result-card {
+      background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 1.5rem;
+    }
+    .badges { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+    .badge {
+      padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
+      background: #d1fae5; color: var(--primary);
+    }
+    .badge.diff { background: #fef3c7; color: #b45309; }
+
+    .question-text { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem; }
+
+    .options-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .option-btn {
+      text-align: right; padding: 0.9rem 1rem; border-radius: 10px;
+      border: 2px solid var(--border); background: #f8fafc; font-size: 1rem;
+      display: flex; align-items: center; gap: 0.75rem; transition: 0.2s;
+    }
+    .option-btn:hover { border-color: var(--primary-light); background: #ecfdf5; }
+    .option-btn.selected { border-color: var(--primary); background: #d1fae5; font-weight: 700; }
+    .opt-num {
+      width: 28px; height: 28px; border-radius: 50%; background: #e2e8f0;
+      display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0;
+    }
+    .option-btn.selected .opt-num { background: var(--primary); color: #fff; }
+
+    .nav-actions {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem;
+      margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .shortcuts {
+      margin-top: 1rem; padding-top: 0.75rem; border-top: 1px dashed var(--border);
+      font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1rem;
+    }
+
+    .sidebar-card h3 { margin-top: 0; font-size: 1rem; }
+    .legend { display: flex; gap: 0.75rem; font-size: 0.8rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .legend span { display: flex; align-items: center; gap: 0.3rem; }
+    .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+    .dot.ans { background: var(--success); }
+    .dot.unans { background: #e2e8f0; }
+    .dot.flag { background: var(--warning); }
+
+    .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; max-height: 360px; overflow-y: auto; }
+    .q-pill {
+      padding: 0.45rem 0; border-radius: 6px; border: 1px solid var(--border);
+      background: #f8fafc; font-size: 0.85rem; font-weight: 600; text-align: center;
+    }
+    .q-pill.answered { background: #dcfce7; border-color: var(--success); color: #166534; }
+    .q-pill.flagged { background: #fef3c7; border-color: var(--warning); color: #92400e; }
+    .q-pill.current { outline: 2px solid var(--primary); }
+
+    .hidden { display: none !important; }
+    .score-header { text-align: center; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .score-circle {
+      width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 1rem;
+      background: #ecfdf5; border: 6px solid var(--primary);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .score-pct { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+    .score-raw { font-size: 0.9rem; color: var(--muted); font-weight: 600; }
+
+    .analytics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    @media (max-width: 700px) { .analytics-grid { grid-template-columns: 1fr; } }
+    .stat-row { margin-bottom: 0.75rem; }
+    .stat-label { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem; }
+
+    .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .review-item {
+      border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1rem;
+      border-right: 5px solid var(--muted);
+    }
+    .review-item.correct { border-right-color: var(--success); background: #f0fdf4; }
+    .review-item.wrong { border-right-color: var(--danger); background: #fef2f2; }
+    .explanation {
+      margin-top: 0.75rem; padding: 0.75rem; background: #fff; border-radius: 8px;
+      border: 1px solid var(--border); font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div>
+      <h1>الثقافة الإسلامية — الاختبار التفاعلي</h1>
+      <p>الفصول الأربعة الأولى من الباب الأول (صفحة 19 – 138)</p>
+    </div>
+    <div class="controls">
+      <select id="chapterFilter" onchange="startQuiz()">
+        <option value="all">جميع الفصول (1 – 4)</option>
+        <option value="الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها">الفصل الأول</option>
+        <option value="الفصل الثاني: خصائص الثقافة الإسلامية">الفصل الثاني</option>
+        <option value="الفصل الثالث: العقيدة الإسلامية وأثرها">الفصل الثالث</option>
+        <option value="الفصل الرابع: العبادة والأخلاق في الإسلام">الفصل الرابع</option>
+      </select>
+      <select id="questionCountSelect">
+        <option value="10">10 أسئلة (سريع)</option>
+        <option value="25">25 سؤالاً</option>
+        <option value="50" selected>50 سؤالاً (الافتراضي)</option>
+        <option value="60">60 سؤالاً</option>
+      </select>
+      <select id="timerSelect">
+        <option value="0">بدون مؤقت</option>
+        <option value="30">30 دقيقة</option>
+        <option value="50" selected>50 دقيقة</option>
+        <option value="60">60 دقيقة</option>
+      </select>
+      <button class="btn-primary" onclick="startQuiz()">بدء اختبار جديد</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="quizSection">
+    <div class="top-bar">
+      <div class="progress-wrap">
+        <div class="progress-info">
+          <span id="qCounterText">السؤال 1</span>
+          <span id="answeredText">المجاب عنها: 0 / 0 (0%)</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <div class="timer-box">
+        <span>الوقت المتبقي: </span>
+        <span id="timerDisplay">50:00</span>
+      </div>
+    </div>
+
+    <div class="quiz-grid">
+      <div class="question-card">
+        <div class="badges">
+          <div>
+            <span class="badge" id="unitBadge">الفصل الأول</span>
+            <span class="badge diff" id="diffBadge">سهل</span>
+          </div>
+          <button class="btn-outline" id="flagBtn" onclick="toggleFlag()">🚩 وضع علامة للمراجعة</button>
+        </div>
+
+        <div class="question-text" id="questionText">جاري تحميل السؤال...</div>
+        <div class="options-list" id="optionsContainer"></div>
+
+        <div class="nav-actions">
+          <div>
+            <button class="btn-outline" onclick="prevQuestion()">► السابق</button>
+            <button class="btn-primary" onclick="nextQuestion()">التالي ◄</button>
+          </div>
+          <button class="btn-success" onclick="submitQuiz()">إنهاء وتسليم الاختبار ✓</button>
+        </div>
+
+        <div class="shortcuts">
+          <span><strong>اختصارات لوحة المفاتيح:</strong></span>
+          <span>الأرقام <strong>1–4</strong> للاختيار/إلغاء التحديد</span>
+          <span><strong>◄ (يسار)</strong> التالي | <strong>► (يمين)</strong> السابق</span>
+          <span><strong>F</strong> أو <strong>ب</strong> للمراجعة</span>
+        </div>
+      </div>
+
+      <aside class="sidebar-card">
+        <h3>لوحة التنقل والمراجعة</h3>
+        <div class="legend">
+          <span><i class="dot ans"></i> مُجاب</span>
+          <span><i class="dot unans"></i> غير مُجاب</span>
+          <span><i class="dot flag"></i> للمراجعة</span>
+        </div>
+        <div class="nav-grid" id="navGrid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="resultSection" class="result-card hidden">
+    <div class="score-header">
+      <div class="score-circle">
+        <div class="score-pct" id="scorePct">0%</div>
+        <div class="score-raw" id="scoreRaw">0 / 0</div>
+      </div>
+      <h2>نتيجة الاختبار</h2>
+      <p id="gradeMessage"></p>
+      <button class="btn-primary" onclick="startQuiz()">إعادة المحاولة بأسئلة جديدة</button>
+    </div>
+
+    <div class="analytics-grid">
+      <div class="question-card">
+        <h3>الأداء حسب الفصول</h3>
+        <div id="unitStats"></div>
+      </div>
+      <div class="question-card">
+        <h3>الأداء حسب مستوى الصعوبة</h3>
+        <div id="diffStats"></div>
+      </div>
+    </div>
+
+    <div>
+      <h3>المراجعة الشاملة للإجابات والشرح</h3>
+      <div class="filter-bar">
+        <button class="btn-outline" onclick="renderReview('all')">الكل</button>
+        <button class="btn-outline" onclick="renderReview('wrong')">الخاطئة فقط</button>
+        <button class="btn-outline" onclick="renderReview('correct')">الصحيحة فقط</button>
+        <button class="btn-outline" onclick="renderReview('unanswered')">غير المجابة</button>
+      </div>
+      <div id="reviewContainer"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // بنك الأسئلة الشامل لمادة الثقافة الإسلامية (ص 19 - 138: الفصول الأربعة الأولى من الباب الأول)
+  const QUESTION_BANK = [
+    // الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها
+    {
+      id: 1,
+      unit: "الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها",
+      difficulty: "سهل",
+      question: "ما المعنى اللغوي لكلمة (ثَقِفَ) في اللغة العربية؟",
+      options: [
+        "الحذق والفطنة وسرعة الفهم والتقويم",
+        "الجمود والثبات وعدم التغيير",
+        "كثرة السفر والتنقل بين البلدان",
+        "الزهد والانقطاع التام عن الدنيا"
+      ],
+      answer: 0,
+      explanation: "تدل مادة (ث ق ف) في اللغة على الحذق والفطنة والذكاء وسرعة التعلم وتقويم المعوج."
+    },
+    {
+      id: 2,
+      unit: "الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها",
+      difficulty: "متوسط",
+      question: "أي من الآتي يُعدّ المصدر الأول والأصل التشريعي والفكري الأعلى للثقافة الإسلامية؟",
+      options: [
+        "القرآن الكريم",
+        "التجارب الإنسانية والعلوم التجريبية",
+        "العرف الاجتماعي السائد",
+        "اجتهادات الفقهاء المعاصرين"
+      ],
+      answer: 0,
+      explanation: "القرآن الكريم هو كلام الله المنزل على نبيه محمد ﷺ، وهو المصدر الأول للثقافة الإسلامية ومنه تستمد أصولها وتصوراتها."
+    },
+    {
+      id: 3,
+      unit: "الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها",
+      difficulty: "متوسط",
+      question: "تُعرّف الثقافة الإسلامية اصطلاحاً بأنها:",
+      options: [
+        "العلم بمنهاج الإسلام الشامل في القيم والنظم والفكر والسلوك المستمد من الوحي",
+        "مجرد حفظ الأشعار والأمثال العربية القديمة",
+        "دراسة الفنون المعمارية في العصر العباسي فقط",
+        "الاقتصار على العبادات الشعائرية دون شؤون الحياة"
+      ],
+      answer: 0,
+      explanation: "الثقافة الإسلامية هي التصور الكلي والمنهاج الشامل الذي يقوم على أصول الإسلام ومصادره في العقيدة والشريعة والأخلاق والسلوك."
+    },
+    {
+      id: 4,
+      unit: "الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها",
+      difficulty: "متوسط",
+      question: "ما العلاقة بين (الثقافة) و(الحضارة) وفق المفهوم الإسلامي المعتمد؟",
+      options: [
+        "الثقافة تمثل الجانب المعنوي والفكري والقيمي، والحضارة تمثل الجانب المادي والعمراني والتطبيقي",
+        "الثقافة والحضارة مترادفان تماماً ولا فرق بينهما",
+        "الحضارة تقتصر على الدين والثقافة تقتصر على الصناعة",
+        "الثقافة نقيض للحضارة ولا يجتمعان في أمة واحدة"
+      ],
+      answer: 0,
+      explanation: "تختص الثقافة بالجانب الفكري والروحي والقيمي للأمة، بينما تشمل الحضارة المنجزات المادية والعمرانية والتقنية التي تبنيها الأمة."
+    },
+    {
+      id: 5,
+      unit: "الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها",
+      difficulty: "صعب",
+      question: "تُعدّ السنة النبوية المصدر الثاني للثقافة الإسلامية، وتأتي وظيفتها بالنسبة للقرآن الكريم على وجوه منها:",
+      options: [
+        "بيان مجمل القرآن، وتخصيص عامه، وتقييد مطلقه، وتأكيد أحكامه",
+        "إلغاء العمل بأحكام القرآن الكريم القطعية",
+        "الاقتصار على القصص التاريخي دون التشريع",
+        "مخالفة المقاصد العامة للشريعة"
+      ],
+      answer: 0,
+      explanation: "السنة النبوية شارحة ومبينة للقرآن الكريم، فتفصّل ما أُجمل فيه وتقيّد مطلقه وتخصص عامه، فضلاً عن استقلالها ببعض الأحكام."
+    },
+    {
+      id: 6,
+      unit: "الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها",
+      difficulty: "سهل",
+      question: "ما موقف الثقافة الإسلامية من ثقافات الأمم والحضارات الأخرى؟",
+      options: [
+        "الانفتاح الواعي والأخذ بالنافع الذي لا يتعارض مع ثوابت الإسلام وعقيدته",
+        "الانغلاق التام ورفض كل ما لدى الآخرين مطلقاً",
+        "الذوبان والتقليد الأعمى دون تمييز أو نقد",
+        "الاقتصار على العلوم الأدبية ورفض العلوم التجريبية"
+      ],
+      answer: 0,
+      explanation: "الحكمة ضالة المؤمن؛ فالثقافة الإسلامية منفتحة تأخذ النافع من علوم الأمم وتصهره في بوتقتها دون مساس بثوابتها."
+    },
+    {
+      id: 7,
+      unit: "الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها",
+      difficulty: "متوسط",
+      question: "يُقصد بـ (التراث الإسلامي) كمصدر رافد للثقافة الإسلامية:",
+      options: [
+        "النتاج العلمي والفكري والأدبي الذي خلفه علماء الأمة عبر العصور في ضوء الإسلام",
+        "العادات الجاهلية التي أبطلها الإسلام",
+        "النصوص المقدسة المعصومة من الخطأ كالقرآن والسنة",
+        "الترجمات الحديثة للروايات الغربية فقط"
+      ],
+      answer: 0,
+      explanation: "التراث الإسلامي هو إبداع علماء المسلمين واجتهاداتهم المعرفية عبر التاريخ، وهو مصدر رافد يُستفاد منه مع قابليته للنقد والتمحيص."
+    },
+    {
+      id: 8,
+      unit: "الفصل الأول: مفهوم الثقافة الإسلامية ومصادرها",
+      difficulty: "صعب",
+      question: "الفرق الجوهري بين (الثقافة) و(العلم) هو أن:",
+      options: [
+        "العلم عالمي محايد في نتائجه التجريبية، أما الثقافة فذات صبغة قيمية وخصوصية للأمة",
+        "الثقافة تقوم على المختبرات والعلم يقوم على العادات",
+        "العلم يخص المسلمين فقط والثقافة تخص الغرب فقط",
+        "لا علاقة بين العلم والثقافة في بناء الإنسان"
+      ],
+      answer: 0,
+      explanation: "الحقائق العلمية التجريبية مشاع مشترك بين البشر، بينما الثقافة تعكس هوية الأمة وقيمها وتصورها للكون والحياة."
+    },
+
+    // الفصل الثاني: خصائص الثقافة الإسلامية
+    {
+      id: 9,
+      unit: "الفصل الثاني: خصائص الثقافة الإسلامية",
+      difficulty: "سهل",
+      question: "ما المقصود بخاصية (الربانية) في الثقافة الإسلامية؟",
+      options: [
+        "أنها ربانية المصدر والغاية؛ فمصدرها وحي الله وغايتها تحقيق عبوديته ومرضاته",
+        "أنها من وضع الفلاسفة والحكماء البشر",
+        "أنها تهتم بالجانب الروحي وتهمل الجسد والمادة",
+        "أنها مقتصرة على فئة رجال الدين فقط"
+      ],
+      answer: 0,
+      explanation: "الربانية تعني أن الثقافة الإسلامية تستمد أصولها من وحي الله تعالى، وتجعل غاية الإنسان الكبرى إرضاء الله وعمارة الأرض بمنهجه."
+    },
+    {
+      id: 10,
+      unit: "الفصل الثاني: خصائص الثقافة الإسلامية",
+      difficulty: "متوسط",
+      question: "تتجلى خاصية (الوسطية والتوازن) في الثقافة الإسلامية من خلال:",
+      options: [
+        "الموازنة بين مطالب الروح والجسد، والفرد والمجتمع، والدنيا والآخرة",
+        "التنازل عن الثوابت لإرضاء جميع الأطراف",
+        "تغليب الجانب المادي على القيم الأخلاقية",
+        "الرهبانية واعتزال الحياة الاجتماعية"
+      ],
+      answer: 0,
+      explanation: "الوسطية الإسلامية تعني العدل والاستقامة والتوازن الدقيق بين ثنائيات الحياة دون إفراط أو تفريط."
+    },
+    {
+      id: 11,
+      unit: "الفصل الثاني: خصائص الثقافة الإسلامية",
+      difficulty: "سهل",
+      question: "قوله تعالى: ﴿وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ﴾ يدل على خاصية:",
+      options: [
+        "العالمية والإنسانية",
+        "الإقليمية والمحلية",
+        "الجمود والانغلاق",
+        "التعصب العرقي"
+      ],
+      answer: 0,
+      explanation: "الرسالة الإسلامية خطاب عالمي موجه للناس كافة على اختلاف أجناسهم وألوانهم ولغاتهم."
+    },
+    {
+      id: 12,
+      unit: "الفصل الثاني: خصائص الثقافة الإسلامية",
+      difficulty: "متوسط",
+      question: "كيف تجمع الثقافة الإسلامية بين خاصيتي (الثبات) و(المرونة)؟",
+      options: [
+        "الثبات في الأصول والعقائد والقيم القطعية، والمرونة في الفروع والوسائل والمستجدات عبر الاجتهاد",
+        "تغيير العقائد والأركان حسب متطلبات كل عصر",
+        "رفض أي تطور علمي أو إداري بدعوى الثبات",
+        "جعل جميع الأحكام الشرعية قابلة للإلغاء"
+      ],
+      answer: 0,
+      explanation: "ثبات الأصول يحفظ هوية الأمة من الذوبان، ومرونة الفروع والوسائل تجعل الشريعة صالحة لكل زمان ومكان."
+    },
+    {
+      id: 13,
+      unit: "الفصل الثاني: خصائص الثقافة الإسلامية",
+      difficulty: "متوسط",
+      question: "تعني خاصية (الشمول) في الثقافة الإسلامية أن الإسلام:",
+      options: [
+        "ينظم علاقة الإنسان بربه وبنفسه وبمجتمعه وبالكون في جميع مجالات الحياة",
+        "يقتصر على تنظيم الأحوال الشخصية والزواج فقط",
+        "يتدخل في العبادات دون المعاملات الاقتصادية والسياسية",
+        "يخاطب العقل دون الوجدان والروح"
+      ],
+      answer: 0,
+      explanation: "شمول الإسلام يعني استيعابه لجميع جوانب الحياة الفردية والأسرية والاجتماعية والاقتصادية والسياسية."
+    },
+    {
+      id: 14,
+      unit: "الفصل الثاني: خصائص الثقافة الإسلامية",
+      difficulty: "صعب",
+      question: "تظهر خاصية (الإيجابية والواقعية) في الثقافة الإسلامية في تعاملها مع الطبيعة البشرية من حيث:",
+      options: [
+        "مخاطبة الإنسان كما هو بقدراته وغرائزه وتوجيهها نحو الخير دون مثالية خيالية أو انحطاط مادي",
+        "افتراض أن البشر ملائكة لا يخطئون أبداً",
+        "إطلاق العنان للشهوات دون ضوابط أخلاقية",
+        "دعوة الفرد إلى السلبية وانتظار التغيير دون عمل"
+      ],
+      answer: 0,
+      explanation: "الواقعية الإسلامية تراعي فطرة الإنسان وطاقته (لا يكلف الله نفساً إلا وسعها)، والإيجابية تدفعه للعمل والإصلاح."
+    },
+
+    // الفصل الثالث: العقيدة الإسلامية وأثرها
+    {
+      id: 15,
+      unit: "الفصل الثالث: العقيدة الإسلامية وأثرها",
+      difficulty: "سهل",
+      question: "ما المقصود بالعقيدة الإسلامية اصطلاحاً؟",
+      options: [
+        "التصديق الجازم بالله وملائكته وكتبه ورسله واليوم الآخر والقدر خيره وشره",
+        "الأعمال البدنية الظاهرة كالصلاة والصيام فقط",
+        "الآراء الظنية القابلة للشك والتردد",
+        "الأنظمة الإدارية في الدولة الإسلامية"
+      ],
+      answer: 0,
+      explanation: "العقيدة هي الإيمان اليقيني الجازم الذي لا يعتريه شك بأركان الإيمان الستة وما يتفرع عنها من أصول الدين."
+    },
+    {
+      id: 16,
+      unit: "الفصل الثالث: العقيدة الإسلامية وأثرها",
+      difficulty: "متوسط",
+      question: "ينقسم التوحيد عند علماء العقيدة إلى ثلاثة أقسام متلازمة، هي:",
+      options: [
+        "توحيد الربوبية، وتوحيد الألوهية، وتوحيد الأسماء والصفات",
+        "توحيد الفقه، وتوحيد التفسير، وتوحيد الحديث",
+        "توحيد العبادات، وتوحيد المعاملات، وتوحيد الجنايات",
+        "توحيد العقل، وتوحيد النقل، وتوحيد التجربة"
+      ],
+      answer: 0,
+      explanation: "أقسام التوحيد الثلاثة هي: توحيد الربوبية (أفعال الله)، وتوحيد الألوهية (إفراد الله بالعبادة)، وتوحيد الأسماء والصفات."
+    },
+    {
+      id: 17,
+      unit: "الفصل الثالث: العقيدة الإسلامية وأثرها",
+      difficulty: "صعب",
+      question: "ما الفرق بين (توحيد الربوبية) و(توحيد الألوهية)؟",
+      options: [
+        "توحيد الربوبية إفراد الله بأفعاله كالخلق والرزق، وتوحيد الألوهية إفراد الله بأفعال العباد كالدعاء والصلاة",
+        "توحيد الربوبية خاص بالأنبياء وتوحيد الألوهية خاص بالملائكة",
+        "توحيد الألوهية ينكره المسلمون ويقر به المشركون",
+        "لا فرق بينهما في المعنى أو المقتضى"
+      ],
+      answer: 0,
+      explanation: "توحيد الربوبية هو الإيمان بأن الله وحده الخالق الرازق المدبر، وتوحيد الألوهية هو صرف جميع أنواع العبادة لله وحده لا شريك له."
+    },
+    {
+      id: 18,
+      unit: "الفصل الثالث: العقيدة الإسلامية وأثرها",
+      difficulty: "متوسط",
+      question: "من أبرز آثار العقيدة الإسلامية في نفس الفرد والمجتمع:",
+      options: [
+        "تحرير الإنسان من العبودية لغير الله وتحقيق الطمأنينة النفسية والتكافل الاجتماعي",
+        "الشعور بالقلق الدائم واليأس من رحمة الله",
+        "التواكل وترك الأخذ بالأسباب الدنيوية",
+        "التفريق بين الناس على أساس النسب والمال"
+      ],
+      answer: 0,
+      explanation: "العقيدة الصحيحة تمنح المؤمن العزة والحرية من الخوف والذل لغير الله، وتزرع الأمن النفسي والأخوة الإيمانية."
+    },
+    {
+      id: 19,
+      unit: "الفصل الثالث: العقيدة الإسلامية وأثرها",
+      difficulty: "متوسط",
+      question: "الإيمان بالقدر خيره وشره يقتضي الإيمان بأربع مراتب متتالية هي:",
+      options: [
+        "العلم، والكتابة، والمشيئة، والخلق",
+        "النية، والقول، والعمل، والترك",
+        "الفرض، والواجب، والمندوب، والمباح",
+        "الإسلام، والإيمان، والإحسان، والتقوى"
+      ],
+      answer: 0,
+      explanation: "مراتب الإيمان بالقدر أربع: علم الله المحيط، وكتابته في اللوح المحفوظ، ومشيئته النافذة، وخلقه لكل شيء."
+    },
+    {
+      id: 20,
+      unit: "الفصل الثالث: العقيدة الإسلامية وأثرها",
+      difficulty: "سهل",
+      question: "الأصل الأول الذي بُنيت عليه عقيدة الإسلام وجميع رسالات الأنبياء هو:",
+      options: [
+        "توحيد الله تعالى وإفراده بالعبادة",
+        "تعدد الآلهة حسب الأقاليم",
+        "تقديم العقل على النص القطعي",
+        "الفصل بين الدين والحياة"
+      ],
+      answer: 0,
+      explanation: "دعوة جميع الأنبياء والمرسلين قامت على أصل واحد هو: ﴿وَلَقَدْ بَعَثْنَا فِي كُلِّ أُمَّةٍ رَّسُولًا أَنِ اعْبُدُوا اللَّهَ وَاجْتَنِبُوا الطَّاغُوتَ﴾."
+    },
+
+    // الفصل الرابع: العبادة والأخلاق في الإسلام
+    {
+      id: 21,
+      unit: "الفصل الرابع: العبادة والأخلاق في الإسلام",
+      difficulty: "سهل",
+      question: "ما التعريف الجامع للعبادة في الإسلام (كما قرره شيخ الإسلام ابن تيمية)؟",
+      options: [
+        "اسم جامع لكل ما يحبه الله ويرضاه من الأقوال والأعمال الباطنة والظاهرة",
+        "أداء الصلوات الخمس وصيام رمضان فقط",
+        "الاعتكاف في المساجد وترك العمل والكسب",
+        "الأذكار اللسانية دون عمل الجوارح"
+      ],
+      answer: 0,
+      explanation: "العبادة في الإسلام مفهوم واسع يشمل الشعائر التعبدية وكل عمل نافع يبتغي به المسلم وجه الله وفق شرعه."
+    },
+    {
+      id: 22,
+      unit: "الفصل الرابع: العبادة والأخلاق في الإسلام",
+      difficulty: "متوسط",
+      question: "يُشترط لقبول العمل الصالح والعبادة عند الله تعالى توفر شرطين أساسيين هما:",
+      options: [
+        "الإخلاص لله تعالى، والمتابعة لهدي النبي ﷺ",
+        "كثرة العمل، وعلانية الأداء أمام الناس",
+        "الاجتهاد الشخصي، وموافقة العرف الاجتماعي",
+        "الصعوبة والمشقة البدنية الشديدة"
+      ],
+      answer: 0,
+      explanation: "لا يُقبل العمل إلا إذا كان خالصاً لوجه الله (بعيداً عن الرياء) وصواباً على سنة رسول الله ﷺ (بعيداً عن البدعة)."
+    },
+    {
+      id: 23,
+      unit: "الفصل الرابع: العبادة والأخلاق في الإسلام",
+      difficulty: "متوسط",
+      question: "تتحول العادات والأعمال الدنيوية المباحة (كطلب العلم والعمل والكسب) إلى عبادة يُثاب عليها المسلم إذا:",
+      options: [
+        "اقترنت بالنية الصالحة والتزمت بالضوابط الشرعية",
+        "أُدّيت داخل المسجد حصراً",
+        "تخلّى صاحبها عن الأجر المادي تماماً",
+        "استمرت طوال الليل دون نوم"
+      ],
+      answer: 0,
+      explanation: "النية الصالحة تحوّل العادات إلى عبادات؛ فالسعي على الرزق وطلب العلم بنية إرضاء الله ونفع الأمة عبادة عظيمة."
+    },
+    {
+      id: 24,
+      unit: "الفصل الرابع: العبادة والأخلاق في الإسلام",
+      difficulty: "سهل",
+      question: "ما العلاقة بين العبادة والأخلاق في الإسلام؟",
+      options: [
+        "علاقة تكامل وتلازم؛ فالعبادات الصحيحة تثمر مكارم الأخلاق وتزكي النفس",
+        "علاقة انفصال؛ فالأخلاق شأن دنيوي لا صلة له بالعبادة",
+        "الأخلاق تغني عن أداء الفرائض التعبدية",
+        "العبادة تقتصر على الظاهر والأخلاق تقتصر على الباطن"
+      ],
+      answer: 0,
+      explanation: "كل عبادة في الإسلام لها مقاصد أخلاقية؛ فالصلاة تنهى عن الفحشاء والمنكر، والزكاة تطهر النفس من الشح، والصيام يربي على التقوى."
+    },
+    {
+      id: 25,
+      unit: "الفصل الرابع: العبادة والأخلاق في الإسلام",
+      difficulty: "صعب",
+      question: "تتميز الأخلاق في الإسلام عن النظريات الأخلاقية الوضعية بأنها:",
+      options: [
+        "ثابتة في أصولها، ملزمة بدافع الإيمان والرقابة الذاتية، وشاملة لكل علائق الإنسان",
+        "متغيرة بحسب المصلحة النفعية المؤقتة لكل فرد",
+        "مرتبطة بالخوف من سلطة القانون البشري فقط",
+        "مقتصرة على التعامل مع المسلمين دون غيرهم"
+      ],
+      answer: 0,
+      explanation: "الأخلاق الإسلامية تستمد إلزامها من مراقبة الله والجزاء الأخروي، فلا تتبدل بتبدل المصالح ولا تسقط في الخلوات."
+    }
+  ];
+
+  let activeQuestions = [];
+  let userAnswers = {};
+  let flaggedQuestions = new Set();
+  let currentIndex = 0;
+  let timerInterval = null;
+  let remainingSeconds = 0;
+
+  function shuffleArray(arr) {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function startQuiz() {
+    clearInterval(timerInterval);
+    const chapter = document.getElementById("chapterFilter").value;
+    const requestedCount = parseInt(document.getElementById("questionCountSelect").value, 10);
+    const minutes = parseInt(document.getElementById("timerSelect").value, 10);
+
+    let pool = chapter === "all"
+      ? QUESTION_BANK
+      : QUESTION_BANK.filter(q => q.unit === chapter);
+
+    const shuffled = shuffleArray(pool);
+    activeQuestions = shuffled.slice(0, Math.min(requestedCount, shuffled.length));
+    userAnswers = {};
+    flaggedQuestions.clear();
+    currentIndex = 0;
+
+    document.getElementById("quizSection").classList.remove("hidden");
+    document.getElementById("resultSection").classList.add("hidden");
+
+    setupTimer(minutes);
+    renderNavGrid();
+    renderQuestion();
+  }
+
+  function setupTimer(minutes) {
+    const display = document.getElementById("timerDisplay");
+    if (minutes === 0) {
+      display.textContent = "مفتوح";
+      return;
+    }
+    remainingSeconds = minutes * 60;
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+      remainingSeconds--;
+      updateTimerDisplay();
+      if (remainingSeconds <= 0) {
+        clearInterval(timerInterval);
+        submitQuiz();
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const m = String(Math.floor(remainingSeconds / 60)).padStart(2, "0");
+    const s = String(remainingSeconds % 60).padStart(2, "0");
+    document.getElementById("timerDisplay").textContent = `${m}:${s}`;
+  }
+
+  function renderQuestion() {
+    const q = activeQuestions[currentIndex];
+    document.getElementById("unitBadge").textContent = q.unit;
+    document.getElementById("diffBadge").textContent = q.difficulty;
+    document.getElementById("questionText").textContent = `${currentIndex + 1}. ${q.question}`;
+
+    const flagBtn = document.getElementById("flagBtn");
+    flagBtn.textContent = flaggedQuestions.has(currentIndex) ? "🚩 إزالة علامة المراجعة" : "🚩 وضع علامة للمراجعة";
+
+    const optionsContainer = document.getElementById("optionsContainer");
+    optionsContainer.innerHTML = "";
+
+    q.options.forEach((opt, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn" + (userAnswers[currentIndex] === idx ? " selected" : "");
+      btn.innerHTML = `<span class="opt-num">${idx + 1}</span><span>${opt}</span>`;
+      btn.onclick = () => selectOption(idx);
+      optionsContainer.appendChild(btn);
+    });
+
+    updateProgress();
+    updateNavGridHighlight();
+  }
+
+  function selectOption(idx) {
+    if (userAnswers[currentIndex] === idx) {
+      delete userAnswers[currentIndex];
+    } else {
+      userAnswers[currentIndex] = idx;
+    }
+    renderQuestion();
+  }
+
+  function toggleFlag() {
+    if (flaggedQuestions.has(currentIndex)) {
+      flaggedQuestions.delete(currentIndex);
+    } else {
+      flaggedQuestions.add(currentIndex);
+    }
+    renderQuestion();
+  }
+
+  function nextQuestion() {
+    if (currentIndex < activeQuestions.length - 1) {
+      currentIndex++;
+      renderQuestion();
+    }
+  }
+
+  function prevQuestion() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderQuestion();
+    }
+  }
+
+  function updateProgress() {
+    const total = activeQuestions.length;
+    const answeredCount = Object.keys(userAnswers).length;
+    const pct = total ? Math.round((answeredCount / total) * 100) : 0;
+
+    document.getElementById("qCounterText").textContent = `السؤال ${currentIndex + 1} من ${total}`;
+    document.getElementById("answeredText").textContent = `المجاب عنها: ${answeredCount} / ${total} (${pct}%)`;
+    document.getElementById("progressFill").style.width = `${pct}%`;
+  }
+
+  function renderNavGrid() {
+    const grid = document.getElementById("navGrid");
+    grid.innerHTML = "";
+    activeQuestions.forEach((_, idx) => {
+      const pill = document.createElement("button");
+      pill.className = "q-pill";
+      pill.textContent = idx + 1;
+      pill.onclick = () => {
+        currentIndex = idx;
+        renderQuestion();
+      };
+      grid.appendChild(pill);
+    });
+  }
+
+  function updateNavGridHighlight() {
+    const pills = document.querySelectorAll(".q-pill");
+    pills.forEach((pill, idx) => {
+      pill.className = "q-pill";
+      if (userAnswers[idx] !== undefined) pill.classList.add("answered");
+      if (flaggedQuestions.has(idx)) pill.classList.add("flagged");
+      if (idx === currentIndex) pill.classList.add("current");
+    });
+  }
+
+  function submitQuiz() {
+    clearInterval(timerInterval);
+    document.getElementById("quizSection").classList.add("hidden");
+    document.getElementById("resultSection").classList.remove("hidden");
+
+    let correctCount = 0;
+    const unitMap = {};
+    const diffMap = {};
+
+    activeQuestions.forEach((q, idx) => {
+      if (!unitMap[q.unit]) unitMap[q.unit] = { total: 0, correct: 0 };
+      if (!diffMap[q.difficulty]) diffMap[q.difficulty] = { total: 0, correct: 0 };
+
+      unitMap[q.unit].total++;
+      diffMap[q.difficulty].total++;
+
+      if (userAnswers[idx] === q.answer) {
+        correctCount++;
+        unitMap[q.unit].correct++;
+        diffMap[q.difficulty].correct++;
+      }
+    });
+
+    const total = activeQuestions.length;
+    const pct = total ? Math.round((correctCount / total) * 100) : 0;
+
+    document.getElementById("scorePct").textContent = `${pct}%`;
+    document.getElementById("scoreRaw").textContent = `${correctCount} / ${total}`;
+    document.getElementById("gradeMessage").textContent =
+      pct >= 85 ? "ممتاز جداً! أداء متميز." :
+      pct >= 70 ? "جيد جداً! استمر في المراجعة." :
+      pct >= 50 ? "ناجح، يُنصح بمراجعة الفصول الأقل درجة." :
+      "تحتاج إلى إعادة دراسة الفصول والمحاولة مجدداً.";
+
+    renderBreakdown("unitStats", unitMap);
+    renderBreakdown("diffStats", diffMap);
+    renderReview("all");
+  }
+
+  function renderBreakdown(containerId, mapObj) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+    Object.entries(mapObj).forEach(([label, data]) => {
+      const pct = Math.round((data.correct / data.total) * 100);
+      container.innerHTML += `
+        <div class="stat-row">
+          <div class="stat-label"><span>${label}</span><span>${data.correct}/${data.total} (${pct}%)</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+        </div>
+      `;
+    });
+  }
+
+  function renderReview(filter) {
+    const container = document.getElementById("reviewContainer");
+    container.innerHTML = "";
+
+    activeQuestions.forEach((q, idx) => {
+      const userAns = userAnswers[idx];
+      const isCorrect = userAns === q.answer;
+      const isUnanswered = userAns === undefined;
+
+      if (filter === "correct" && !isCorrect) return;
+      if (filter === "wrong" && (isCorrect || isUnanswered)) return;
+      if (filter === "unanswered" && !isUnanswered) return;
+
+      const statusClass = isCorrect ? "correct" : "wrong";
+      const userAnsText = isUnanswered ? "لم تتم الإجابة" : q.options[userAns];
+
+      container.innerHTML += `
+        <div class="review-item ${statusClass}">
+          <div><strong>س${idx + 1} (${q.unit} - ${q.difficulty}):</strong> ${q.question}</div>
+          <div style="margin-top:0.5rem;">
+            <div><strong>إجابتك:</strong> ${userAnsText}</div>
+            <div><strong>الإجابة الصحيحة:</strong> ${q.options[q.answer]}</div>
+          </div>
+          <div class="explanation"><strong>الشرح:</strong> ${q.explanation}</div>
+        </div>
+      `;
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (document.getElementById("quizSection").classList.contains("hidden")) return;
+    if (["1", "2", "3", "4"].includes(e.key)) {
+      const idx = parseInt(e.key, 10) - 1;
+      if (activeQuestions[currentIndex]?.options[idx]) selectOption(idx);
+    } else if (e.key === "ArrowLeft") {
+      nextQuestion();
+    } else if (e.key === "ArrowRight") {
+      prevQuestion();
+    } else if (e.key.toLowerCase() === "f" || e.key === "ب") {
+      toggleFlag();
+    }
+  });
+
+  startQuiz();
+</script>
+</body>
+</html>
