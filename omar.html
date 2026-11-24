@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بنك الأسئلة التفاعلي | مساق المجتمع الأردني (360 سؤالاً)</title>
+<script>
+  (function() {
+    try {
+      var savedTheme = localStorage.getItem("jordan_society_theme_v1");
+      if (savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
   :root {
     --primary: #0f5c63;
@@ -24,6 +34,24 @@
     --radius: 14px;
   }
 
+  [data-theme="dark"] {
+    --primary: #14b8a6;
+    --primary-dark: #5eead4;
+    --primary-light: rgba(20, 184, 166, 0.16);
+    --accent: #f59e0b;
+    --accent-light: rgba(245, 158, 11, 0.16);
+    --success: #34d399;
+    --success-light: rgba(16, 185, 129, 0.16);
+    --danger: #f87171;
+    --danger-light: rgba(239, 68, 68, 0.16);
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -32,13 +60,19 @@
     color: var(--text);
     line-height: 1.7;
     min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .app-header {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, #093e43 0%, #0f5c63 100%);
     color: #fff;
     padding: 20px 16px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  }
+
+  [data-theme="dark"] .app-header {
+    background: linear-gradient(135deg, #072a2e 0%, #0f4c52 100%);
+    border-bottom: 1px solid #1e3a44;
   }
 
   .header-inner {
@@ -81,7 +115,7 @@
 
   .ctrl-group select {
     background: #fff;
-    color: var(--text);
+    color: #1c2b2d;
     border: none;
     border-radius: 6px;
     padding: 4px 8px;
@@ -89,6 +123,12 @@
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
+  }
+
+  [data-theme="dark"] .ctrl-group select {
+    background: #1e293b;
+    color: #f1f5f9;
+    border: 1px solid #475569;
   }
 
   .btn {
@@ -110,12 +150,16 @@
     color: #fff;
   }
   .btn-accent:hover { background: #c27120; transform: translateY(-1px); }
+  [data-theme="dark"] .btn-accent { color: #0f172a; }
+  [data-theme="dark"] .btn-accent:hover { background: #fbbf24; }
 
   .btn-primary {
     background: var(--primary);
     color: #fff;
   }
   .btn-primary:hover { background: var(--primary-dark); }
+  [data-theme="dark"] .btn-primary { background: #0d9488; color: #fff; }
+  [data-theme="dark"] .btn-primary:hover { background: #0f766e; }
 
   .btn-outline {
     background: #fff;
@@ -123,12 +167,23 @@
     border: 1.5px solid var(--primary);
   }
   .btn-outline:hover { background: var(--primary-light); }
+  [data-theme="dark"] .btn-outline {
+    background: #1e293b;
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+  [data-theme="dark"] .btn-outline:hover { background: var(--primary-light); }
 
   .btn-ghost {
     background: #eef4f5;
     color: var(--text);
   }
   .btn-ghost:hover { background: #dce8ea; }
+  [data-theme="dark"] .btn-ghost {
+    background: #273549;
+    color: #e2e8f0;
+  }
+  [data-theme="dark"] .btn-ghost:hover { background: #334155; }
 
   .btn-light {
     background: rgba(255, 255, 255, 0.18);
@@ -142,6 +197,8 @@
     color: #fff;
   }
   .btn-danger:hover { background: #a83024; }
+  [data-theme="dark"] .btn-danger { background: #dc2626; color: #fff; }
+  [data-theme="dark"] .btn-danger:hover { background: #b91c1c; }
 
   .container {
     max-width: 1120px;
@@ -169,11 +226,28 @@
 
   .progress-labels {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    gap: 6px;
     font-size: 0.88rem;
     font-weight: 600;
     margin-bottom: 6px;
     color: var(--primary-dark);
+  }
+
+  .scope-pill {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--accent-light);
+    color: #9c530c;
+    margin-right: 6px;
+  }
+
+  [data-theme="dark"] .scope-pill {
+    color: #fbbf24;
   }
 
   .progress-track {
@@ -182,6 +256,10 @@
     background: #e2ecef;
     border-radius: 999px;
     overflow: hidden;
+  }
+
+  [data-theme="dark"] .progress-track {
+    background: #334155;
   }
 
   .progress-fill {
@@ -204,11 +282,19 @@
     border: 1px solid #b9d7da;
   }
 
+  [data-theme="dark"] .timer-pill {
+    border-color: rgba(94, 234, 212, 0.35);
+  }
+
   .timer-pill.warning {
     background: var(--danger-light);
     color: var(--danger);
     border-color: #ebb7b2;
     animation: pulse 1.2s infinite;
+  }
+
+  [data-theme="dark"] .timer-pill.warning {
+    border-color: rgba(248, 113, 113, 0.45);
   }
 
   @keyframes pulse {
@@ -266,6 +352,10 @@
   .badge-hard { background: #f3e8ff; color: #6b21a8; }
   .badge-flag { background: var(--accent-light); color: #9c530c; border: 1px solid #f0cfa8; }
 
+  [data-theme="dark"] .badge-medium { color: #fbbf24; }
+  [data-theme="dark"] .badge-hard { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; }
+  [data-theme="dark"] .badge-flag { color: #fbbf24; border-color: rgba(245, 158, 11, 0.45); }
+
   .flag-btn {
     background: transparent;
     border: 1.5px solid var(--border);
@@ -282,6 +372,9 @@
     background: var(--accent-light);
     border-color: var(--accent);
     color: #9c530c;
+  }
+  [data-theme="dark"] .flag-btn.flagged {
+    color: #fbbf24;
   }
 
   .q-text {
@@ -307,7 +400,7 @@
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.15s ease;
-    background: #fff;
+    background: var(--card);
     text-align: right;
     width: 100%;
     font-family: inherit;
@@ -318,6 +411,10 @@
   .option-item:hover {
     border-color: var(--primary);
     background: #f8fcfc;
+  }
+
+  [data-theme="dark"] .option-item:hover {
+    background: #263449;
   }
 
   .option-item.selected {
@@ -339,8 +436,18 @@
     flex-shrink: 0;
   }
 
+  [data-theme="dark"] .opt-letter {
+    background: #334155;
+    color: #5eead4;
+  }
+
   .option-item.selected .opt-letter {
     background: var(--primary);
+    color: #fff;
+  }
+
+  [data-theme="dark"] .option-item.selected .opt-letter {
+    background: #0d9488;
     color: #fff;
   }
 
@@ -368,10 +475,72 @@
     gap: 12px;
   }
 
+  [data-theme="dark"] .shortcuts-hint {
+    background: #162032;
+  }
+
+  /* لوحة التنقل الجانبية مع دعم الطيّ على الهاتف */
+  .nav-side-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
   .nav-side h3 {
     font-size: 1rem;
-    margin-bottom: 12px;
+    margin-bottom: 0;
     color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-mini-count,
+  .nav-toggle-icon {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .nav-side {
+      padding: 16px 18px;
+    }
+    .nav-side-header {
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 12px;
+    }
+    .nav-side.collapsed .nav-side-header {
+      margin-bottom: 0;
+    }
+    .nav-side.collapsed .nav-side-body {
+      display: none;
+    }
+    .nav-mini-count {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    .nav-toggle-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .palette-grid {
+      max-height: 220px;
+    }
   }
 
   .palette-grid {
@@ -388,7 +557,7 @@
     height: 36px;
     border-radius: 8px;
     border: 1.5px solid var(--border);
-    background: #fff;
+    background: var(--card);
     font-family: inherit;
     font-size: 0.85rem;
     font-weight: 700;
@@ -446,10 +615,15 @@
   .score-hero {
     text-align: center;
     padding: 28px 20px;
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    background: linear-gradient(135deg, #093e43, #0f5c63);
     color: #fff;
     border-radius: var(--radius);
     margin-bottom: 20px;
+  }
+
+  [data-theme="dark"] .score-hero {
+    background: linear-gradient(135deg, #072a2e, #0f4c52);
+    border: 1px solid #1e3a44;
   }
 
   .score-circle {
@@ -498,6 +672,10 @@
     margin-bottom: 10px;
   }
 
+  [data-theme="dark"] .mini-bar {
+    background: #334155;
+  }
+
   .mini-bar > div {
     height: 100%;
     background: var(--primary);
@@ -514,7 +692,7 @@
     padding: 7px 14px;
     border-radius: 999px;
     border: 1.5px solid var(--border);
-    background: #fff;
+    background: var(--card);
     font-family: inherit;
     font-size: 0.85rem;
     font-weight: 700;
@@ -528,12 +706,18 @@
     color: #fff;
   }
 
+  [data-theme="dark"] .filter-tab.active {
+    background: #0d9488;
+    border-color: #0d9488;
+    color: #fff;
+  }
+
   .review-item {
     border: 1.5px solid var(--border);
     border-radius: 12px;
     padding: 18px;
     margin-bottom: 14px;
-    background: #fff;
+    background: var(--card);
   }
 
   .review-item.is-correct { border-right: 5px solid var(--success); }
@@ -555,6 +739,9 @@
   .ans-user-bad { background: var(--danger-light); color: #8c261c; }
   .ans-correct { background: var(--primary-light); color: var(--primary-dark); }
 
+  [data-theme="dark"] .ans-user-ok { color: #6ee7b7; }
+  [data-theme="dark"] .ans-user-bad { color: #fca5a5; }
+
   .explanation-box {
     background: #f8fafb;
     border: 1px solid #e0e8ea;
@@ -562,6 +749,12 @@
     padding: 10px 14px;
     font-size: 0.88rem;
     color: #2f4245;
+  }
+
+  [data-theme="dark"] .explanation-box {
+    background: #162032;
+    border-color: #334155;
+    color: #cbd5e1;
   }
 
   .bank-search-bar {
@@ -579,6 +772,7 @@
     border-radius: 10px;
     font-family: inherit;
     font-size: 0.92rem;
+    background: var(--card);
     color: var(--text);
   }
 
@@ -602,6 +796,10 @@
     font-size: 0.9rem;
   }
 
+  [data-theme="dark"] .bank-opt-pill {
+    background: #162032;
+  }
+
   .bank-opt-pill.is-answer {
     background: var(--success-light);
     border-color: var(--success);
@@ -609,23 +807,61 @@
     font-weight: 700;
   }
 
+  [data-theme="dark"] .bank-opt-pill.is-answer {
+    color: #6ee7b7;
+  }
+
   .bank-footer {
     text-align: center;
     font-size: 0.82rem;
     color: var(--muted);
-    margin-top: 24px;
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .author-credit {
+    font-size: 0.88rem;
+    color: var(--primary-dark);
+    font-weight: 600;
+  }
+
+  .author-credit strong {
+    color: var(--accent);
+    font-weight: 800;
   }
 
   @media print {
+    :root,
+    [data-theme="dark"] {
+      --primary: #0f5c63 !important;
+      --primary-dark: #093e43 !important;
+      --primary-light: #e6f2f3 !important;
+      --accent: #d9822b !important;
+      --accent-light: #fdf3e7 !important;
+      --success: #1b8a5a !important;
+      --success-light: #e8f6ef !important;
+      --danger: #c0392b !important;
+      --danger-light: #fbeaea !important;
+      --bg: #ffffff !important;
+      --card: #ffffff !important;
+      --text: #1c2b2d !important;
+      --muted: #5a6d70 !important;
+      --border: #d5e1e3 !important;
+    }
     * {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
     body {
       background: #fff !important;
+      color: #1c2b2d !important;
     }
     .app-header {
-      background: var(--primary-dark) !important;
+      background: #093e43 !important;
       box-shadow: none !important;
       padding: 12px 16px !important;
     }
@@ -666,12 +902,21 @@
     </div>
     <div class="controls-bar">
       <div class="ctrl-group">
+        <label for="unitScopeSelect">نطاق الاختبار:</label>
+        <select id="unitScopeSelect">
+          <option value="all" selected>الكل (360 سؤالاً)</option>
+          <option value="1">القسم الأول: بيانات الكتاب والمقدمة (25)</option>
+          <option value="2">الفصل الأول: المجتمع الأردني (161)</option>
+          <option value="3">الفصل الثاني: الأسرة الأردنية (174)</option>
+        </select>
+      </div>
+      <div class="ctrl-group">
         <label for="countSelect">عدد الأسئلة:</label>
         <select id="countSelect">
-          <option value="60" selected>60 سؤالاً (اختبار عشوائي)</option>
+          <option value="60" selected>60 سؤالاً (عشوائي)</option>
           <option value="65">65 سؤالاً</option>
           <option value="70">70 سؤالاً</option>
-          <option value="360">360 سؤالاً (البنك كامل)</option>
+          <option value="all">كل أسئلة النطاق</option>
         </select>
       </div>
       <div class="ctrl-group">
@@ -685,6 +930,7 @@
       </div>
       <button class="btn btn-accent" id="newExamBtn" type="button">اختبار جديد</button>
       <button class="btn btn-light" id="browseBankBtn" type="button">تصفح البنك كاملاً (360)</button>
+      <button class="btn btn-light" id="themeToggleBtn" type="button" title="تبديل الوضع الليلي والنهاري">🌙 الوضع الليلي</button>
     </div>
   </div>
 </header>
@@ -694,7 +940,10 @@
     <div class="meta-strip">
       <div class="progress-wrap">
         <div class="progress-labels">
-          <span id="progressText">السؤال 1 من 60</span>
+          <span>
+            <span id="progressText">السؤال 1 من 60</span>
+            <span class="scope-pill" id="activeScopeBadge">النطاق: جميع الأقسام</span>
+          </span>
           <span id="answeredText">المجاب عنها: 0 / 60 (0%)</span>
         </div>
         <div class="progress-track">
@@ -736,15 +985,20 @@
         </div>
       </div>
 
-      <aside class="card nav-side">
-        <h3>لوحة التنقل والمراجعة</h3>
-        <div class="legend">
-          <span><i class="dot" style="background:var(--primary-light); border:1px solid var(--primary);"></i> مُجاب</span>
-          <span><i class="dot" style="background:#fff; border:1px solid var(--border);"></i> غير مُجاب</span>
-          <span><i class="dot" style="background:var(--accent);"></i> للمراجعة</span>
+      <aside class="card nav-side" id="navSideCard">
+        <div class="nav-side-header" id="navToggleHeader" role="button" tabindex="0" aria-expanded="true">
+          <h3>لوحة التنقل والمراجعة <span class="nav-mini-count" id="navMiniCount">0 / 60</span></h3>
+          <span class="nav-toggle-icon" id="navToggleIcon">▲</span>
         </div>
-        <div class="palette-grid" id="paletteGrid"></div>
-        <button class="btn btn-outline" style="width:100%; justify-content:center;" id="jumpUnansweredBtn" type="button">الانتقال لأول سؤال غير مجاب</button>
+        <div class="nav-side-body" id="navSideBody">
+          <div class="legend">
+            <span><i class="dot" style="background:var(--primary-light); border:1px solid var(--primary);"></i> مُجاب</span>
+            <span><i class="dot" style="background:var(--card); border:1px solid var(--border);"></i> غير مُجاب</span>
+            <span><i class="dot" style="background:var(--accent);"></i> للمراجعة</span>
+          </div>
+          <div class="palette-grid" id="paletteGrid"></div>
+          <button class="btn btn-outline" style="width:100%; justify-content:center;" id="jumpUnansweredBtn" type="button">الانتقال لأول سؤال غير مجاب</button>
+        </div>
       </aside>
     </div>
   </section>
@@ -816,16 +1070,27 @@
     </div>
   </section>
 
-  <div class="bank-footer" id="bankFooter"></div>
+  <footer class="bank-footer" id="bankFooter">
+    <div id="bankStatsLine"></div>
+    <div class="author-credit">إعداد وتطوير: <strong>م. عادل جعارة — Swe.Adel</strong></div>
+  </footer>
 </main>
 
 <script>
-const STORAGE_KEY = "jordan_society_exam_state_v2";
+const STORAGE_KEY = "jordan_society_exam_state_v3";
+const THEME_STORAGE_KEY = "jordan_society_theme_v1";
 
 const UNIT_NAMES = {
   1: "القسم الأول: بيانات الكتاب والمقدمة (ص 1 – 12)",
   2: "الفصل الأول: المجتمع الأردني (ص 13 – 44)",
   3: "الفصل الثاني: الأسرة الأردنية (ص 45 – 80)"
+};
+
+const SCOPE_SHORT_NAMES = {
+  all: "جميع الأقسام (360)",
+  1: "القسم الأول: بيانات الكتاب والمقدمة",
+  2: "الفصل الأول: المجتمع الأردني",
+  3: "الفصل الثاني: الأسرة الأردنية"
 };
 
 const DIFF_LABELS = {
@@ -843,7 +1108,8 @@ let state = {
   answers: {},
   flagged: new Set(),
   currentIndex: 0,
-  totalCount: 60,
+  unitScope: "all",
+  totalCount: "60",
   timerMinutes: 60,
   remainingSeconds: 3600,
   elapsedSeconds: 0,
@@ -859,10 +1125,12 @@ let bankBrowserState = {
 };
 
 const els = {
+  unitScopeSelect: document.getElementById("unitScopeSelect"),
   countSelect: document.getElementById("countSelect"),
   timerSelect: document.getElementById("timerSelect"),
   newExamBtn: document.getElementById("newExamBtn"),
   browseBankBtn: document.getElementById("browseBankBtn"),
+  themeToggleBtn: document.getElementById("themeToggleBtn"),
   backToExamBtn: document.getElementById("backToExamBtn"),
   toggleAnswersBtn: document.getElementById("toggleAnswersBtn"),
   bankSearchInput: document.getElementById("bankSearchInput"),
@@ -875,6 +1143,7 @@ const els = {
   resultsView: document.getElementById("resultsView"),
   fullBankView: document.getElementById("fullBankView"),
   progressText: document.getElementById("progressText"),
+  activeScopeBadge: document.getElementById("activeScopeBadge"),
   answeredText: document.getElementById("answeredText"),
   progressFill: document.getElementById("progressFill"),
   timerPill: document.getElementById("timerPill"),
@@ -887,6 +1156,10 @@ const els = {
   prevBtn: document.getElementById("prevBtn"),
   nextBtn: document.getElementById("nextBtn"),
   submitBtn: document.getElementById("submitBtn"),
+  navSideCard: document.getElementById("navSideCard"),
+  navToggleHeader: document.getElementById("navToggleHeader"),
+  navMiniCount: document.getElementById("navMiniCount"),
+  navToggleIcon: document.getElementById("navToggleIcon"),
   paletteGrid: document.getElementById("paletteGrid"),
   jumpUnansweredBtn: document.getElementById("jumpUnansweredBtn"),
   resPct: document.getElementById("resPct"),
@@ -897,8 +1170,38 @@ const els = {
   diffStatsBody: document.getElementById("diffStatsBody"),
   reviewFilters: document.getElementById("reviewFilters"),
   reviewList: document.getElementById("reviewList"),
-  bankFooter: document.getElementById("bankFooter")
+  bankStatsLine: document.getElementById("bankStatsLine")
 };
+
+function applyTheme(theme) {
+  if (theme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    els.themeToggleBtn.textContent = "☀️ الوضع النهاري";
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+    els.themeToggleBtn.textContent = "🌙 الوضع الليلي";
+  }
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch (e) {}
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  applyTheme(isDark ? "light" : "dark");
+}
+
+function setNavCollapsed(collapsed) {
+  if (collapsed) {
+    els.navSideCard.classList.add("collapsed");
+    els.navToggleHeader.setAttribute("aria-expanded", "false");
+    els.navToggleIcon.textContent = "▼";
+  } else {
+    els.navSideCard.classList.remove("collapsed");
+    els.navToggleHeader.setAttribute("aria-expanded", "true");
+    els.navToggleIcon.textContent = "▲";
+  }
+}
 
 function shuffle(arr) {
   const copy = [...arr];
@@ -929,6 +1232,7 @@ function saveState() {
       answers: state.answers,
       flagged: Array.from(state.flagged),
       currentIndex: state.currentIndex,
+      unitScope: state.unitScope,
       totalCount: state.totalCount,
       timerMinutes: state.timerMinutes,
       remainingSeconds: state.remainingSeconds,
@@ -960,8 +1264,56 @@ function clearSavedState() {
   } catch (err) {}
 }
 
-function generateBalancedExam(total) {
-  if (total >= BANK.length) {
+function sampleBalancedByDifficulty(pool, count) {
+  if (count >= pool.length) {
+    return shuffle(pool).map(shuffleQuestionOptions);
+  }
+  const diffs = ["easy", "medium", "hard"];
+  const byDiff = {
+    easy: pool.filter(q => q.d === "easy"),
+    medium: pool.filter(q => q.d === "medium"),
+    hard: pool.filter(q => q.d === "hard")
+  };
+
+  const rawQuotas = diffs.map(d => ({
+    d,
+    exact: (byDiff[d].length / pool.length) * count
+  }));
+  const quotas = {};
+  let allocated = 0;
+  rawQuotas.forEach(item => {
+    quotas[item.d] = Math.min(byDiff[item.d].length, Math.floor(item.exact));
+    allocated += quotas[item.d];
+  });
+
+  rawQuotas
+    .sort((a, b) => (b.exact - Math.floor(b.exact)) - (a.exact - Math.floor(a.exact)))
+    .forEach(item => {
+      if (allocated < count && quotas[item.d] < byDiff[item.d].length) {
+        quotas[item.d]++;
+        allocated++;
+      }
+    });
+
+  let chosen = [];
+  diffs.forEach(d => {
+    chosen.push(...shuffle(byDiff[d]).slice(0, quotas[d]).map(shuffleQuestionOptions));
+  });
+  return shuffle(chosen);
+}
+
+function generateBalancedExam(countOption, unitScope = "all") {
+  const isAllCount = String(countOption) === "all";
+  const numericCount = isAllCount ? BANK.length : (parseInt(countOption, 10) || 60);
+
+  if (unitScope !== "all") {
+    const targetUnit = parseInt(unitScope, 10);
+    const unitPool = BANK.filter(q => q.u === targetUnit);
+    const effectiveCount = isAllCount ? unitPool.length : Math.min(numericCount, unitPool.length);
+    return sampleBalancedByDifficulty(unitPool, effectiveCount);
+  }
+
+  if (isAllCount || numericCount >= BANK.length) {
     return shuffle(BANK).map(shuffleQuestionOptions);
   }
 
@@ -974,7 +1326,7 @@ function generateBalancedExam(total) {
   // Proportional allocation across the 3 sections based on their pool sizes (25, 161, 174)
   const rawQuotas = units.map(u => ({
     u,
-    exact: (poolByUnit[u].length / BANK.length) * total
+    exact: (poolByUnit[u].length / BANK.length) * numericCount
   }));
   const unitQuotas = {};
   let allocated = 0;
@@ -983,11 +1335,10 @@ function generateBalancedExam(total) {
     allocated += unitQuotas[item.u];
   });
 
-  // Distribute remainder by largest fractional part
   rawQuotas
     .sort((a, b) => (b.exact - Math.floor(b.exact)) - (a.exact - Math.floor(a.exact)))
     .forEach(item => {
-      if (allocated < total && unitQuotas[item.u] < poolByUnit[item.u].length) {
+      if (allocated < numericCount && unitQuotas[item.u] < poolByUnit[item.u].length) {
         unitQuotas[item.u]++;
         allocated++;
       }
@@ -995,9 +1346,7 @@ function generateBalancedExam(total) {
 
   let selected = [];
   for (const u of units) {
-    const need = unitQuotas[u];
-    const pool = shuffle(poolByUnit[u]);
-    selected.push(...pool.slice(0, need).map(shuffleQuestionOptions));
+    selected.push(...sampleBalancedByDifficulty(poolByUnit[u], unitQuotas[u]));
   }
 
   return shuffle(selected);
@@ -1058,9 +1407,10 @@ function startNewExam() {
   clearInterval(state.timerId);
   clearSavedState();
 
-  state.totalCount = parseInt(els.countSelect.value, 10) || 60;
+  state.unitScope = els.unitScopeSelect.value || "all";
+  state.totalCount = els.countSelect.value || "60";
   state.timerMinutes = parseInt(els.timerSelect.value, 10);
-  state.examQuestions = generateBalancedExam(state.totalCount);
+  state.examQuestions = generateBalancedExam(state.totalCount, state.unitScope);
   state.answers = {};
   state.flagged = new Set();
   state.currentIndex = 0;
@@ -1106,7 +1456,9 @@ function updateProgress() {
   const answeredPct = total ? Math.round((answeredCount / total) * 100) : 0;
   const currentNum = state.currentIndex + 1;
   els.progressText.textContent = `السؤال ${currentNum} من ${total}`;
+  els.activeScopeBadge.textContent = `النطاق: ${SCOPE_SHORT_NAMES[state.unitScope] || SCOPE_SHORT_NAMES.all}`;
   els.answeredText.textContent = `المجاب عنها: ${answeredCount} / ${total} (${answeredPct}%)`;
+  els.navMiniCount.textContent = `${answeredCount} / ${total}`;
   els.progressFill.style.width = `${total ? (answeredCount / total) * 100 : 0}%`;
 }
 
@@ -1226,12 +1578,13 @@ function renderResults(autoSubmitted = false) {
   else gradeLabel = "بحاجة لمراجعة! ننصح بمراجعة الشروحات وإعادة الاختبار.";
 
   els.resTitle.textContent = autoSubmitted ? "انتهى الوقت — نتيجة الاختبار" : "تم تسليم الاختبار بنجاح";
-  els.resMsg.textContent = `${gradeLabel} | الوقت المستغرق: ${formatTime(state.elapsedSeconds)}`;
+  els.resMsg.textContent = `${gradeLabel} | النطاق: ${SCOPE_SHORT_NAMES[state.unitScope] || SCOPE_SHORT_NAMES.all} | الوقت المستغرق: ${formatTime(state.elapsedSeconds)}`;
 
   els.unitStatsBody.innerHTML = "";
   [1, 2, 3].forEach(u => {
     const s = unitStats[u];
-    const p = s.total ? Math.round((s.correct / s.total) * 100) : 0;
+    if (s.total === 0) return;
+    const p = Math.round((s.correct / s.total) * 100);
     els.unitStatsBody.innerHTML += `
       <div class="stat-row">
         <span>${UNIT_NAMES[u]}</span>
@@ -1244,7 +1597,8 @@ function renderResults(autoSubmitted = false) {
   els.diffStatsBody.innerHTML = "";
   ["easy", "medium", "hard"].forEach(d => {
     const s = diffStats[d];
-    const p = s.total ? Math.round((s.correct / s.total) * 100) : 0;
+    if (s.total === 0) return;
+    const p = Math.round((s.correct / s.total) * 100);
     els.diffStatsBody.innerHTML += `
       <div class="stat-row">
         <span>مستوى: ${DIFF_LABELS[d]}</span>
@@ -1270,7 +1624,8 @@ function finishExam(autoSubmitted = false) {
     const unanswered = total - Object.keys(state.answers).length;
     const flaggedCount = state.flagged.size;
     if (unanswered > 0 || flaggedCount > 0) {
-      const msg = `لديك ${unanswered} سؤالاً غير مجاب عنه، و${flaggedCount} سؤالاً محدداً للمراجعة.\nهل تريد إنهاء الاختبار وعرض النتيجة الآن؟`;
+      const msg = `لديك ${unanswered} سؤالاً غير مجاب عنه، و${flaggedCount} سؤالاً محدداً للمراجعة.
+هل تريد إنهاء الاختبار وعرض النتيجة الآن؟`;
       if (!confirm(msg)) return;
     }
   }
@@ -1372,7 +1727,7 @@ function renderFullBank() {
           <span class="badge badge-unit">${UNIT_NAMES[item.u]}</span>
           <span class="badge badge-${item.d}">${DIFF_LABELS[item.d]}</span>
         </div>
-        <span class="badge" style="background:#eef4f5; color:var(--primary-dark);">سؤال رقم ${item.globalNum}</span>
+        <span class="badge" style="background:var(--primary-light); color:var(--primary-dark);">سؤال رقم ${item.globalNum}</span>
       </div>
       <div style="font-weight:700; font-size:1.03rem;">س${item.globalNum}: ${item.q}</div>
       <div class="bank-opts-grid">${optsHtml}</div>
@@ -1388,6 +1743,20 @@ function renderFullBank() {
 els.prevBtn.addEventListener("click", goPrev);
 els.nextBtn.addEventListener("click", goNext);
 els.flagBtn.addEventListener("click", toggleFlag);
+els.themeToggleBtn.addEventListener("click", toggleTheme);
+
+els.navToggleHeader.addEventListener("click", () => {
+  if (window.innerWidth <= 900) {
+    setNavCollapsed(!els.navSideCard.classList.contains("collapsed"));
+  }
+});
+
+els.navToggleHeader.addEventListener("keydown", (e) => {
+  if ((e.key === "Enter" || e.key === " ") && window.innerWidth <= 900) {
+    e.preventDefault();
+    setNavCollapsed(!els.navSideCard.classList.contains("collapsed"));
+  }
+});
 
 els.jumpUnansweredBtn.addEventListener("click", () => {
   const total = state.examQuestions.length;
@@ -1408,6 +1777,7 @@ els.submitBtn.addEventListener("click", () => finishExam(false));
 els.newExamBtn.addEventListener("click", startNewExam);
 els.retryBtn.addEventListener("click", startNewExam);
 els.printBtn.addEventListener("click", () => window.print());
+els.unitScopeSelect.addEventListener("change", startNewExam);
 els.countSelect.addEventListener("change", startNewExam);
 els.timerSelect.addEventListener("change", startNewExam);
 
@@ -1489,11 +1859,20 @@ document.addEventListener("keydown", (e) => {
 });
 
 (function init() {
+  // Sync theme button label with applied theme
+  const currentTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  applyTheme(currentTheme);
+
+  // Collapse navigation palette by default on mobile screens
+  if (window.innerWidth <= 900) {
+    setNavCollapsed(true);
+  }
+
   const total = BANK.length;
   const easy = BANK.filter(q => q.d === "easy").length;
   const med = BANK.filter(q => q.d === "medium").length;
   const hard = BANK.filter(q => q.d === "hard").length;
-  els.bankFooter.textContent = `إجمالي بنك الأسئلة: ${total} سؤالاً (القسم الأول: 25 • الفصل الأول: 161 • الفصل الثاني: 174) | سهل: ${easy} (${Math.round(easy/total*100)}%) • متوسط: ${med} (${Math.round(med/total*100)}%) • صعب: ${hard} (${Math.round(hard/total*100)}%)`;
+  els.bankStatsLine.textContent = `إجمالي بنك الأسئلة: ${total} سؤالاً (القسم الأول: 25 • الفصل الأول: 161 • الفصل الثاني: 174) | سهل: ${easy} (${Math.round(easy/total*100)}%) • متوسط: ${med} (${Math.round(med/total*100)}%) • صعب: ${hard} (${Math.round(hard/total*100)}%)`;
 
   const saved = loadState();
   if (saved) {
@@ -1501,14 +1880,16 @@ document.addEventListener("keydown", (e) => {
     state.answers = saved.answers || {};
     state.flagged = new Set(Array.isArray(saved.flagged) ? saved.flagged : []);
     state.currentIndex = Math.min(saved.currentIndex || 0, state.examQuestions.length - 1);
-    state.totalCount = saved.totalCount || state.examQuestions.length;
+    state.unitScope = saved.unitScope || "all";
+    state.totalCount = String(saved.totalCount || state.examQuestions.length);
     state.timerMinutes = saved.timerMinutes !== undefined ? saved.timerMinutes : 60;
     state.remainingSeconds = saved.remainingSeconds !== undefined ? saved.remainingSeconds : state.timerMinutes * 60;
     state.elapsedSeconds = saved.elapsedSeconds || 0;
     state.submitted = Boolean(saved.submitted);
     state.currentFilter = saved.currentFilter || "all";
 
-    els.countSelect.value = String(state.totalCount);
+    els.unitScopeSelect.value = String(state.unitScope);
+    els.countSelect.value = ["60", "65", "70", "all"].includes(state.totalCount) ? state.totalCount : "all";
     els.timerSelect.value = String(state.timerMinutes);
 
     if (state.submitted) {
