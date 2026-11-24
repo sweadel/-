@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم الإدارية | منصة مساق المجتمع الأردني</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Cairo', 'Segoe UI', 'Tahoma', 'sans-serif'],
+        },
+        colors: {
+          primary: {
+            DEFAULT: '#0f5c63',
+            dark: '#093e43',
+            light: '#e6f2f3',
+          },
+          accent: {
+            DEFAULT: '#d9822b',
+            light: '#fdf3e7',
+          }
+        }
+      }
+    }
+  };
+  (function() {
+    try {
+      if (localStorage.getItem('jordan_society_theme_v1') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  body {
+    font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+  }
+  /* شريط تمرير مخصص */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(15, 92, 99, 0.35);
+    border-radius: 999px;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(94, 234, 212, 0.25);
+  }
+  .nav-item.active {
+    background: linear-gradient(90deg, rgba(15, 92, 99, 0.14) 0%, rgba(15, 92, 99, 0.04) 100%);
+    color: #0f5c63;
+    border-right: 4px solid #0f5c63;
+    font-weight: 800;
+  }
+  .dark .nav-item.active {
+    background: linear-gradient(90deg, rgba(20, 184, 166, 0.22) 0%, rgba(20, 184, 166, 0.05) 100%);
+    color: #5eead4;
+    border-right-color: #14b8a6;
+  }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- خلفية القائمة الجانبية للهواتف -->
+  <div id="sidebarOverlay" class="fixed inset-0 bg-slate-900/60 z-30 hidden lg:hidden backdrop-blur-xs"></div>
+
+  <!-- الهيكل العام للموقع -->
+  <div class="flex flex-1 min-h-screen">
+
+    <!-- القائمة الجانبية الثابتة (Sidebar) -->
+    <aside id="sidebar" class="fixed lg:sticky top-0 right-0 z-40 h-screen w-72 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 flex flex-col transition-transform duration-300 translate-x-full lg:translate-x-0 shadow-xl lg:shadow-none">
+      <!-- شعار المنصة -->
+      <div class="p-5 bg-gradient-to-l from-[#093e43] to-[#0f5c63] text-white flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center text-xl font-extrabold text-amber-300">
+            أر
+          </div>
+          <div>
+            <h1 class="font-extrabold text-base leading-tight">المجتمع الأردني</h1>
+            <span class="text-xs text-teal-100/90">لوحة الإدارة والتحكم</span>
+          </div>
+        </div>
+        <button id="closeSidebarBtn" type="button" class="lg:hidden p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white">
+          ✕
+        </button>
+      </div>
+
+      <!-- حالة الاتصال السريعة -->
+      <div class="px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/80">
+        <div class="flex items-center justify-between text-xs mb-1">
+          <span class="text-slate-500 dark:text-slate-400 font-semibold">حالة المستودع:</span>
+          <span id="sidebarSyncBadge" class="px-2 py-0.5 rounded-full font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300">متصل</span>
+        </div>
+        <div class="text-xs font-mono text-slate-600 dark:text-slate-300 truncate" dir="ltr">sweadel/-/omar.html</div>
+      </div>
+
+      <!-- روابط الأقسام الأربعة -->
+      <nav class="flex-1 p-3 space-y-1.5 overflow-y-auto" id="sidebarNav">
+        <button type="button" data-tab="overview" class="nav-item active w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <span class="flex items-center gap-3">
+            <span class="text-lg">📊</span>
+            <span>نظرة عامة والإحصائيات</span>
+          </span>
+        </button>
+
+        <button type="button" data-tab="questions" class="nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <span class="flex items-center gap-3">
+            <span class="text-lg">📚</span>
+            <span>إدارة بنك الأسئلة</span>
+          </span>
+          <span id="navTotalBadge" class="text-xs font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary dark:bg-teal-500/20 dark:text-teal-300">0</span>
+        </button>
+
+        <button type="button" data-tab="preview" class="nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <span class="flex items-center gap-3">
+            <span class="text-lg">🎓</span>
+            <span>معاينة موقع الطلبة</span>
+          </span>
+        </button>
+
+        <button type="button" data-tab="sync" class="nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <span class="flex items-center gap-3">
+            <span class="text-lg">⚙️</span>
+            <span>النشر والمزامنة (GitHub)</span>
+          </span>
+          <span id="dirtyDot" class="hidden w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" title="توجد تعديلات غير منشورة"></span>
+        </button>
+      </nav>
+
+      <!-- أزرار سريعة أسفل القائمة -->
+      <div class="p-4 border-t border-slate-200 dark:border-slate-700 space-y-2">
+        <a href="https://sweadel.github.io/-/omar.html" target="_blank" rel="noopener" class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 transition">
+          <span>فتح موقع الطلبة المنشور</span>
+          <span>↗</span>
+        </a>
+        <div class="text-center text-[11px] text-slate-400 pt-1">
+          إعداد وتطوير: <strong class="text-accent">م. عادل جعارة — Swe.Adel</strong>
+        </div>
+      </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- الشريط العلوي (Top Navbar) -->
+      <header class="sticky top-0 z-20 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 px-4 lg:px-8 py-3.5">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <button id="openSidebarBtn" type="button" class="lg:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">
+              ☰
+            </button>
+            <div>
+              <h2 id="pageHeaderTitle" class="text-lg font-extrabold text-primary dark:text-teal-300">نظرة عامة والإحصائيات</h2>
+              <p id="pageHeaderSub" class="text-xs text-slate-500 dark:text-slate-400">متابعة شاملة لبنك أسئلة مساق المجتمع الأردني (ص 1 – 80)</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span id="topStatusPill" class="text-xs font-bold px-3 py-1.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 dark:bg-teal-900/40 dark:text-teal-300 dark:border-teal-700/50">
+              جاري المزامنة...
+            </span>
+
+            <button id="quickPushBtn" type="button" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-[#d9822b] hover:bg-[#c27120] text-white shadow-xs transition flex items-center gap-1.5 cursor-pointer">
+              <span>⬆️</span>
+              <span>نشر على GitHub</span>
+            </button>
+
+            <button id="themeToggleBtn" type="button" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700/70 hover:bg-slate-100 dark:hover:bg-slate-700 text-sm font-bold cursor-pointer" title="تبديل الوضع الليلي والنهاري">
+              🌙
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- منطقة العرض المتغيرة حسب القسم -->
+      <main class="flex-1 p-4 lg:p-8 max-w-7xl w-full mx-auto">
+
+        <!-- ==================== القسم 1: نظرة عامة والإحصائيات ==================== -->
+        <section id="tab-overview" class="tab-panel space-y-6">
+          <!-- بطاقات KPI العلوية -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-500 dark:text-slate-400">إجمالي الأسئلة في البنك</span>
+                <span class="w-9 h-9 rounded-xl bg-primary/10 text-primary dark:bg-teal-500/20 dark:text-teal-300 flex items-center justify-center text-lg">📦</span>
+              </div>
+              <div id="kpiTotal" class="text-3xl font-extrabold text-slate-800 dark:text-white">0</div>
+              <div id="kpiTotalSub" class="text-xs text-slate-500 dark:text-slate-400 mt-1">تغطية الصفحات 1 – 80</div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-500 dark:text-slate-400">القسم الأول (ص 1 – 12)</span>
+                <span class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg">📘</span>
+              </div>
+              <div id="kpiU1" class="text-3xl font-extrabold text-slate-800 dark:text-white">0</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">بيانات الكتاب والمقدمة</div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-500 dark:text-slate-400">الفصل الأول (ص 13 – 44)</span>
+                <span class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg">🏛️</span>
+              </div>
+              <div id="kpiU2" class="text-3xl font-extrabold text-slate-800 dark:text-white">0</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">المجتمع الأردني</div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-500 dark:text-slate-400">الفصل الثاني (ص 45 – 80)</span>
+                <span class="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg">👨‍👩‍👧‍👦</span>
+              </div>
+              <div id="kpiU3" class="text-3xl font-extrabold text-slate-800 dark:text-white">0</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">الأسرة الأردنية</div>
+            </div>
+          </div>
+
+          <!-- الرسوم البيانية التفاعلية -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- توزيع الأسئلة حسب الفصول -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs">
+              <h3 class="font-extrabold text-base text-primary dark:text-teal-300 mb-1">توزيع الأسئلة حسب الأقسام والفصول</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-5">النسبة المئوية وعدد الأسئلة في كل قسم من الكتاب</p>
+              <div id="unitChartBars" class="space-y-4"></div>
+            </div>
+
+            <!-- توزيع الأسئلة حسب مستوى الصعوبة -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs">
+              <h3 class="font-extrabold text-base text-primary dark:text-teal-300 mb-1">توزيع الأسئلة حسب مستوى الصعوبة</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-5">توازن مستويات التقييم (سهل، متوسط، صعب / استنتاجي)</p>
+              <div id="diffChartBars" class="space-y-4"></div>
+            </div>
+          </div>
+
+          <!-- سجل آخر التعديلات وإجراءات سريعة -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-extrabold text-base text-primary dark:text-teal-300">🕒 سجل آخر العمليات والتعديلات</h3>
+                <button id="clearLogBtn" type="button" class="text-xs text-slate-400 hover:text-rose-500 font-semibold cursor-pointer">مسح السجل</button>
+              </div>
+              <div id="activityLogList" class="space-y-2.5 max-h-64 overflow-y-auto text-sm"></div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs flex flex-col justify-between">
+              <div>
+                <h3 class="font-extrabold text-base text-primary dark:text-teal-300 mb-2">⚡ إجراءات سريعة</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">اختصارات لإدارة المحتوى والتحقق من جاهزية الاختبار</p>
+                <div class="space-y-2.5">
+                  <button type="button" onclick="openEditModal(-1)" class="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-primary hover:bg-primary-dark text-white transition flex items-center justify-center gap-2 cursor-pointer">
+                    <span>➕</span>
+                    <span>إضافة سؤال جديد للبنك</span>
+                  </button>
+                  <button type="button" id="overviewAuditBtn" class="w-full py-2.5 px-4 rounded-xl text-xs font-bold border border-primary text-primary dark:text-teal-300 dark:border-teal-500 hover:bg-primary/5 transition flex items-center justify-center gap-2 cursor-pointer">
+                    <span>🔍</span>
+                    <span>فحص التكرار وجودة البيانات</span>
+                  </button>
+                  <button type="button" id="overviewDownloadBtn" class="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-2 cursor-pointer">
+                    <span>💾</span>
+                    <span>تحميل نسخة omar.html محدثة</span>
+                  </button>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-[11px] text-slate-400">
+                الرابط المباشر: <a href="https://sweadel.github.io/-/omar.html" target="_blank" class="underline text-primary dark:text-teal-400">sweadel.github.io/-/omar.html</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== القسم 2: إدارة بنك الأسئلة ==================== -->
+        <section id="tab-questions" class="tab-panel hidden space-y-5">
+          <!-- شريط الأدوات والبحث الذكي -->
+          <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 class="font-extrabold text-base text-primary dark:text-teal-300">إدارة الأسئلة والخيارات والشروحات</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">بحث ذكي يتجاهل الهمزات والتشكيل والتاء المربوطة مع تحرير فوري</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button id="addQuestionBtn" type="button" class="px-4 py-2 rounded-xl text-xs font-bold bg-[#d9822b] hover:bg-[#c27120] text-white transition cursor-pointer">
+                  ➕ إضافة سؤال جديد
+                </button>
+                <button id="bulkImportBtn" type="button" class="px-3.5 py-2 rounded-xl text-xs font-bold border border-primary text-primary dark:text-teal-300 dark:border-teal-500 hover:bg-primary/5 transition cursor-pointer">
+                  📥 استيراد JSON
+                </button>
+                <button id="auditBtn" type="button" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 transition cursor-pointer">
+                  🔍 فحص الجودة
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+              <div class="md:col-span-6 relative">
+                <input type="text" id="searchInput" class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:border-primary" placeholder="ابحث في نص السؤال أو الخيارات (مثال: الاسره، المنسف، الضمان)...">
+                <span class="absolute left-3 top-2.5 text-slate-400">🔎</span>
+              </div>
+              <div class="md:col-span-3">
+                <select id="filterUnit" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-semibold focus:outline-none focus:border-primary">
+                  <option value="all">جميع الأقسام والفصول</option>
+                  <option value="1">القسم الأول: بيانات الكتاب والمقدمة</option>
+                  <option value="2">الفصل الأول: المجتمع الأردني</option>
+                  <option value="3">الفصل الثاني: الأسرة الأردنية</option>
+                </select>
+              </div>
+              <div class="md:col-span-2">
+                <select id="filterDiff" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-semibold focus:outline-none focus:border-primary">
+                  <option value="all">جميع المستويات</option>
+                  <option value="easy">سهل</option>
+                  <option value="medium">متوسط</option>
+                  <option value="hard">صعب / استنتاجي</option>
+                </select>
+              </div>
+              <div class="md:col-span-1 text-center">
+                <span id="filteredCountBadge" class="inline-block w-full py-2 px-2 rounded-xl text-xs font-extrabold bg-primary/10 text-primary dark:bg-teal-500/20 dark:text-teal-300">0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- قائمة الأسئلة -->
+          <div id="questionsContainer" class="space-y-3"></div>
+
+          <!-- شريط التصفح (Pagination) -->
+          <div id="paginationBar" class="flex flex-wrap items-center justify-center gap-2 pt-2"></div>
+        </section>
+
+        <!-- ==================== القسم 3: معاينة موقع الطلبة المباشر ==================== -->
+        <section id="tab-preview" class="tab-panel hidden space-y-5">
+          <!-- شريط إعدادات المحاكاة -->
+          <div class="bg-gradient-to-l from-[#093e43] to-[#0f5c63] text-white rounded-2xl p-5 shadow-md flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-200 font-bold">وضع المحاكاة الحية</span>
+              <h3 class="text-lg font-extrabold mt-1">معاينة اختبار الطلبة بالبيانات الحالية في الداشبورد</h3>
+              <p class="text-xs text-teal-100/90">اختبر الأسئلة التي أضفتها أو عدّلتها الآن تماماً كما ستظهر للطلبة بعد النشر</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2.5">
+              <select id="prevScopeSelect" class="px-3 py-2 rounded-xl bg-white text-slate-800 text-xs font-bold">
+                <option value="all">جميع الأقسام</option>
+                <option value="1">القسم الأول (المقدمة)</option>
+                <option value="2">الفصل الأول (المجتمع الأردني)</option>
+                <option value="3">الفصل الثاني (الأسرة الأردنية)</option>
+              </select>
+              <select id="prevCountSelect" class="px-3 py-2 rounded-xl bg-white text-slate-800 text-xs font-bold">
+                <option value="10" selected>10 أسئلة (معاينة سريعة)</option>
+                <option value="30">30 سؤالاً</option>
+                <option value="60">60 سؤالاً (اختبار كامل)</option>
+                <option value="all">كل أسئلة النطاق</option>
+              </select>
+              <select id="prevTimerSelect" class="px-3 py-2 rounded-xl bg-white text-slate-800 text-xs font-bold">
+                <option value="0">بدون مؤقت</option>
+                <option value="15" selected>15 دقيقة</option>
+                <option value="60">60 دقيقة</option>
+              </select>
+              <button id="startPreviewBtn" type="button" class="px-4 py-2 rounded-xl bg-[#d9822b] hover:bg-[#c27120] text-white text-xs font-extrabold cursor-pointer">
+                🔄 بدء محاكاة جديدة
+              </button>
+            </div>
+          </div>
+
+          <!-- واجهة الاختبار التفاعلي للطلبة -->
+          <div id="previewExamBox" class="space-y-4">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-4">
+              <div class="flex-1 min-w-[240px]">
+                <div class="flex justify-between text-xs font-bold text-primary dark:text-teal-300 mb-1.5">
+                  <span id="prevProgressText">السؤال 1 من 10</span>
+                  <span id="prevAnsweredText">المجاب عنها: 0 / 10</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                  <div id="prevProgressFill" class="h-full bg-gradient-to-l from-primary to-accent transition-all duration-200" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="px-4 py-1.5 rounded-full bg-primary/10 text-primary dark:bg-teal-500/20 dark:text-teal-300 text-xs font-extrabold">
+                الوقت المتبقي: <span id="prevTimerDisplay">15:00</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+              <div class="lg:col-span-8 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                  <div class="flex gap-2 flex-wrap">
+                    <span id="prevUnitBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary dark:bg-teal-500/20 dark:text-teal-300">القسم</span>
+                    <span id="prevDiffBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-300">سهل</span>
+                  </div>
+                  <button id="prevFlagBtn" type="button" class="text-xs font-bold px-3 py-1 rounded-full border border-slate-200 dark:border-slate-600 text-slate-500 hover:border-amber-500 cursor-pointer">
+                    تحديد للمراجعة
+                  </button>
+                </div>
+
+                <div id="prevQText" class="text-base lg:text-lg font-extrabold mb-5 leading-relaxed">جاري تحميل المعاينة...</div>
+                <div id="prevOptionsList" class="space-y-2.5"></div>
+
+                <div class="flex flex-wrap items-center justify-between gap-3 mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+                  <div class="flex gap-2">
+                    <button id="prevGoPrevBtn" type="button" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 cursor-pointer">السابق</button>
+                    <button id="prevGoNextBtn" type="button" class="px-4 py-2 rounded-xl text-xs font-bold bg-primary hover:bg-primary-dark text-white cursor-pointer">التالي</button>
+                  </div>
+                  <button id="prevSubmitBtn" type="button" class="px-4 py-2 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white cursor-pointer">إنهاء وعرض النتيجة</button>
+                </div>
+              </div>
+
+              <div class="lg:col-span-4 bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-xs">
+                <h4 class="font-extrabold text-sm text-primary dark:text-teal-300 mb-3">لوحة التنقل</h4>
+                <div id="prevPaletteGrid" class="grid grid-cols-5 sm:grid-cols-6 lg:grid-cols-5 gap-2 max-h-72 overflow-y-auto p-1"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- نتيجة المعاينة -->
+          <div id="previewResultBox" class="hidden space-y-5">
+            <div class="bg-gradient-to-l from-[#093e43] to-[#0f5c63] text-white rounded-2xl p-6 text-center">
+              <div class="text-3xl font-extrabold mb-1" id="prevResScore">0%</div>
+              <div class="text-sm opacity-90 mb-4" id="prevResRaw">0 / 10 إجابة صحيحة</div>
+              <button id="prevRetryBtn" type="button" class="px-5 py-2 rounded-xl bg-[#d9822b] hover:bg-[#c27120] text-white text-xs font-extrabold cursor-pointer">
+                إعادة المحاكاة
+              </button>
+            </div>
+            <div id="prevReviewList" class="space-y-3"></div>
+          </div>
+        </section>
+
+        <!-- ==================== القسم 4: النشر والمزامنة مع GitHub ==================== -->
+        <section id="tab-sync" class="tab-panel hidden space-y-6">
+          <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs space-y-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-700 pb-4">
+              <div>
+                <h3 class="font-extrabold text-base text-primary dark:text-teal-300">إعدادات الربط المباشر مع مستودع GitHub</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">يتم تحديث مصفوفة <code class="font-mono">BANK</code> وعدادات الأقسام داخل <code class="font-mono">omar.html</code> تلقائياً عند النشر</p>
+              </div>
+              <span id="syncTabStatusBadge" class="text-xs font-bold px-3 py-1.5 rounded-full bg-teal-50 text-teal-800 dark:bg-teal-900/40 dark:text-teal-300">جاهز للمزامنة</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">اسم المستخدم (Owner)</label>
+                <input type="text" id="ghOwner" value="sweadel" dir="ltr" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-mono">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">اسم المستودع (Repo)</label>
+                <input type="text" id="ghRepo" value="-" dir="ltr" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-mono">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">الفرع (Branch)</label>
+                <input type="text" id="ghBranch" value="main" dir="ltr" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-mono">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">مسار الملف (File Path)</label>
+                <input type="text" id="ghPath" value="omar.html" dir="ltr" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-mono">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">
+                GitHub Personal Access Token (يُحفظ في متصفحك محلياً فقط ولا يُرسل إلا إلى api.github.com)
+              </label>
+              <input type="password" id="ghToken" dir="ltr" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx أو github_pat_..." class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-mono">
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-700">
+              <div class="flex flex-wrap gap-2.5">
+                <button id="fetchGhBtn" type="button" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-primary hover:bg-primary-dark text-white transition cursor-pointer">
+                  ⬇️ جلب أحدث نسخة من GitHub
+                </button>
+                <button id="pushGhBtn" type="button" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-pointer">
+                  ⬆️ حفظ ونشر التعديلات على GitHub
+                </button>
+              </div>
+
+              <div class="flex flex-wrap gap-2.5">
+                <button id="downloadHtmlBtn" type="button" class="px-3.5 py-2.5 rounded-xl text-xs font-bold border border-primary text-primary dark:text-teal-300 dark:border-teal-500 hover:bg-primary/5 transition cursor-pointer">
+                  💾 تحميل omar.html المحدّث
+                </button>
+                <label class="px-3.5 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 transition cursor-pointer">
+                  📂 رفع ملف HTML محلي
+                  <input type="file" id="uploadHtmlInput" accept=".html,.htm" class="hidden">
+                </label>
+                <button id="exportJsonBtn" type="button" class="px-3.5 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 transition cursor-pointer">
+                  📤 تصدير JSON
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- إرشادات الحصول على Token -->
+          <div class="bg-amber-50/80 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/50 rounded-2xl p-5 text-xs text-amber-900 dark:text-amber-200 space-y-1.5">
+            <div class="font-extrabold text-sm">💡 كيفية تفعيل النشر المباشر على GitHub Pages:</div>
+            <p>1. افتح حسابك في GitHub وانتقل إلى: <strong>Settings → Developer settings → Personal access tokens → Fine-grained tokens</strong>.</p>
+            <p>2. اختر المستودع <strong>sweadel/-</strong> فقط، وفعّل صلاحية <strong>Contents: Read and write</strong>.</p>
+            <p>3. انسخ الرمز والصقه في الحقل أعلاه، ثم اضغط <strong>«حفظ ونشر التعديلات على GitHub»</strong> لتحديث <code class="font-mono">omar.html</code> مباشرة.</p>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- التذييل الثابت -->
+      <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-4 px-6 text-center text-xs text-slate-500 dark:text-slate-400">
+        إعداد وتطوير: <strong class="text-[#d9822b] font-extrabold">م. عادل جعارة — Swe.Adel</strong> | لوحة إدارة منصة مساق المجتمع الأردني
+      </footer>
+    </div>
+  </div>
+
+  <!-- نافذة إضافة / تعديل سؤال (Modal) -->
+  <div id="editModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-700">
+        <h3 id="modalTitle" class="font-extrabold text-base text-primary dark:text-teal-300">إضافة سؤال جديد</h3>
+        <button id="closeModalBtn" type="button" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-bold cursor-pointer">✕ إغلاق</button>
+      </div>
+
+      <form id="questionForm" class="space-y-4">
+        <input type="hidden" id="editIndex" value="-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">القسم / الفصل</label>
+            <select id="qUnitInput" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-semibold" required>
+              <option value="1">القسم الأول: بيانات الكتاب والمقدمة (ص 1 – 12)</option>
+              <option value="2">الفصل الأول: المجتمع الأردني (ص 13 – 44)</option>
+              <option value="3">الفصل الثاني: الأسرة الأردنية (ص 45 – 80)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">مستوى الصعوبة</label>
+            <select id="qDiffInput" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm font-semibold" required>
+              <option value="easy">سهل</option>
+              <option value="medium" selected>متوسط</option>
+              <option value="hard">صعب / استنتاجي</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">نص السؤال</label>
+          <textarea id="qTextInput" rows="3" required placeholder="اكتب نص السؤال هنا..." class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm"></textarea>
+        </div>
+
+        <div class="space-y-2.5">
+          <label class="block text-xs font-bold text-slate-500 dark:text-slate-400">الخيارات الأربعة (حدد الدائرة بجانب الإجابة الصحيحة)</label>
+          <div class="flex items-center gap-2.5">
+            <input type="radio" name="correctOpt" value="0" checked class="w-4 h-4 accent-emerald-600 cursor-pointer">
+            <span class="font-extrabold text-sm text-primary dark:text-teal-300">(أ)</span>
+            <input type="text" id="opt0" required placeholder="الخيار الأول (أ)" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm">
+          </div>
+          <div class="flex items-center gap-2.5">
+            <input type="radio" name="correctOpt" value="1" class="w-4 h-4 accent-emerald-600 cursor-pointer">
+            <span class="font-extrabold text-sm text-primary dark:text-teal-300">(ب)</span>
+            <input type="text" id="opt1" required placeholder="الخيار الثاني (ب)" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm">
+          </div>
+          <div class="flex items-center gap-2.5">
+            <input type="radio" name="correctOpt" value="2" class="w-4 h-4 accent-emerald-600 cursor-pointer">
+            <span class="font-extrabold text-sm text-primary dark:text-teal-300">(ج)</span>
+            <input type="text" id="opt2" required placeholder="الخيار الثالث (ج)" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm">
+          </div>
+          <div class="flex items-center gap-2.5">
+            <input type="radio" name="correctOpt" value="3" class="w-4 h-4 accent-emerald-600 cursor-pointer">
+            <span class="font-extrabold text-sm text-primary dark:text-teal-300">(د)</span>
+            <input type="text" id="opt3" required placeholder="الخيار الرابع (د)" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm">
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-xs font-bold text-slate-500 dark:text-slate-400">الشرح والمرجع من الكتاب</label>
+            <button type="button" id="autoExpBtn" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-700 dark:text-amber-300 hover:bg-amber-500/20 cursor-pointer">
+              ✨ توليد شرح تلقائي
+            </button>
+          </div>
+          <textarea id="qExpInput" rows="2" required placeholder="اكتب شرح الإجابة ورقم الصفحة..." class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm"></textarea>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" id="cancelModalBtn" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-700 cursor-pointer">إلغاء</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-bold bg-primary hover:bg-primary-dark text-white cursor-pointer">💾 حفظ السؤال</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- نافذة استيراد دفعة أسئلة JSON -->
+  <div id="bulkModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-700">
+        <h3 class="font-extrabold text-base text-primary dark:text-teal-300">📥 استيراد دفعة أسئلة (JSON)</h3>
+        <button id="closeBulkBtn" type="button" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-bold cursor-pointer">✕ إغلاق</button>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">
+        الصق مصفوفة JSON بالصيغة القياسية:
+        <code dir="ltr" class="block mt-1 p-2 rounded-lg bg-slate-100 dark:bg-slate-900 font-mono text-[11px]">[{"u":2,"d":"medium","q":"نص السؤال؟","o":["أ","ب","ج","د"],"a":0,"e":"الشرح"}]</code>
+      </p>
+      <textarea id="bulkJsonInput" rows="9" dir="ltr" placeholder='[{"u": 2, "d": "easy", "q": "...", "o": ["...", "...", "...", "..."], "a": 0, "e": "..."}]' class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-xs font-mono"></textarea>
+      <div class="flex flex-wrap justify-end gap-2 mt-4">
+        <button type="button" id="cancelBulkBtn" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-700 cursor-pointer">إلغاء</button>
+        <button type="button" id="appendBulkBtn" class="px-4 py-2 rounded-xl text-xs font-bold border border-primary text-primary dark:text-teal-300 dark:border-teal-500 cursor-pointer">➕ إضافة للبنك الحالي</button>
+        <button type="button" id="replaceBulkBtn" class="px-4 py-2 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white cursor-pointer">🔄 استبدال البنك بالكامل</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- حاوية الإشعارات المنبثقة (Toast) -->
+  <div id="toastContainer" class="fixed bottom-5 left-5 z-50 space-y-2 max-w-sm w-full pointer-events-none"></div>
+
+<script>
+const THEME_KEY = "jordan_society_theme_v1";
+const GH_CFG_KEY = "jordan_society_gh_cfg_v1";
+const DRAFT_KEY = "jordan_society_dashboard_draft_v2";
+const LOG_KEY = "jordan_society_dashboard_logs_v1";
+
+const UNIT_LABELS = {
+  1: "القسم الأول: بيانات الكتاب والمقدمة",
+  2: "الفصل الأول: المجتمع الأردني",
+  3: "الفصل الثاني: الأسرة الأردنية"
+};
+
+const DIFF_LABELS = {
+  easy: "سهل",
+  medium: "متوسط",
+  hard: "صعب / استنتاجي"
+};
+
+const LETTERS = ["أ", "ب", "ج", "د"];
+
+// بيانات مبدئية احتياطية من مساق المجتمع الأردني في حال العمل دون اتصال بالإنترنت
+const FALLBACK_BANK = [
+  {u:1,d:"easy",q:"من هم مؤلفو كتاب «المجتمع الأردني» المعتمد في هذا المساق؟",o:["د. عبد الرحمن الفواز، د. حسني السعود، د. محمد عيده، د. يوسف المسيعديين","د. علي محافظة، د. عدنان البخيت، د. سعد أبو دية، د. محمد خريسات","د. زيدان كفافي، د. معاوية إبراهيم، د. فواز الخريشة، د. نبيل التل","د. معن أبو نوار، د. سليمان الموسى، د. كامل أبو جابر، د. جورج طريف"],a:0,e:"الإجابة الصحيحة هي: «د. عبد الرحمن الفواز، د. حسني السعود، د. محمد عيده، د. يوسف المسيعديين»، وذلك وفق ما ورد في بيانات الكتاب والمقدمة (ص 3)."},
+  {u:1,d:"easy",q:"في أي عام صدرت الطبعة الأولى من كتاب «المجتمع الأردني»؟",o:["1430 هـ - 2009 م","1433 هـ - 2012 م","1435 هـ - 2014 م","1428 هـ - 2007 م"],a:1,e:"الإجابة الصحيحة هي: «1433 هـ - 2012 م»، وذلك وفق ما ورد في بيانات الكتاب والمقدمة (ص 2)."},
+  {u:2,d:"easy",q:"ما الأكلة الشعبية الأكثر شهرة وشيوعاً في الأردن والتي تُعد وليمة أساسية في الأفراح والأتراح؟",o:["المقلوبة","المنسف","المسخن","المجدرة"],a:1,e:"الإجابة الصحيحة هي: «المنسف»، وذلك وفق ما ورد في الفصل الأول: المجتمع الأردني (ص 23)."},
+  {u:2,d:"medium",q:"ما اسم الفنجان الأول الذي يشربه المضيف من دلة القهوة أمام الضيف ليطمئن أنها جيدة وخالية من الخديعة؟",o:["فنجان الضيف","فنجان الهيف","فنجان الكيف","فنجان السيف"],a:1,e:"الإجابة الصحيحة هي: «فنجان الهيف»، وذلك وفق ما ورد في الفصل الأول: المجتمع الأردني (ص 29)."},
+  {u:3,d:"easy",q:"في أي عام تأسست جمعية قرى الأطفال SOS الأردنية (ص 80)؟",o:["1975م","1984م","1991م","2001م"],a:1,e:"الإجابة الصحيحة هي: «1984م»، وذلك وفق ما ورد في الفصل الثاني: الأسرة الأردنية (ص 80)."},
+  {u:3,d:"medium",q:"بموجب أي قانون تأسس المجلس الوطني لشؤون الأسرة واكتسب الصفة الرسمية كهيئة أهلية ذات استقلال مالي وإداري (ص 67)؟",o:["القانون رقم (27) لسنة 2001","القانون رقم (15) لسنة 1996","القانون رقم (40) لسنة 2004","القانون رقم (10) لسنة 1999"],a:0,e:"الإجابة الصحيحة هي: «القانون رقم (27) لسنة 2001»، وذلك وفق ما ورد في الفصل الثاني: الأسرة الأردنية (ص 67)."}
+];
+
+let app = {
+  templateHtml: "",
+  bank: [...FALLBACK_BANK],
+  fileSha: null,
+  isDirty: false,
+  page: 1,
+  perPage: 20,
+  logs: []
+};
+
+let prevState = {
+  questions: [],
+  answers: {},
+  flagged: new Set(),
+  index: 0,
+  timerId: null,
+  remSec: 900,
+  submitted: false
+};
+
+const els = {
+  sidebar: document.getElementById("sidebar"),
+  sidebarOverlay: document.getElementById("sidebarOverlay"),
+  openSidebarBtn: document.getElementById("openSidebarBtn"),
+  closeSidebarBtn: document.getElementById("closeSidebarBtn"),
+  sidebarNav: document.getElementById("sidebarNav"),
+  pageHeaderTitle: document.getElementById("pageHeaderTitle"),
+  pageHeaderSub: document.getElementById("pageHeaderSub"),
+  topStatusPill: document.getElementById("topStatusPill"),
+  sidebarSyncBadge: document.getElementById("sidebarSyncBadge"),
+  syncTabStatusBadge: document.getElementById("syncTabStatusBadge"),
+  navTotalBadge: document.getElementById("navTotalBadge"),
+  dirtyDot: document.getElementById("dirtyDot"),
+  quickPushBtn: document.getElementById("quickPushBtn"),
+  themeToggleBtn: document.getElementById("themeToggleBtn"),
+
+  // Overview
+  kpiTotal: document.getElementById("kpiTotal"),
+  kpiTotalSub: document.getElementById("kpiTotalSub"),
+  kpiU1: document.getElementById("kpiU1"),
+  kpiU2: document.getElementById("kpiU2"),
+  kpiU3: document.getElementById("kpiU3"),
+  unitChartBars: document.getElementById("unitChartBars"),
+  diffChartBars: document.getElementById("diffChartBars"),
+  activityLogList: document.getElementById("activityLogList"),
+  clearLogBtn: document.getElementById("clearLogBtn"),
+  overviewAuditBtn: document.getElementById("overviewAuditBtn"),
+  overviewDownloadBtn: document.getElementById("overviewDownloadBtn"),
+
+  // Questions Manager
+  searchInput: document.getElementById("searchInput"),
+  filterUnit: document.getElementById("filterUnit"),
+  filterDiff: document.getElementById("filterDiff"),
+  filteredCountBadge: document.getElementById("filteredCountBadge"),
+  questionsContainer: document.getElementById("questionsContainer"),
+  paginationBar: document.getElementById("paginationBar"),
+  addQuestionBtn: document.getElementById("addQuestionBtn"),
+  bulkImportBtn: document.getElementById("bulkImportBtn"),
+  auditBtn: document.getElementById("auditBtn"),
+
+  // Modals
+  editModal: document.getElementById("editModal"),
+  modalTitle: document.getElementById("modalTitle"),
+  questionForm: document.getElementById("questionForm"),
+  editIndex: document.getElementById("editIndex"),
+  qUnitInput: document.getElementById("qUnitInput"),
+  qDiffInput: document.getElementById("qDiffInput"),
+  qTextInput: document.getElementById("qTextInput"),
+  opt0: document.getElementById("opt0"),
+  opt1: document.getElementById("opt1"),
+  opt2: document.getElementById("opt2"),
+  opt3: document.getElementById("opt3"),
+  qExpInput: document.getElementById("qExpInput"),
+  autoExpBtn: document.getElementById("autoExpBtn"),
+  closeModalBtn: document.getElementById("closeModalBtn"),
+  cancelModalBtn: document.getElementById("cancelModalBtn"),
+
+  bulkModal: document.getElementById("bulkModal"),
+  bulkJsonInput: document.getElementById("bulkJsonInput"),
+  closeBulkBtn: document.getElementById("closeBulkBtn"),
+  cancelBulkBtn: document.getElementById("cancelBulkBtn"),
+  appendBulkBtn: document.getElementById("appendBulkBtn"),
+  replaceBulkBtn: document.getElementById("replaceBulkBtn"),
+
+  // GitHub Sync
+  ghOwner: document.getElementById("ghOwner"),
+  ghRepo: document.getElementById("ghRepo"),
+  ghBranch: document.getElementById("ghBranch"),
+  ghPath: document.getElementById("ghPath"),
+  ghToken: document.getElementById("ghToken"),
+  fetchGhBtn: document.getElementById("fetchGhBtn"),
+  pushGhBtn: document.getElementById("pushGhBtn"),
+  downloadHtmlBtn: document.getElementById("downloadHtmlBtn"),
+  uploadHtmlInput: document.getElementById("uploadHtmlInput"),
+  exportJsonBtn: document.getElementById("exportJsonBtn"),
+
+  // Preview
+  prevScopeSelect: document.getElementById("prevScopeSelect"),
+  prevCountSelect: document.getElementById("prevCountSelect"),
+  prevTimerSelect: document.getElementById("prevTimerSelect"),
+  startPreviewBtn: document.getElementById("startPreviewBtn"),
+  previewExamBox: document.getElementById("previewExamBox"),
+  previewResultBox: document.getElementById("previewResultBox"),
+  prevProgressText: document.getElementById("prevProgressText"),
+  prevAnsweredText: document.getElementById("prevAnsweredText"),
+  prevProgressFill: document.getElementById("prevProgressFill"),
+  prevTimerDisplay: document.getElementById("prevTimerDisplay"),
+  prevUnitBadge: document.getElementById("prevUnitBadge"),
+  prevDiffBadge: document.getElementById("prevDiffBadge"),
+  prevFlagBtn: document.getElementById("prevFlagBtn"),
+  prevQText: document.getElementById("prevQText"),
+  prevOptionsList: document.getElementById("prevOptionsList"),
+  prevGoPrevBtn: document.getElementById("prevGoPrevBtn"),
+  prevGoNextBtn: document.getElementById("prevGoNextBtn"),
+  prevSubmitBtn: document.getElementById("prevSubmitBtn"),
+  prevPaletteGrid: document.getElementById("prevPaletteGrid"),
+  prevResScore: document.getElementById("prevResScore"),
+  prevResRaw: document.getElementById("prevResRaw"),
+  prevRetryBtn: document.getElementById("prevRetryBtn"),
+  prevReviewList: document.getElementById("prevReviewList"),
+
+  toastContainer: document.getElementById("toastContainer")
+};
+
+// ==================== إشعارات Toast وسجل النشاط ====================
+function showToast(msg, type = "info") {
+  const colors = {
+    success: "bg-emerald-600 text-white",
+    error: "bg-rose-600 text-white",
+    warning: "bg-amber-600 text-white",
+    info: "bg-[#0f5c63] text-white"
+  };
+  const toast = document.createElement("div");
+  toast.className = `pointer-events-auto px-4 py-3 rounded-xl shadow-lg text-xs font-bold flex items-center justify-between gap-3 transition-all duration-300 ${colors[type] || colors.info}`;
+  toast.innerHTML = `<span>${msg}</span><button type="button" class="opacity-80 hover:opacity-100">✕</button>`;
+  toast.querySelector("button").onclick = () => toast.remove();
+  els.toastContainer.appendChild(toast);
+  setTimeout(() => { if (toast.parentNode) toast.remove(); }, 4200);
+}
+
+function addLog(actionText) {
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString("ar-JO", { hour: "2-digit", minute: "2-digit" });
+  app.logs.unshift({ time: timeStr, text: actionText });
+  if (app.logs.length > 30) app.logs.pop();
+  try { localStorage.setItem(LOG_KEY, JSON.stringify(app.logs)); } catch (e) {}
+  renderLogs();
+}
+
+function renderLogs() {
+  if (!app.logs.length) {
+    els.activityLogList.innerHTML = `<div class="text-xs text-slate-400 text-center py-8">لا توجد عمليات مسجلة بعد.</div>`;
+    return;
+  }
+  els.activityLogList.innerHTML = app.logs.map(l => `
+    <div class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60">
+      <span class="text-xs font-semibold text-slate-700 dark:text-slate-200">${l.text}</span>
+      <span class="text-[11px] font-mono text-slate-400 shrink-0">${l.time}</span>
+    </div>
+  `).join("");
+}
+
+function setSyncStatus(text, stateType = "ok") {
+  els.topStatusPill.textContent = text;
+  els.syncTabStatusBadge.textContent = text;
+
+  const classes = {
+    ok: "bg-teal-50 text-teal-800 border-teal-200 dark:bg-teal-900/40 dark:text-teal-300 dark:border-teal-700/50",
+    dirty: "bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-900/40 dark:text-amber-300 dark:border-amber-700/50",
+    err: "bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-900/40 dark:text-rose-300 dark:border-rose-700/50"
+  };
+  els.topStatusPill.className = `text-xs font-bold px-3 py-1.5 rounded-full border ${classes[stateType] || classes.ok}`;
+  els.syncTabStatusBadge.className = `text-xs font-bold px-3 py-1.5 rounded-full border ${classes[stateType] || classes.ok}`;
+}
+
+function markDirty(dirty = true) {
+  app.isDirty = dirty;
+  if (dirty) {
+    els.dirtyDot.classList.remove("hidden");
+    els.sidebarSyncBadge.textContent = "تعديلات غير منشورة";
+    els.sidebarSyncBadge.className = "px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300";
+    setSyncStatus("توجد تعديلات غير منشورة ●", "dirty");
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({ bank: app.bank, templateHtml: app.templateHtml }));
+    } catch (e) {}
+  } else {
+    els.dirtyDot.classList.add("hidden");
+    els.sidebarSyncBadge.textContent = "متزامن";
+    els.sidebarSyncBadge.className = "px-2 py-0.5 rounded-full font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300";
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+  }
+}
+
+// ==================== أدوات النصوص والترميز ====================
+function normalizeArabic(str) {
+  return String(str || "")
+    .toLowerCase()
+    .replace(/[\u064B-\u065F\u0670]/g, "")
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ة/g, "ه")
+    .replace(/ى/g, "ي")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function utf8ToBase64(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  const chunk = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunk) {
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+  }
+  return btoa(bin);
+}
+
+function base64ToUtf8(b64) {
+  const clean = b64.replace(/\s/g, "");
+  const bin = atob(clean);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) {
+    bytes[i] = bin.charCodeAt(i);
+  }
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+function parseHtmlFile(htmlStr) {
+  const marker = "const BANK = ";
+  const startIdx = htmlStr.indexOf(marker);
+  if (startIdx === -1) throw new Error("لم يتم العثور على مصفوفة BANK داخل الملف.");
+  const arrStart = startIdx + marker.length;
+  const endIdx = htmlStr.indexOf(";\n\nlet state =", arrStart);
+  const fallbackEnd = endIdx !== -1 ? endIdx : htmlStr.indexOf("];", arrStart) + 1;
+  if (fallbackEnd <= arrStart) throw new Error("تعذر تحديد نهاية مصفوفة BANK.");
+  const jsonStr = htmlStr.slice(arrStart, fallbackEnd);
+  const parsed = JSON.parse(jsonStr);
+  if (!Array.isArray(parsed)) throw new Error("صيغة BANK غير صالحة.");
+  app.templateHtml = htmlStr;
+  app.bank = parsed;
+}
+
+function buildUpdatedHtml() {
+  if (!app.templateHtml) {
+    throw new Error("يرجى جلب ملف omar.html من GitHub أو رفعه محلياً أولاً ليتم تحديثه.");
+  }
+  const marker = "const BANK = ";
+  const startIdx = app.templateHtml.indexOf(marker);
+  const arrStart = startIdx + marker.length;
+  const endIdx = app.templateHtml.indexOf(";\n\nlet state =", arrStart);
+  const fallbackEnd = endIdx !== -1 ? endIdx : app.templateHtml.indexOf("];", arrStart) + 1;
+
+  const newBankJson = JSON.stringify(app.bank);
+  let updated = app.templateHtml.slice(0, arrStart) + newBankJson + app.templateHtml.slice(fallbackEnd);
+
+  const total = app.bank.length;
+  const u1 = app.bank.filter(q => q.u === 1).length;
+  const u2 = app.bank.filter(q => q.u === 2).length;
+  const u3 = app.bank.filter(q => q.u === 3).length;
+
+  updated = updated
+    .replace(/\(\d+\s*سؤالاً\)/g, `(${total} سؤالاً)`)
+    .replace(/\|\s*\d+\s*سؤالاً مع الإجابات/g, `| ${total} سؤالاً مع الإجابات`)
+    .replace(/تصفح البنك كاملاً \(\d+\)/g, `تصفح البنك كاملاً (${total})`)
+    .replace(/جميع الأقسام \(\d+\)/g, `جميع الأقسام (${total})`)
+    .replace(/القسم الأول: بيانات الكتاب والمقدمة \(\d+\)/g, `القسم الأول: بيانات الكتاب والمقدمة (${u1})`)
+    .replace(/الفصل الأول: المجتمع الأردني \(\d+\)/g, `الفصل الأول: المجتمع الأردني (${u2})`)
+    .replace(/الفصل الثاني: الأسرة الأردنية \(\d+\)/g, `الفصل الثاني: الأسرة الأردنية (${u3})`)
+    .replace(/\(القسم الأول: \d+ • الفصل الأول: \d+ • الفصل الثاني: \d+\)/g, `(القسم الأول: ${u1} • الفصل الأول: ${u2} • الفصل الثاني: ${u3})`);
+
+  return updated;
+}
+
+// ==================== المزامنة مع GitHub API ====================
+function saveGhConfig() {
+  try {
+    localStorage.setItem(GH_CFG_KEY, JSON.stringify({
+      owner: els.ghOwner.value.trim(),
+      repo: els.ghRepo.value.trim(),
+      branch: els.ghBranch.value.trim(),
+      path: els.ghPath.value.trim(),
+      token: els.ghToken.value.trim()
+    }));
+  } catch (e) {}
+}
+
+function loadGhConfig() {
+  try {
+    const raw = localStorage.getItem(GH_CFG_KEY);
+    if (!raw) return;
+    const cfg = JSON.parse(raw);
+    if (cfg.owner) els.ghOwner.value = cfg.owner;
+    if (cfg.repo) els.ghRepo.value = cfg.repo;
+    if (cfg.branch) els.ghBranch.value = cfg.branch;
+    if (cfg.path) els.ghPath.value = cfg.path;
+    if (cfg.token) els.ghToken.value = cfg.token;
+  } catch (e) {}
+}
+
+async function fetchFromGitHub(silent = false) {
+  saveGhConfig();
+  const owner = els.ghOwner.value.trim();
+  const repo = els.ghRepo.value.trim();
+  const branch = els.ghBranch.value.trim() || "main";
+  const path = els.ghPath.value.trim();
+  const token = els.ghToken.value.trim();
+
+  els.fetchGhBtn.disabled = true;
+  setSyncStatus("جاري جلب البيانات من GitHub...", "ok");
+
+  try {
+    const apiUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${path}?ref=${encodeURIComponent(branch)}`;
+    const headers = { "Accept": "application/vnd.github.v3+json" };
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+
+    const res = await fetch(apiUrl, { headers, cache: "no-store" });
+    if (!res.ok) throw new Error(`تعذر الاتصال بـ GitHub (رمز ${res.status})`);
+    const data = await res.json();
+    app.fileSha = data.sha;
+
+    let decodedHtml = "";
+    if (data.content) {
+      decodedHtml = base64ToUtf8(data.content);
+    } else if (data.download_url) {
+      const rawRes = await fetch(data.download_url, { cache: "no-store" });
+      decodedHtml = await rawRes.text();
+    }
+
+    parseHtmlFile(decodedHtml);
+    markDirty(false);
+    setSyncStatus(`متصل (${app.bank.length} سؤالاً) ✓`, "ok");
+    addLog(`تم جلب ${app.bank.length} سؤالاً من مستودع GitHub (${path})`);
+    if (!silent) showToast(`تم جلب ${app.bank.length} سؤالاً بنجاح من GitHub`, "success");
+    refreshAll();
+  } catch (err) {
+    // محاولة الجلب النسبي إن كان الداشبورد مرفوعاً بجانب omar.html
+    try {
+      const relRes = await fetch(`./${path}`, { cache: "no-store" });
+      if (relRes.ok) {
+        const txt = await relRes.text();
+        parseHtmlFile(txt);
+        markDirty(false);
+        setSyncStatus(`متصل محلياً (${app.bank.length} سؤالاً) ✓`, "ok");
+        addLog(`تم تحميل ${app.bank.length} سؤالاً من ملف الاستضافة (${path})`);
+        refreshAll();
+        return;
+      }
+    } catch (e2) {}
+
+    setSyncStatus("وضع العمل المحلي (غير متصل بالمستودع)", "dirty");
+    if (!silent) showToast(`تعذر الجلب من GitHub: ${err.message}`, "warning");
+    refreshAll();
+  } finally {
+    els.fetchGhBtn.disabled = false;
+  }
+}
+
+async function pushToGitHub() {
+  saveGhConfig();
+  const owner = els.ghOwner.value.trim();
+  const repo = els.ghRepo.value.trim();
+  const branch = els.ghBranch.value.trim() || "main";
+  const path = els.ghPath.value.trim();
+  const token = els.ghToken.value.trim();
+
+  if (!token) {
+    switchTab("sync");
+    els.ghToken.focus();
+    showToast("يرجى إدخال رمز GitHub Token أولاً في قسم المزامنة", "warning");
+    return;
+  }
+
+  els.pushGhBtn.disabled = true;
+  els.quickPushBtn.disabled = true;
+  setSyncStatus("جاري النشر إلى GitHub...", "dirty");
+
+  try {
+    const apiUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${path}`;
+    const headers = {
+      "Accept": "application/vnd.github.v3+json",
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json"
+    };
+
+    if (!app.fileSha) {
+      const checkRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, { headers, cache: "no-store" });
+      if (checkRes.ok) {
+        const checkData = await checkRes.json();
+        app.fileSha = checkData.sha;
+        if (!app.templateHtml && checkData.content) {
+          app.templateHtml = base64ToUtf8(checkData.content);
+        }
+      }
+    }
+
+    const updatedHtml = buildUpdatedHtml();
+    const payload = {
+      message: `تحديث بنك أسئلة المجتمع الأردني (${app.bank.length} سؤالاً) عبر لوحة التحكم`,
+      content: utf8ToBase64(updatedHtml),
+      branch
+    };
+    if (app.fileSha) payload.sha = app.fileSha;
+
+    const putRes = await fetch(apiUrl, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify(payload)
+    });
+
+    const putData = await putRes.json();
+    if (!putRes.ok) throw new Error(putData.message || `خطأ ${putRes.status}`);
+
+    app.fileSha = putData.content.sha;
+    app.templateHtml = updatedHtml;
+    markDirty(false);
+    setSyncStatus(`تم النشر بنجاح (${app.bank.length} سؤالاً) ✓`, "ok");
+    addLog(`تم نشر التحديثات على GitHub (${app.bank.length} سؤالاً)`);
+    showToast(`تم نشر التعديلات على GitHub بنجاح (${app.bank.length} سؤالاً)`, "success");
+  } catch (err) {
+    setSyncStatus("فشل النشر على GitHub", "err");
+    showToast(`فشل النشر: ${err.message}`, "error");
+  } finally {
+    els.pushGhBtn.disabled = false;
+    els.quickPushBtn.disabled = false;
+  }
+}
+
+// ==================== الإحصائيات والرسوم البيانية ====================
+function renderOverview() {
+  const total = app.bank.length;
+  const u1 = app.bank.filter(q => q.u === 1).length;
+  const u2 = app.bank.filter(q => q.u === 2).length;
+  const u3 = app.bank.filter(q => q.u === 3).length;
+
+  const easy = app.bank.filter(q => q.d === "easy").length;
+  const med = app.bank.filter(q => q.d === "medium").length;
+  const hard = app.bank.filter(q => q.d === "hard").length;
+
+  els.kpiTotal.textContent = total;
+  els.navTotalBadge.textContent = total;
+  els.kpiU1.textContent = u1;
+  els.kpiU2.textContent = u2;
+  els.kpiU3.textContent = u3;
+
+  const unitsData = [
+    { label: "القسم الأول: بيانات الكتاب والمقدمة (ص 1 – 12)", count: u1, color: "bg-amber-500" },
+    { label: "الفصل الأول: المجتمع الأردني (ص 13 – 44)", count: u2, color: "bg-[#0f5c63] dark:bg-teal-500" },
+    { label: "الفصل الثاني: الأسرة الأردنية (ص 45 – 80)", count: u3, color: "bg-indigo-600 dark:bg-indigo-400" }
+  ];
+
+  els.unitChartBars.innerHTML = unitsData.map(item => {
+    const pct = total ? Math.round((item.count / total) * 100) : 0;
+    return `
+      <div>
+        <div class="flex justify-between text-xs font-bold mb-1.5">
+          <span>${item.label}</span>
+          <span>${item.count} سؤال (${pct}%)</span>
+        </div>
+        <div class="w-full h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+          <div class="h-full ${item.color} rounded-full transition-all duration-300" style="width:${pct}%"></div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  const diffsData = [
+    { label: "مستوى سهل (Easy)", count: easy, color: "bg-emerald-500" },
+    { label: "مستوى متوسط (Medium)", count: med, color: "bg-amber-500" },
+    { label: "مستوى صعب / استنتاجي (Hard)", count: hard, color: "bg-purple-600 dark:bg-purple-400" }
+  ];
+
+  els.diffChartBars.innerHTML = diffsData.map(item => {
+    const pct = total ? Math.round((item.count / total) * 100) : 0;
+    return `
+      <div>
+        <div class="flex justify-between text-xs font-bold mb-1.5">
+          <span>${item.label}</span>
+          <span>${item.count} سؤال (${pct}%)</span>
+        </div>
+        <div class="w-full h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+          <div class="h-full ${item.color} rounded-full transition-all duration-300" style="width:${pct}%"></div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// ==================== إدارة الأسئلة ====================
+function getFilteredQuestions() {
+  const qNorm = normalizeArabic(els.searchInput.value);
+  const uFilter = els.filterUnit.value;
+  const dFilter = els.filterDiff.value;
+
+  return app.bank
+    .map((item, idx) => ({ item, idx }))
+    .filter(({ item }) => {
+      if (uFilter !== "all" && String(item.u) !== uFilter) return false;
+      if (dFilter !== "all" && item.d !== dFilter) return false;
+      if (!qNorm) return true;
+      const inQ = normalizeArabic(item.q).includes(qNorm);
+      const inO = item.o.some(opt => normalizeArabic(opt).includes(qNorm));
+      return inQ || inO;
+    });
+}
+
+function renderQuestionsList() {
+  const filtered = getFilteredQuestions();
+  els.filteredCountBadge.textContent = `${filtered.length}`;
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / app.perPage));
+  if (app.page > totalPages) app.page = totalPages;
+  const start = (app.page - 1) * app.perPage;
+  const slice = filtered.slice(start, start + app.perPage);
+
+  els.questionsContainer.innerHTML = "";
+  if (slice.length === 0) {
+    els.questionsContainer.innerHTML = `<div class="bg-white dark:bg-slate-800 rounded-2xl p-10 text-center text-sm text-slate-400 border border-slate-200 dark:border-slate-700">لا توجد أسئلة مطابقة لخيارات البحث والتصفية الحالية.</div>`;
+    els.paginationBar.innerHTML = "";
+    return;
+  }
+
+  const diffColors = {
+    easy: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+    medium: "bg-amber-500/10 text-amber-700 dark:text-amber-300",
+    hard: "bg-purple-500/10 text-purple-700 dark:text-purple-300"
+  };
+
+  const frag = document.createDocumentFragment();
+  slice.forEach(({ item, idx }) => {
+    const card = document.createElement("div");
+    card.className = "bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 hover:border-primary transition shadow-2xs";
+
+    const optsHtml = item.o.map((opt, oIdx) => {
+      const isOk = oIdx === item.a;
+      return `
+        <div class="px-3 py-2 rounded-xl border text-xs ${isOk ? "bg-emerald-50 border-emerald-400 text-emerald-900 font-bold dark:bg-emerald-900/30 dark:border-emerald-600 dark:text-emerald-200" : "bg-slate-50 border-slate-200 text-slate-700 dark:bg-slate-900/60 dark:border-slate-700 dark:text-slate-300"}">
+          <strong>(${LETTERS[oIdx]})</strong> ${opt} ${isOk ? "✔" : ""}
+        </div>
+      `;
+    }).join("");
+
+    card.innerHTML = `
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200">#${idx + 1}</span>
+          <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:bg-teal-500/20 dark:text-teal-300">${UNIT_LABELS[item.u] || "قسم " + item.u}</span>
+          <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${diffColors[item.d] || diffColors.medium}">${DIFF_LABELS[item.d] || item.d}</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button type="button" data-action="edit" data-idx="${idx}" class="px-3 py-1.5 rounded-lg text-xs font-bold border border-primary text-primary dark:text-teal-300 dark:border-teal-500 hover:bg-primary/5 cursor-pointer">✏️ تعديل</button>
+          <button type="button" data-action="delete" data-idx="${idx}" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-900/30 dark:text-rose-300 cursor-pointer">🗑️ حذف</button>
+        </div>
+      </div>
+      <div class="font-extrabold text-sm lg:text-base mb-3">س${idx + 1}: ${item.q}</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">${optsHtml}</div>
+      <div class="text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 px-3 py-2 rounded-xl border-r-4 border-primary">
+        <strong>الشرح:</strong> ${item.e || "—"}
+      </div>
+    `;
+    frag.appendChild(card);
+  });
+  els.questionsContainer.appendChild(frag);
+
+  els.paginationBar.innerHTML = "";
+  if (totalPages > 1) {
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 disabled:opacity-40 cursor-pointer";
+    prevBtn.textContent = "السابق";
+    prevBtn.disabled = app.page <= 1;
+    prevBtn.onclick = () => { app.page--; renderQuestionsList(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+
+    const info = document.createElement("span");
+    info.className = "text-xs font-extrabold px-3";
+    info.textContent = `صفحة ${app.page} من ${totalPages}`;
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 disabled:opacity-40 cursor-pointer";
+    nextBtn.textContent = "التالي";
+    nextBtn.disabled = app.page >= totalPages;
+    nextBtn.onclick = () => { app.page++; renderQuestionsList(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+
+    els.paginationBar.append(prevBtn, info, nextBtn);
+  }
+}
+
+function openEditModal(idx = -1) {
+  els.editIndex.value = String(idx);
+  if (idx === -1) {
+    els.modalTitle.textContent = "➕ إضافة سؤال جديد للبنك";
+    els.qUnitInput.value = "2";
+    els.qDiffInput.value = "medium";
+    els.qTextInput.value = "";
+    els.opt0.value = "";
+    els.opt1.value = "";
+    els.opt2.value = "";
+    els.opt3.value = "";
+    document.querySelector('input[name="correctOpt"][value="0"]').checked = true;
+    els.qExpInput.value = "";
+  } else {
+    const item = app.bank[idx];
+    els.modalTitle.textContent = `✏️ تعديل السؤال رقم #${idx + 1}`;
+    els.qUnitInput.value = String(item.u);
+    els.qDiffInput.value = item.d;
+    els.qTextInput.value = item.q;
+    els.opt0.value = item.o[0] || "";
+    els.opt1.value = item.o[1] || "";
+    els.opt2.value = item.o[2] || "";
+    els.opt3.value = item.o[3] || "";
+    const rad = document.querySelector(`input[name="correctOpt"][value="${item.a}"]`);
+    if (rad) rad.checked = true;
+    els.qExpInput.value = item.e || "";
+  }
+  els.editModal.classList.remove("hidden");
+}
+
+function closeEditModal() {
+  els.editModal.classList.add("hidden");
+}
+
+function runQualityAudit() {
+  const seen = {};
+  const dups = [];
+  const emptyExp = [];
+  app.bank.forEach((item, i) => {
+    const norm = normalizeArabic(item.q);
+    if (seen[norm] !== undefined) dups.push(`س${i + 1} مكرر مع س${seen[norm] + 1}`);
+    else seen[norm] = i;
+    if (!item.e || !item.e.trim()) emptyExp.push(`س${i + 1}`);
+  });
+
+  if (dups.length === 0 && emptyExp.length === 0) {
+    showToast(`فحص الجودة ممتاز ✓ جميع الأسئلة (${app.bank.length}) فريدة ومكتملة الشرح.`, "success");
+  } else {
+    showToast(`تنبيه: يوجد ${dups.length} سؤال مكرر و ${emptyExp.length} سؤال بدون شرح.`, "warning");
+  }
+}
+
+// ==================== معاينة موقع الطلبة المباشر ====================
+function shuffleArr(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function startStudentPreview() {
+  clearInterval(prevState.timerId);
+  const scope = els.prevScopeSelect.value;
+  const countVal = els.prevCountSelect.value;
+  const mins = parseInt(els.prevTimerSelect.value, 10);
+
+  let pool = scope === "all" ? [...app.bank] : app.bank.filter(q => String(q.u) === scope);
+  if (pool.length === 0) {
+    showToast("لا توجد أسئلة في هذا النطاق للمعاينة", "warning");
+    return;
+  }
+
+  const limit = countVal === "all" ? pool.length : Math.min(parseInt(countVal, 10) || 10, pool.length);
+  prevState.questions = shuffleArr(pool).slice(0, limit).map(q => {
+    const pairs = q.o.map((t, i) => ({ t, ok: i === q.a }));
+    const mixed = shuffleArr(pairs);
+    return {
+      u: q.u,
+      d: q.d,
+      q: q.q,
+      o: mixed.map(x => x.t),
+      a: mixed.findIndex(x => x.ok),
+      e: q.e
+    };
+  });
+
+  prevState.answers = {};
+  prevState.flagged = new Set();
+  prevState.index = 0;
+  prevState.submitted = false;
+  prevState.remSec = mins * 60;
+
+  els.previewResultBox.classList.add("hidden");
+  els.previewExamBox.classList.remove("hidden");
+
+  if (mins <= 0) {
+    els.prevTimerDisplay.textContent = "بدون مؤقت";
+  } else {
+    els.prevTimerDisplay.textContent = `${String(mins).padStart(2, "0")}:00`;
+    prevState.timerId = setInterval(() => {
+      if (prevState.submitted) return;
+      prevState.remSec--;
+      const m = Math.floor(Math.max(0, prevState.remSec) / 60);
+      const s = Math.max(0, prevState.remSec) % 60;
+      els.prevTimerDisplay.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+      if (prevState.remSec <= 0) submitStudentPreview();
+    }, 1000);
+  }
+
+  renderPreviewQuestion();
+  renderPreviewPalette();
+}
+
+function renderPreviewPalette() {
+  els.prevPaletteGrid.innerHTML = "";
+  prevState.questions.forEach((_, idx) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    const isAns = prevState.answers[idx] !== undefined;
+    const isCur = idx === prevState.index;
+    const isFlg = prevState.flagged.has(idx);
+    btn.className = `h-9 rounded-lg text-xs font-extrabold border relative cursor-pointer ${
+      isAns ? "bg-primary/15 border-primary text-primary dark:bg-teal-500/20 dark:text-teal-300" : "bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700"
+    } ${isCur ? "ring-2 ring-amber-500" : ""}`;
+    btn.textContent = idx + 1;
+    if (isFlg) {
+      btn.innerHTML += `<span class="absolute top-0.5 left-0.5 w-2 h-2 rounded-full bg-amber-500"></span>`;
+    }
+    btn.onclick = () => {
+      prevState.index = idx;
+      renderPreviewQuestion();
+      renderPreviewPalette();
+    };
+    els.prevPaletteGrid.appendChild(btn);
+  });
+}
+
+function renderPreviewQuestion() {
+  const q = prevState.questions[prevState.index];
+  if (!q) return;
+  const total = prevState.questions.length;
+  const ansCount = Object.keys(prevState.answers).length;
+
+  els.prevProgressText.textContent = `السؤال ${prevState.index + 1} من ${total}`;
+  els.prevAnsweredText.textContent = `المجاب عنها: ${ansCount} / ${total}`;
+  els.prevProgressFill.style.width = `${total ? Math.round((ansCount / total) * 100) : 0}%`;
+
+  els.prevUnitBadge.textContent = UNIT_LABELS[q.u] || "";
+  els.prevDiffBadge.textContent = DIFF_LABELS[q.d] || "";
+  els.prevFlagBtn.textContent = prevState.flagged.has(prevState.index) ? "تم التحديد للمراجعة ✓" : "تحديد للمراجعة";
+
+  els.prevQText.textContent = `${prevState.index + 1}. ${q.q}`;
+  els.prevOptionsList.innerHTML = "";
+
+  q.o.forEach((optTxt, oIdx) => {
+    const selected = prevState.answers[prevState.index] === oIdx;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `w-full text-right p-3.5 rounded-xl border-2 text-sm flex items-center gap-3 transition cursor-pointer ${
+      selected ? "border-primary bg-primary/10 font-bold dark:border-teal-400 dark:bg-teal-500/20" : "border-slate-200 dark:border-slate-700 hover:border-primary"
+    }`;
+    btn.innerHTML = `<span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-extrabold shrink-0 ${selected ? "bg-primary text-white" : "bg-slate-100 dark:bg-slate-700"}">${LETTERS[oIdx]}</span><span>${optTxt}</span>`;
+    btn.onclick = () => {
+      if (prevState.answers[prevState.index] === oIdx) delete prevState.answers[prevState.index];
+      else prevState.answers[prevState.index] = oIdx;
+      renderPreviewQuestion();
+      renderPreviewPalette();
+    };
+    els.prevOptionsList.appendChild(btn);
+  });
+}
+
+function submitStudentPreview() {
+  prevState.submitted = true;
+  clearInterval(prevState.timerId);
+  let correct = 0;
+  prevState.questions.forEach((q, idx) => {
+    if (prevState.answers[idx] === q.a) correct++;
+  });
+  const total = prevState.questions.length;
+  const pct = total ? ((correct / total) * 100).toFixed(1) : 0;
+
+  els.prevResScore.textContent = `${pct}%`;
+  els.prevResRaw.textContent = `${correct} / ${total} إجابة صحيحة`;
+
+  els.prevReviewList.innerHTML = prevState.questions.map((q, idx) => {
+    const uAns = prevState.answers[idx];
+    const isOk = uAns === q.a;
+    return `
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border-r-4 ${isOk ? "border-emerald-500" : "border-rose-500"} border border-slate-200 dark:border-slate-700">
+        <div class="font-bold text-sm mb-2">${idx + 1}. ${q.q}</div>
+        <div class="text-xs mb-1 ${isOk ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"} font-bold">
+          إجابتك: ${uAns !== undefined ? `${LETTERS[uAns]}) ${q.o[uAns]}` : "لم تتم الإجابة"}
+        </div>
+        <div class="text-xs text-primary dark:text-teal-300 font-bold mb-2">
+          الإجابة الصحيحة: ${LETTERS[q.a]}) ${q.o[q.a]}
+        </div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/60 p-2.5 rounded-lg">
+          <strong>الشرح:</strong> ${q.e}
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  els.previewExamBox.classList.add("hidden");
+  els.previewResultBox.classList.remove("hidden");
+}
+
+// ==================== التنقل بين أقسام الداشبورد ====================
+const TAB_META = {
+  overview: { title: "نظرة عامة والإحصائيات", sub: "متابعة شاملة لبنك أسئلة مساق المجتمع الأردني (ص 1 – 80)" },
+  questions: { title: "إدارة بنك الأسئلة", sub: "إضافة، تعديل، حذف، وبحث ذكي في جميع أسئلة المساق" },
+  preview: { title: "معاينة موقع الطلبة المباشر", sub: "محاكاة تفاعلية حقيقية للاختبار قبل النشر النهائي" },
+  sync: { title: "النشر والمزامنة مع GitHub", sub: "ربط مباشر مع مستودع sweadel/- وتحديث ملف omar.html" }
+};
+
+function switchTab(tabId) {
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.add("hidden"));
+  const target = document.getElementById(`tab-${tabId}`);
+  if (target) target.classList.remove("hidden");
+
+  document.querySelectorAll("#sidebarNav .nav-item").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.tab === tabId);
+  });
+
+  if (TAB_META[tabId]) {
+    els.pageHeaderTitle.textContent = TAB_META[tabId].title;
+    els.pageHeaderSub.textContent = TAB_META[tabId].sub;
+  }
+
+  if (tabId === "preview" && prevState.questions.length === 0) {
+    startStudentPreview();
+  }
+
+  // إغلاق القائمة الجانبية على الهواتف بعد الاختيار
+  els.sidebar.classList.add("translate-x-full");
+  els.sidebarOverlay.classList.add("hidden");
+}
+
+function refreshAll() {
+  renderOverview();
+  renderQuestionsList();
+}
+
+// ==================== ربط الأحداث ====================
+els.sidebarNav.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-tab]");
+  if (btn) switchTab(btn.dataset.tab);
+});
+
+els.openSidebarBtn.addEventListener("click", () => {
+  els.sidebar.classList.remove("translate-x-full");
+  els.sidebarOverlay.classList.remove("hidden");
+});
+
+function closeSidebarMobile() {
+  els.sidebar.classList.add("translate-x-full");
+  els.sidebarOverlay.classList.add("hidden");
+}
+els.closeSidebarBtn.addEventListener("click", closeSidebarMobile);
+els.sidebarOverlay.addEventListener("click", closeSidebarMobile);
+
+els.themeToggleBtn.addEventListener("click", () => {
+  const isDark = document.documentElement.classList.toggle("dark");
+  els.themeToggleBtn.textContent = isDark ? "☀️" : "🌙";
+  try { localStorage.setItem(THEME_KEY, isDark ? "dark" : "light"); } catch (e) {}
+});
+
+els.autoExpBtn.addEventListener("click", () => {
+  const u = parseInt(els.qUnitInput.value, 10);
+  const ansIdx = parseInt(document.querySelector('input[name="correctOpt"]:checked').value, 10);
+  const opts = [els.opt0.value.trim(), els.opt1.value.trim(), els.opt2.value.trim(), els.opt3.value.trim()];
+  const correctTxt = opts[ansIdx] || "";
+  const pm = els.qTextInput.value.match(/\((ص\s*[\d\s–\-و]+)\)/);
+  const pageRef = pm ? ` (${pm[1]})` : "";
+  els.qExpInput.value = `الإجابة الصحيحة هي: «${correctTxt}»، وذلك وفق ما ورد في ${UNIT_LABELS[u]}${pageRef} من كتاب المجتمع الأردني.`;
+});
+
+els.questionForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const idx = parseInt(els.editIndex.value, 10);
+  const ansIdx = parseInt(document.querySelector('input[name="correctOpt"]:checked').value, 10);
+  const newObj = {
+    u: parseInt(els.qUnitInput.value, 10),
+    d: els.qDiffInput.value,
+    q: els.qTextInput.value.trim(),
+    o: [els.opt0.value.trim(), els.opt1.value.trim(), els.opt2.value.trim(), els.opt3.value.trim()],
+    a: ansIdx,
+    e: els.qExpInput.value.trim()
+  };
+
+  if (idx === -1) {
+    app.bank.push(newObj);
+    addLog(`إضافة سؤال جديد (#${app.bank.length}): ${newObj.q.slice(0, 45)}...`);
+    showToast("تمت إضافة السؤال الجديد بنجاح", "success");
+  } else {
+    app.bank[idx] = newObj;
+    addLog(`تعديل السؤال رقم #${idx + 1}`);
+    showToast(`تم حفظ تعديلات السؤال #${idx + 1}`, "success");
+  }
+
+  markDirty(true);
+  closeEditModal();
+  refreshAll();
+});
+
+els.questionsContainer.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-action]");
+  if (!btn) return;
+  const action = btn.dataset.action;
+  const idx = parseInt(btn.dataset.idx, 10);
+  if (action === "edit") {
+    openEditModal(idx);
+  } else if (action === "delete") {
+    if (confirm(`هل أنت متأكد من حذف السؤال رقم #${idx + 1}؟`)) {
+      const removed = app.bank.splice(idx, 1)[0];
+      markDirty(true);
+      addLog(`حذف السؤال (#${idx + 1}): ${removed.q.slice(0, 40)}...`);
+      showToast("تم حذف السؤال من البنك", "warning");
+      refreshAll();
+    }
+  }
+});
+
+els.addQuestionBtn.addEventListener("click", () => openEditModal(-1));
+els.closeModalBtn.addEventListener("click", closeEditModal);
+els.cancelModalBtn.addEventListener("click", closeEditModal);
+
+els.auditBtn.addEventListener("click", runQualityAudit);
+els.overviewAuditBtn.addEventListener("click", runQualityAudit);
+
+function downloadUpdatedHtml() {
+  try {
+    const htmlOut = buildUpdatedHtml();
+    const blob = new Blob([htmlOut], { type: "text/html;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = els.ghPath.value.trim() || "omar.html";
+    a.click();
+    addLog(`تحميل نسخة محلية محدثة من ${a.download}`);
+    showToast("تم تحميل ملف HTML المحدّث بنجاح", "success");
+  } catch (err) {
+    showToast(err.message, "warning");
+  }
+}
+
+els.downloadHtmlBtn.addEventListener("click", downloadUpdatedHtml);
+els.overviewDownloadBtn.addEventListener("click", downloadUpdatedHtml);
+
+els.uploadHtmlInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      parseHtmlFile(reader.result);
+      app.fileSha = null;
+      markDirty(true);
+      addLog(`استيراد ملف HTML محلي (${file.name}) بعدد ${app.bank.length} سؤالاً`);
+      showToast(`تم تحميل ${app.bank.length} سؤالاً من الملف المحلي`, "success");
+      refreshAll();
+    } catch (err) {
+      showToast("خطأ في قراءة الملف: " + err.message, "error");
+    }
+  };
+  reader.readAsText(file, "utf-8");
+});
+
+els.exportJsonBtn.addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(app.bank, null, 2)], { type: "application/json;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "jordan_society_bank.json";
+  a.click();
+  addLog("تصدير نسخة احتياطية بصيغة JSON");
+  showToast("تم تصدير ملف JSON بنجاح", "success");
+});
+
+els.bulkImportBtn.addEventListener("click", () => {
+  els.bulkJsonInput.value = "";
+  els.bulkModal.classList.remove("hidden");
+});
+
+function handleBulkImport(replaceMode) {
+  try {
+    const parsed = JSON.parse(els.bulkJsonInput.value.trim());
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      throw new Error("يرجى إدخال مصفوفة JSON صالحة تحتوي على سؤال واحد على الأقل.");
+    }
+    parsed.forEach((q, i) => {
+      if (!q.q || !Array.isArray(q.o) || q.o.length !== 4 || typeof q.a !== "number") {
+        throw new Error(`خطأ في تنسيق السؤال رقم ${i + 1}`);
+      }
+    });
+    if (replaceMode) {
+      if (!confirm(`سيتم استبدال جميع الأسئلة الحالية (${app.bank.length}) بـ ${parsed.length} سؤالاً. هل أنت متأكد؟`)) return;
+      app.bank = parsed;
+      addLog(`استبدال البنك بالكامل بـ ${parsed.length} سؤالاً عبر JSON`);
+    } else {
+      app.bank.push(...parsed);
+      addLog(`إضافة ${parsed.length} سؤالاً جديداً عبر استيراد JSON`);
+    }
+    markDirty(true);
+    els.bulkModal.classList.add("hidden");
+    showToast(`تم تحديث البنك بنجاح (${app.bank.length} سؤالاً)`, "success");
+    refreshAll();
+  } catch (err) {
+    showToast(err.message, "error");
+  }
+}
+
+els.appendBulkBtn.addEventListener("click", () => handleBulkImport(false));
+els.replaceBulkBtn.addEventListener("click", () => handleBulkImport(true));
+els.closeBulkBtn.addEventListener("click", () => els.bulkModal.classList.add("hidden"));
+els.cancelBulkBtn.addEventListener("click", () => els.bulkModal.classList.add("hidden"));
+
+els.searchInput.addEventListener("input", () => { app.page = 1; renderQuestionsList(); });
+els.filterUnit.addEventListener("change", () => { app.page = 1; renderQuestionsList(); });
+els.filterDiff.addEventListener("change", () => { app.page = 1; renderQuestionsList(); });
+
+els.fetchGhBtn.addEventListener("click", () => fetchFromGitHub(false));
+els.pushGhBtn.addEventListener("click", pushToGitHub);
+els.quickPushBtn.addEventListener("click", pushToGitHub);
+
+els.clearLogBtn.addEventListener("click", () => {
+  app.logs = [];
+  try { localStorage.removeItem(LOG_KEY); } catch (e) {}
+  renderLogs();
+});
+
+// أحداث المعاينة المباشرة
+els.startPreviewBtn.addEventListener("click", startStudentPreview);
+els.prevRetryBtn.addEventListener("click", startStudentPreview);
+els.prevGoPrevBtn.addEventListener("click", () => {
+  if (prevState.index > 0) { prevState.index--; renderPreviewQuestion(); renderPreviewPalette(); }
+});
+els.prevGoNextBtn.addEventListener("click", () => {
+  prevState.index = (prevState.index + 1) % prevState.questions.length;
+  renderPreviewQuestion();
+  renderPreviewPalette();
+});
+els.prevFlagBtn.addEventListener("click", () => {
+  if (prevState.flagged.has(prevState.index)) prevState.flagged.delete(prevState.index);
+  else prevState.flagged.add(prevState.index);
+  renderPreviewQuestion();
+  renderPreviewPalette();
+});
+els.prevSubmitBtn.addEventListener("click", submitStudentPreview);
+
+// ==================== التهيئة عند التشغيل ====================
+(function init() {
+  if (document.documentElement.classList.contains("dark")) {
+    els.themeToggleBtn.textContent = "☀️";
+  }
+  loadGhConfig();
+
+  try {
+    const savedLogs = localStorage.getItem(LOG_KEY);
+    if (savedLogs) app.logs = JSON.parse(savedLogs);
+  } catch (e) {}
+  renderLogs();
+
+  // استرجاع أي مسودة محلية غير منشورة إن وجدت
+  let hasDraft = false;
+  try {
+    const rawDraft = localStorage.getItem(DRAFT_KEY);
+    if (rawDraft) {
+      const draft = JSON.parse(rawDraft);
+      if (draft && Array.isArray(draft.bank) && draft.bank.length > 0) {
+        app.bank = draft.bank;
+        app.templateHtml = draft.templateHtml || "";
+        markDirty(true);
+        hasDraft = true;
+      }
+    }
+  } catch (e) {}
+
+  refreshAll();
+
+  if (!hasDraft) {
+    fetchFromGitHub(true);
+  } else {
+    showToast("تم استرجاع مسودتك المحلية غير المنشورة", "info");
+  }
+})();
+</script>
+</body>
+</html>
